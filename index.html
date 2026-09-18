@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <!--
   Toyota Concepción del Uruguay — Piñeyro y Moscatelli S.R.L.
-  Antes de publicar en el dominio final, revisar los dos comentarios "PENDIENTE CLIENTE"
-  en <head> (ID real de Google Tag Manager y URL canónica) y quitar noindex/nofollow.
+  Antes de publicar en el dominio final, reemplazar el placeholder del ID de Google Tag Manager
+  y la canonical relativa por los valores definitivos del concesionario.
 -->
 <html lang="es-AR">
 <head>
-<!-- PENDIENTE CLIENTE: reemplazar GTM-XXXXXXX por el ID real de la cuenta de Analytics antes de publicar. -->
+<!-- PENDIENTE CLIENTE: reemplazar GTM-XXXXXXX por el ID real cuando el concesionario entregue la cuenta. -->
 <script id="google-tag-manager-placeholder">
 window.dataLayer=window.dataLayer||[];
 window.toyotaTrack=function(name,details){window.dataLayer.push(Object.assign({event:name},details||{}));};
@@ -18,8 +18,7 @@ document.addEventListener('DOMContentLoaded',function(){document.querySelectorAl
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Toyota Concepción del Uruguay — Piñeyro y Moscatelli</title>
 <meta name="description" content="Piñeyro y Moscatelli, concesionario oficial Toyota en Concepción del Uruguay. 0km, usados, plan canje, financiación, service oficial, repuestos genuinos y neumáticos Bridgestone. 9 de Julio 1624.">
-<!-- Propuesta sin publicar: noindex hasta que el cliente confirme dominio y contenido final -->
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <meta name="theme-color" content="#EB0A1E">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_AR">
@@ -30,8 +29,7 @@ document.addEventListener('DOMContentLoaded',function(){document.querySelectorAl
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<!-- PENDIENTE CLIENTE: completar con el dominio real antes de publicar. -->
-<!-- <link rel="canonical" href="https://DOMINIO-REAL.example/"> -->
+<link rel="canonical" href="/">
 <link rel="icon" type="image/webp" href="toyota-sharp-assets/asset-bec83be10e47-256.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -626,7 +624,7 @@ body{background:#e9eef0!important;color:#172026!important}
 .ui-icon,.faq-q .plus{width:var(--system-icon-sm);height:var(--system-icon-sm);flex-basis:var(--system-icon-sm)}.social-mark img{width:var(--system-icon-md);height:var(--system-icon-md)}.social-mark{display:grid;place-items:center;width:var(--system-icon-lg);height:var(--system-icon-lg);border-radius:var(--system-radius-sm);background:#f1f4f4}.btn>.ui-icon{margin-right:7px}
 @media(prefers-reduced-motion:reduce){.btn,.model,.used-card,.access-grid figure,.contact-plus-card,.facility-card,.faq-item,.faq-a{transition:none!important}.btn:hover,.model:hover,.used-card:hover,.access-grid figure:hover,.contact-plus-card:hover,.facility-card:hover{transform:none!important}}
 </style>
-<!-- REEMPLAZAR ANTES DE PUBLICAR: canonical, dominio, endpoint real de leads, textos legales, noindex y robots. -->
+<!-- REEMPLAZAR ANTES DE PUBLICAR: canonical absoluta, dominio, endpoint real de leads y textos legales. -->
 
 <style id="sw4-hero-cover-fix">
 /* The source SW4 photo is portrait; cover removes the letterbox bands while preserving the existing frame. */
@@ -1657,7 +1655,7 @@ h1,h2,h3,.brand .b1,.section-kicker,.tag{font-kerning:normal;text-wrap:balance}
           </div>
         </div>
         <!-- NEEDS: endpoint de Formspree, Google Apps Script o CRM del cliente para activar un envío backend real. Mientras tanto se ofrecen WhatsApp y el email oficial mediante mailto. -->
-        <form class="form-grid" id="contactForm" aria-labelledby="contactFormTitle">
+        <form class="form-grid" id="contactForm" aria-labelledby="contactFormTitle" aria-describedby="contactFormNote" novalidate>
           <div>
             <label for="cName">Nombre</label>
             <input type="text" id="cName" name="name" autocomplete="name" required placeholder="Tu nombre">
@@ -1683,7 +1681,7 @@ h1,h2,h3,.brand .b1,.section-kicker,.tag{font-kerning:normal;text-wrap:balance}
           <div>
             <button type="submit" class="btn primary block"><span>Solicitar asesoramiento por WhatsApp</span></button>
             <a class="btn block" href="mailto:toyotacdelu@gmail.com?subject=Consulta desde la web">Enviar por email</a>
-            <p class="form-note">WhatsApp abre un mensaje para que lo revises y lo envíes. El email utiliza la dirección publicada en el listado oficial de Toyota Argentina.</p>
+            <p class="form-note" id="contactFormNote" role="status" aria-live="polite">WhatsApp abre un mensaje para que lo revises y lo envíes. El email utiliza la dirección publicada en el listado oficial de Toyota Argentina.</p>
           </div>
         </form>
       </div>
@@ -1981,26 +1979,40 @@ document.addEventListener("DOMContentLoaded", function(){
     }
   };
 
+  window.__toyotaScrollLockCount = window.__toyotaScrollLockCount || 0;
+  window.__toyotaLockScroll = function(){
+    window.__toyotaScrollLockCount++;
+    document.documentElement.classList.add("toyota-scroll-locked");
+    if(window.__toyotaLenis && window.__toyotaLenis.stop) window.__toyotaLenis.stop();
+  };
+  window.__toyotaUnlockScroll = function(){
+    window.__toyotaScrollLockCount = Math.max(0, window.__toyotaScrollLockCount - 1);
+    if(window.__toyotaScrollLockCount === 0){
+      document.documentElement.classList.remove("toyota-scroll-locked");
+      if(window.__toyotaLenis && window.__toyotaLenis.start) window.__toyotaLenis.start();
+    }
+  };
   // ---- menú mobile ----
   var burger = document.getElementById("burger");
   var mobilepanel = document.getElementById("mobilepanel");
+  function closeMobilePanel(restoreFocus){
+    if(!mobilepanel.classList.contains("open")) return;
+    mobilepanel.classList.remove("open");
+    burger.setAttribute("aria-expanded", "false");
+    window.__toyotaUnlockScroll();
+    if(restoreFocus) burger.focus();
+  }
   burger.addEventListener("click", function(){
-    var open = mobilepanel.classList.toggle("open");
-    burger.setAttribute("aria-expanded", open ? "true" : "false");
-    if(open) window.__toyotaLockScroll(); else window.__toyotaUnlockScroll();
+    if(mobilepanel.classList.contains("open")) closeMobilePanel(false);
+    else { mobilepanel.classList.add("open"); burger.setAttribute("aria-expanded", "true"); window.__toyotaLockScroll(); }
   });
-  mobilepanel.querySelectorAll("a").forEach(function(a){
-    a.addEventListener("click", function(){ if(mobilepanel.classList.contains("open"))window.__toyotaUnlockScroll(); mobilepanel.classList.remove("open"); burger.setAttribute("aria-expanded", "false"); });
+  mobilepanel.querySelectorAll("a").forEach(function(a){ a.addEventListener("click", function(){ closeMobilePanel(false); }); });
+  document.addEventListener("pointerdown", function(e){
+    if(mobilepanel.classList.contains("open") && !mobilepanel.contains(e.target) && !burger.contains(e.target)) closeMobilePanel(false);
   });
   document.addEventListener("keydown", function(e){
-    if(e.key === "Escape" && mobilepanel.classList.contains("open")){
-      window.__toyotaUnlockScroll();
-      mobilepanel.classList.remove("open");
-      burger.setAttribute("aria-expanded", "false");
-      burger.focus();
-    }
+    if(e.key === "Escape" && mobilepanel.classList.contains("open")) closeMobilePanel(true);
   });
-
   // ---- menús desplegables del header: al abrir uno se cierran los demás ----
   var navmegas = document.querySelectorAll(".navmega");
   navmegas.forEach(function(d){
@@ -2218,10 +2230,21 @@ document.addEventListener("DOMContentLoaded", function(){
     var heading=card.querySelector("h3");
     if(heading)heading.insertAdjacentElement("afterend",button);
   });
-  var detail=document.getElementById("modelDetail"), closeDetail=document.getElementById("detailClose"), detailLastFocus=null;
+  var detail=document.getElementById("modelDetail"), closeDetail=document.getElementById("detailClose"), detailLastFocus=null, detailClosingTimer=null;
   function slugifyModel(name){return name.toLowerCase().replace(/\s+/g,"-").replace(/[^a-z0-9-]/g,"");}
-  function closeModelDetail(updateHash){if(detail.classList.contains("open"))window.__toyotaUnlockScroll();detail.classList.remove("open");if(detailLastFocus&&detailLastFocus.focus)detailLastFocus.focus();if(updateHash!==false)history.replaceState(null,"",location.pathname+location.search+"#gama");}
-  function openDetail(name,fromHash){var d=MODEL_DETAILS[name];if(!d)return;detailLastFocus=document.activeElement;document.getElementById("detailTitle").textContent=name;document.getElementById("detailCrumb").textContent=name;document.getElementById("detailWhatsApp").href=wa("turnos","Hola! Quiero consultar por la Toyota "+name+".");document.getElementById("detailIntro").textContent=d.intro;document.getElementById("detailSpecs").innerHTML=d.specs.map(function(x){return '<div class="detail-spec"><strong>'+x[0]+'</strong>'+x[1]+'</div>';}).join("");document.getElementById("detailGallery").innerHTML=d.gallery.map(function(x,i){return '<a class="gallery-link" href="'+x+'" target="_blank" rel="noopener">Abrir material '+(i+1)+"</a>";}).join("");document.getElementById("detailSource").href=d.source;detail.classList.add("open");window.__toyotaLockScroll();closeDetail.focus();if(!fromHash)history.pushState(null,"",location.pathname+location.search+"#modelo/"+slugifyModel(name));}
+  function closeModelDetail(updateHash){
+    if(!detail.classList.contains("open")) return;
+    window.__toyotaUnlockScroll();
+    detail.classList.remove("open");
+    detail.classList.add("is-closing");
+    clearTimeout(detailClosingTimer);
+    detailClosingTimer=setTimeout(function(){detail.classList.remove("is-closing");},320);
+    var fallback=document.querySelector('.model-detail-link, #burger, a[href="#gama"]');
+    if(detailLastFocus && document.contains(detailLastFocus) && typeof detailLastFocus.focus==="function") detailLastFocus.focus();
+    else if(fallback) fallback.focus();
+    if(updateHash!==false)history.replaceState(null,"",location.pathname+location.search+"#gama");
+  }
+  function openDetail(name,fromHash){var d=MODEL_DETAILS[name];if(!d)return;if(detail.classList.contains("is-closing")){clearTimeout(detailClosingTimer);detail.classList.remove("is-closing");}var wasOpen=detail.classList.contains("open");if(!wasOpen)detailLastFocus=document.activeElement;document.getElementById("detailTitle").textContent=name;document.getElementById("detailCrumb").textContent=name;document.getElementById("detailWhatsApp").href=wa("turnos","Hola! Quiero consultar por la Toyota "+name+".");document.getElementById("detailIntro").textContent=d.intro;document.getElementById("detailSpecs").innerHTML=d.specs.map(function(x){return '<div class="detail-spec"><strong>'+x[0]+'</strong>'+x[1]+'</div>';}).join("");document.getElementById("detailGallery").innerHTML=d.gallery.map(function(x,i){return '<a class="gallery-link" href="'+x+'" target="_blank" rel="noopener">Abrir material '+(i+1)+"</a>";}).join("");document.getElementById("detailSource").href=d.source;detail.classList.add("open");if(!wasOpen)window.__toyotaLockScroll();closeDetail.focus();if(!fromHash)history.pushState(null,"",location.pathname+location.search+"#modelo/"+slugifyModel(name));}
   closeDetail.addEventListener("click",function(){closeModelDetail();});detail.addEventListener("click",function(e){if(e.target===detail)closeModelDetail();});
   detail.querySelectorAll(".detail-actions a[href^='#']").forEach(function(a){a.addEventListener("click",function(){closeModelDetail(false);});});
   function trapDetailFocus(e){if(!detail.classList.contains("open"))return;if(e.key==="Escape"){e.preventDefault();closeModelDetail();return;}if(e.key!=="Tab")return;var f=detail.querySelectorAll('a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])');if(!f.length)return;var first=f[0],last=f[f.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}
@@ -2229,8 +2252,17 @@ document.addEventListener("DOMContentLoaded", function(){
 
   // ---- formulario contextual -> número y mensaje correctos ----
   document.getElementById("contactForm").addEventListener("submit", function(e){
-    e.preventDefault(); var nombre=document.getElementById("cName").value.trim(); var motivo=document.getElementById("cMotivo"); var mensaje=document.getElementById("cMsg").value.trim();
-    if(!nombre || !mensaje){var note=this.querySelector(".form-note"); if(note){note.textContent="Completá tu nombre y el mensaje para continuar.";note.className="form-error";} return;}
+    e.preventDefault(); var nameField=document.getElementById("cName"), messageField=document.getElementById("cMsg");
+    var nombre=nameField.value.trim(); var motivo=document.getElementById("cMotivo"); var mensaje=messageField.value.trim();
+    [nameField,messageField].forEach(function(field){field.removeAttribute("aria-invalid");});
+    var note=this.querySelector(".form-note");
+    if(!nombre || !mensaje){
+      if(!nombre) nameField.setAttribute("aria-invalid","true");
+      if(!mensaje) messageField.setAttribute("aria-invalid","true");
+      if(note){note.textContent=!nombre && !mensaje ? "Completá tu nombre y el mensaje para continuar." : (!nombre ? "Completá tu nombre para continuar." : "Contanos brevemente qué necesitás para continuar.");note.className="form-note form-error";note.setAttribute("role","alert");}
+      (!nombre ? nameField : messageField).focus(); return;
+    }
+    if(note){note.textContent="Preparando tu consulta…";note.className="form-note";note.setAttribute("role","status");}
     var key=motivo.value==="repuestos"||motivo.value==="accesorios"?"repuestos":motivo.value==="neumaticos"?"neumaticos":"turnos";
     var labels={"0km":"Quiero consultar por un Toyota 0 km.","usados":"Quiero consultar por un vehículo usado disponible.","financiacion":"Quiero consultar opciones de financiación para un Toyota.","canje":"Quiero tasar mi vehículo para un plan canje.","turnos":"Quiero solicitar un turno de service.","repuestos":"Quiero consultar por un repuesto genuino Toyota.","accesorios":"Quiero consultar por accesorios Toyota.","neumaticos":"Quiero consultar por neumáticos Bridgestone.","general":"Quiero realizar una consulta general."};
     var texto="Hola! Soy "+nombre+". "+(labels[motivo.value]||labels.general)+" Detalle: "+mensaje; window.open(wa(key,texto),"_blank");
@@ -2247,10 +2279,10 @@ document.addEventListener("DOMContentLoaded", function(){
       ["Torque", "2.4: 400 Nm entre 1.600 y 2.000 rpm. 2.8 manual: 420 Nm entre 1.400 y 3.400 rpm. 2.8 automática: 500 Nm entre 1.600 y 2.800 rpm."],
       ["Transmisión", "Manual de 6 velocidades o automática de 6 velocidades, según versión."],
       ["Tracción", "4x2 o 4x4 desconectable, con reductora en las versiones 4x4."],
-      ["Consumo", "A CONFIRMAR CON EL CONCESIONARIO. Toyota Argentina no publica cifra oficial de consumo combinado en la ficha pública."],
-      ["Dimensiones", "Largo aproximado: 5.330 mm. Despeje al suelo superior a 28 cm. Distancia entre ejes: A CONFIRMAR CON EL CONCESIONARIO; varía según cabina."],
+      ["Consumo", "Consultar disponibilidad y configuración vigente. Toyota Argentina no publica cifra oficial de consumo combinado en la ficha pública."],
+      ["Dimensiones", "Largo aproximado: 5.330 mm. Despeje al suelo superior a 28 cm. Distancia entre ejes: Consultar disponibilidad y configuración vigente; varía según cabina."],
       ["Baúl o capacidad de carga", "Superior a 1.000 kg según versión. La cifra exacta varía entre Cabina Simple, Chasis y Doble y debe confirmarse."],
-      ["Tanque de combustible", "A CONFIRMAR CON EL CONCESIONARIO."],
+      ["Tanque de combustible", "Consultar disponibilidad y configuración vigente."],
       ["Seguridad", "7 airbags: 2 frontales, 2 laterales delanteros, 2 de cortina y 1 de rodilla para conductor. Control de estabilidad, control de tracción, asistente de arranque en pendiente y control de velocidad crucero. Pantalla táctil de 9 pulgadas con Android Auto y Apple CarPlay inalámbricos desde versiones intermedias."],
       ["Garantía", "5 años o 150.000 km."],
       ["Precio de referencia", "Aproximadamente desde $39.900.000 en versiones de acceso hasta más de $72.000.000 en SRX/Limited. Valores variables: confirmar lista vigente con el concesionario."],
@@ -2265,9 +2297,9 @@ document.addEventListener("DOMContentLoaded", function(){
       ["Torque", "SRX/Diamond: 500 Nm entre 1.600 y 2.800 rpm. GR-Sport: 550 Nm."],
       ["Transmisión", "Automática de 6 velocidades con levas al volante. Modos ECO, NORM y SPORT."],
       ["Tracción", "4x4 desconectable con reductora."],
-      ["Consumo", "A CONFIRMAR CON EL CONCESIONARIO. No publicado oficialmente por Toyota Argentina en la ficha pública."],
-      ["Dimensiones", "A CONFIRMAR CON EL CONCESIONARIO. La ficha web actual no publica medidas exteriores exactas; comparte plataforma con Hilux."],
-      ["Baúl o capacidad de carga", "7 asientos, con posibilidad de plegado de tercera fila. Capacidad exacta en litros: A CONFIRMAR CON EL CONCESIONARIO."],
+      ["Consumo", "Consultar disponibilidad y configuración vigente. No publicado oficialmente por Toyota Argentina en la ficha pública."],
+      ["Dimensiones", "Consultar disponibilidad y configuración vigente. La ficha web actual no publica medidas exteriores exactas; comparte plataforma con Hilux."],
+      ["Baúl o capacidad de carga", "7 asientos, con posibilidad de plegado de tercera fila. Capacidad exacta en litros: Consultar disponibilidad y configuración vigente."],
       ["Tanque de combustible", "80 litros."],
       ["Seguridad", "Toyota Safety Sense: precolisión frontal con detección de peatones y ciclistas, alerta de cambio de carril y control de velocidad crucero adaptativo. Visión 360°, BSM y RCTA. Suspensión delantera independiente de doble brazo y trasera de eje rígido con resortes helicoidales. Frenos a disco ventilados en las 4 ruedas y dirección hidráulica con asistencia variable."],
       ["Garantía", "5 años o 150.000 km."],
@@ -2283,7 +2315,7 @@ document.addEventListener("DOMContentLoaded", function(){
       ["Torque", "Nafta: 203 Nm. Híbrida: 142 Nm."],
       ["Transmisión", "Nafta: automática CVT Direct Shift con 10 marchas preprogramadas. Híbrida: automática eCVT."],
       ["Tracción", "Delantera en toda la gama."],
-      ["Consumo", "Cifra oficial combinada: A CONFIRMAR CON EL CONCESIONARIO. La versión híbrida está orientada a reducir consumo urbano frente a la naftera equivalente."],
+      ["Consumo", "Cifra oficial combinada: Consultar disponibilidad y configuración vigente. La versión híbrida está orientada a reducir consumo urbano frente a la naftera equivalente."],
       ["Dimensiones", "4.460 mm de largo x 1.825 mm de ancho x 1.620 mm de alto. Distancia entre ejes: 2.640 mm."],
       ["Baúl o capacidad de carga", "440 litros en versiones nafta e híbrida."],
       ["Tanque de combustible", "47 litros en versiones nafta / 36 litros en versiones híbridas."],
@@ -2298,13 +2330,13 @@ document.addEventListener("DOMContentLoaded", function(){
       ["Versiones disponibles", "Limited HEV, XSE PHEV y GR-Sport PHEV. Sexta generación, lanzamiento argentino junio de 2026."],
       ["Motor", "HEV: naftero 2.5 litros de 4 cilindros + dos motogeneradores eléctricos MG1 y MG2, sistema híbrido Toyota de 5ª generación. PHEV: conjunto base + motor eléctrico sobre eje trasero y batería de 22,7 kWh."],
       ["Potencia", "HEV: 239 CV combinados. PHEV: hasta 329 CV combinados en GR-Sport PHEV."],
-      ["Torque", "HEV: 221 Nm del conjunto térmico. PHEV: A CONFIRMAR CON EL CONCESIONARIO; no publicado como cifra única del sistema."],
+      ["Torque", "HEV: 221 Nm del conjunto térmico. PHEV: Consultar disponibilidad y configuración vigente; no publicado como cifra única del sistema."],
       ["Transmisión", "eCVT en ambas motorizaciones."],
       ["Tracción", "Integral AWD en toda la gama."],
       ["Consumo", "Aproximadamente 4,5 l/100 km promedio declarado como referencia de mercado para HEV: confirmar cifra oficial. PHEV: hasta 142 km de autonomía 100% eléctrica y autonomía total combinada superior a 1.000 km."],
-      ["Dimensiones", "A CONFIRMAR CON EL CONCESIONARIO. La ficha web actual no publica medidas exteriores exactas de la sexta generación."],
+      ["Dimensiones", "Consultar disponibilidad y configuración vigente. La ficha web actual no publica medidas exteriores exactas de la sexta generación."],
       ["Baúl o capacidad de carga", "456 litros en HEV / 421 litros en PHEV. Portón eléctrico manos libres en ambas."],
-      ["Tanque de combustible", "HEV: 55 litros. PHEV: combina tanque de nafta y batería; cifra exacta del tanque: A CONFIRMAR CON EL CONCESIONARIO."],
+      ["Tanque de combustible", "HEV: 55 litros. PHEV: combina tanque de nafta y batería; cifra exacta del tanque: Consultar disponibilidad y configuración vigente."],
       ["Seguridad", "Toyota Safety Sense, 7 airbags, alerta de tráfico trasero, monitoreo de punto ciego con asistencia de salida segura, asistente de arranque y descenso. GR-Sport suma Head-Up Display, cámara 360°, techo solar eléctrico, audio JBL de 11 parlantes y pantalla multimedia de 12,9 pulgadas. Selector Multi-Terreno Trail/Snow/Normal y modos Normal/Eco/Sport/EV."],
       ["Garantía", "Programa Toyota 10: hasta 10 años o 200.000 km, según condiciones del programa."],
       ["Precio de referencia", "Lanzamiento desde aproximadamente USD 70.200. El resto de la gama y el valor en pesos varían: confirmar lista vigente."],
@@ -2316,13 +2348,13 @@ document.addEventListener("DOMContentLoaded", function(){
       ["Versiones disponibles", "XLI, XEI, SEG y GR-Sport nafta 2.0; XEI Hybrid y SEG Hybrid 1.8. Carrocería sedán en Argentina."],
       ["Motor", "Nafta: 2.0 litros Dynamic Force, 4 cilindros en línea, 16 válvulas DOHC e inyección mixta D4-S. Híbrida: naftero 1.8 ciclo Atkinson de 98 CV + motor eléctrico de 72 CV."],
       ["Potencia", "Nafta: 171 CV a 6.600 rpm. Híbrida: 122 CV combinados."],
-      ["Torque", "Nafta: 203 Nm. Híbrida: A CONFIRMAR CON EL CONCESIONARIO; cifra combinada no publicada de forma unificada."],
+      ["Torque", "Nafta: 203 Nm. Híbrida: Consultar disponibilidad y configuración vigente; cifra combinada no publicada de forma unificada."],
       ["Transmisión", "Automática CVT con modo secuencial de 10 velocidades preprogramadas en nafta; e-CVT en híbrida."],
       ["Tracción", "Delantera en toda la gama."],
-      ["Consumo", "Híbrida: promedio de 4 l/100 km en ciudad como referencia de mercado; confirmar cifra oficial. Nafta: A CONFIRMAR CON EL CONCESIONARIO."],
+      ["Consumo", "Híbrida: promedio de 4 l/100 km en ciudad como referencia de mercado; confirmar cifra oficial. Nafta: Consultar disponibilidad y configuración vigente."],
       ["Dimensiones", "4.630 mm de largo x 1.780 mm de ancho x 1.435 mm de alto. Distancia entre ejes: 2.700 mm."],
       ["Baúl o capacidad de carga", "470 litros."],
-      ["Tanque de combustible", "A CONFIRMAR CON EL CONCESIONARIO."],
+      ["Tanque de combustible", "Consultar disponibilidad y configuración vigente."],
       ["Seguridad", "Toyota Safety Sense de serie desde SEG: control crucero adaptativo, frenado autónomo de emergencia, alerta de cambio de carril, alerta de punto ciego y tráfico cruzado trasero. Pantalla multimedia de 10 pulgadas con Android Auto/Apple CarPlay inalámbricos. Display de 7 pulgadas en XLI/XEI o full digital configurable de 12,3 pulgadas en SEG. Techo solar eléctrico reservado para XEI naftero."],
       ["Garantía", "5 años o 100.000 km general. Componentes híbridos: 8 años o 160.000 km."],
       ["Precio de referencia", "XLI: $44.082.000. XEI: $48.410.000. SEG: $54.392.000. GR-Sport: más de $57.000.000. XEI Hybrid: $50.764.000. SEG Hybrid: $56.180.000. Referencia agosto de 2026: confirmar lista vigente."],
@@ -2337,13 +2369,13 @@ document.addEventListener("DOMContentLoaded", function(){
       ["Torque", "140 Nm."],
       ["Transmisión", "Manual de 6 marchas en versiones de entrada o automática CVT de 7 velocidades desde XLS, de serie en XLS+/S."],
       ["Tracción", "Delantera en toda la gama."],
-      ["Consumo", "A CONFIRMAR CON EL CONCESIONARIO. No publicado de forma oficial unificada."],
-      ["Dimensiones", "A CONFIRMAR CON EL CONCESIONARIO."],
-      ["Baúl o capacidad de carga", "A CONFIRMAR CON EL CONCESIONARIO. No publicado en las fuentes consultadas para el Hatchback."],
-      ["Tanque de combustible", "A CONFIRMAR CON EL CONCESIONARIO."],
-      ["Seguridad", "Detalle completo: A CONFIRMAR CON EL CONCESIONARIO. La gama incluye el paquete de seguridad Toyota estándar, airbags, ABS y control de estabilidad según las fuentes consultadas."],
+      ["Consumo", "Consultar disponibilidad y configuración vigente. No publicado de forma oficial unificada."],
+      ["Dimensiones", "Consultar disponibilidad y configuración vigente."],
+      ["Baúl o capacidad de carga", "Consultar disponibilidad y configuración vigente. No publicado en las fuentes consultadas para el Hatchback."],
+      ["Tanque de combustible", "Consultar disponibilidad y configuración vigente."],
+      ["Seguridad", "Detalle completo: Consultar disponibilidad y configuración vigente. La gama incluye el paquete de seguridad Toyota estándar, airbags, ABS y control de estabilidad según las fuentes consultadas."],
       ["Garantía", "5 años o 100.000 km como política estándar; confirmar aplicación específica al Yaris Hatchback."],
-      ["Precio de referencia", "A CONFIRMAR CON EL CONCESIONARIO. Toyota ajustó precios de Yaris en septiembre de 2026 sin cifra exacta unificada en las fuentes consultadas."],
+      ["Precio de referencia", "Consultar disponibilidad y configuración vigente. Toyota ajustó precios de Yaris en septiembre de 2026 sin cifra exacta unificada en las fuentes consultadas."],
       ["Fuentes", "https://www.toyota.com.ar/modelos/yaris-hatchback · Mercado Libre"],
       ["Rendimiento y equipamiento destacado", "Esta ficha corresponde al Yaris Hatchback, no al Yaris Cross. El comparador conserva el ítem Yaris existente." ]
     ], source: "https://www.toyota.com.ar/modelos/yaris-hatchback" },
@@ -2352,13 +2384,13 @@ document.addEventListener("DOMContentLoaded", function(){
       ["Versiones disponibles", "VX HEV y GR-S. Ambas con 7 plazas y tracción integral permanente."],
       ["Motor", "VX HEV: V6 naftero biturbo 3.5 litros + motor eléctrico de alta respuesta, sistema i-FORCE MAX. GR-S: V6 turbodiésel 3.3 litros biturbo."],
       ["Potencia", "VX HEV: 464 CV combinados. GR-S: 304 CV."],
-      ["Torque", "VX HEV: A CONFIRMAR CON EL CONCESIONARIO; no publicado como cifra combinada única. GR-S: 700 Nm."],
+      ["Torque", "VX HEV: Consultar disponibilidad y configuración vigente; no publicado como cifra combinada única. GR-S: 700 Nm."],
       ["Transmisión", "Automática de 10 velocidades en ambas versiones."],
       ["Tracción", "Integral permanente 4WD. GR-S suma bloqueo de diferencial delantero y trasero y suspensión dinámica electrónica E-KDSS."],
-      ["Consumo", "A CONFIRMAR CON EL CONCESIONARIO."],
-      ["Dimensiones", "A CONFIRMAR CON EL CONCESIONARIO; no publicadas para la versión argentina en las fuentes consultadas."],
-      ["Baúl o capacidad de carga", "7 plazas en ambas versiones. Capacidad de baúl en litros: A CONFIRMAR CON EL CONCESIONARIO."],
-      ["Tanque de combustible", "A CONFIRMAR CON EL CONCESIONARIO."],
+      ["Consumo", "Consultar disponibilidad y configuración vigente."],
+      ["Dimensiones", "Consultar disponibilidad y configuración vigente; no publicadas para la versión argentina en las fuentes consultadas."],
+      ["Baúl o capacidad de carga", "7 plazas en ambas versiones. Capacidad de baúl en litros: Consultar disponibilidad y configuración vigente."],
+      ["Tanque de combustible", "Consultar disponibilidad y configuración vigente."],
       ["Seguridad", "Toyota Safety Sense, múltiples asistentes de conducción, 10 airbags, monitor Multi-Terreno 3D, cámara 360° y Head-Up Display. Modos Normal, Eco y Sport, con modos off-road adicionales en GR-S."],
       ["Garantía", "10 años o 200.000 km según comunicado de lanzamiento; confirmar condiciones del programa."],
       ["Precio de referencia", "VX HEV y GR-S: USD 168.300 desde el 01/09/2026 según comunicado de lanzamiento. Confirmar lista vigente."],
@@ -2366,10 +2398,10 @@ document.addEventListener("DOMContentLoaded", function(){
       ["Rendimiento y equipamiento destacado", "VX HEV: 0 a 100 km/h en aproximadamente 6,5 s y velocidad máxima 210 km/h. GR-S: aproximadamente 8 s y 210 km/h. Climatizador de 4 zonas, asientos delanteros eléctricos calefaccionados y ventilados, audio JBL de 14 parlantes y pantallas multimedia de 12,3 pulgadas. VX suma techo solar y dos pantallas traseras de 11,6 pulgadas." ]
     ], source: "https://diariodeautos.com.ar/index.php/autos/novedades/item/20502-toyota" },
     "Fortuner": { specs: [
-      ["Categoría", "SUV"], ["Versiones disponibles", "A CONFIRMAR CON EL CONCESIONARIO."], ["Motor", "A CONFIRMAR CON EL CONCESIONARIO."], ["Potencia", "A CONFIRMAR CON EL CONCESIONARIO."], ["Torque", "A CONFIRMAR CON EL CONCESIONARIO."], ["Transmisión", "A CONFIRMAR CON EL CONCESIONARIO."], ["Tracción", "A CONFIRMAR CON EL CONCESIONARIO."], ["Consumo", "A CONFIRMAR CON EL CONCESIONARIO."], ["Dimensiones", "A CONFIRMAR CON EL CONCESIONARIO."], ["Baúl o capacidad de carga", "A CONFIRMAR CON EL CONCESIONARIO."], ["Tanque de combustible", "A CONFIRMAR CON EL CONCESIONARIO."], ["Seguridad", "A CONFIRMAR CON EL CONCESIONARIO."], ["Garantía", "A CONFIRMAR CON EL CONCESIONARIO."], ["Precio de referencia", "A CONFIRMAR CON EL CONCESIONARIO."], ["Fuentes", "A CONFIRMAR CON EL CONCESIONARIO."], ["Rendimiento y equipamiento destacado", "El TXT adjunto no incluye una ficha de Fortuner. No se agregan cifras ni especificaciones inventadas."]
+      ["Categoría", "SUV"], ["Versiones disponibles", "Consultar disponibilidad y configuración vigente."], ["Motor", "Consultar disponibilidad y configuración vigente."], ["Potencia", "Consultar disponibilidad y configuración vigente."], ["Torque", "Consultar disponibilidad y configuración vigente."], ["Transmisión", "Consultar disponibilidad y configuración vigente."], ["Tracción", "Consultar disponibilidad y configuración vigente."], ["Consumo", "Consultar disponibilidad y configuración vigente."], ["Dimensiones", "Consultar disponibilidad y configuración vigente."], ["Baúl o capacidad de carga", "Consultar disponibilidad y configuración vigente."], ["Tanque de combustible", "Consultar disponibilidad y configuración vigente."], ["Seguridad", "Consultar disponibilidad y configuración vigente."], ["Garantía", "Consultar disponibilidad y configuración vigente."], ["Precio de referencia", "Consultar disponibilidad y configuración vigente."], ["Fuentes", "Consultar disponibilidad y configuración vigente."], ["Rendimiento y equipamiento destacado", "La disponibilidad, versiones y equipamiento deben validarse con el equipo comercial antes de cotizar."]
     ], source: "https://www.toyota.com.ar/concesionarios" },
     "Etios": { specs: [
-      ["Categoría", "Sedán / compacto"], ["Versiones disponibles", "A CONFIRMAR CON EL CONCESIONARIO."], ["Motor", "A CONFIRMAR CON EL CONCESIONARIO."], ["Potencia", "A CONFIRMAR CON EL CONCESIONARIO."], ["Torque", "A CONFIRMAR CON EL CONCESIONARIO."], ["Transmisión", "A CONFIRMAR CON EL CONCESIONARIO."], ["Tracción", "A CONFIRMAR CON EL CONCESIONARIO."], ["Consumo", "A CONFIRMAR CON EL CONCESIONARIO."], ["Dimensiones", "A CONFIRMAR CON EL CONCESIONARIO."], ["Baúl o capacidad de carga", "A CONFIRMAR CON EL CONCESIONARIO."], ["Tanque de combustible", "A CONFIRMAR CON EL CONCESIONARIO."], ["Seguridad", "A CONFIRMAR CON EL CONCESIONARIO."], ["Garantía", "A CONFIRMAR CON EL CONCESIONARIO."], ["Precio de referencia", "A CONFIRMAR CON EL CONCESIONARIO."], ["Fuentes", "A CONFIRMAR CON EL CONCESIONARIO."], ["Rendimiento y equipamiento destacado", "El TXT adjunto no incluye una ficha de Etios. No se agregan cifras ni especificaciones inventadas."]
+      ["Categoría", "Sedán / compacto"], ["Versiones disponibles", "Consultar disponibilidad y configuración vigente."], ["Motor", "Consultar disponibilidad y configuración vigente."], ["Potencia", "Consultar disponibilidad y configuración vigente."], ["Torque", "Consultar disponibilidad y configuración vigente."], ["Transmisión", "Consultar disponibilidad y configuración vigente."], ["Tracción", "Consultar disponibilidad y configuración vigente."], ["Consumo", "Consultar disponibilidad y configuración vigente."], ["Dimensiones", "Consultar disponibilidad y configuración vigente."], ["Baúl o capacidad de carga", "Consultar disponibilidad y configuración vigente."], ["Tanque de combustible", "Consultar disponibilidad y configuración vigente."], ["Seguridad", "Consultar disponibilidad y configuración vigente."], ["Garantía", "Consultar disponibilidad y configuración vigente."], ["Precio de referencia", "Consultar disponibilidad y configuración vigente."], ["Fuentes", "Consultar disponibilidad y configuración vigente."], ["Rendimiento y equipamiento destacado", "Modelo discontinuado en la oferta 0 km; consultar disponibilidad de usados y equipamiento de la unidad."]
     ], source: "https://www.toyota.com.ar/concesionarios" }
   };
   // ---- comparador de modelos: usa los mismos datos de MODELOS_TOYOTA / COMPARISON_DETAILS, no inventa specs nuevas ----
@@ -2411,7 +2443,7 @@ document.addEventListener("DOMContentLoaded", function(){
       var axes=rowsA.map(function(row){return row[0];});
       table.innerHTML=
         "<table class=\"compare-detail-table\"><caption class=\"sr-only\">Comparación técnica detallada entre "+escapeCompare(a)+" y "+escapeCompare(b)+"</caption><thead><tr><th scope=\"col\">Eje técnico</th><th scope=\"col\">"+escapeCompare(a)+"</th><th scope=\"col\">"+escapeCompare(b)+"</th></tr></thead><tbody>"+
-        axes.map(function(axis,index){var va=rowsA[index]&&rowsA[index][1]||"A CONFIRMAR CON EL CONCESIONARIO.";var vb=rowsB[index]&&rowsB[index][1]||"A CONFIRMAR CON EL CONCESIONARIO.";return "<tr><th scope=\"row\">"+escapeCompare(axis)+"</th><td>"+compareValue(va)+"</td><td>"+compareValue(vb)+"</td></tr>";}).join("")+
+        axes.map(function(axis,index){var va=rowsA[index]&&rowsA[index][1]||"Consultar disponibilidad y configuración vigente.";var vb=rowsB[index]&&rowsB[index][1]||"Consultar disponibilidad y configuración vigente.";return "<tr><th scope=\"row\">"+escapeCompare(axis)+"</th><td>"+compareValue(va)+"</td><td>"+compareValue(vb)+"</td></tr>";}).join("")+
         "</tbody></table>";
       waA.textContent = "Consultar " + a + " ↗";
       waB.textContent = "Consultar " + b + " ↗";
@@ -2434,7 +2466,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
   // ---- rutas compartibles por hash ----
-  function restoreHashRoute(){var h=location.hash.replace(/^#/,"");if(h.indexOf("modelo/")===0){var slug=h.slice(7),name=Object.keys(MODEL_DETAILS).filter(function(k){return slugifyModel(k)===slug;})[0];if(name)openDetail(name,true);return;}if(h.indexOf("comparar")===0){var q=h.split("?")[1]||"",p=new URLSearchParams(q),a=p.get("a"),b=p.get("b");if(a&&document.getElementById("compareA")){document.getElementById("compareA").value=a;document.getElementById("compareB").value=b||"";document.getElementById("compareA").dispatchEvent(new Event("change"));}var c=document.getElementById("comparar");if(c)window.__toyotaScrollToElement(c);return;}if(h){var target=document.getElementById(h);if(target)setTimeout(function(){window.__toyotaScrollToElement(target);},0);}}
+  function restoreHashRoute(){var h=location.hash.replace(/^#/,"");if(h.indexOf("modelo/")===0){var slug=h.slice(7),name=Object.keys(MODEL_DETAILS).filter(function(k){return slugifyModel(k)===slug;})[0];if(name)openDetail(name,true);return;}if(h.indexOf("comparar")===0){var q=h.split("?")[1]||"",p=new URLSearchParams(q),a=p.get("a"),b=p.get("b");if(a&&document.getElementById("compareA")){var ca=document.getElementById("compareA"),cb=document.getElementById("compareB"),validA=Array.prototype.some.call(ca.options,function(o){return o.value===a;}),validB=Array.prototype.some.call(cb.options,function(o){return o.value===b;});if(validA){ca.value=a;cb.value=validB?b:"";ca.dispatchEvent(new Event("change"));}}var c=document.getElementById("comparar");if(c)window.__toyotaScrollToElement(c);return;}if(h){var target=document.getElementById(h);if(target)setTimeout(function(){window.__toyotaScrollToElement(target);},0);}}
   window.addEventListener("hashchange",function(){if(!location.hash.match(/^#modelo\//))closeModelDetail(false);restoreHashRoute();});
   restoreHashRoute();
 
@@ -2927,7 +2959,7 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 </script>
 
-<!-- Nota de lanzamiento: quitar noindex/nofollow y reemplazar el canonical comentado por el dominio real antes de publicar. -->
+<!-- Canonical relativa para el demo; reemplazar por la URL pública definitiva cuando el dominio del concesionario esté confirmado. -->
 <script id="page-health-check">
 (function(){
   "use strict";
