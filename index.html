@@ -514,7 +514,7 @@ section{padding:96px 0;border-bottom:1px solid #C8CED3}
 
   /* Encuadres editoriales: mostrar el contenido completo de piezas gráficas sin barras negras. */
   .hero-photo-real{position:relative;overflow:hidden;background:#111;border-radius:16px;box-shadow:var(--shadow-md);display:flex;flex-direction:column;justify-content:flex-end;height:520px;min-height:520px;align-self:start}
-  .hero-photo-real img{width:100%;height:520px;display:block;object-fit:cover;object-position:center 76%;filter:brightness(1.035) contrast(1.045) saturate(1.04)}
+  .hero-photo-real img{width:100%;height:520px;display:block;object-fit:cover;object-position:center 76%}
   .hero-photo-real figcaption{position:absolute;left:0;right:0;bottom:0;padding:34px 18px 14px;color:#fff;font-size:11px;background:linear-gradient(transparent,rgba(10,13,15,.86));z-index:2}
   .promo-grid figure{display:flex;flex-direction:column;background:rgba(255,255,255,.04)}
   .promo-grid img{height:190px;object-fit:contain;object-position:center;background:#171a1d}
@@ -751,7 +751,7 @@ body{background:#e9eef0!important;color:#172026!important}
 .hero-rail-index{margin-top:auto;font:600 10px var(--display);letter-spacing:.16em;color:#f4f1eb}.hero-rail-index b{color:var(--toyota-red);font-weight:600;margin:0 4px}
 .hero-editorial-stage{min-height:inherit;position:relative;isolation:isolate;overflow:hidden}
 .hero-editorial-vehicle{position:absolute;inset:0 0 0 0!important;margin:0!important;width:auto!important;height:auto!important;align-self:stretch!important;min-height:0!important;border-radius:0!important;box-shadow:none!important;background:#111;overflow:hidden;z-index:0}
-.hero-editorial-vehicle img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important;filter:brightness(.68) contrast(1.08) saturate(.88)!important;transform:scale(1.04)}
+.hero-editorial-vehicle img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important;transform:scale(1.04)}
 .hero-editorial-vehicle figcaption{position:absolute;left:32px;right:32px;bottom:28px;padding:0!important;background:none!important;display:flex;justify-content:space-between;color:rgba(244,241,235,.68);font:500 10px var(--display);letter-spacing:.08em;text-transform:uppercase;z-index:2}
 .hero-editorial-vehicle figcaption span:first-child{color:#f4f1eb;font-weight:700}
 .hero-editorial-wash{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(15,17,18,.88) 0%,rgba(15,17,18,.45) 32%,rgba(15,17,18,.06) 63%,rgba(15,17,18,.28) 100%),linear-gradient(0deg,rgba(15,17,18,.54),transparent 32%);pointer-events:none}
@@ -800,7 +800,7 @@ body{background:#e9eef0!important;color:#172026!important}
 .hero-editorial-vehicle img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;object-fit:cover!important;object-position:center center!important;transform:scale(1.035)!important}
 .hero-editorial-vehicle figcaption{display:none!important}
 .hero-editorial-secondary{grid-column:2!important;background:#3a1612!important;border-left:1px solid rgba(244,241,235,.45);z-index:0}
-.hero-editorial-secondary img{object-position:58% center!important;filter:brightness(.78) contrast(1.07) saturate(.9)!important;transform:scale(1.025)!important}
+.hero-editorial-secondary img{object-position:58% center!important;transform:scale(1.025)!important}
 .hero-secondary-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,17,18,.54),rgba(15,17,18,.04) 45%,rgba(15,17,18,.2)),linear-gradient(0deg,rgba(15,17,18,.5),transparent 45%);z-index:1}
 .hero-editorial-wash{grid-row:1!important;grid-column:1 / -1!important;z-index:2!important;pointer-events:none;background:linear-gradient(90deg,rgba(15,17,18,.88) 0%,rgba(15,17,18,.42) 30%,rgba(15,17,18,.04) 56%,rgba(15,17,18,.13) 100%),linear-gradient(0deg,rgba(15,17,18,.56),transparent 38%)!important}
 .hero-editorial-copy{z-index:4!important;top:23%!important;max-width:480px!important}
@@ -997,7 +997,10 @@ h1,h2,h3,.brand .b1,.section-kicker,.tag{font-kerning:normal;text-wrap:balance}
 .compare-empty{border:1px dashed #C8CED3;border-radius:10px;padding:14px 16px;background:#fff}
 </style>
 <style id="hero-scroll-performance-fix">
-/* Do not promote the hero permanently: its images are static after first paint. */
+/* The hero is static while scrolling: isolate its paint and avoid permanent layer promotion. */
+.hero-editorial-frame{contain:paint;}
+.hero-editorial-vehicle{contain:layout paint;}
+.hero-editorial-vehicle img{display:block;backface-visibility:hidden;}
 .hero-editorial-wash,.hero-editorial-copy,.hero-editorial-wordmark,.hero-editorial-specs{will-change:auto}
 </style>
 </head>
@@ -1076,11 +1079,11 @@ h1,h2,h3,.brand .b1,.section-kicker,.tag{font-kerning:normal;text-wrap:balance}
 
     <div class="hero-editorial-stage">
       <figure class="hero-editorial-vehicle hero-photo-real" aria-label="Toyota SW4 Diamond">
-        <picture><source type="image/webp" srcset="toyota-sharp-assets/hero-sw4-1800.webp"><img src="toyota-sharp-assets/hero-sw4-1800.jpg" alt="Toyota SW4 Diamond, imagen del vehículo" fetchpriority="high" decoding="async" width="1800" height="1844"></picture>
+        <picture><source type="image/webp" srcset="toyota-sharp-assets/hero-sw4-1800.webp"><img src="toyota-sharp-assets/hero-sw4-1800.jpg" alt="Toyota SW4 Diamond, imagen del vehículo" fetchpriority="high" decoding="sync" width="1800" height="1844"></picture>
         <figcaption><span>SW4 Diamond</span><span>Disponibilidad a confirmar</span></figcaption>
       </figure>
       <figure class="hero-editorial-vehicle hero-editorial-secondary" aria-label="Toyota Hilux roja">
-        <picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-bae67c9e04b0.webp"><img src="toyota-sharp-assets/enhanced-bae67c9e04b0.jpg" alt="Toyota Hilux roja, imagen del vehículo" loading="eager" decoding="async" width="1600" height="1296"></picture>
+        <picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-bae67c9e04b0.webp"><img src="toyota-sharp-assets/enhanced-bae67c9e04b0.jpg" alt="Toyota Hilux roja, imagen del vehículo" loading="lazy" fetchpriority="low" decoding="async" width="1600" height="1296"></picture>
         <div class="hero-secondary-overlay" aria-hidden="true"></div>
         <figcaption><span>HILUX</span><span>La pickup que no para</span></figcaption>
       </figure>
@@ -2415,10 +2418,9 @@ h1,h2,h3,.brand .b1,.section-kicker,.tag{font-kerning:normal;text-wrap:balance}
     if(reduce) window.__toyotaLenis=null;
   } else if(!reduce){
     var lenis=new Lenis({
-      // Shorter convergence avoids the rubbery drag of the previous 1.05s curve.
-      duration:.55,
-      lerp:.18,
-      easing:function(t){return 1-Math.pow(1-t,3)},
+      // One interpolation model only: lerp avoids competing duration/easing paths.
+      // A slightly higher lerp reduces perceived drag while keeping input frame-stable.
+      lerp:.2,
       smoothWheel:true,
       syncTouch:false,
       anchors:true,
@@ -2581,7 +2583,6 @@ h1,h2,h3,.brand .b1,.section-kicker,.tag{font-kerning:normal;text-wrap:balance}
     splitInstances.forEach(function(split){try{split.revert();}catch(e){}});
     mm.revert();
     ctx.revert();
-    ScrollTrigger.refresh();
   };
   window.addEventListener("pagehide",window.__destroyToyotaGsapMotion,{once:true});
 })();
@@ -2602,25 +2603,7 @@ h1,h2,h3,.brand .b1,.section-kicker,.tag{font-kerning:normal;text-wrap:balance}
     var desktop="(min-width: 901px)";
     var tablet="(min-width: 561px) and (max-width: 900px)";
 
-    // Desktop-only automotive showroom sequence: pin the editorial selection while the cards travel horizontally.
-    mm.add(desktop,function(){
-      var section=document.getElementById("destacados"),shell=section&&section.querySelector(".highlight-shell"),track=document.getElementById("highlightTrack");
-      if(!section||!shell||!track||track.scrollWidth<=track.clientWidth)return;
-      var distance=function(){return Math.max(1,track.scrollWidth-track.clientWidth);};
-      var horizontal=gsap.timeline({scrollTrigger:{trigger:section,start:"top top+=76",end:function(){return "+="+Math.max(900,distance()*1.18)},scrub:1.05,pin:shell,pinSpacing:true,anticipatePin:1,invalidateOnRefresh:true}});
-      horizontal.to(track,{scrollLeft:distance,ease:"none"},0);
-      horizontal.fromTo(track.querySelectorAll(".highlight-card"),{y:28,rotateY:3,opacity:.72},{y:0,rotateY:0,opacity:1,stagger:.12,ease:"power2.out"},.04);
-      cleanup.push(function(){horizontal.kill();});
-    });
-
-    // Tablet gets depth without pinning; mobile keeps native momentum and touch scroll natural.
-    mm.add(tablet,function(){
-      var track=document.getElementById("highlightTrack");
-      if(!track)return;
-      var tl=gsap.to(track,{scrollLeft:function(){return Math.max(0,track.scrollWidth-track.clientWidth)},ease:"none",scrollTrigger:{trigger:track,start:"top 78%",end:"bottom 24%",scrub:.8,invalidateOnRefresh:true}});
-      cleanup.push(function(){tl.kill();});
-    });
-
+    // Highlight cards keep native overflow; no pinned or scrubbed timeline competes with Lenis.
     // Deep but restrained image parallax across the editorial sections.
     [".cta-banner","#usados .used-visual","#instalaciones .facility-visual","#taller .workshop-visual"].forEach(function(selector){
       gsap.utils.toArray(selector).forEach(function(el){
@@ -2690,10 +2673,10 @@ h1,h2,h3,.brand .b1,.section-kicker,.tag{font-kerning:normal;text-wrap:balance}
       ScrollTrigger.create({trigger:target,start:"top 45%",end:"bottom 45%",onToggle:function(self){link.classList.toggle("is-motion-active",self.isActive);}});
     });
 
-    // Register every trigger first, then perform one coherent load-time refresh.
-    window.addEventListener("load",function(){ScrollTrigger.refresh();},{once:true,passive:true});
+    // ScrollTrigger already refreshes on its native load/resize events.
+    // Do not add a second global refresh pass to the Lenis frame pipeline.
   },document.body);
-  window.__destroyToyotaGalacticMotion=function(){cleanup.forEach(function(fn){try{fn();}catch(e){}});mm.revert();ctx.revert();ScrollTrigger.refresh();};
+  window.__destroyToyotaGalacticMotion=function(){cleanup.forEach(function(fn){try{fn();}catch(e){}});mm.revert();ctx.revert();};
   window.addEventListener("pagehide",window.__destroyToyotaGalacticMotion,{once:true});
 })();
 </script>
