@@ -1,0 +1,164 @@
+/* Toyota premium motion layer: restrained automotive choreography */
+:root{--pm-ease:cubic-bezier(.22,.78,.2,1);--pm-fast:.28s;--pm-mid:.72s}
+html{scroll-behavior:auto}
+body.pm-ready{overflow-x:hidden}
+.pm-reveal{opacity:0;transform:translate3d(0,34px,0);will-change:transform,opacity}
+.pm-reveal.pm-reveal-left{transform:translate3d(-34px,0,0)}
+.pm-reveal.pm-reveal-right{transform:translate3d(34px,0,0)}
+.pm-reveal.pm-reveal-scale{transform:translate3d(0,18px,0) scale(.97)}
+.pm-reveal.pm-inview{will-change:auto}
+.pm-section-line{transform-origin:left center;transform:scaleX(0);opacity:.45}
+.site-header{transition:background-color .35s ease,box-shadow .35s ease,transform .35s ease}
+.site-header.pm-scrolled{background:rgba(255,255,255,.92);box-shadow:0 8px 30px rgba(23,39,47,.08);backdrop-filter:blur(14px)}
+.site-header.pm-scrolled .brand-mark{transform:scale(.92)}
+.brand-mark{transition:transform .35s var(--pm-ease)}
+.hero-photo,.hero-showcase img,.hero-media img{transform-origin:center center;will-change:transform}
+.btn,.filterbtn,.access-filter,.faq-tab,.compare-btn,.detail-btn,.burger,.faq-q{transition:transform .28s var(--pm-ease),box-shadow .28s ease,background-color .28s ease,color .28s ease,border-color .28s ease}
+.btn:hover,.filterbtn:hover,.access-filter:hover,.faq-tab:hover{transform:translateY(-3px)}
+.btn:active,.filterbtn:active,.access-filter:active,.faq-tab:active,.compare-btn:active,.detail-btn:active{transform:translateY(0) scale(.97)}
+.model,.highlight-card,.service-card,.contact-card,.reason-card,.used-card,.access-card,.facility-card,.review-card,.process-step,.faq-item{transition:transform .5s var(--pm-ease),box-shadow .5s ease,border-color .35s ease}
+.model:hover,.highlight-card:hover,.service-card:hover,.contact-card:hover,.reason-card:hover,.used-card:hover,.access-card:hover,.facility-card:hover,.review-card:hover,.process-step:hover{transform:translateY(-7px);box-shadow:0 18px 42px rgba(23,39,47,.12)}
+.model .model-photo,.model img,.highlight-card img,.access-card img{transition:transform .8s var(--pm-ease),filter .6s ease}
+.model:hover .model-photo,.model:hover img,.highlight-card:hover img,.access-card:hover img{transform:scale(1.045);filter:saturate(1.08)}
+.model .badge{transition:transform .35s var(--pm-ease),background-color .35s ease}
+.model:hover .badge{transform:translateX(4px)}
+.pm-card-link{display:inline-flex;align-items:center;gap:7px}
+.pm-card-link span,.btn span{display:inline-block;transition:transform .35s var(--pm-ease)}
+.pm-card-link:hover span,.btn:hover span{transform:translateX(4px)}
+#filterbar.pm-filtering .model{pointer-events:none}
+#filterbar.pm-filtering{opacity:.78}
+.model.pm-selected{outline:2px solid rgba(227,24,43,.45);outline-offset:4px}
+.model.pm-moved{z-index:2}
+#modelDetail{perspective:1200px}
+#modelDetail .detail-panel{transform:translateY(30px) scale(.96);opacity:0;transform-origin:center top}
+#modelDetail.open .detail-panel{transform:none;opacity:1}
+#modelDetail .detail-spec{opacity:0;transform:translateY(12px)}
+#modelDetail .detail-gallery{overflow:hidden}
+#compareResult{transition:box-shadow .45s ease,transform .45s var(--pm-ease)}
+#compareResult.pm-refresh{box-shadow:0 0 0 2px rgba(227,24,43,.22),0 18px 45px rgba(23,39,47,.13);transform:translateY(-3px)}
+.simulator-result,.financing-result{transition:transform .3s var(--pm-ease),background-color .3s ease}
+.simulator-result.pm-pulse,.financing-result.pm-pulse{transform:scale(1.012)}
+.form-grid input:focus,.form-grid select:focus,.form-grid textarea:focus,.trade-form input:focus,.trade-form select:focus{transform:translateY(-1px);transition:transform .25s var(--pm-ease),border-color .25s ease,box-shadow .25s ease}
+.form-success,.form-error{animation:pm-feedback .45s var(--pm-ease) both}
+@keyframes pm-feedback{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.faq-item.pm-opening{box-shadow:0 10px 28px rgba(23,39,47,.08)}
+.faq-q:after{transition:transform .35s var(--pm-ease)}
+.faq-item.open .faq-q:after{transform:rotate(180deg)}
+@media(max-width:700px){.pm-reveal{transform:translate3d(0,22px,0)}.model:hover,.highlight-card:hover,.service-card:hover,.contact-card:hover,.reason-card:hover,.used-card:hover,.access-card:hover,.facility-card:hover,.review-card:hover,.process-step:hover{transform:translateY(-3px)}.site-header.pm-scrolled{backdrop-filter:blur(10px)}}
+@media(prefers-reduced-motion:reduce){.pm-reveal{opacity:1!important;transform:none!important;will-change:auto}.pm-section-line{transform:none!important;opacity:.45}.btn,.filterbtn,.access-filter,.faq-tab,.model,.highlight-card,.service-card,.contact-card,.reason-card,.used-card,.access-card,.facility-card,.review-card,.process-step{transition:none!important}.hero-photo,.hero-showcase img,.hero-media img{will-change:auto}.site-header.pm-scrolled{backdrop-filter:none}}
+
+/* Final art-direction pass: hierarchy over spectacle */
+.site.pm-scrolled{background:rgba(255,255,255,.94);box-shadow:0 10px 30px rgba(23,39,47,.1);backdrop-filter:blur(14px)}
+.site.pm-scrolled .brand{transform:translateY(-1px) scale(.97);transform-origin:left center}
+.brand{transition:transform .38s var(--pm-ease)}
+.navlinks a{position:relative;transition:color .25s ease}
+.navlinks a:after{content:"";position:absolute;left:0;right:100%;bottom:-7px;height:2px;background:var(--toyota-red);transition:right .35s var(--pm-ease)}
+.navlinks a:hover:after,.navlinks a.pm-active:after{right:0}
+.hero-showcase .hero-photo{box-shadow:0 26px 60px -34px rgba(6,14,18,.9);border:1px solid rgba(255,255,255,.18)}
+.hero-showcase .hero-qualification{transform:translateX(0);transition:transform .55s var(--pm-ease),box-shadow .55s ease}
+.hero-showcase:hover .hero-qualification{transform:translateX(8px);box-shadow:0 22px 42px -25px rgba(212,175,55,.35)}
+.hero-quicklinks a{transition:background-color .25s ease,color .25s ease,border-color .25s ease,transform .25s var(--pm-ease)}
+.hero-quicklinks a:hover{transform:translateY(-2px);background:rgba(240,210,116,.1)}
+#gama{position:relative}
+#gama:before,#comparar:before{content:"";display:block;width:min(180px,28vw);height:2px;background:linear-gradient(90deg,var(--toyota-red),rgba(235,10,30,0));margin:0 0 22px}
+#gama .section-head{max-width:760px}
+#gama-grid{align-items:stretch;gap:18px}
+#gama-grid .model{position:relative;display:flex;flex-direction:column;padding:14px;background:linear-gradient(160deg,#fff 0%,#f7f9f9 100%);border:1px solid rgba(190,199,203,.8);overflow:hidden}
+#gama-grid .model:before{content:"";position:absolute;inset:0 0 auto;height:3px;background:linear-gradient(90deg,var(--toyota-red),transparent);transform:scaleX(0);transform-origin:left;transition:transform .55s var(--pm-ease)}
+#gama-grid .model:hover:before,#gama-grid .model.pm-selected:before{transform:scaleX(1)}
+#gama-grid .model h3{font-size:clamp(19px,2vw,24px);letter-spacing:-.025em;margin:14px 0 5px}
+#gama-grid .model p{color:#52616a;line-height:1.5}
+#gama-grid .model>div:last-child{margin-top:auto!important;padding-top:14px!important}
+#gama-grid .model>div:last-child a{font-weight:700;color:var(--toyota-red)}
+#gama-grid .model>div:last-child button{font-size:13px}
+#gama-grid .model-photo,#gama-grid .model .ico{background:linear-gradient(145deg,#fbfcfc,#e9eff1);border-color:rgba(170,183,189,.7)}
+#comparar .compare-tool{border:1px solid rgba(133,150,158,.42);background:linear-gradient(145deg,#f8fbfb 0%,#eef3f4 100%);box-shadow:0 24px 55px -38px rgba(27,48,57,.7)}
+#comparar .compare-pickers select{min-height:50px;border-color:rgba(95,113,122,.42);font-weight:600}
+#comparar .compare-vs{font-family:var(--display);font-size:11px;letter-spacing:.14em;color:var(--toyota-red);font-weight:800}
+#compareResult.pm-refresh{animation:pm-compare-refresh .55s var(--pm-ease) both}
+@keyframes pm-compare-refresh{0%{opacity:.55;transform:translateY(8px)}100%{opacity:1;transform:none}}
+#modelDetail .detail-panel{box-shadow:0 32px 90px rgba(6,14,18,.32)}
+#modelDetail .detail-head{background:linear-gradient(135deg,#151b1e 0%,#29353b 100%)}
+#modelDetail .detail-actions .btn.primary{box-shadow:0 10px 24px rgba(235,10,30,.2)}
+.section-head{max-width:920px}
+.section-head h2{letter-spacing:-.035em}
+.pm-editorial-band{position:relative}
+.pm-editorial-band:after{content:"";position:absolute;left:50%;bottom:0;width:min(1160px,calc(100% - 48px));height:1px;background:linear-gradient(90deg,transparent,rgba(120,139,146,.24),transparent);transform:translateX(-50%)}
+.pm-scene-transition{--scene-shift:0px}
+.pm-scene-transition .section-head{transform:translateY(var(--scene-shift))}
+.float-wa,.float-social{transition:transform .3s var(--pm-ease),box-shadow .3s ease,filter .3s ease}
+.float-wa:hover,.float-social:hover{transform:translateY(-4px) scale(1.04);filter:saturate(1.1)}
+select,input[type=range]{accent-color:var(--toyota-red)}
+@media(max-width:900px){
+  #gama-grid{gap:14px}
+  #gama-grid .model{padding:12px}
+  .pm-editorial-band:after{width:calc(100% - 32px)}
+}
+@media(max-width:700px){
+  .site.pm-scrolled .brand{transform:scale(.94)}
+  .navlinks a:after{display:none}
+  #gama:before,#comparar:before{margin-bottom:16px}
+  #gama-grid .model{padding:10px}
+  #gama-grid .model h3{font-size:18px}
+  #gama-grid .model p{font-size:14px;min-height:64px}
+  #comparar .compare-tool{box-shadow:0 18px 38px -28px rgba(27,48,57,.65)}
+  .hero-showcase:hover .hero-qualification{transform:none;box-shadow:none}
+}
+@media(prefers-reduced-motion:reduce){.navlinks a:after{transition:none}.hero-showcase .hero-qualification{transition:none}.pm-editorial-band:after{transform:translateX(-50%)}#compareResult.pm-refresh{animation:none}.float-wa:hover,.float-social:hover{transform:none;filter:none}}
+
+/* Tablet art direction: one clear scene instead of a cramped desktop split */
+@media (min-width:701px) and (max-width:900px){
+  .site .nav{gap:12px;padding:12px 0}
+  .site .brand{min-width:174px;max-width:210px}
+  .site .brand .b1{font-size:16px;line-height:1.05}
+  .site .brand .b2{font-size:9px;line-height:1.15}
+  .site .navlinks{gap:12px;font-size:12px}
+  .site .navcall{font-size:12px;padding-left:10px;max-width:84px;line-height:1.35}
+  .hero-grid{grid-template-columns:1fr!important}
+  .hero-showcase{order:-1}
+  .hero-showcase .hero-photo{min-height:390px}
+  .hero-copy{max-width:680px;padding-top:8px}
+  .hero-copy h1{max-width:14ch}
+  .hero-qualification{max-width:680px}
+}
+
+/* UI/UX Pro Max surgical production pass */
+
+:root{--pm-focus-ring:0 0 0 3px rgba(235,10,30,.22),0 0 0 5px rgba(255,255,255,.92)}
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:0;box-shadow:var(--pm-focus-ring);border-radius:4px}
+.navright{gap:12px}
+.nav-cta{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:9px 14px;border:1px solid var(--toyota-red);background:var(--toyota-red);color:#fff!important;text-decoration:none;font-weight:800;font-size:12px;letter-spacing:.01em;transition:transform .2s ease,background-color .2s ease,box-shadow .2s ease}
+.nav-cta:hover{transform:translateY(-1px);background:#c90819;box-shadow:0 8px 18px rgba(235,10,30,.24)}
+.hero .cta-row .btn.primary{box-shadow:0 12px 28px rgba(235,10,30,.28)}
+.hero .cta-row .btn:not(.primary){background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.35)}
+.hero-quicklinks .quicklink-primary{border-color:rgba(240,210,116,.8);background:rgba(240,210,116,.12);color:#fff;font-weight:800}
+.hero-photo-real{aspect-ratio:16/9;min-height:0;contain:layout paint}
+.hero-photo-real img{aspect-ratio:16/9;display:block;width:100%;height:100%;object-fit:cover}
+.model-detail{overscroll-behavior:contain}
+.detail-panel{max-height:min(88dvh,900px);overflow:auto;-webkit-overflow-scrolling:touch}
+.float-advisor,.float-social,.float-wa{min-width:44px;min-height:44px}
+.mobilebar a{min-height:48px}
+.form-grid input,.form-grid select,.form-grid textarea,.trade-form input,.trade-form select{font-size:16px}
+@media(max-width:700px){
+  .navright{gap:8px}.nav-cta{padding:9px 10px;font-size:11px}.navcall{display:none}
+  .hero .cta-row{align-items:stretch}.hero .cta-row .btn{width:100%;justify-content:space-between}
+  .hero-photo-real{aspect-ratio:4/3}.hero-photo-real img{aspect-ratio:4/3}
+  .detail-panel{width:calc(100% - 20px);max-height:calc(100dvh - 20px);margin:10px auto}
+  .detail-actions .btn{min-height:44px}
+}
+@media(prefers-reduced-motion:reduce){.nav-cta,.hero .cta-row .btn{transition:none}.nav-cta:hover{transform:none;box-shadow:none}}
+
+/* Premium dealership value section refinement */
+.dealer-value-section{position:relative;overflow:hidden;background:#11181c!important;color:#f7f9f9!important;padding:clamp(86px,9vw,142px) 0!important;border-top:1px solid rgba(220,229,232,.12);border-bottom:1px solid rgba(220,229,232,.12)}
+.dealer-value-section:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(235,10,30,.08),transparent 28%,transparent 72%,rgba(212,175,55,.06));pointer-events:none}
+.dealer-value-section .wrap{position:relative;z-index:1}
+.dealer-value-header{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(270px,.75fr);align-items:end;gap:clamp(34px,7vw,110px);padding-bottom:clamp(42px,5vw,70px);border-bottom:1px solid rgba(220,229,232,.2)}
+.dealer-value-heading{max-width:760px}.dealer-value-heading .tag{color:#f0d274!important}.dealer-value-heading h2{max-width:10ch;margin:18px 0 20px;color:#fff!important;font:800 clamp(42px,6vw,86px)/.96 var(--display);letter-spacing:-.065em;text-wrap:balance}.dealer-value-lead{max-width:56ch;margin:0;color:#cbd5d9!important;font-size:clamp(16px,1.5vw,20px);line-height:1.55}
+.dealer-value-positioning{display:grid;gap:12px;align-self:end;padding:24px 0 0 24px;border-left:1px solid rgba(240,210,116,.62);max-width:330px}.dealer-value-overline{color:#f0d274;font:700 10px/1.2 var(--display);letter-spacing:.16em}.dealer-value-positioning strong{color:#fff;font:700 clamp(20px,2.2vw,29px)/1.1 var(--display);letter-spacing:-.03em}.dealer-value-positioning>span:last-child{color:#aebbc0;font-size:13px;line-height:1.55}
+.dealer-value-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:0;border-bottom:1px solid rgba(220,229,232,.2)}
+.dealer-value-card{position:relative;display:flex;flex-direction:column;min-height:310px;padding:30px 24px 28px;border-right:1px solid rgba(220,229,232,.18);transition:background-color .35s ease,transform .35s ease}.dealer-value-card:first-child{border-left:1px solid rgba(220,229,232,.18)}.dealer-value-card:hover{background:rgba(255,255,255,.055);transform:translateY(-5px)}.dealer-value-card:after{content:"";position:absolute;left:24px;right:24px;bottom:0;height:2px;background:var(--toyota-red);transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.22,.61,.36,1)}.dealer-value-card:hover:after{transform:scaleX(1)}
+.dealer-value-card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:34px}.dealer-value-index{color:#f0d274;font:700 11px var(--display);letter-spacing:.14em}.dealer-value-marker{width:8px;height:8px;border:1px solid #f0d274;border-radius:50%;transition:background-color .25s ease,box-shadow .25s ease}.dealer-value-card:hover .dealer-value-marker{background:#f0d274;box-shadow:0 0 0 5px rgba(240,210,116,.1)}.dealer-value-card h3{max-width:12ch;margin:0 0 14px;color:#fff;font:700 clamp(21px,2vw,29px)/1.05 var(--display);letter-spacing:-.035em}.dealer-value-card p{max-width:28ch;margin:0;color:#b8c5c9;font-size:14px;line-height:1.65}.dealer-value-link{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding-top:30px;color:#fff;text-decoration:none;font-size:12px;font-weight:800;letter-spacing:.01em}.dealer-value-link span{color:#f0d274;font-size:17px;transition:transform .25s ease}.dealer-value-link:hover{color:#f0d274}.dealer-value-link:hover span{transform:translate(3px,-3px)}
+.dealer-value-footer{display:flex;align-items:center;justify-content:space-between;gap:26px;padding-top:28px}.dealer-value-sequence{display:flex;align-items:center;flex-wrap:wrap;gap:11px;color:#dbe4e7;font:700 10px var(--display);letter-spacing:.1em;text-transform:uppercase}.dealer-value-sequence i{color:#f0d274;font-style:normal;font-size:16px}.dealer-value-cta{flex:none;display:inline-flex;align-items:center;gap:10px}.dealer-value-cta span{font-size:17px;line-height:0}
+@media(max-width:980px){.dealer-value-grid{grid-template-columns:repeat(2,1fr)}.dealer-value-card:nth-child(2){border-right:0}.dealer-value-card:nth-child(n+3){border-top:1px solid rgba(220,229,232,.18)}.dealer-value-card:nth-child(3){border-left:1px solid rgba(220,229,232,.18)}}
+@media(max-width:700px){.dealer-value-section{padding:72px 0 80px!important}.dealer-value-header{grid-template-columns:1fr;gap:34px;padding-bottom:38px}.dealer-value-heading h2{max-width:11ch;font-size:clamp(40px,13vw,64px)}.dealer-value-positioning{max-width:none;padding:20px 0 0;border-left:0;border-top:1px solid rgba(240,210,116,.62)}.dealer-value-grid{grid-template-columns:1fr}.dealer-value-card,.dealer-value-card:first-child,.dealer-value-card:nth-child(3){min-height:0;padding:27px 4px 25px;border-left:0;border-right:0;border-top:1px solid rgba(220,229,232,.18)}.dealer-value-card:first-child{border-top:0}.dealer-value-card-top{margin-bottom:24px}.dealer-value-card h3{max-width:18ch}.dealer-value-card p{max-width:45ch}.dealer-value-link{padding-top:22px}.dealer-value-footer{align-items:flex-start;flex-direction:column;padding-top:26px}.dealer-value-cta{width:100%;justify-content:space-between;min-height:48px}}
+@media(prefers-reduced-motion:reduce){.dealer-value-card,.dealer-value-card:after,.dealer-value-marker,.dealer-value-link span{transition:none}.dealer-value-card:hover{transform:none}}

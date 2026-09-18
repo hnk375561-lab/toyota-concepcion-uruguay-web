@@ -1,0 +1,1496 @@
+{
+  "input": "toyota-concepcion-uruguay-demo-mejorada-corregido.html",
+  "generatedAt": "2026-09-17T07:00:44.615Z",
+  "sourceOccurrences": 36,
+  "uniqueAssets": [
+    {
+      "hash": "bec83be10e475cc08eb65ee0ad27a59065b445a7e3cd4efcc6d2d9350b9cd30f",
+      "base": "toyota-sharp-assets/asset-bec83be10e47",
+      "sourceBytes": 37362,
+      "width": 800,
+      "height": 800,
+      "format": "jpeg",
+      "firstOccurrence": 1,
+      "widths": [
+        256,
+        512
+      ],
+      "files": [
+        {
+          "file": "asset-bec83be10e47-256.avif",
+          "bytes": 6246
+        },
+        {
+          "file": "asset-bec83be10e47-256.webp",
+          "bytes": 9242
+        },
+        {
+          "file": "asset-bec83be10e47-256.jpg",
+          "bytes": 13861
+        },
+        {
+          "file": "asset-bec83be10e47-512.avif",
+          "bytes": 13462
+        },
+        {
+          "file": "asset-bec83be10e47-512.webp",
+          "bytes": 20374
+        },
+        {
+          "file": "asset-bec83be10e47-512.jpg",
+          "bytes": 31685
+        }
+      ]
+    },
+    {
+      "hash": "371d49eb8a9328877deeddc470ad630bf85d5ce6019dede6c577458560329dad",
+      "base": "toyota-sharp-assets/asset-371d49eb8a93",
+      "sourceBytes": 98730,
+      "width": 781,
+      "height": 800,
+      "format": "jpeg",
+      "firstOccurrence": 2,
+      "widths": [
+        320,
+        640,
+        1200
+      ],
+      "files": [
+        {
+          "file": "asset-371d49eb8a93-320.avif",
+          "bytes": 17689
+        },
+        {
+          "file": "asset-371d49eb8a93-320.webp",
+          "bytes": 21948
+        },
+        {
+          "file": "asset-371d49eb8a93-320.jpg",
+          "bytes": 24491
+        },
+        {
+          "file": "asset-371d49eb8a93-640.avif",
+          "bytes": 63901
+        },
+        {
+          "file": "asset-371d49eb8a93-640.webp",
+          "bytes": 80218
+        },
+        {
+          "file": "asset-371d49eb8a93-640.jpg",
+          "bytes": 90663
+        },
+        {
+          "file": "asset-371d49eb8a93-1200.jpg",
+          "bytes": 236965
+        }
+      ]
+    },
+    {
+      "hash": "bae67c9e04b0cc653f4ffefde6e5ae88193759f23795d3a14943c09fe9ad0fd1",
+      "base": "toyota-sharp-assets/asset-bae67c9e04b0",
+      "sourceBytes": 89187,
+      "width": 800,
+      "height": 648,
+      "format": "jpeg",
+      "firstOccurrence": 3,
+      "widths": [
+        320,
+        640,
+        800
+      ],
+      "files": [
+        {
+          "file": "asset-bae67c9e04b0-320.avif",
+          "bytes": 17096
+        },
+        {
+          "file": "asset-bae67c9e04b0-320.webp",
+          "bytes": 20886
+        },
+        {
+          "file": "asset-bae67c9e04b0-320.jpg",
+          "bytes": 23486
+        },
+        {
+          "file": "asset-bae67c9e04b0-640.avif",
+          "bytes": 51385
+        },
+        {
+          "file": "asset-bae67c9e04b0-640.webp",
+          "bytes": 68324
+        },
+        {
+          "file": "asset-bae67c9e04b0-640.jpg",
+          "bytes": 79852
+        },
+        {
+          "file": "asset-bae67c9e04b0-800.avif",
+          "bytes": 71540
+        },
+        {
+          "file": "asset-bae67c9e04b0-800.webp",
+          "bytes": 98970
+        },
+        {
+          "file": "asset-bae67c9e04b0-800.jpg",
+          "bytes": 103496
+        }
+      ]
+    },
+    {
+      "hash": "73f90a43dab0488f77e0a9caa6386912af0a383f57dafe023fd7222b3f2689d7",
+      "base": "toyota-sharp-assets/asset-73f90a43dab0",
+      "sourceBytes": 30373,
+      "width": 598,
+      "height": 800,
+      "format": "jpeg",
+      "firstOccurrence": 4,
+      "widths": [
+        320
+      ],
+      "files": [
+        {
+          "file": "asset-73f90a43dab0-320.avif",
+          "bytes": 6394
+        },
+        {
+          "file": "asset-73f90a43dab0-320.webp",
+          "bytes": 9836
+        },
+        {
+          "file": "asset-73f90a43dab0-320.jpg",
+          "bytes": 16708
+        }
+      ]
+    },
+    {
+      "hash": "682f1d1786b8dcdc8c1538536e2ad4517f91cd9b96bf17a9d71f4060fd3f872d",
+      "base": "toyota-sharp-assets/asset-682f1d1786b8",
+      "sourceBytes": 38778,
+      "width": 586,
+      "height": 800,
+      "format": "jpeg",
+      "firstOccurrence": 5,
+      "widths": [
+        320
+      ],
+      "files": [
+        {
+          "file": "asset-682f1d1786b8-320.avif",
+          "bytes": 9501
+        },
+        {
+          "file": "asset-682f1d1786b8-320.webp",
+          "bytes": 14070
+        },
+        {
+          "file": "asset-682f1d1786b8-320.jpg",
+          "bytes": 21786
+        }
+      ]
+    },
+    {
+      "hash": "20773d0e6020e38ff4d5812538c509c255a37f79aabaec7d0e276ea6fc0e2c3b",
+      "base": "toyota-sharp-assets/asset-20773d0e6020",
+      "sourceBytes": 17005,
+      "width": 563,
+      "height": 800,
+      "format": "jpeg",
+      "firstOccurrence": 6,
+      "widths": [
+        320
+      ],
+      "files": [
+        {
+          "file": "asset-20773d0e6020-320.avif",
+          "bytes": 4495
+        },
+        {
+          "file": "asset-20773d0e6020-320.webp",
+          "bytes": 6762
+        },
+        {
+          "file": "asset-20773d0e6020-320.jpg",
+          "bytes": 10606
+        }
+      ]
+    },
+    {
+      "hash": "dd56c60bfd4aae0b6d00460bcec1efa90638ad386941991587617a8584ba6674",
+      "base": "toyota-sharp-assets/asset-dd56c60bfd4a",
+      "sourceBytes": 54274,
+      "width": 800,
+      "height": 779,
+      "format": "jpeg",
+      "firstOccurrence": 7,
+      "widths": [
+        320,
+        640,
+        800
+      ],
+      "files": [
+        {
+          "file": "asset-dd56c60bfd4a-320.avif",
+          "bytes": 10952
+        },
+        {
+          "file": "asset-dd56c60bfd4a-320.webp",
+          "bytes": 13772
+        },
+        {
+          "file": "asset-dd56c60bfd4a-320.jpg",
+          "bytes": 17608
+        },
+        {
+          "file": "asset-dd56c60bfd4a-640.avif",
+          "bytes": 28223
+        },
+        {
+          "file": "asset-dd56c60bfd4a-640.webp",
+          "bytes": 35288
+        },
+        {
+          "file": "asset-dd56c60bfd4a-640.jpg",
+          "bytes": 49863
+        },
+        {
+          "file": "asset-dd56c60bfd4a-800.avif",
+          "bytes": 39162
+        },
+        {
+          "file": "asset-dd56c60bfd4a-800.webp",
+          "bytes": 49458
+        },
+        {
+          "file": "asset-dd56c60bfd4a-800.jpg",
+          "bytes": 61847
+        }
+      ]
+    },
+    {
+      "hash": "9580c59d8ea4530d8f38ff4306e358581e29576f6442373084221eb256c9c1ce",
+      "base": "toyota-sharp-assets/asset-9580c59d8ea4",
+      "sourceBytes": 53690,
+      "width": 550,
+      "height": 800,
+      "format": "jpeg",
+      "firstOccurrence": 8,
+      "widths": [
+        320
+      ],
+      "files": [
+        {
+          "file": "asset-9580c59d8ea4-320.avif",
+          "bytes": 17969
+        },
+        {
+          "file": "asset-9580c59d8ea4-320.webp",
+          "bytes": 23310
+        },
+        {
+          "file": "asset-9580c59d8ea4-320.jpg",
+          "bytes": 30307
+        }
+      ]
+    },
+    {
+      "hash": "939253c0b01bf13abe44c0f8dac671793e4613fe28636b1a170a1fb482406d62",
+      "base": "toyota-sharp-assets/asset-939253c0b01b",
+      "sourceBytes": 35078,
+      "width": 547,
+      "height": 800,
+      "format": "jpeg",
+      "firstOccurrence": 9,
+      "widths": [
+        320
+      ],
+      "files": [
+        {
+          "file": "asset-939253c0b01b-320.avif",
+          "bytes": 8948
+        },
+        {
+          "file": "asset-939253c0b01b-320.webp",
+          "bytes": 13986
+        },
+        {
+          "file": "asset-939253c0b01b-320.jpg",
+          "bytes": 21459
+        }
+      ]
+    },
+    {
+      "hash": "707dc0a2e3e201305f7534825c7bdd8fd1c4582b98e18aa1fc86acb99f3cd9cc",
+      "base": "toyota-sharp-assets/asset-707dc0a2e3e2",
+      "sourceBytes": 52368,
+      "width": 552,
+      "height": 800,
+      "format": "jpeg",
+      "firstOccurrence": 10,
+      "widths": [
+        320
+      ],
+      "files": [
+        {
+          "file": "asset-707dc0a2e3e2-320.avif",
+          "bytes": 16766
+        },
+        {
+          "file": "asset-707dc0a2e3e2-320.webp",
+          "bytes": 22672
+        },
+        {
+          "file": "asset-707dc0a2e3e2-320.jpg",
+          "bytes": 29134
+        }
+      ]
+    },
+    {
+      "hash": "4ebd96e1ff9c1f042ece8b622140b6a765c06805cf3a792d40c7e7616e64a314",
+      "base": "toyota-sharp-assets/asset-4ebd96e1ff9c",
+      "sourceBytes": 52804,
+      "width": 556,
+      "height": 800,
+      "format": "jpeg",
+      "firstOccurrence": 11,
+      "widths": [
+        320
+      ],
+      "files": [
+        {
+          "file": "asset-4ebd96e1ff9c-320.avif",
+          "bytes": 17702
+        },
+        {
+          "file": "asset-4ebd96e1ff9c-320.webp",
+          "bytes": 22666
+        },
+        {
+          "file": "asset-4ebd96e1ff9c-320.jpg",
+          "bytes": 30104
+        }
+      ]
+    },
+    {
+      "hash": "07a01574263b3e2dfb448d9e6a13f8427e07e1ebb591c50049a94f8f1fef6b78",
+      "base": "toyota-sharp-assets/asset-07a01574263b",
+      "sourceBytes": 39057,
+      "width": 687,
+      "height": 800,
+      "format": "jpeg",
+      "firstOccurrence": 12,
+      "widths": [
+        320,
+        640
+      ],
+      "files": [
+        {
+          "file": "asset-07a01574263b-320.avif",
+          "bytes": 8705
+        },
+        {
+          "file": "asset-07a01574263b-320.webp",
+          "bytes": 11730
+        },
+        {
+          "file": "asset-07a01574263b-320.jpg",
+          "bytes": 15574
+        },
+        {
+          "file": "asset-07a01574263b-640.avif",
+          "bytes": 22310
+        },
+        {
+          "file": "asset-07a01574263b-640.webp",
+          "bytes": 29592
+        },
+        {
+          "file": "asset-07a01574263b-640.jpg",
+          "bytes": 44523
+        }
+      ]
+    },
+    {
+      "hash": "9608f3af165f9bf393e4fc78cac7508138ade76300e302af279a4c0fb8c679a7",
+      "base": "toyota-sharp-assets/asset-9608f3af165f",
+      "sourceBytes": 128886,
+      "width": 800,
+      "height": 793,
+      "format": "jpeg",
+      "firstOccurrence": 13,
+      "widths": [
+        320,
+        640,
+        800
+      ],
+      "files": [
+        {
+          "file": "asset-9608f3af165f-320.avif",
+          "bytes": 29182
+        },
+        {
+          "file": "asset-9608f3af165f-320.webp",
+          "bytes": 32052
+        },
+        {
+          "file": "asset-9608f3af165f-320.jpg",
+          "bytes": 33553
+        },
+        {
+          "file": "asset-9608f3af165f-640.avif",
+          "bytes": 89609
+        },
+        {
+          "file": "asset-9608f3af165f-640.webp",
+          "bytes": 101974
+        },
+        {
+          "file": "asset-9608f3af165f-640.jpg",
+          "bytes": 115375
+        },
+        {
+          "file": "asset-9608f3af165f-800.avif",
+          "bytes": 113757
+        },
+        {
+          "file": "asset-9608f3af165f-800.webp",
+          "bytes": 146898
+        },
+        {
+          "file": "asset-9608f3af165f-800.jpg",
+          "bytes": 150726
+        }
+      ]
+    },
+    {
+      "hash": "94978cf308df2f2b2878e5a57ec068de136fc86a87cc74a21cc8d42adf1eecd4",
+      "base": "toyota-sharp-assets/asset-94978cf308df",
+      "sourceBytes": 74414,
+      "width": 568,
+      "height": 800,
+      "format": "jpeg",
+      "firstOccurrence": 14,
+      "widths": [
+        320
+      ],
+      "files": [
+        {
+          "file": "asset-94978cf308df-320.avif",
+          "bytes": 25912
+        },
+        {
+          "file": "asset-94978cf308df-320.webp",
+          "bytes": 31380
+        },
+        {
+          "file": "asset-94978cf308df-320.jpg",
+          "bytes": 37070
+        }
+      ]
+    },
+    {
+      "hash": "eb51882d797df3202b1e9d8406f6023c3906ebd9700918bc4f1025dc66be26d2",
+      "base": "toyota-sharp-assets/asset-eb51882d797d",
+      "sourceBytes": 91452,
+      "width": 800,
+      "height": 794,
+      "format": "jpeg",
+      "firstOccurrence": 15,
+      "widths": [
+        320,
+        640,
+        800
+      ],
+      "files": [
+        {
+          "file": "asset-eb51882d797d-320.avif",
+          "bytes": 17411
+        },
+        {
+          "file": "asset-eb51882d797d-320.webp",
+          "bytes": 20554
+        },
+        {
+          "file": "asset-eb51882d797d-320.jpg",
+          "bytes": 23712
+        },
+        {
+          "file": "asset-eb51882d797d-640.avif",
+          "bytes": 54329
+        },
+        {
+          "file": "asset-eb51882d797d-640.webp",
+          "bytes": 64148
+        },
+        {
+          "file": "asset-eb51882d797d-640.jpg",
+          "bytes": 75596
+        },
+        {
+          "file": "asset-eb51882d797d-800.avif",
+          "bytes": 73916
+        },
+        {
+          "file": "asset-eb51882d797d-800.webp",
+          "bytes": 94980
+        },
+        {
+          "file": "asset-eb51882d797d-800.jpg",
+          "bytes": 103301
+        }
+      ]
+    },
+    {
+      "hash": "10b9781f8b0e17abc1e65645ed965fdc67ec11566b7c7fc41692e88e388e44f4",
+      "base": "toyota-sharp-assets/asset-10b9781f8b0e",
+      "sourceBytes": 75915,
+      "width": 565,
+      "height": 800,
+      "format": "jpeg",
+      "firstOccurrence": 16,
+      "widths": [
+        320
+      ],
+      "files": [
+        {
+          "file": "asset-10b9781f8b0e-320.avif",
+          "bytes": 25387
+        },
+        {
+          "file": "asset-10b9781f8b0e-320.webp",
+          "bytes": 30932
+        },
+        {
+          "file": "asset-10b9781f8b0e-320.jpg",
+          "bytes": 34830
+        }
+      ]
+    },
+    {
+      "hash": "e0f705dd52d17c71a1b30c718385c7a998df3a0e396d737fcd5a82a187af9b3f",
+      "base": "toyota-sharp-assets/asset-e0f705dd52d1",
+      "sourceBytes": 91708,
+      "width": 800,
+      "height": 775,
+      "format": "jpeg",
+      "firstOccurrence": 17,
+      "widths": [
+        320,
+        640,
+        800
+      ],
+      "files": [
+        {
+          "file": "asset-e0f705dd52d1-320.avif",
+          "bytes": 20456
+        },
+        {
+          "file": "asset-e0f705dd52d1-320.webp",
+          "bytes": 22834
+        },
+        {
+          "file": "asset-e0f705dd52d1-320.jpg",
+          "bytes": 27804
+        },
+        {
+          "file": "asset-e0f705dd52d1-640.avif",
+          "bytes": 56103
+        },
+        {
+          "file": "asset-e0f705dd52d1-640.webp",
+          "bytes": 67612
+        },
+        {
+          "file": "asset-e0f705dd52d1-640.jpg",
+          "bytes": 86217
+        },
+        {
+          "file": "asset-e0f705dd52d1-800.avif",
+          "bytes": 73226
+        },
+        {
+          "file": "asset-e0f705dd52d1-800.webp",
+          "bytes": 95638
+        },
+        {
+          "file": "asset-e0f705dd52d1-800.jpg",
+          "bytes": 108519
+        }
+      ]
+    },
+    {
+      "hash": "db467678d4f881b1099fe8fad5bc75baf4c4d14a49b910ecb6e58fe90983f473",
+      "base": "toyota-sharp-assets/asset-db467678d4f8",
+      "sourceBytes": 93639,
+      "width": 800,
+      "height": 785,
+      "format": "jpeg",
+      "firstOccurrence": 18,
+      "widths": [
+        320,
+        640,
+        800
+      ],
+      "files": [
+        {
+          "file": "asset-db467678d4f8-320.avif",
+          "bytes": 21010
+        },
+        {
+          "file": "asset-db467678d4f8-320.webp",
+          "bytes": 22940
+        },
+        {
+          "file": "asset-db467678d4f8-320.jpg",
+          "bytes": 28288
+        },
+        {
+          "file": "asset-db467678d4f8-640.avif",
+          "bytes": 56589
+        },
+        {
+          "file": "asset-db467678d4f8-640.webp",
+          "bytes": 68246
+        },
+        {
+          "file": "asset-db467678d4f8-640.jpg",
+          "bytes": 87920
+        },
+        {
+          "file": "asset-db467678d4f8-800.avif",
+          "bytes": 75626
+        },
+        {
+          "file": "asset-db467678d4f8-800.webp",
+          "bytes": 97984
+        },
+        {
+          "file": "asset-db467678d4f8-800.jpg",
+          "bytes": 111036
+        }
+      ]
+    },
+    {
+      "hash": "96b94341671a7f333ae46b2f010fc12316b8b2f3b7f76dc6fd32da5285fedfe3",
+      "base": "toyota-sharp-assets/asset-96b94341671a",
+      "sourceBytes": 90813,
+      "width": 800,
+      "height": 763,
+      "format": "jpeg",
+      "firstOccurrence": 19,
+      "widths": [
+        320,
+        640,
+        800
+      ],
+      "files": [
+        {
+          "file": "asset-96b94341671a-320.avif",
+          "bytes": 20962
+        },
+        {
+          "file": "asset-96b94341671a-320.webp",
+          "bytes": 22808
+        },
+        {
+          "file": "asset-96b94341671a-320.jpg",
+          "bytes": 27617
+        },
+        {
+          "file": "asset-96b94341671a-640.avif",
+          "bytes": 52851
+        },
+        {
+          "file": "asset-96b94341671a-640.webp",
+          "bytes": 64296
+        },
+        {
+          "file": "asset-96b94341671a-640.jpg",
+          "bytes": 84199
+        },
+        {
+          "file": "asset-96b94341671a-800.avif",
+          "bytes": 69798
+        },
+        {
+          "file": "asset-96b94341671a-800.webp",
+          "bytes": 91136
+        },
+        {
+          "file": "asset-96b94341671a-800.jpg",
+          "bytes": 105612
+        }
+      ]
+    },
+    {
+      "hash": "6d088249b097ed8d25d85c256994743841f576c1b8f04425b1b85056826e5512",
+      "base": "toyota-sharp-assets/asset-6d088249b097",
+      "sourceBytes": 74801,
+      "width": 800,
+      "height": 780,
+      "format": "jpeg",
+      "firstOccurrence": 20,
+      "widths": [
+        320,
+        640,
+        800
+      ],
+      "files": [
+        {
+          "file": "asset-6d088249b097-320.avif",
+          "bytes": 15569
+        },
+        {
+          "file": "asset-6d088249b097-320.webp",
+          "bytes": 17354
+        },
+        {
+          "file": "asset-6d088249b097-320.jpg",
+          "bytes": 23630
+        },
+        {
+          "file": "asset-6d088249b097-640.avif",
+          "bytes": 41219
+        },
+        {
+          "file": "asset-6d088249b097-640.webp",
+          "bytes": 49594
+        },
+        {
+          "file": "asset-6d088249b097-640.jpg",
+          "bytes": 71618
+        },
+        {
+          "file": "asset-6d088249b097-800.avif",
+          "bytes": 56036
+        },
+        {
+          "file": "asset-6d088249b097-800.webp",
+          "bytes": 71616
+        },
+        {
+          "file": "asset-6d088249b097-800.jpg",
+          "bytes": 88122
+        }
+      ]
+    },
+    {
+      "hash": "580a84256aa0a904ec6c7e22969f1c5d157540b582c66272b10e2c468017bb27",
+      "base": "toyota-sharp-assets/asset-580a84256aa0",
+      "sourceBytes": 94895,
+      "width": 800,
+      "height": 781,
+      "format": "jpeg",
+      "firstOccurrence": 21,
+      "widths": [
+        320,
+        640,
+        800
+      ],
+      "files": [
+        {
+          "file": "asset-580a84256aa0-320.avif",
+          "bytes": 20327
+        },
+        {
+          "file": "asset-580a84256aa0-320.webp",
+          "bytes": 22856
+        },
+        {
+          "file": "asset-580a84256aa0-320.jpg",
+          "bytes": 28492
+        },
+        {
+          "file": "asset-580a84256aa0-640.avif",
+          "bytes": 57112
+        },
+        {
+          "file": "asset-580a84256aa0-640.webp",
+          "bytes": 67542
+        },
+        {
+          "file": "asset-580a84256aa0-640.jpg",
+          "bytes": 86711
+        },
+        {
+          "file": "asset-580a84256aa0-800.avif",
+          "bytes": 73722
+        },
+        {
+          "file": "asset-580a84256aa0-800.webp",
+          "bytes": 96842
+        },
+        {
+          "file": "asset-580a84256aa0-800.jpg",
+          "bytes": 110878
+        }
+      ]
+    },
+    {
+      "hash": "ad8b147fb69f9e617e76a9319b1741593ecd8f4d49571a5b247b3682efe4ddcb",
+      "base": "toyota-sharp-assets/asset-ad8b147fb69f",
+      "sourceBytes": 64937,
+      "width": 800,
+      "height": 750,
+      "format": "jpeg",
+      "firstOccurrence": 22,
+      "widths": [
+        320,
+        640,
+        800
+      ],
+      "files": [
+        {
+          "file": "asset-ad8b147fb69f-320.avif",
+          "bytes": 12741
+        },
+        {
+          "file": "asset-ad8b147fb69f-320.webp",
+          "bytes": 15930
+        },
+        {
+          "file": "asset-ad8b147fb69f-320.jpg",
+          "bytes": 21322
+        },
+        {
+          "file": "asset-ad8b147fb69f-640.avif",
+          "bytes": 30967
+        },
+        {
+          "file": "asset-ad8b147fb69f-640.webp",
+          "bytes": 40610
+        },
+        {
+          "file": "asset-ad8b147fb69f-640.jpg",
+          "bytes": 61145
+        },
+        {
+          "file": "asset-ad8b147fb69f-800.avif",
+          "bytes": 43659
+        },
+        {
+          "file": "asset-ad8b147fb69f-800.webp",
+          "bytes": 58748
+        },
+        {
+          "file": "asset-ad8b147fb69f-800.jpg",
+          "bytes": 74226
+        }
+      ]
+    },
+    {
+      "hash": "3545495d2aea1da57a239d6a093b02687904653124817f230fc3e51c81888ab7",
+      "base": "toyota-sharp-assets/asset-3545495d2aea",
+      "sourceBytes": 91961,
+      "width": 800,
+      "height": 767,
+      "format": "jpeg",
+      "firstOccurrence": 23,
+      "widths": [
+        320,
+        640,
+        800
+      ],
+      "files": [
+        {
+          "file": "asset-3545495d2aea-320.avif",
+          "bytes": 20319
+        },
+        {
+          "file": "asset-3545495d2aea-320.webp",
+          "bytes": 22594
+        },
+        {
+          "file": "asset-3545495d2aea-320.jpg",
+          "bytes": 27180
+        },
+        {
+          "file": "asset-3545495d2aea-640.avif",
+          "bytes": 55643
+        },
+        {
+          "file": "asset-3545495d2aea-640.webp",
+          "bytes": 68150
+        },
+        {
+          "file": "asset-3545495d2aea-640.jpg",
+          "bytes": 85920
+        },
+        {
+          "file": "asset-3545495d2aea-800.avif",
+          "bytes": 75117
+        },
+        {
+          "file": "asset-3545495d2aea-800.webp",
+          "bytes": 97870
+        },
+        {
+          "file": "asset-3545495d2aea-800.jpg",
+          "bytes": 108616
+        }
+      ]
+    },
+    {
+      "hash": "4533c3b60b75b0852b1f414401e1dfc8b47d0f55f2785b7b1e63661cf313e41d",
+      "base": "toyota-sharp-assets/asset-4533c3b60b75",
+      "sourceBytes": 189408,
+      "width": 797,
+      "height": 800,
+      "format": "jpeg",
+      "firstOccurrence": 24,
+      "widths": [
+        320,
+        640
+      ],
+      "files": [
+        {
+          "file": "asset-4533c3b60b75-320.avif",
+          "bytes": 51076
+        },
+        {
+          "file": "asset-4533c3b60b75-320.webp",
+          "bytes": 47616
+        },
+        {
+          "file": "asset-4533c3b60b75-320.jpg",
+          "bytes": 46230
+        },
+        {
+          "file": "asset-4533c3b60b75-640.avif",
+          "bytes": 163668
+        },
+        {
+          "file": "asset-4533c3b60b75-640.webp",
+          "bytes": 166210
+        },
+        {
+          "file": "asset-4533c3b60b75-640.jpg",
+          "bytes": 164688
+        }
+      ]
+    },
+    {
+      "hash": "64e8966f6f8a189f2de0378c1cc30782d7ea03363af4701a68e387e6f1a8281c",
+      "base": "toyota-sharp-assets/asset-64e8966f6f8a",
+      "sourceBytes": 60192,
+      "width": 800,
+      "height": 779,
+      "format": "jpeg",
+      "firstOccurrence": 25,
+      "widths": [
+        320,
+        640,
+        800
+      ],
+      "files": [
+        {
+          "file": "asset-64e8966f6f8a-320.avif",
+          "bytes": 12903
+        },
+        {
+          "file": "asset-64e8966f6f8a-320.webp",
+          "bytes": 14498
+        },
+        {
+          "file": "asset-64e8966f6f8a-320.jpg",
+          "bytes": 18520
+        },
+        {
+          "file": "asset-64e8966f6f8a-640.avif",
+          "bytes": 36307
+        },
+        {
+          "file": "asset-64e8966f6f8a-640.webp",
+          "bytes": 41936
+        },
+        {
+          "file": "asset-64e8966f6f8a-640.jpg",
+          "bytes": 55297
+        },
+        {
+          "file": "asset-64e8966f6f8a-800.avif",
+          "bytes": 49684
+        },
+        {
+          "file": "asset-64e8966f6f8a-800.webp",
+          "bytes": 60428
+        },
+        {
+          "file": "asset-64e8966f6f8a-800.jpg",
+          "bytes": 69759
+        }
+      ]
+    },
+    {
+      "hash": "c81e41382a00b58e1a82fcda79fc0a2d4c6d8971b305d84e93bf2bcda2420ae6",
+      "base": "toyota-sharp-assets/asset-c81e41382a00",
+      "sourceBytes": 29948,
+      "width": 800,
+      "height": 671,
+      "format": "jpeg",
+      "firstOccurrence": 26,
+      "widths": [
+        320,
+        640,
+        800
+      ],
+      "files": [
+        {
+          "file": "asset-c81e41382a00-320.avif",
+          "bytes": 6354
+        },
+        {
+          "file": "asset-c81e41382a00-320.webp",
+          "bytes": 8228
+        },
+        {
+          "file": "asset-c81e41382a00-320.jpg",
+          "bytes": 10543
+        },
+        {
+          "file": "asset-c81e41382a00-640.avif",
+          "bytes": 14271
+        },
+        {
+          "file": "asset-c81e41382a00-640.webp",
+          "bytes": 18470
+        },
+        {
+          "file": "asset-c81e41382a00-640.jpg",
+          "bytes": 27226
+        },
+        {
+          "file": "asset-c81e41382a00-800.avif",
+          "bytes": 18395
+        },
+        {
+          "file": "asset-c81e41382a00-800.webp",
+          "bytes": 23152
+        },
+        {
+          "file": "asset-c81e41382a00-800.jpg",
+          "bytes": 33990
+        }
+      ]
+    },
+    {
+      "hash": "d13f2dec561fccce0160eab2655982f91ec70e8f7c850e9522ee4d54dd252454",
+      "base": "toyota-sharp-assets/asset-d13f2dec561f",
+      "sourceBytes": 92039,
+      "width": 800,
+      "height": 786,
+      "format": "jpeg",
+      "firstOccurrence": 27,
+      "widths": [
+        320,
+        640,
+        800
+      ],
+      "files": [
+        {
+          "file": "asset-d13f2dec561f-320.avif",
+          "bytes": 19300
+        },
+        {
+          "file": "asset-d13f2dec561f-320.webp",
+          "bytes": 22642
+        },
+        {
+          "file": "asset-d13f2dec561f-320.jpg",
+          "bytes": 28675
+        },
+        {
+          "file": "asset-d13f2dec561f-640.avif",
+          "bytes": 48590
+        },
+        {
+          "file": "asset-d13f2dec561f-640.webp",
+          "bytes": 61032
+        },
+        {
+          "file": "asset-d13f2dec561f-640.jpg",
+          "bytes": 84991
+        },
+        {
+          "file": "asset-d13f2dec561f-800.avif",
+          "bytes": 65944
+        },
+        {
+          "file": "asset-d13f2dec561f-800.webp",
+          "bytes": 85552
+        },
+        {
+          "file": "asset-d13f2dec561f-800.jpg",
+          "bytes": 105729
+        }
+      ]
+    },
+    {
+      "hash": "713411293222f1e31f6292ebc454c89961ccff289ef36c6663577d98980f0dcc",
+      "base": "toyota-sharp-assets/asset-713411293222",
+      "sourceBytes": 43830,
+      "width": 800,
+      "height": 764,
+      "format": "jpeg",
+      "firstOccurrence": 28,
+      "widths": [
+        320,
+        640,
+        800
+      ],
+      "files": [
+        {
+          "file": "asset-713411293222-320.avif",
+          "bytes": 8341
+        },
+        {
+          "file": "asset-713411293222-320.webp",
+          "bytes": 11046
+        },
+        {
+          "file": "asset-713411293222-320.jpg",
+          "bytes": 16057
+        },
+        {
+          "file": "asset-713411293222-640.avif",
+          "bytes": 17434
+        },
+        {
+          "file": "asset-713411293222-640.webp",
+          "bytes": 24388
+        },
+        {
+          "file": "asset-713411293222-640.jpg",
+          "bytes": 41759
+        },
+        {
+          "file": "asset-713411293222-800.avif",
+          "bytes": 24083
+        },
+        {
+          "file": "asset-713411293222-800.webp",
+          "bytes": 33694
+        },
+        {
+          "file": "asset-713411293222-800.jpg",
+          "bytes": 50176
+        }
+      ]
+    },
+    {
+      "hash": "cf008c7d5b59a6d597af3176496547c92ed462b7b7618ff1c4eb8b6b56d3c5f1",
+      "base": "toyota-sharp-assets/asset-cf008c7d5b59",
+      "sourceBytes": 57049,
+      "width": 800,
+      "height": 778,
+      "format": "jpeg",
+      "firstOccurrence": 29,
+      "widths": [
+        320,
+        640,
+        800
+      ],
+      "files": [
+        {
+          "file": "asset-cf008c7d5b59-320.avif",
+          "bytes": 12561
+        },
+        {
+          "file": "asset-cf008c7d5b59-320.webp",
+          "bytes": 15566
+        },
+        {
+          "file": "asset-cf008c7d5b59-320.jpg",
+          "bytes": 21114
+        },
+        {
+          "file": "asset-cf008c7d5b59-640.avif",
+          "bytes": 25269
+        },
+        {
+          "file": "asset-cf008c7d5b59-640.webp",
+          "bytes": 35318
+        },
+        {
+          "file": "asset-cf008c7d5b59-640.jpg",
+          "bytes": 54724
+        },
+        {
+          "file": "asset-cf008c7d5b59-800.avif",
+          "bytes": 34241
+        },
+        {
+          "file": "asset-cf008c7d5b59-800.webp",
+          "bytes": 46492
+        },
+        {
+          "file": "asset-cf008c7d5b59-800.jpg",
+          "bytes": 67415
+        }
+      ]
+    },
+    {
+      "hash": "b77ea4b4185dc5fedaca47d8db45fc2bd77a1fcf315bac9e5027c8b9e6531b3e",
+      "base": "toyota-sharp-assets/asset-b77ea4b4185d",
+      "sourceBytes": 74107,
+      "width": 800,
+      "height": 749,
+      "format": "jpeg",
+      "firstOccurrence": 30,
+      "widths": [
+        320,
+        640,
+        800
+      ],
+      "files": [
+        {
+          "file": "asset-b77ea4b4185d-320.avif",
+          "bytes": 15731
+        },
+        {
+          "file": "asset-b77ea4b4185d-320.webp",
+          "bytes": 18450
+        },
+        {
+          "file": "asset-b77ea4b4185d-320.jpg",
+          "bytes": 23302
+        },
+        {
+          "file": "asset-b77ea4b4185d-640.avif",
+          "bytes": 41267
+        },
+        {
+          "file": "asset-b77ea4b4185d-640.webp",
+          "bytes": 50914
+        },
+        {
+          "file": "asset-b77ea4b4185d-640.jpg",
+          "bytes": 69467
+        },
+        {
+          "file": "asset-b77ea4b4185d-800.avif",
+          "bytes": 54883
+        },
+        {
+          "file": "asset-b77ea4b4185d-800.webp",
+          "bytes": 70264
+        },
+        {
+          "file": "asset-b77ea4b4185d-800.jpg",
+          "bytes": 86385
+        }
+      ]
+    },
+    {
+      "hash": "5bbd82bf785b69ac2bf39e7f2ac487825085e9a7c336a2b48feeaac402231c55",
+      "base": "toyota-sharp-assets/asset-5bbd82bf785b",
+      "sourceBytes": 39153,
+      "width": 540,
+      "height": 800,
+      "format": "jpeg",
+      "firstOccurrence": 31,
+      "widths": [
+        320
+      ],
+      "files": [
+        {
+          "file": "asset-5bbd82bf785b-320.avif",
+          "bytes": 11053
+        },
+        {
+          "file": "asset-5bbd82bf785b-320.webp",
+          "bytes": 16614
+        },
+        {
+          "file": "asset-5bbd82bf785b-320.jpg",
+          "bytes": 24705
+        }
+      ]
+    },
+    {
+      "hash": "4a00d0bf85e97b2c20de4beaedd2bb3ae5758581c242c3502d3f7dfbaf9dcf61",
+      "base": "toyota-sharp-assets/asset-4a00d0bf85e9",
+      "sourceBytes": 114828,
+      "width": 800,
+      "height": 781,
+      "format": "jpeg",
+      "firstOccurrence": 32,
+      "widths": [
+        320,
+        640,
+        800
+      ],
+      "files": [
+        {
+          "file": "asset-4a00d0bf85e9-320.avif",
+          "bytes": 22785
+        },
+        {
+          "file": "asset-4a00d0bf85e9-320.webp",
+          "bytes": 26112
+        },
+        {
+          "file": "asset-4a00d0bf85e9-320.jpg",
+          "bytes": 30132
+        },
+        {
+          "file": "asset-4a00d0bf85e9-640.avif",
+          "bytes": 68879
+        },
+        {
+          "file": "asset-4a00d0bf85e9-640.webp",
+          "bytes": 84062
+        },
+        {
+          "file": "asset-4a00d0bf85e9-640.jpg",
+          "bytes": 101980
+        },
+        {
+          "file": "asset-4a00d0bf85e9-800.avif",
+          "bytes": 94652
+        },
+        {
+          "file": "asset-4a00d0bf85e9-800.webp",
+          "bytes": 124088
+        },
+        {
+          "file": "asset-4a00d0bf85e9-800.jpg",
+          "bytes": 132781
+        }
+      ]
+    },
+    {
+      "hash": "40f34102e3e97e8de4cb517dc7fa917c24e3ecb83d71fa445167509c3ddfdc7f",
+      "base": "toyota-sharp-assets/asset-40f34102e3e9",
+      "sourceBytes": 76021,
+      "width": 766,
+      "height": 800,
+      "format": "jpeg",
+      "firstOccurrence": 34,
+      "widths": [
+        320,
+        640
+      ],
+      "files": [
+        {
+          "file": "asset-40f34102e3e9-320.avif",
+          "bytes": 13110
+        },
+        {
+          "file": "asset-40f34102e3e9-320.webp",
+          "bytes": 16884
+        },
+        {
+          "file": "asset-40f34102e3e9-320.jpg",
+          "bytes": 20876
+        },
+        {
+          "file": "asset-40f34102e3e9-640.avif",
+          "bytes": 44775
+        },
+        {
+          "file": "asset-40f34102e3e9-640.webp",
+          "bytes": 58574
+        },
+        {
+          "file": "asset-40f34102e3e9-640.jpg",
+          "bytes": 73990
+        }
+      ]
+    },
+    {
+      "hash": "a70429bf61f7e09a4e51b7e6d88857b488aed9f2fa935d2b1a110bbd5acd46be",
+      "base": "toyota-sharp-assets/asset-a70429bf61f7",
+      "sourceBytes": 61644,
+      "width": 733,
+      "height": 800,
+      "format": "jpeg",
+      "firstOccurrence": 35,
+      "widths": [
+        320,
+        640
+      ],
+      "files": [
+        {
+          "file": "asset-a70429bf61f7-320.avif",
+          "bytes": 11582
+        },
+        {
+          "file": "asset-a70429bf61f7-320.webp",
+          "bytes": 15434
+        },
+        {
+          "file": "asset-a70429bf61f7-320.jpg",
+          "bytes": 19657
+        },
+        {
+          "file": "asset-a70429bf61f7-640.avif",
+          "bytes": 33397
+        },
+        {
+          "file": "asset-a70429bf61f7-640.webp",
+          "bytes": 45232
+        },
+        {
+          "file": "asset-a70429bf61f7-640.jpg",
+          "bytes": 59530
+        }
+      ]
+    },
+    {
+      "hash": "3cd7479efb858d3bb235e67b776123364589ce03d2f94285910eed278752fb7b",
+      "base": "toyota-sharp-assets/asset-3cd7479efb85",
+      "sourceBytes": 58172,
+      "width": 800,
+      "height": 779,
+      "format": "jpeg",
+      "firstOccurrence": 36,
+      "widths": [
+        320,
+        640,
+        800
+      ],
+      "files": [
+        {
+          "file": "asset-3cd7479efb85-320.avif",
+          "bytes": 11044
+        },
+        {
+          "file": "asset-3cd7479efb85-320.webp",
+          "bytes": 13602
+        },
+        {
+          "file": "asset-3cd7479efb85-320.jpg",
+          "bytes": 17248
+        },
+        {
+          "file": "asset-3cd7479efb85-640.avif",
+          "bytes": 29191
+        },
+        {
+          "file": "asset-3cd7479efb85-640.webp",
+          "bytes": 37684
+        },
+        {
+          "file": "asset-3cd7479efb85-640.jpg",
+          "bytes": 51279
+        },
+        {
+          "file": "asset-3cd7479efb85-800.avif",
+          "bytes": 40438
+        },
+        {
+          "file": "asset-3cd7479efb85-800.webp",
+          "bytes": 54452
+        },
+        {
+          "file": "asset-3cd7479efb85-800.jpg",
+          "bytes": 65916
+        }
+      ]
+    }
+  ],
+  "totalSourceBytes": 2468518,
+  "totalOutputBytes": 10960494
+}
