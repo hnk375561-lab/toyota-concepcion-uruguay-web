@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded',function(){document.querySelectorAl
 <link rel="icon" type="image/webp" href="toyota-sharp-assets/asset-bec83be10e47-256.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="image" href="toyota-sharp-assets/hero-sw4-1800.webp" imagesrcset="toyota-sharp-assets/hero-sw4-480.webp 480w, toyota-sharp-assets/hero-sw4-1800.webp 1800w" imagesizes="(max-width: 760px) 100vw, 68vw" type="image/webp" fetchpriority="high">
+<link rel="preload" as="image" href="toyota-sharp-assets/hero-sw4-desktop-1800.avif" imagesrcset="toyota-sharp-assets/hero-sw4-mobile-480.avif 480w, toyota-sharp-assets/hero-sw4-mobile-800.avif 800w, toyota-sharp-assets/hero-sw4-desktop-1800.avif 1800w" imagesizes="(max-width: 760px) 100vw, 68vw" type="image/avif" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -1312,7 +1312,13 @@ footer{padding-top:clamp(80px,9vw,128px);padding-bottom:clamp(32px,5vw,64px)}
 
     <div class="hero-editorial-stage">
       <figure class="hero-editorial-vehicle hero-photo-real" aria-label="Toyota SW4 Diamond">
-        <picture><source type="image/webp" media="(max-width: 760px)" srcset="toyota-sharp-assets/hero-sw4-480.webp"><source type="image/webp" srcset="toyota-sharp-assets/hero-sw4-1800.webp"><img src="toyota-sharp-assets/hero-sw4-1800.webp" alt="Toyota SW4 Diamond, imagen del vehículo" fetchpriority="high" decoding="async" width="1800" height="1844"></picture>
+        <picture>
+          <source type="image/avif" media="(max-width: 760px)" srcset="toyota-sharp-assets/hero-sw4-mobile-480.avif 480w, toyota-sharp-assets/hero-sw4-mobile-800.avif 800w" sizes="100vw">
+          <source type="image/webp" media="(max-width: 760px)" srcset="toyota-sharp-assets/hero-sw4-mobile-480.webp 480w, toyota-sharp-assets/hero-sw4-mobile-800.webp 800w" sizes="100vw">
+          <source type="image/avif" srcset="toyota-sharp-assets/hero-sw4-desktop-1800.avif 1800w" sizes="68vw">
+          <source type="image/webp" srcset="toyota-sharp-assets/hero-sw4-1800.webp 1800w" sizes="68vw">
+          <img src="toyota-sharp-assets/hero-sw4-1800.webp" alt="Toyota SW4 Diamond, imagen del vehículo" fetchpriority="high" decoding="async" width="1800" height="1844">
+        </picture>
         <figcaption><span>SW4 Diamond</span><span>Disponibilidad a confirmar</span></figcaption>
       </figure>
       <figure class="hero-editorial-vehicle hero-editorial-secondary" aria-label="Toyota Hilux roja">
