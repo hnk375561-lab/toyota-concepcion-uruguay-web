@@ -71,13 +71,15 @@ document.addEventListener('DOMContentLoaded',function(){document.querySelectorAl
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="image" href="toyota-sharp-assets/hero-sw4-1800.webp" type="image/webp" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/SplitText.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/Flip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/CustomEase.min.js"></script>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/SplitText.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/Flip.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/CustomEase.min.js" defer></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.css">
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js" defer></script>
 <script id="toyota-scroll-helper">
 (function(){
   window.__toyotaScrollToElement = function(target, options){
@@ -1812,7 +1814,7 @@ h1,h2,h3,.brand .b1,.section-kicker,.tag{font-kerning:normal;text-wrap:balance}
   </nav>
 
 <script>
-(function(){
+document.addEventListener("DOMContentLoaded", function(){
   "use strict";
 
   // ---- EDITAR ACÁ: números de WhatsApp reales (formato wa.me, sin +) ----
@@ -2396,7 +2398,7 @@ h1,h2,h3,.brand .b1,.section-kicker,.tag{font-kerning:normal;text-wrap:balance}
     }
   } else { document.querySelectorAll(".premium-reveal").forEach(function(el){el.classList.add("is-visible");}); }
 
-})();
+});
 </script>
 
 <script id="expansion-preview-js">
@@ -2411,7 +2413,7 @@ h1,h2,h3,.brand .b1,.section-kicker,.tag{font-kerning:normal;text-wrap:balance}
 
 
 <script id="flagship-motion-runtime">
-(function(){
+document.addEventListener("DOMContentLoaded", function(){
   "use strict";
   var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if(window.__toyotaLenis || !window.Lenis || !window.gsap || !window.ScrollTrigger){
@@ -2451,10 +2453,10 @@ h1,h2,h3,.brand .b1,.section-kicker,.tag{font-kerning:normal;text-wrap:balance}
   if(primary){var label=primary.querySelector("span"),primaryRect=null,movePrimary=gsap.quickTo(primary,"x",{duration:.28,ease:"power3.out"}),movePrimaryY=gsap.quickTo(primary,"y",{duration:.28,ease:"power3.out"}),moveLabel=label?gsap.quickTo(label,"x",{duration:.28,ease:"power3.out"}):null,moveLabelY=label?gsap.quickTo(label,"y",{duration:.28,ease:"power3.out"}):null;primary.addEventListener("pointerenter",function(){primaryRect=primary.getBoundingClientRect();},{passive:true});primary.addEventListener("pointermove",function(e){if(!primaryRect)return;var x=(e.clientX-primaryRect.left-primaryRect.width/2)*.08,y=(e.clientY-primaryRect.top-primaryRect.height/2)*.08;movePrimary(x);movePrimaryY(y);if(moveLabel){moveLabel(x*.25);moveLabelY(y*.25);}} ,{passive:true});primary.addEventListener("pointerleave",function(){primaryRect=null;gsap.to([primary,label].filter(Boolean),{x:0,y:0,duration:.55,ease:"elastic.out(1,.55)",overwrite:true});},{passive:true});}
   document.querySelectorAll(".review-stars span").forEach(function(star,i){gsap.to(star,{opacity:1,scale:1,duration:.28,delay:i*.07,scrollTrigger:{trigger:star.parentElement,start:"top 88%",once:true}})});
   document.querySelectorAll(".faq-item").forEach(function(item){var answer=item.querySelector(".faq-answer");if(answer){answer.style.overflow="hidden";answer.dataset.motionReady="1";}});
-})();
+});
 </script>
 <script id="signature-motion-runtime">
-(function(){
+document.addEventListener("DOMContentLoaded", function(){
   "use strict";
   var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if(window.gsap){
@@ -2472,7 +2474,7 @@ h1,h2,h3,.brand .b1,.section-kicker,.tag{font-kerning:normal;text-wrap:balance}
   if(mobileBar&&hero){if(window.ScrollTrigger&&!reduce){ScrollTrigger.create({trigger:hero,start:"bottom top",onEnter:function(){mobileBar.classList.add("is-visible")},onLeaveBack:function(){mobileBar.classList.remove("is-visible")}});}else if(reduce){window.addEventListener("scroll",function(){mobileBar.classList.toggle("is-visible",window.scrollY>hero.offsetHeight);},{passive:true});}}
   // Lightweight cursor-follow is intentionally omitted: touch/mobile visitors are the primary audience,
   // and a custom cursor would add visual noise rather than improve the dealership decision path.
-})();
+});
 </script>
 <!-- TASTE CHECK: se conservaron únicamente efectos ligados a contenido o interacción real; cursor custom, líneas decorativas, formas flotantes, pin y barra de progreso fueron rechazados. -->
 <!-- 21st visual consistency pass: standardized radius, spacing, borders, elevation, typography scale, image framing, controls and interaction states across all audited components. -->
@@ -2493,7 +2495,7 @@ h1,h2,h3,.brand .b1,.section-kicker,.tag{font-kerning:normal;text-wrap:balance}
 <!-- Tier 9 + 10 cycle 1: FAQ ARIA/state refinement and unified 16px interface icon primitive; WhatsApp/Instagram marks from search_logo. -->
 <!-- Tier 9 + 10 cycle 2: FAQ tabs now expose role/aria-selected state; interface icon primitive standardized at 16px with 1.6px stroke language. -->
 <script id="gsap-max-motion-runtime">
-(function(){
+document.addEventListener("DOMContentLoaded", function(){
   "use strict";
   if(!window.gsap||!window.ScrollTrigger)return;
   var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -2585,12 +2587,12 @@ h1,h2,h3,.brand .b1,.section-kicker,.tag{font-kerning:normal;text-wrap:balance}
     ctx.revert();
   };
   window.addEventListener("pagehide",window.__destroyToyotaGsapMotion,{once:true});
-})();
+});
 </script>
 
 <!-- Tier 9 + 10 cycle 3: final FAQ/icon polish and global tokens standardized across cards, buttons, radii, shadows, spacing and icon sizing. -->
 <script id="gsap-galactic-motion-runtime">
-(function(){
+document.addEventListener("DOMContentLoaded", function(){
   "use strict";
   if(!window.gsap||!window.ScrollTrigger)return;
   var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -2678,7 +2680,7 @@ h1,h2,h3,.brand .b1,.section-kicker,.tag{font-kerning:normal;text-wrap:balance}
   },document.body);
   window.__destroyToyotaGalacticMotion=function(){cleanup.forEach(function(fn){try{fn();}catch(e){}});mm.revert();ctx.revert();};
   window.addEventListener("pagehide",window.__destroyToyotaGalacticMotion,{once:true});
-})();
+});
 </script>
 
 <!-- CHANGELOG
