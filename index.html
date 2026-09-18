@@ -2475,13 +2475,13 @@ document.addEventListener("DOMContentLoaded", function(){
 
   var recentKey="toyota-recent-models";
   function readRecent(){try{return JSON.parse(sessionStorage.getItem(recentKey)||"[]");}catch(e){return[];}}
-  function renderRecent(){var box=document.getElementById("vistos"),list=document.getElementById("recentList");if(!box||!list)return;var items=readRecent();box.hidden=!items.length;list.innerHTML=items.map(function(n){return '<a class="recent-chip" href="#modelo/'+slugifyModel(n)+'" data-recent-model="'+n+'">'+n+' <span aria-hidden="true">↗</span></a>';}).join("");list.querySelectorAll("[data-recent-model]").forEach(function(a){a.addEventListener("click",function(){openDetail(this.dataset.recentModel);});});}
+  function renderRecent(){var box=document.getElementById("vistos"),list=document.getElementById("recentList");if(!box||!list)return;var items=readRecent();box.hidden=!items.length;list.innerHTML=items.map(function(n){return '<a class="recent-chip" href="#modelo/'+slugifyModel(n)+'" data-recent-model="'+n+'">'+n+' <span aria-hidden="true">↗</span></a>';}).join("");list.querySelectorAll("[data-recent-model]").forEach(function(a){a.addEventListener("click",function(e){e.preventDefault();openDetail(this.dataset.recentModel);});});}
   function rememberRecent(name){var items=readRecent().filter(function(x){return x!==name;});items.unshift(name);try{sessionStorage.setItem(recentKey,JSON.stringify(items.slice(0,4)));}catch(e){}renderRecent();}
   var originalOpenDetail=openDetail;
   openDetail=function(name,fromHash){rememberRecent(name);return originalOpenDetail(name,fromHash);};
   renderRecent();
 
-  var accessoryGrid=document.querySelector("#servicios .access-grid"), accessorySort=document.getElementById("accessorySort");
+  var accessoryGrid=document.querySelector("#accesorios .access-grid"), accessorySort=document.getElementById("accessorySort");
   function sortAccessories(mode){if(!accessoryGrid)return;var figs=[].slice.call(accessoryGrid.querySelectorAll("figure"));figs.sort(function(a,b){var aa=a.querySelector("figcaption").textContent.trim(),bb=b.querySelector("figcaption").textContent.trim();return mode==="za"?bb.localeCompare(aa,"es"):mode==="az"?aa.localeCompare(bb,"es"):0;});figs.forEach(function(f){accessoryGrid.appendChild(f);});}
   function animateAccessoryLayout(mutator){if(!accessoryGrid||!window.gsap){mutator();return;}var state=window.Flip?Flip.getState(accessoryGrid.querySelectorAll("figure")):null;mutator();if(state&&window.Flip&&!window.matchMedia("(prefers-reduced-motion: reduce)").matches)Flip.from(state,{duration:.55,ease:"power2.inOut",absolute:false,stagger:.025});}
   document.querySelectorAll(".access-filter").forEach(function(btn){btn.addEventListener("click",function(){document.querySelectorAll(".access-filter").forEach(function(x){x.classList.remove("active");});this.classList.add("active");var cat=this.dataset.accessFilter;animateAccessoryLayout(function(){if(accessoryGrid)accessoryGrid.querySelectorAll("figure").forEach(function(fig){fig.hidden=cat!=="todos"&&fig.querySelector("img").dataset.accessoryCategory!==cat;});});});});
@@ -2621,13 +2621,17 @@ document.addEventListener("DOMContentLoaded", function(){
 </script>
 
 <script id="expansion-preview-js">
-(function(){
+document.addEventListener("DOMContentLoaded", function(){
+  // Corrección: este bloque corría antes de DOMContentLoaded (IIFE inmediata),
+  // es decir antes de que el script principal insertara las preguntas del FAQ.
+  // Por eso "original" quedaba como un array vacío para siempre y las pestañas
+  // de categoría (0km/Usados/Financiación/Postventa) nunca filtraban nada.
   document.querySelectorAll('.expansion-card .expand-btn').forEach(function(btn){btn.addEventListener('click',function(){var card=this.closest('.expansion-card');var open=card.classList.toggle('open');this.textContent=open?'Ocultar detalle −':'Ver detalle +';});});
   document.querySelectorAll('[data-category-jump]').forEach(function(a){a.addEventListener('click',function(e){var type=this.dataset.categoryJump;if(type==='general')return;var filter=document.querySelector('.filterbtn[data-filter="'+type+'"]');if(filter){e.preventDefault();filter.click();window.__toyotaScrollToElement(document.getElementById('gama'));}});});
   document.querySelectorAll('.journey-step button').forEach(function(btn){btn.addEventListener('click',function(){this.closest('.journey-step').classList.toggle('open');});});
   var faq=document.getElementById('faqList');
   if(faq){var original=Array.from(faq.querySelectorAll('.faq-item'));var tabs=document.createElement('div');tabs.className='faq-tabs';tabs.setAttribute('role','tablist');tabs.innerHTML='<button class="faq-tab active" aria-selected="true" role="tab" data-faq-filter="todos" type="button">Todas</button><button class="faq-tab" aria-selected="false" role="tab" data-faq-filter="0km" type="button">0 km</button><button class="faq-tab" aria-selected="false" role="tab" data-faq-filter="usados" type="button">Usados</button><button class="faq-tab" aria-selected="false" role="tab" data-faq-filter="financiacion" type="button">Financiación</button><button class="faq-tab" aria-selected="false" role="tab" data-faq-filter="postventa" type="button">Postventa</button>';faq.parentNode.insertBefore(tabs,faq);var note=document.createElement('p');note.className='faq-category-note';note.textContent='Filtrá las respuestas según el momento de tu compra.';faq.parentNode.insertBefore(note,faq);var keys=['postventa','postventa','postventa','usados','financiacion','financiacion','usados','postventa','usados'];original.forEach(function(item,i){item.dataset.faqCategory=keys[i]||'todos';});tabs.querySelectorAll('.faq-tab').forEach(function(tab){tab.addEventListener('click',function(){tabs.querySelectorAll('.faq-tab').forEach(function(x){x.classList.remove('active');x.setAttribute('aria-selected','false');});this.classList.add('active');this.setAttribute('aria-selected','true');var wanted=this.dataset.faqFilter;original.forEach(function(item){var show=wanted==='todos'||item.dataset.faqCategory===wanted;item.hidden=!show;if(show&&window.gsap&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){gsap.fromTo(item,{opacity:.25,y:8},{opacity:1,y:0,duration:.28,overwrite:'auto'});}});});});}
-})();
+});
 </script>
 
 
