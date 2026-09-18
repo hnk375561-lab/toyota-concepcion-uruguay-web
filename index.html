@@ -136,6 +136,16 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
   --panel:#1B1F22; --panel-ink:#FFFFFF; --panel-line:#3A4147; --panel-muted:#C5CDD1;
   --display:"Manrope", Arial, sans-serif;
   --body:"IBM Plex Sans", Arial, sans-serif;
+  /* Motion system: precision and engineered restraint. */
+  --motion-entrance:cubic-bezier(.16,.8,.28,1);
+  --motion-ui:cubic-bezier(.25,.46,.45,.94);
+  --motion-exit:cubic-bezier(.4,0,.2,1);
+  --motion-micro:140ms;
+  --motion-base:320ms;
+  --motion-slow:720ms;
+  --motion-hero:1100ms;
+  --motion-stagger:72ms;
+  --motion-distance:24px;
 }
 /* Nota: el cambio automático a modo oscuro según el SO del visitante se desactivó a propósito.
    Varias secciones (trust-strip, fondo de Usados, etc.) usan fondos claros fijos por diseño de marca;
@@ -183,7 +193,7 @@ button{font-family:inherit}
 .hero h1{font-family:var(--display);font-size:clamp(40px,5vw,68px);font-weight:800;line-height:1.05;letter-spacing:-.02em;max-width:13ch;margin:18px 0 20px;color:var(--ink)}
 .hero p.lead{font-size:17.5px;color:var(--muted);max-width:48ch;margin:0 0 30px}
 .cta-row{display:grid;gap:10px;max-width:440px}
-.btn{display:flex;align-items:center;justify-content:space-between;gap:14px;text-decoration:none;padding:14px 17px;border:1px solid var(--border);background:var(--surface);font-size:15px;transition:background .18s ease,border-color .18s ease,transform .18s ease;cursor:pointer;color:var(--ink);font-family:inherit}
+.btn{display:flex;align-items:center;justify-content:space-between;gap:14px;text-decoration:none;padding:14px 17px;border:1px solid var(--border);background:var(--surface);font-size:15px;transition:background-color var(--motion-base) var(--motion-ui),border-color var(--motion-base) var(--motion-ui),color var(--motion-base) var(--motion-ui),transform var(--motion-base) var(--motion-ui),box-shadow var(--motion-base) var(--motion-ui);cursor:pointer;color:var(--ink);font-family:inherit}
 .btn:hover{border-color:var(--toyota-red);transform:translateX(3px);transition:background-color .3s cubic-bezier(.25,.46,.45,.94),border-color .3s cubic-bezier(.25,.46,.45,.94),color .3s cubic-bezier(.25,.46,.45,.94),transform .3s cubic-bezier(.25,.46,.45,.94),box-shadow .3s cubic-bezier(.25,.46,.45,.94)}
 .btn.primary{background:var(--toyota-red);border-color:var(--toyota-red);color:#fff;font-weight:700}
 .btn.primary:hover{background:#C60819;border-color:#C60819}
@@ -1195,9 +1205,14 @@ html,body{overflow-x:clip}
 
 </style>
 <style id="motion-governor">
-/* One low-cost tactile rule; all richer motion stays in the existing unified runtime. */
-.btn:active,.loc-btn:active,.filterbtn:active,.access-filter:active,.faq-tab:active,.compare-btn:active,.expand-btn:active{transform:scale(.975)}
+/* Precision feedback: immediate on press, controlled on release, never decorative. */
+.btn:active,.loc-btn:active,.filterbtn:active,.access-filter:active,.faq-tab:active,.compare-btn:active,.expand-btn:active{transform:scale(.975);transition-duration:var(--motion-micro)}
+.navlinks a,.mobilepanel a,.faq-q,.filterbtn,.access-filter,.faq-tab,.compare-btn,.expand-btn{transition:color var(--motion-base) var(--motion-ui),background-color var(--motion-base) var(--motion-ui),border-color var(--motion-base) var(--motion-ui),transform var(--motion-base) var(--motion-ui)}
 @media(prefers-reduced-motion:reduce){.btn:active,.loc-btn:active,.filterbtn:active,.access-filter:active,.faq-tab:active,.compare-btn:active,.expand-btn:active{transform:none}}
+@media(max-width:760px){
+  :root{--motion-micro:120ms;--motion-base:280ms;--motion-slow:580ms;--motion-hero:900ms;--motion-stagger:45ms}
+  .highlight-visual,.hero-art,.facility-visual,.workshop-visual,.used-visual{overflow:hidden}
+}
 </style>
 </head>
 <body id="top">
@@ -2842,6 +2857,8 @@ document.addEventListener("DOMContentLoaded", function(){
   "use strict";
   var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var coarsePointer=window.matchMedia&&window.matchMedia("(pointer: coarse)").matches;
+  var mobileViewport=window.matchMedia&&window.matchMedia("(max-width:760px)").matches;
+  var MOTION=window.__toyotaMotionTokens=window.__toyotaMotionTokens||{entrance:"power3.out",ui:"power2.out",exit:"power2.in",micro:mobileViewport ? .12 : .14,base:mobileViewport ? .28 : .32,slow:mobileViewport ? .58 : .72,hero:mobileViewport ? .9 : 1.1,stagger:mobileViewport ? .045 : .072,distance:mobileViewport ? 16 : 24,scrollDuration:mobileViewport ? .62 : .72,lerp:mobileViewport ? .12 : .18,wheelMultiplier:mobileViewport ? .9 : .96};
   // Touch devices keep native scrolling: it is lower-latency and avoids an unnecessary ticker.
   if(window.__toyotaLenis || coarsePointer || !window.Lenis || !window.gsap || !window.ScrollTrigger){
     if(reduce) window.__toyotaLenis=null;
@@ -2849,9 +2866,9 @@ document.addEventListener("DOMContentLoaded", function(){
     var lenis=new Lenis({
       // One interpolation model only: lerp avoids competing duration/easing paths.
       // Higher lerp reduces perceived drag without adding a second smoothing layer.
-      lerp:.24,
+      lerp:MOTION.lerp,
       smoothWheel:true,
-      wheelMultiplier:1,
+      wheelMultiplier:MOTION.wheelMultiplier,
       syncTouch:false,
       anchors:true,
       allowNestedScroll:false,
@@ -2868,7 +2885,7 @@ document.addEventListener("DOMContentLoaded", function(){
     window.__toyotaScrollToElement=function(target,options){
       if(!target)return;
       options=options||{};
-      lenis.scrollTo(target,{offset:options.offset||0,duration:options.duration||.85,immediate:false});
+      lenis.scrollTo(target,{offset:options.offset||0,duration:options.duration||MOTION.scrollDuration,immediate:false});
     };
     window.__destroyToyotaLenis=function(){
       gsap.ticker.remove(lenisRaf);
@@ -2921,6 +2938,7 @@ document.addEventListener("DOMContentLoaded", function(){
   if(!window.gsap||!window.ScrollTrigger)return;
   var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if(reduce){document.documentElement.dataset.motion="reduced";return;}
+  var MOTION=window.__toyotaMotionTokens=window.__toyotaMotionTokens||{entrance:"power3.out",ui:"power2.out",exit:"power2.in",micro:.14,base:.32,slow:.72,hero:1.1,stagger:.072,distance:24,scrollDuration:.72};
   window.__toyotaMotionRuntime=window.__toyotaMotionRuntime||{};
   if(!window.__toyotaMotionRuntime.scrollTriggerRegistered){gsap.registerPlugin(ScrollTrigger);window.__toyotaMotionRuntime.scrollTriggerRegistered=true;}
   var mm=gsap.matchMedia();
@@ -2929,7 +2947,7 @@ document.addEventListener("DOMContentLoaded", function(){
   // Misma curva de firma que el hero (toyotaEase); si CustomEase no cargó todavía, se
   // degrada a power3.out sin romper nada. Objetivo: una sola sensación de movimiento
   // para headings, tarjetas y tilt, en vez de varias curvas "power*" mezcladas.
-  var premiumEase="power3.out";
+  var premiumEase=MOTION.entrance;
   if(window.CustomEase){
     if(!window.__toyotaMotionRuntime.customEaseRegistered){gsap.registerPlugin(CustomEase);CustomEase.create("toyotaEase","M0,0 C0.16,0.8 0.28,1 1,1");window.__toyotaMotionRuntime.customEaseRegistered=true;}
     premiumEase="toyotaEase";
@@ -2946,16 +2964,16 @@ document.addEventListener("DOMContentLoaded", function(){
         var split=SplitText.create(head,{type:"words",aria:"auto"});
         splitInstances.push(split);
         gsap.set(split.words,{opacity:0,y:18,rotateX:-18,transformOrigin:"50% 100%"});
-        gsap.to(split.words,{opacity:1,y:0,rotateX:0,stagger:.035,duration:.54,ease:premiumEase,scrollTrigger:{trigger:head,start:"top 84%",once:true}});
+        gsap.to(split.words,{opacity:1,y:0,rotateX:0,stagger:MOTION.stagger,duration:.58,ease:premiumEase,scrollTrigger:{trigger:head,start:"top 84%",once:true}});
       }else{
-        gsap.fromTo(head,{opacity:0,y:18},{opacity:1,y:0,duration:.55,ease:premiumEase,scrollTrigger:{trigger:head,start:"top 84%",once:true}});
+        gsap.fromTo(head,{opacity:0,y:MOTION.distance*.75},{opacity:1,y:0,duration:.58,ease:premiumEase,scrollTrigger:{trigger:head,start:"top 84%",once:true}});
       }
     });
 
     // Image choreography: reveal image content without changing layout or dimensions.
     var revealImages=gsap.utils.toArray(".highlight-visual img");
     revealImages.forEach(function(img){
-      gsap.fromTo(img,{scale:1.06,opacity:.72},{scale:1,opacity:1,duration:.8,ease:"power2.out",scrollTrigger:{trigger:img,start:"top 91%",once:true}});
+      gsap.fromTo(img,{scale:1.06,opacity:.72},{scale:1,opacity:1,duration:MOTION.slow,ease:premiumEase,scrollTrigger:{trigger:img,start:"top 91%",once:true}});
     });
 
     // One delegated hover system, avoiding dozens of permanent timelines.
@@ -2964,13 +2982,13 @@ document.addEventListener("DOMContentLoaded", function(){
     var fineHover=window.matchMedia&&window.matchMedia("(hover: hover) and (pointer: fine)").matches;
     var hoverCards=gsap.utils.toArray(".model, .highlight-card, .category-card, .serv-item, .expansion-card");
     hoverCards.forEach(function(card){
-      var move=gsap.quickTo(card,"y",{duration:.3,ease:premiumEase});
-      var scale=gsap.quickTo(card,"scale",{duration:.3,ease:premiumEase});
+      var move=gsap.quickTo(card,"y",{duration:MOTION.base,ease:premiumEase});
+      var scale=gsap.quickTo(card,"scale",{duration:MOTION.base,ease:premiumEase});
       var icon=card.querySelector(".model-photo, .highlight-visual img, .ico svg, svg");
-      var iconScale=icon?gsap.quickTo(icon,"scale",{duration:.35,ease:premiumEase}):null;
+      var iconScale=icon?gsap.quickTo(icon,"scale",{duration:MOTION.base,ease:premiumEase}):null;
       var tiltCard=fineHover&&card.matches(".model, .highlight-card, .category-card");
-      var rx=tiltCard?gsap.quickTo(card,"rotationX",{duration:.35,ease:premiumEase}):null;
-      var ry=tiltCard?gsap.quickTo(card,"rotationY",{duration:.35,ease:premiumEase}):null;
+      var rx=tiltCard?gsap.quickTo(card,"rotationX",{duration:MOTION.base,ease:premiumEase}):null;
+      var ry=tiltCard?gsap.quickTo(card,"rotationY",{duration:MOTION.base,ease:premiumEase}):null;
       var rect=null;
       var enter=function(){move(-5);scale(1.008);if(iconScale)iconScale(1.035);if(tiltCard)rect=card.getBoundingClientRect();};
       var onMove=function(e){if(!tiltCard||!rect)return;var px=(e.clientX-rect.left)/rect.width-.5,py=(e.clientY-rect.top)/rect.height-.5;rx(py*-3.2);ry(px*3.2);};
@@ -3062,12 +3080,13 @@ document.addEventListener("DOMContentLoaded", function(){
   if(!window.gsap||!window.ScrollTrigger)return;
   var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if(reduce)return;
+  var MOTION=window.__toyotaMotionTokens=window.__toyotaMotionTokens||{entrance:"power3.out",ui:"power2.out",exit:"power2.in",micro:.14,base:.32,slow:.72,hero:1.1,stagger:.072,distance:24,scrollDuration:.72};
   window.__toyotaMotionRuntime=window.__toyotaMotionRuntime||{};
   if(!window.__toyotaMotionRuntime.scrollTriggerRegistered){gsap.registerPlugin(ScrollTrigger);window.__toyotaMotionRuntime.scrollTriggerRegistered=true;}
   var mm=gsap.matchMedia();
   var cleanup=[];
   var ctx=gsap.context(function(){
-    var ease=window.__toyotaMotionRuntime&&window.__toyotaMotionRuntime.customEaseRegistered?"toyotaEase":"power3.out";
+    var ease=window.__toyotaMotionRuntime&&window.__toyotaMotionRuntime.customEaseRegistered?"toyotaEase":MOTION.entrance;
     if(window.CustomEase&&!window.__toyotaMotionRuntime.customEaseRegistered){gsap.registerPlugin(CustomEase);CustomEase.create("toyotaEase","M0,0 C0.16,0.8 0.28,1 1,1");window.__toyotaMotionRuntime.customEaseRegistered=true;ease="toyotaEase";}
     var desktop="(min-width: 901px)";
     var tablet="(min-width: 561px) and (max-width: 900px)";
@@ -3077,7 +3096,7 @@ document.addEventListener("DOMContentLoaded", function(){
     [".cta-banner","#usados .used-visual","#instalaciones .facility-visual","#taller .workshop-visual"].forEach(function(selector){
       gsap.utils.toArray(selector).forEach(function(el){
         var inner=el.querySelector("img,svg")||el;
-        gsap.fromTo(inner,{yPercent:-2,scale:1.05,opacity:.85},{yPercent:0,scale:1,opacity:1,duration:.8,ease:"power2.out",scrollTrigger:{trigger:el,start:"top 88%",once:true}});
+        gsap.fromTo(inner,{yPercent:-2,scale:1.05,opacity:.85},{yPercent:0,scale:1,opacity:1,duration:MOTION.slow,ease:ease,scrollTrigger:{trigger:el,start:"top 88%",once:true}});
       });
     });
 
@@ -3085,7 +3104,7 @@ document.addEventListener("DOMContentLoaded", function(){
     ["#gama .model","#porque .value-card","#categorias .category-card","#como-comprar .journey-line article","#contacto-ampliado .contact-plus-card","#servicios .serv-item"].forEach(function(selector){
       var items=gsap.utils.toArray(selector);
       if(!items.length)return;
-      gsap.fromTo(items,{opacity:.28,y:34,rotateX:-5,transformOrigin:"50% 100%"},{opacity:1,y:0,rotateX:0,duration:.7,stagger:{each:.075,from:"start"},ease:ease,scrollTrigger:{trigger:items[0].parentElement,start:"top 82%",once:true}});
+      gsap.fromTo(items,{opacity:.28,y:MOTION.distance,rotateX:-5,transformOrigin:"50% 100%"},{opacity:1,y:0,rotateX:0,duration:MOTION.slow,stagger:{each:MOTION.stagger,from:"start"},ease:ease,scrollTrigger:{trigger:items[0].parentElement,start:"top 82%",once:true}});
     });
 
     // Data animation uses only values already printed in the interface (01–04), never invented business KPIs.
@@ -3093,7 +3112,7 @@ document.addEventListener("DOMContentLoaded", function(){
       var raw=(el.textContent||"").trim(), target=parseInt(raw,10);
       if(!/^\d{2}$/.test(raw)||!target)return;
       var state={v:0};
-      gsap.to(state,{v:target,duration:.72,ease:"power2.out",scrollTrigger:{trigger:el,start:"top 86%",once:true},onUpdate:function(){el.textContent=String(Math.round(state.v)).padStart(2,"0");}});
+      gsap.to(state,{v:target,duration:MOTION.slow,ease:MOTION.ui,scrollTrigger:{trigger:el,start:"top 86%",once:true},onUpdate:function(){el.textContent=String(Math.round(state.v)).padStart(2,"0");}});
     });
 
     // Physical cards: pointer tilt only on real fine pointers; touch and keyboard remain unaffected.
