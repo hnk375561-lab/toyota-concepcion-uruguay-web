@@ -2413,6 +2413,11 @@ document.addEventListener("DOMContentLoaded", function(){
       waA.href = wa("turnos", "Hola! Estoy comparando la " + a + " con la " + b + " y quiero consultar por la " + a + ".");
       waB.href = wa("turnos", "Hola! Estoy comparando la " + a + " con la " + b + " y quiero consultar por la " + b + ".");
       empty.hidden = true; result.hidden = false;
+      if(window.gsap && !window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+        var freshRows=table.querySelectorAll("tbody tr");
+        gsap.fromTo(freshRows,{opacity:0,y:10},{opacity:1,y:0,duration:.4,stagger:.045,ease:"power2.out",overwrite:true});
+        gsap.fromTo([waA,waB],{opacity:0,y:8},{opacity:1,y:0,duration:.35,stagger:.06,delay:.1,ease:"power2.out",overwrite:true});
+      }
     }
 
     function syncCompareHash(){var a=selA.value,b=selB.value;if(a&&b)history.replaceState(null,"",location.pathname+location.search+"#comparar?a="+encodeURIComponent(a)+"&b="+encodeURIComponent(b));}
