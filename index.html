@@ -974,6 +974,12 @@ body{background:#e9eef0!important;color:#172026!important}
 .compare-table thead th{color:#8c111d}
 .compare-empty{border:1px dashed #C8CED3;border-radius:10px;padding:14px 16px;background:#fff}
 </style>
+<style id="hero-scroll-performance-fix">
+/* Keep the editorial hero on compositor-friendly layers while it is visible. */
+.hero-showcase,.hero-photo-real img,.hero-editorial-secondary img{will-change:transform;backface-visibility:hidden}
+/* Do not promote text, overlays, or the whole hero; only the moving image plates need it. */
+.hero-editorial-wash,.hero-editorial-copy,.hero-editorial-wordmark,.hero-editorial-specs{will-change:auto}
+</style>
 </head>
 <body id="top">
 <script id="demo-scroll-restoration">
@@ -2348,20 +2354,19 @@ body{background:#e9eef0!important;color:#172026!important}
     var heroImg=heroPhoto&&heroPhoto.querySelector("img");
     var heroShowcase=document.querySelector(".hero-showcase");
 
-    // Cinematic showroom depth: transform-only scrub, with a restrained mobile variant.
+    // Cinematic showroom depth: one lightweight transform-only scrub per breakpoint.
+    // The legacy premium-motion hero scrub was removed because two timelines were
+    // updating the same image and hero opacity on every scroll frame.
     if(hero){
       mm.add("(min-width: 861px)",function(){
-        var tl=gsap.timeline({scrollTrigger:{trigger:hero,start:"top top",end:"bottom top",scrub:0.7,invalidateOnRefresh:true}});
-        if(heroShowcase)tl.to(heroShowcase,{yPercent:-7,rotationY:-1.5,transformOrigin:"50% 50%",ease:"none"},0);
-        if(heroImg)tl.to(heroImg,{yPercent:9,scale:1.065,transformOrigin:"50% 50%",ease:"none"},0);
-        var lead=hero.querySelector(".lead");
-        if(lead)tl.to(lead,{y:-12,opacity:.72,ease:"none"},0);
+        var tl=gsap.timeline({scrollTrigger:{trigger:hero,start:"top top",end:"bottom top",scrub:true,invalidateOnRefresh:true,fastScrollEnd:true}});
+        if(heroShowcase)tl.to(heroShowcase,{yPercent:-2,ease:"none"},0);
+        if(heroImg)tl.to(heroImg,{yPercent:5,ease:"none"},0);
         return function(){tl.kill();};
       });
       mm.add("(max-width: 860px)",function(){
-        var tl=gsap.timeline({scrollTrigger:{trigger:hero,start:"top top",end:"bottom top",scrub:0.85,invalidateOnRefresh:true}});
-        if(heroImg)tl.to(heroImg,{yPercent:5,scale:1.035,transformOrigin:"50% 50%",ease:"none"},0);
-        if(heroShowcase)tl.to(heroShowcase,{yPercent:-3,ease:"none"},0);
+        var tl=gsap.timeline({scrollTrigger:{trigger:hero,start:"top top",end:"bottom top",scrub:true,invalidateOnRefresh:true,fastScrollEnd:true}});
+        if(heroImg)tl.to(heroImg,{yPercent:3,ease:"none"},0);
         return function(){tl.kill();};
       });
     }

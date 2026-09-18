@@ -31,8 +31,9 @@
     if(title){var words=title.querySelectorAll('.word,.line,span');if(words.length)tl.from(words,{yPercent:105,opacity:0,stagger:.045,duration:.72,clipPath:'inset(0 0 100% 0)'},.1);else tl.from(title,{y:42,opacity:0,duration:.8},.1)}
     if(photo)tl.fromTo(photo,{scale:1.11,x:18,opacity:0},{scale:1,x:0,opacity:1,duration:1.25},.18);
     if(ctas.length)tl.from(ctas,{y:16,opacity:0,stagger:.08,duration:.5},.55);
-    if(st&&photo)gs.to(photo,{yPercent:-7,scale:1.045,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:1.1}});
-    if(st)gs.to(hero,{opacity:.92,scrollTrigger:{trigger:hero,start:'65% top',end:'bottom top',scrub:1}});
+    // Hero scroll parallax is owned by gsap-galactic-motion-runtime below.
+    // Keeping a single scrub timeline avoids two competing transforms and a
+    // second opacity repaint on the largest image during every scroll frame.
   }
   function header(){
     var h=q('.site,.site-header')||q('#site-header');if(!h)return;
@@ -115,16 +116,4 @@
     window.addEventListener("pagehide",function(){ctx.revert();},{once:true});
   }
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initDealerValueMotion,{once:true});else initDealerValueMotion();
-})();
-
-
-/* Editorial hero direction: one restrained camera move, tied to scroll and reduced-motion safe. */
-(function(){
-  if(!window.gsap || !window.ScrollTrigger) return;
-  var hero=document.querySelector('.hero-editorial');
-  var img=document.querySelector('.hero-editorial-vehicle img');
-  if(!hero||!img||window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  gsap.fromTo(img,{scale:1.04,yPercent:-1},{scale:1.11,yPercent:4,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:.8}});
-  gsap.fromTo('.hero-editorial-copy',{y:8,opacity:.92},{y:-16,opacity:.72,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:.8}});
-  gsap.fromTo('.hero-editorial-wordmark',{x:0},{x:-24,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:.8}});
 })();
