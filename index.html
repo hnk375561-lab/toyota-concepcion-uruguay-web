@@ -36,9 +36,36 @@ document.addEventListener('DOMContentLoaded',function(){document.querySelectorAl
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/Flip.min.js" defer></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.css">
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js" defer></script>
+
+<style id="lenis-essential-css">
+html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopped{overflow:clip}.lenis [data-lenis-prevent],.lenis [data-lenis-prevent-wheel],.lenis [data-lenis-prevent-touch],.lenis [data-lenis-prevent-vertical],.lenis [data-lenis-prevent-horizontal]{overscroll-behavior:contain}.lenis.lenis-smooth iframe{pointer-events:none}.lenis.lenis-autoToggle{transition-property:overflow;transition-duration:1ms;transition-behavior:allow-discrete}
+</style>
+<script id="conditional-lenis-loader">
+(function(){
+  var touch=window.matchMedia&&window.matchMedia("(pointer: coarse)").matches;
+  var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(!touch&&!reduce){document.write('<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js" defer><\/script>');}
+})();
+</script>
+<script id="lazy-flip-loader">
+(function(){
+  var promise;
+  window.__loadToyotaFlip=function(){
+    if(window.Flip)return Promise.resolve(window.Flip);
+    if(promise)return promise;
+    promise=new Promise(function(resolve,reject){
+      var tag=document.createElement("script");
+      tag.src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/Flip.min.js";
+      tag.async=true;
+      tag.onload=function(){resolve(window.Flip);};
+      tag.onerror=reject;
+      document.head.appendChild(tag);
+    });
+    return promise;
+  };
+})();
+</script>
+
 <script id="toyota-scroll-helper">
 (function(){
   window.__toyotaScrollToElement = function(target, options){
@@ -738,8 +765,8 @@ body{background:#e9eef0!important;color:#172026!important}
 
 /* Consolidated CSS block 21: original cascade position 21 */
 
-.cta-banner-optimized{background-image:image-set(url("toyota-sharp-assets/asset-713411293222-800.avif") type("image/avif"),url("toyota-sharp-assets/asset-713411293222-800.webp") type("image/webp"),url("toyota-sharp-assets/asset-713411293222-800.jpg") type("image/jpeg"));}
-#concesionario .social-preview-art-optimized{background-image:linear-gradient(145deg,rgba(49,58,64,.55),rgba(17,23,26,.75)),image-set(url("toyota-sharp-assets/asset-4a00d0bf85e9-800.avif") type("image/avif"),url("toyota-sharp-assets/asset-4a00d0bf85e9-800.webp") type("image/webp"),url("toyota-sharp-assets/asset-4a00d0bf85e9-800.jpg") type("image/jpeg"))!important;background-size:cover;background-position:center;}
+.cta-banner-optimized{background-image:image-set(url("toyota-sharp-assets/asset-713411293222-800.avif") type("image/avif"),url("toyota-sharp-assets/asset-713411293222-800.webp") type("image/webp"),url("toyota-sharp-assets/asset-713411293222-800.webp") type("image/jpeg"));}
+#concesionario .social-preview-art-optimized{background-image:linear-gradient(145deg,rgba(49,58,64,.55),rgba(17,23,26,.75)),image-set(url("toyota-sharp-assets/asset-4a00d0bf85e9-800.avif") type("image/avif"),url("toyota-sharp-assets/asset-4a00d0bf85e9-800.webp") type("image/webp"),url("toyota-sharp-assets/asset-4a00d0bf85e9-800.webp") type("image/jpeg"))!important;background-size:cover;background-position:center;}
 .float-wa{bottom:calc(20px + env(safe-area-inset-bottom));}
 @media(max-width:540px){.float-wa{bottom:calc(20px + env(safe-area-inset-bottom))!important;right:16px!important}.float-wa svg{width:24px;height:24px}}
 /* Consolidated CSS block 22: original cascade position 22 */
@@ -1167,6 +1194,11 @@ html,body{overflow-x:clip}
 .hero-rail-contact b{color:#fff!important}
 
 </style>
+<style id="motion-governor">
+/* One low-cost tactile rule; all richer motion stays in the existing unified runtime. */
+.btn:active,.loc-btn:active,.filterbtn:active,.access-filter:active,.faq-tab:active,.compare-btn:active,.expand-btn:active{transform:scale(.975)}
+@media(prefers-reduced-motion:reduce){.btn:active,.loc-btn:active,.filterbtn:active,.access-filter:active,.faq-tab:active,.compare-btn:active,.expand-btn:active{transform:none}}
+</style>
 </head>
 <body id="top">
 <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
@@ -1182,7 +1214,7 @@ html,body{overflow-x:clip}
 
   <header class="site" id="site-header">
     <div class="wrap nav">
-      <div style="display:flex;align-items:center;gap:10px;"><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-bec83be10e47.webp"><img src="toyota-sharp-assets/enhanced-bec83be10e47.jpg" alt="Logo Piñeyro y Moscatelli, concesionario oficial Toyota" class="brand-logo" decoding="async" width="800" height="800"></picture><div class="brand">
+      <div style="display:flex;align-items:center;gap:10px;"><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-bec83be10e47.webp"><img src="toyota-sharp-assets/enhanced-bec83be10e47.webp" alt="Logo Piñeyro y Moscatelli, concesionario oficial Toyota" class="brand-logo" decoding="async" width="800" height="800"></picture><div class="brand">
         <span class="b1">Toyota Concepción del Uruguay</span>
         <span class="b2">Piñeyro y Moscatelli S.R.L. — Concesionario Oficial</span>
       </div></div>
@@ -1244,11 +1276,11 @@ html,body{overflow-x:clip}
 
     <div class="hero-editorial-stage">
       <figure class="hero-editorial-vehicle hero-photo-real" aria-label="Toyota SW4 Diamond">
-        <picture><source type="image/webp" media="(max-width: 760px)" srcset="toyota-sharp-assets/hero-sw4-480.webp"><source type="image/webp" srcset="toyota-sharp-assets/hero-sw4-1800.webp"><img src="toyota-sharp-assets/hero-sw4-1800.jpg" alt="Toyota SW4 Diamond, imagen del vehículo" fetchpriority="high" decoding="async" width="1800" height="1844"></picture>
+        <picture><source type="image/webp" media="(max-width: 760px)" srcset="toyota-sharp-assets/hero-sw4-480.webp"><source type="image/webp" srcset="toyota-sharp-assets/hero-sw4-1800.webp"><img src="toyota-sharp-assets/hero-sw4-1800.webp" alt="Toyota SW4 Diamond, imagen del vehículo" fetchpriority="high" decoding="async" width="1800" height="1844"></picture>
         <figcaption><span>SW4 Diamond</span><span>Disponibilidad a confirmar</span></figcaption>
       </figure>
       <figure class="hero-editorial-vehicle hero-editorial-secondary" aria-label="Toyota Hilux roja">
-        <picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-bae67c9e04b0.webp"><img src="toyota-sharp-assets/enhanced-bae67c9e04b0.jpg" alt="Toyota Hilux roja, imagen del vehículo" loading="lazy" fetchpriority="low" decoding="async" width="1600" height="1296"></picture>
+        <picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-bae67c9e04b0.webp"><img src="toyota-sharp-assets/enhanced-bae67c9e04b0.webp" alt="Toyota Hilux roja, imagen del vehículo" loading="lazy" fetchpriority="low" decoding="async" width="1600" height="1296"></picture>
         <div class="hero-secondary-overlay" aria-hidden="true"></div>
         <figcaption><span>HILUX</span><span>La pickup que no para</span></figcaption>
       </figure>
@@ -1330,7 +1362,7 @@ html,body{overflow-x:clip}
       </div>
       <div class="wrap">
       <div class="brand-plaque">
-        <picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-bec83be10e47.webp"><img class="brand-plaque-logo" src="toyota-sharp-assets/enhanced-bec83be10e47.jpg" alt="Logo oficial Piñeyro y Moscatelli — Servicio Oficial Toyota" loading="lazy" decoding="async" width="800" height="800"></picture>
+        <picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-bec83be10e47.webp"><img class="brand-plaque-logo" src="toyota-sharp-assets/enhanced-bec83be10e47.webp" alt="Logo oficial Piñeyro y Moscatelli — Servicio Oficial Toyota" loading="lazy" decoding="async" width="800" height="800"></picture>
         <div class="brand-plaque-info">
           <span class="tag">Concesionario oficial</span>
           <h3>Piñeyro y Moscatelli S.R.L.</h3>
@@ -1353,15 +1385,15 @@ html,body{overflow-x:clip}
           <h3>Accesorios y merchandising que ya ofrecen</h3>
           <p>Material publicado por el propio concesionario en Instagram (@toyotacdelu) — no son fotos de stock genéricas.</p>
           <div class="access-controls" aria-label="Filtrar accesorios y merchandising"><div class="access-filters" role="group" aria-label="Categorías de accesorios"><button type="button" class="access-filter active" data-access-filter="todos">Todos</button><button type="button" class="access-filter" data-access-filter="exterior">Exterior</button><button type="button" class="access-filter" data-access-filter="interior">Interior</button><button type="button" class="access-filter" data-access-filter="tech">Tech</button></div><div class="access-sort-group"><label for="accessorySort">Ordenar</label><select class="access-sort" id="accessorySort"><option value="default">Recomendados</option><option value="az">A–Z</option><option value="za">Z–A</option></select></div></div><div class="access-grid">
-            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-bae67c9e04b0.webp"><img src="toyota-sharp-assets/enhanced-bae67c9e04b0.jpg" alt="Kit de accesorios genuinos para Toyota Hilux, instalado en planta de Zárate" data-accessory-category="exterior" width="800" height="648" loading="lazy" decoding="async"></picture><figcaption>Kit de accesorios genuinos para Hilux</figcaption></figure>
-            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-73f90a43dab0.webp"><img src="toyota-sharp-assets/enhanced-73f90a43dab0.jpg" alt="Vaso térmico Toyota, artículo de merchandising oficial" data-accessory-category="interior" width="598" height="800" loading="lazy" decoding="async"></picture><figcaption>Vaso térmico Toyota</figcaption></figure>
-            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-682f1d1786b8.webp"><img src="toyota-sharp-assets/enhanced-682f1d1786b8.jpg" alt="Botella térmica Toyota, artículo de merchandising oficial" data-accessory-category="interior" width="586" height="800" loading="lazy" decoding="async"></picture><figcaption>Botella térmica Toyota</figcaption></figure>
-            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-20773d0e6020.webp"><img src="toyota-sharp-assets/enhanced-20773d0e6020.jpg" alt="Banner de accesorios genuinos Toyota" data-accessory-category="exterior" loading="lazy" decoding="async" width="563" height="800"></picture><figcaption>Accesorios genuinos Toyota</figcaption></figure>
-            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-dd56c60bfd4a.webp"><img src="toyota-sharp-assets/enhanced-dd56c60bfd4a.jpg" alt="Infografía de accesorios genuinos Toyota" data-accessory-category="tech" loading="lazy" decoding="async" width="800" height="779"></picture><figcaption>Línea completa de accesorios</figcaption></figure>
-            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-9580c59d8ea4.webp"><img src="toyota-sharp-assets/enhanced-9580c59d8ea4.jpg" alt="Llaveros de merchandising Toyota" data-accessory-category="interior" loading="lazy" decoding="async" width="550" height="800"></picture><figcaption>Llaveros Toyota</figcaption></figure>
-            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-939253c0b01b.webp"><img src="toyota-sharp-assets/enhanced-939253c0b01b.jpg" alt="Taza térmica Toyota" data-accessory-category="interior" loading="lazy" decoding="async" width="547" height="800"></picture><figcaption>Taza térmica Toyota</figcaption></figure>
-            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-707dc0a2e3e2.webp"><img src="toyota-sharp-assets/enhanced-707dc0a2e3e2.jpg" alt="Portallaves de cuero Toyota" data-accessory-category="interior" loading="lazy" decoding="async" width="552" height="800"></picture><figcaption>Portallaves Toyota</figcaption></figure>
-            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-4ebd96e1ff9c.webp"><img src="toyota-sharp-assets/enhanced-4ebd96e1ff9c.jpg" alt="Billetera de cuero Toyota" data-accessory-category="interior" loading="lazy" decoding="async" width="556" height="800"></picture><figcaption>Billetera de cuero Toyota</figcaption></figure>
+            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-bae67c9e04b0.webp"><img src="toyota-sharp-assets/enhanced-bae67c9e04b0.webp" alt="Kit de accesorios genuinos para Toyota Hilux, instalado en planta de Zárate" data-accessory-category="exterior" width="800" height="648" loading="lazy" decoding="async"></picture><figcaption>Kit de accesorios genuinos para Hilux</figcaption></figure>
+            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-73f90a43dab0.webp"><img src="toyota-sharp-assets/enhanced-73f90a43dab0.webp" alt="Vaso térmico Toyota, artículo de merchandising oficial" data-accessory-category="interior" width="598" height="800" loading="lazy" decoding="async"></picture><figcaption>Vaso térmico Toyota</figcaption></figure>
+            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-682f1d1786b8.webp"><img src="toyota-sharp-assets/enhanced-682f1d1786b8.webp" alt="Botella térmica Toyota, artículo de merchandising oficial" data-accessory-category="interior" width="586" height="800" loading="lazy" decoding="async"></picture><figcaption>Botella térmica Toyota</figcaption></figure>
+            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-20773d0e6020.webp"><img src="toyota-sharp-assets/enhanced-20773d0e6020.webp" alt="Banner de accesorios genuinos Toyota" data-accessory-category="exterior" loading="lazy" decoding="async" width="563" height="800"></picture><figcaption>Accesorios genuinos Toyota</figcaption></figure>
+            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-dd56c60bfd4a.webp"><img src="toyota-sharp-assets/enhanced-dd56c60bfd4a.webp" alt="Infografía de accesorios genuinos Toyota" data-accessory-category="tech" loading="lazy" decoding="async" width="800" height="779"></picture><figcaption>Línea completa de accesorios</figcaption></figure>
+            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-9580c59d8ea4.webp"><img src="toyota-sharp-assets/enhanced-9580c59d8ea4.webp" alt="Llaveros de merchandising Toyota" data-accessory-category="interior" loading="lazy" decoding="async" width="550" height="800"></picture><figcaption>Llaveros Toyota</figcaption></figure>
+            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-939253c0b01b.webp"><img src="toyota-sharp-assets/enhanced-939253c0b01b.webp" alt="Taza térmica Toyota" data-accessory-category="interior" loading="lazy" decoding="async" width="547" height="800"></picture><figcaption>Taza térmica Toyota</figcaption></figure>
+            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-707dc0a2e3e2.webp"><img src="toyota-sharp-assets/enhanced-707dc0a2e3e2.webp" alt="Portallaves de cuero Toyota" data-accessory-category="interior" loading="lazy" decoding="async" width="552" height="800"></picture><figcaption>Portallaves Toyota</figcaption></figure>
+            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-4ebd96e1ff9c.webp"><img src="toyota-sharp-assets/enhanced-4ebd96e1ff9c.webp" alt="Billetera de cuero Toyota" data-accessory-category="interior" loading="lazy" decoding="async" width="556" height="800"></picture><figcaption>Billetera de cuero Toyota</figcaption></figure>
           </div>
           <p class="source-note">Fuente: publicaciones y destacados de Instagram @toyotacdelu. Confirmar con el concesionario qué accesorios y merchandising siguen vigentes antes de publicar.</p>
         </div>
@@ -1380,11 +1412,11 @@ html,body{overflow-x:clip}
         </div>
         <div class="access-gallery" style="margin-top:0;padding-top:0;border-top:0;">
           <div class="access-grid">
-            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-07a01574263b.webp"><img src="toyota-sharp-assets/enhanced-07a01574263b.jpg" alt="Banner de neumáticos Bridgestone en posventa Toyota" loading="lazy" decoding="async" width="687" height="800"></picture><figcaption>Neumáticos Bridgestone en el concesionario</figcaption></figure>
-            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-9608f3af165f.webp"><img src="toyota-sharp-assets/enhanced-9608f3af165f.jpg" alt="Neumáticos Bridgestone Dueler en estantería" loading="lazy" decoding="async" width="800" height="793"></picture><figcaption>Stock de neumáticos Dueler</figcaption></figure>
-            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-94978cf308df.webp"><img src="toyota-sharp-assets/enhanced-94978cf308df.jpg" alt="Detalle de banda de rodamiento Bridgestone Dueler" loading="lazy" decoding="async" width="568" height="800"></picture><figcaption>Detalle Bridgestone Dueler</figcaption></figure>
-            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-eb51882d797d.webp"><img src="toyota-sharp-assets/enhanced-eb51882d797d.jpg" alt="Kit de neumáticos Bridgestone Ecopia" loading="lazy" decoding="async" width="800" height="794"></picture><figcaption>Kit Bridgestone Ecopia</figcaption></figure>
-            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-10b9781f8b0e.webp"><img src="toyota-sharp-assets/enhanced-10b9781f8b0e.jpg" alt="Depósito de neumáticos del concesionario" loading="lazy" decoding="async" width="565" height="800"></picture><figcaption>Depósito de neumáticos</figcaption></figure>
+            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-07a01574263b.webp"><img src="toyota-sharp-assets/enhanced-07a01574263b.webp" alt="Banner de neumáticos Bridgestone en posventa Toyota" loading="lazy" decoding="async" width="687" height="800"></picture><figcaption>Neumáticos Bridgestone en el concesionario</figcaption></figure>
+            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-9608f3af165f.webp"><img src="toyota-sharp-assets/enhanced-9608f3af165f.webp" alt="Neumáticos Bridgestone Dueler en estantería" loading="lazy" decoding="async" width="800" height="793"></picture><figcaption>Stock de neumáticos Dueler</figcaption></figure>
+            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-94978cf308df.webp"><img src="toyota-sharp-assets/enhanced-94978cf308df.webp" alt="Detalle de banda de rodamiento Bridgestone Dueler" loading="lazy" decoding="async" width="568" height="800"></picture><figcaption>Detalle Bridgestone Dueler</figcaption></figure>
+            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-eb51882d797d.webp"><img src="toyota-sharp-assets/enhanced-eb51882d797d.webp" alt="Kit de neumáticos Bridgestone Ecopia" loading="lazy" decoding="async" width="800" height="794"></picture><figcaption>Kit Bridgestone Ecopia</figcaption></figure>
+            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-10b9781f8b0e.webp"><img src="toyota-sharp-assets/enhanced-10b9781f8b0e.webp" alt="Depósito de neumáticos del concesionario" loading="lazy" decoding="async" width="565" height="800"></picture><figcaption>Depósito de neumáticos</figcaption></figure>
           </div>
           <p class="source-note">Fuente: publicaciones de Instagram @toyotacdelu. Confirmar medidas y disponibilidad de neumáticos con el concesionario.</p>
         </div>
@@ -1404,13 +1436,13 @@ html,body{overflow-x:clip}
         </div>
         <div class="access-gallery" style="margin-top:0;padding-top:0;border-top:0;">
           <div class="access-grid">
-            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-e0f705dd52d1.webp"><img src="toyota-sharp-assets/enhanced-e0f705dd52d1.jpg" alt="Mecánicos trabajando en el taller oficial Toyota" loading="lazy" decoding="async" width="800" height="775"></picture><figcaption>Nuestro equipo de mecánicos</figcaption></figure>
-            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-db467678d4f8.webp"><img src="toyota-sharp-assets/enhanced-db467678d4f8.jpg" alt="Mecánico revisando una rueda en el taller" loading="lazy" decoding="async" width="800" height="785"></picture><figcaption>Revisión de neumáticos</figcaption></figure>
-            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-96b94341671a.webp"><img src="toyota-sharp-assets/enhanced-96b94341671a.jpg" alt="Vehículo sobre elevador en el taller Toyota" loading="lazy" decoding="async" width="800" height="763"></picture><figcaption>Taller con elevador</figcaption></figure>
-            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-6d088249b097.webp"><img src="toyota-sharp-assets/enhanced-6d088249b097.jpg" alt="Balanceadora de ruedas en el taller" loading="lazy" decoding="async" width="800" height="780"></picture><figcaption>Balanceo de ruedas</figcaption></figure>
-            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-580a84256aa0.webp"><img src="toyota-sharp-assets/enhanced-580a84256aa0.jpg" alt="Servicio técnico especializado Toyota" loading="lazy" decoding="async" width="800" height="781"></picture><figcaption>Servicio técnico especializado</figcaption></figure>
-            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-ad8b147fb69f.webp"><img src="toyota-sharp-assets/enhanced-ad8b147fb69f.jpg" alt="Revisión de los 1000 km" loading="lazy" decoding="async" width="800" height="750"></picture><figcaption>Revisión de los 1.000 km</figcaption></figure>
-            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-3545495d2aea.webp"><img src="toyota-sharp-assets/enhanced-3545495d2aea.jpg" alt="Campaña especial de posventa Toyota" loading="lazy" decoding="async" width="800" height="767"></picture><figcaption>Campañas especiales de posventa</figcaption></figure>
+            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-e0f705dd52d1.webp"><img src="toyota-sharp-assets/enhanced-e0f705dd52d1.webp" alt="Mecánicos trabajando en el taller oficial Toyota" loading="lazy" decoding="async" width="800" height="775"></picture><figcaption>Nuestro equipo de mecánicos</figcaption></figure>
+            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-db467678d4f8.webp"><img src="toyota-sharp-assets/enhanced-db467678d4f8.webp" alt="Mecánico revisando una rueda en el taller" loading="lazy" decoding="async" width="800" height="785"></picture><figcaption>Revisión de neumáticos</figcaption></figure>
+            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-96b94341671a.webp"><img src="toyota-sharp-assets/enhanced-96b94341671a.webp" alt="Vehículo sobre elevador en el taller Toyota" loading="lazy" decoding="async" width="800" height="763"></picture><figcaption>Taller con elevador</figcaption></figure>
+            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-6d088249b097.webp"><img src="toyota-sharp-assets/enhanced-6d088249b097.webp" alt="Balanceadora de ruedas en el taller" loading="lazy" decoding="async" width="800" height="780"></picture><figcaption>Balanceo de ruedas</figcaption></figure>
+            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-580a84256aa0.webp"><img src="toyota-sharp-assets/enhanced-580a84256aa0.webp" alt="Servicio técnico especializado Toyota" loading="lazy" decoding="async" width="800" height="781"></picture><figcaption>Servicio técnico especializado</figcaption></figure>
+            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-ad8b147fb69f.webp"><img src="toyota-sharp-assets/enhanced-ad8b147fb69f.webp" alt="Revisión de los 1000 km" loading="lazy" decoding="async" width="800" height="750"></picture><figcaption>Revisión de los 1.000 km</figcaption></figure>
+            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-3545495d2aea.webp"><img src="toyota-sharp-assets/enhanced-3545495d2aea.webp" alt="Campaña especial de posventa Toyota" loading="lazy" decoding="async" width="800" height="767"></picture><figcaption>Campañas especiales de posventa</figcaption></figure>
           </div>
           <p class="source-note">Fuente: publicaciones de Instagram @toyotacdelu. Imágenes ilustrativas del taller y su equipamiento.</p>
         </div>
@@ -1708,9 +1740,9 @@ html,body{overflow-x:clip}
         </div>
         <div class="access-gallery" style="margin-top:0;padding-top:0;border-top:0;">
           <div class="access-grid">
-            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-4533c3b60b75.webp"><img src="toyota-sharp-assets/enhanced-4533c3b60b75.jpg" alt="Estantería de repuestos originales Toyota" loading="lazy" decoding="async" width="797" height="800"></picture><figcaption>Stock de repuestos originales</figcaption></figure>
-            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-64e8966f6f8a.webp"><img src="toyota-sharp-assets/enhanced-64e8966f6f8a.jpg" alt="Medalla de producto de confianza para repuestos Toyota" loading="lazy" decoding="async" width="800" height="779"></picture><figcaption>Repuestos, producto de confianza</figcaption></figure>
-            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-c81e41382a00.webp"><img src="toyota-sharp-assets/enhanced-c81e41382a00.jpg" alt="Texto sobre repuestos originales Toyota" loading="lazy" decoding="async" width="800" height="671"></picture><figcaption>Por qué elegir repuestos originales</figcaption></figure>
+            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-4533c3b60b75.webp"><img src="toyota-sharp-assets/enhanced-4533c3b60b75.webp" alt="Estantería de repuestos originales Toyota" loading="lazy" decoding="async" width="797" height="800"></picture><figcaption>Stock de repuestos originales</figcaption></figure>
+            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-64e8966f6f8a.webp"><img src="toyota-sharp-assets/enhanced-64e8966f6f8a.webp" alt="Medalla de producto de confianza para repuestos Toyota" loading="lazy" decoding="async" width="800" height="779"></picture><figcaption>Repuestos, producto de confianza</figcaption></figure>
+            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-c81e41382a00.webp"><img src="toyota-sharp-assets/enhanced-c81e41382a00.webp" alt="Texto sobre repuestos originales Toyota" loading="lazy" decoding="async" width="800" height="671"></picture><figcaption>Por qué elegir repuestos originales</figcaption></figure>
           </div>
           <p class="source-note">Fuente: publicaciones de Instagram @toyotacdelu. Consultar disponibilidad del repuesto que necesitás.</p>
         </div>
@@ -1753,9 +1785,9 @@ html,body{overflow-x:clip}
         <p>Sacá tu turno, consultá horarios o escribinos directo por WhatsApp antes de acercarte al concesionario.</p>
         <a class="btn primary" target="_blank" rel="noopener" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20sacar%20un%20turno%20de%20service.">Reservar turno ↗</a>
         <div class="promo-grid">
-            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-713411293222.webp"><img src="toyota-sharp-assets/enhanced-713411293222.jpg" alt="Contactanos por WhatsApp" loading="lazy" decoding="async" width="800" height="764"></picture><figcaption>Contactanos por WhatsApp</figcaption></figure>
-            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-cf008c7d5b59.webp"><img src="toyota-sharp-assets/enhanced-cf008c7d5b59.jpg" alt="Horarios de atención del concesionario" loading="lazy" decoding="async" width="800" height="778"></picture><figcaption>Horarios de atención</figcaption></figure>
-            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-b77ea4b4185d.webp"><img src="toyota-sharp-assets/enhanced-b77ea4b4185d.jpg" alt="Reservá tu turno de service" loading="lazy" decoding="async" width="800" height="749"></picture><figcaption>Reservá tu turno</figcaption></figure>
+            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-713411293222.webp"><img src="toyota-sharp-assets/enhanced-713411293222.webp" alt="Contactanos por WhatsApp" loading="lazy" decoding="async" width="800" height="764"></picture><figcaption>Contactanos por WhatsApp</figcaption></figure>
+            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-cf008c7d5b59.webp"><img src="toyota-sharp-assets/enhanced-cf008c7d5b59.webp" alt="Horarios de atención del concesionario" loading="lazy" decoding="async" width="800" height="778"></picture><figcaption>Horarios de atención</figcaption></figure>
+            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-b77ea4b4185d.webp"><img src="toyota-sharp-assets/enhanced-b77ea4b4185d.webp" alt="Reservá tu turno de service" loading="lazy" decoding="async" width="800" height="749"></picture><figcaption>Reservá tu turno</figcaption></figure>
         </div>
       </div>
     </section>
@@ -1810,103 +1842,103 @@ html,body{overflow-x:clip}
 <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">
 <picture class="responsive-picture" style="display:block;width:100%;height:auto;">
   <source type="image/webp" srcset="toyota-sharp-assets/gallery-0d09b54107eb-480.webp 480w, toyota-sharp-assets/gallery-0d09b54107eb-800.webp 800w, toyota-sharp-assets/gallery-0d09b54107eb-1440.webp 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px">
-  <img src="toyota-sharp-assets/gallery-0d09b54107eb-1440.jpg" srcset="toyota-sharp-assets/gallery-0d09b54107eb-480.jpg 480w, toyota-sharp-assets/gallery-0d09b54107eb-800.jpg 800w, toyota-sharp-assets/gallery-0d09b54107eb-1440.jpg 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="1221" height="615" alt="Toyota Concepción del Uruguay - Imagen 1" loading="lazy" decoding="async">
+  <img src="toyota-sharp-assets/gallery-0d09b54107eb-1440.webp" srcset="toyota-sharp-assets/gallery-0d09b54107eb-480.webp 480w, toyota-sharp-assets/gallery-0d09b54107eb-800.webp 800w, toyota-sharp-assets/gallery-0d09b54107eb-1440.webp 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="1221" height="615" alt="Toyota Concepción del Uruguay - Imagen 1" loading="lazy" decoding="async">
 </picture>
 <figcaption>Fachada principal del showroom</figcaption></figure>
 <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">
 <picture class="responsive-picture" style="display:block;width:100%;height:auto;">
   <source type="image/webp" srcset="toyota-sharp-assets/gallery-1f878b8ec433-480.webp 480w, toyota-sharp-assets/gallery-1f878b8ec433-800.webp 800w, toyota-sharp-assets/gallery-1f878b8ec433-1440.webp 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px">
-  <img src="toyota-sharp-assets/gallery-1f878b8ec433-1440.jpg" srcset="toyota-sharp-assets/gallery-1f878b8ec433-480.jpg 480w, toyota-sharp-assets/gallery-1f878b8ec433-800.jpg 800w, toyota-sharp-assets/gallery-1f878b8ec433-1440.jpg 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="990" height="678" alt="Toyota Concepción del Uruguay - Imagen 2" loading="lazy" decoding="async">
+  <img src="toyota-sharp-assets/gallery-1f878b8ec433-1440.webp" srcset="toyota-sharp-assets/gallery-1f878b8ec433-480.webp 480w, toyota-sharp-assets/gallery-1f878b8ec433-800.webp 800w, toyota-sharp-assets/gallery-1f878b8ec433-1440.webp 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="990" height="678" alt="Toyota Concepción del Uruguay - Imagen 2" loading="lazy" decoding="async">
 </picture>
 <figcaption>Frente del concesionario</figcaption></figure>
 <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">
 <picture class="responsive-picture" style="display:block;width:100%;height:auto;">
   <source type="image/webp" srcset="toyota-sharp-assets/gallery-b3438e74805e-480.webp 480w, toyota-sharp-assets/gallery-b3438e74805e-800.webp 800w, toyota-sharp-assets/gallery-b3438e74805e-1440.webp 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px">
-  <img src="toyota-sharp-assets/gallery-b3438e74805e-1440.jpg" srcset="toyota-sharp-assets/gallery-b3438e74805e-480.jpg 480w, toyota-sharp-assets/gallery-b3438e74805e-800.jpg 800w, toyota-sharp-assets/gallery-b3438e74805e-1440.jpg 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="990" height="669" alt="Toyota Concepción del Uruguay - Imagen 3" loading="lazy" decoding="async">
+  <img src="toyota-sharp-assets/gallery-b3438e74805e-1440.webp" srcset="toyota-sharp-assets/gallery-b3438e74805e-480.webp 480w, toyota-sharp-assets/gallery-b3438e74805e-800.webp 800w, toyota-sharp-assets/gallery-b3438e74805e-1440.webp 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="990" height="669" alt="Toyota Concepción del Uruguay - Imagen 3" loading="lazy" decoding="async">
 </picture>
 <figcaption>Recepción y sala de espera</figcaption></figure>
 <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">
 <picture class="responsive-picture" style="display:block;width:100%;height:auto;">
   <source type="image/webp" srcset="toyota-sharp-assets/gallery-3e3dd79299e5-480.webp 480w, toyota-sharp-assets/gallery-3e3dd79299e5-800.webp 800w, toyota-sharp-assets/gallery-3e3dd79299e5-1440.webp 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px">
-  <img src="toyota-sharp-assets/gallery-3e3dd79299e5-1440.jpg" srcset="toyota-sharp-assets/gallery-3e3dd79299e5-480.jpg 480w, toyota-sharp-assets/gallery-3e3dd79299e5-800.jpg 800w, toyota-sharp-assets/gallery-3e3dd79299e5-1440.jpg 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="1162" height="620" alt="Toyota Concepción del Uruguay - Imagen 4" loading="lazy" decoding="async">
+  <img src="toyota-sharp-assets/gallery-3e3dd79299e5-1440.webp" srcset="toyota-sharp-assets/gallery-3e3dd79299e5-480.webp 480w, toyota-sharp-assets/gallery-3e3dd79299e5-800.webp 800w, toyota-sharp-assets/gallery-3e3dd79299e5-1440.webp 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="1162" height="620" alt="Toyota Concepción del Uruguay - Imagen 4" loading="lazy" decoding="async">
 </picture>
 <figcaption>Boxes de service oficial</figcaption></figure>
 <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">
 <picture class="responsive-picture" style="display:block;width:100%;height:auto;">
   <source type="image/webp" srcset="toyota-sharp-assets/gallery-c13c92475721-480.webp 480w, toyota-sharp-assets/gallery-c13c92475721-800.webp 800w, toyota-sharp-assets/gallery-c13c92475721-1440.webp 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px">
-  <img src="toyota-sharp-assets/gallery-c13c92475721-1440.jpg" srcset="toyota-sharp-assets/gallery-c13c92475721-480.jpg 480w, toyota-sharp-assets/gallery-c13c92475721-800.jpg 800w, toyota-sharp-assets/gallery-c13c92475721-1440.jpg 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="989" height="672" alt="Toyota Concepción del Uruguay - Imagen 5" loading="lazy" decoding="async">
+  <img src="toyota-sharp-assets/gallery-c13c92475721-1440.webp" srcset="toyota-sharp-assets/gallery-c13c92475721-480.webp 480w, toyota-sharp-assets/gallery-c13c92475721-800.webp 800w, toyota-sharp-assets/gallery-c13c92475721-1440.webp 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="989" height="672" alt="Toyota Concepción del Uruguay - Imagen 5" loading="lazy" decoding="async">
 </picture>
 <figcaption>Mostrador de repuestos y neumáticos</figcaption></figure>
 <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">
 <picture class="responsive-picture" style="display:block;width:100%;height:auto;">
   <source type="image/webp" srcset="toyota-sharp-assets/gallery-235c7262a67e-480.webp 480w, toyota-sharp-assets/gallery-235c7262a67e-800.webp 800w, toyota-sharp-assets/gallery-235c7262a67e-1440.webp 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px">
-  <img src="toyota-sharp-assets/gallery-235c7262a67e-1440.jpg" srcset="toyota-sharp-assets/gallery-235c7262a67e-480.jpg 480w, toyota-sharp-assets/gallery-235c7262a67e-800.jpg 800w, toyota-sharp-assets/gallery-235c7262a67e-1440.jpg 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="987" height="677" alt="Toyota Concepción del Uruguay - Imagen 6" loading="lazy" decoding="async">
+  <img src="toyota-sharp-assets/gallery-235c7262a67e-1440.webp" srcset="toyota-sharp-assets/gallery-235c7262a67e-480.webp 480w, toyota-sharp-assets/gallery-235c7262a67e-800.webp 800w, toyota-sharp-assets/gallery-235c7262a67e-1440.webp 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="987" height="677" alt="Toyota Concepción del Uruguay - Imagen 6" loading="lazy" decoding="async">
 </picture>
 <figcaption>Área de espera con vista al taller</figcaption></figure>
 <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">
 <picture class="responsive-picture" style="display:block;width:100%;height:auto;">
   <source type="image/webp" srcset="toyota-sharp-assets/gallery-88e84595c95e-480.webp 480w, toyota-sharp-assets/gallery-88e84595c95e-800.webp 800w, toyota-sharp-assets/gallery-88e84595c95e-1440.webp 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px">
-  <img src="toyota-sharp-assets/gallery-88e84595c95e-1440.jpg" srcset="toyota-sharp-assets/gallery-88e84595c95e-480.jpg 480w, toyota-sharp-assets/gallery-88e84595c95e-800.jpg 800w, toyota-sharp-assets/gallery-88e84595c95e-1440.jpg 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="989" height="672" alt="Toyota Concepción del Uruguay - Imagen 7" loading="lazy" decoding="async">
+  <img src="toyota-sharp-assets/gallery-88e84595c95e-1440.webp" srcset="toyota-sharp-assets/gallery-88e84595c95e-480.webp 480w, toyota-sharp-assets/gallery-88e84595c95e-800.webp 800w, toyota-sharp-assets/gallery-88e84595c95e-1440.webp 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="989" height="672" alt="Toyota Concepción del Uruguay - Imagen 7" loading="lazy" decoding="async">
 </picture>
 <figcaption>Playa de service</figcaption></figure>
 <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">
 <picture class="responsive-picture" style="display:block;width:100%;height:auto;">
   <source type="image/webp" srcset="toyota-sharp-assets/gallery-24f91b3c2cd2-480.webp 480w, toyota-sharp-assets/gallery-24f91b3c2cd2-800.webp 800w, toyota-sharp-assets/gallery-24f91b3c2cd2-1440.webp 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px">
-  <img src="toyota-sharp-assets/gallery-24f91b3c2cd2-1440.jpg" srcset="toyota-sharp-assets/gallery-24f91b3c2cd2-480.jpg 480w, toyota-sharp-assets/gallery-24f91b3c2cd2-800.jpg 800w, toyota-sharp-assets/gallery-24f91b3c2cd2-1440.jpg 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="989" height="670" alt="Toyota Concepción del Uruguay - Imagen 8" loading="lazy" decoding="async">
+  <img src="toyota-sharp-assets/gallery-24f91b3c2cd2-1440.webp" srcset="toyota-sharp-assets/gallery-24f91b3c2cd2-480.webp 480w, toyota-sharp-assets/gallery-24f91b3c2cd2-800.webp 800w, toyota-sharp-assets/gallery-24f91b3c2cd2-1440.webp 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="989" height="670" alt="Toyota Concepción del Uruguay - Imagen 8" loading="lazy" decoding="async">
 </picture>
 <figcaption>Living y exhibidor de accesorios</figcaption></figure>
 <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">
 <picture class="responsive-picture" style="display:block;width:100%;height:auto;">
   <source type="image/webp" srcset="toyota-sharp-assets/gallery-0fa705fc438b-480.webp 480w, toyota-sharp-assets/gallery-0fa705fc438b-800.webp 800w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px">
-  <img src="toyota-sharp-assets/gallery-0fa705fc438b-800.jpg" srcset="toyota-sharp-assets/gallery-0fa705fc438b-480.jpg 480w, toyota-sharp-assets/gallery-0fa705fc438b-800.jpg 800w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="573" height="666" alt="Toyota Concepción del Uruguay - Imagen 9" loading="lazy" decoding="async">
+  <img src="toyota-sharp-assets/gallery-0fa705fc438b-800.webp" srcset="toyota-sharp-assets/gallery-0fa705fc438b-480.webp 480w, toyota-sharp-assets/gallery-0fa705fc438b-800.webp 800w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="573" height="666" alt="Toyota Concepción del Uruguay - Imagen 9" loading="lazy" decoding="async">
 </picture>
 <figcaption>Ingreso al sector de service</figcaption></figure>
 <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">
 <picture class="responsive-picture" style="display:block;width:100%;height:auto;">
   <source type="image/webp" srcset="toyota-sharp-assets/gallery-d56615fd9da8-480.webp 480w, toyota-sharp-assets/gallery-d56615fd9da8-800.webp 800w, toyota-sharp-assets/gallery-d56615fd9da8-1440.webp 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px">
-  <img src="toyota-sharp-assets/gallery-d56615fd9da8-1440.jpg" srcset="toyota-sharp-assets/gallery-d56615fd9da8-480.jpg 480w, toyota-sharp-assets/gallery-d56615fd9da8-800.jpg 800w, toyota-sharp-assets/gallery-d56615fd9da8-1440.jpg 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="1156" height="615" alt="Toyota Concepción del Uruguay - Imagen 10" loading="lazy" decoding="async">
+  <img src="toyota-sharp-assets/gallery-d56615fd9da8-1440.webp" srcset="toyota-sharp-assets/gallery-d56615fd9da8-480.webp 480w, toyota-sharp-assets/gallery-d56615fd9da8-800.webp 800w, toyota-sharp-assets/gallery-d56615fd9da8-1440.webp 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="1156" height="615" alt="Toyota Concepción del Uruguay - Imagen 10" loading="lazy" decoding="async">
 </picture>
 <figcaption>Mostrador de repuestos con tarifario de service</figcaption></figure>
 <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">
 <picture class="responsive-picture" style="display:block;width:100%;height:auto;">
   <source type="image/webp" srcset="toyota-sharp-assets/gallery-cefa390de5c0-480.webp 480w, toyota-sharp-assets/gallery-cefa390de5c0-800.webp 800w, toyota-sharp-assets/gallery-cefa390de5c0-1440.webp 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px">
-  <img src="toyota-sharp-assets/gallery-cefa390de5c0-1440.jpg" srcset="toyota-sharp-assets/gallery-cefa390de5c0-480.jpg 480w, toyota-sharp-assets/gallery-cefa390de5c0-800.jpg 800w, toyota-sharp-assets/gallery-cefa390de5c0-1440.jpg 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="1225" height="616" alt="Toyota Concepción del Uruguay - Imagen 11" loading="lazy" decoding="async">
+  <img src="toyota-sharp-assets/gallery-cefa390de5c0-1440.webp" srcset="toyota-sharp-assets/gallery-cefa390de5c0-480.webp 480w, toyota-sharp-assets/gallery-cefa390de5c0-800.webp 800w, toyota-sharp-assets/gallery-cefa390de5c0-1440.webp 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="1225" height="616" alt="Toyota Concepción del Uruguay - Imagen 11" loading="lazy" decoding="async">
 </picture>
 <figcaption>Fachada del concesionario sobre 9 de Julio</figcaption></figure>
 <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">
 <picture class="responsive-picture" style="display:block;width:100%;height:auto;">
   <source type="image/webp" srcset="toyota-sharp-assets/gallery-7618529ac395-480.webp 480w, toyota-sharp-assets/gallery-7618529ac395-800.webp 800w, toyota-sharp-assets/gallery-7618529ac395-1440.webp 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px">
-  <img src="toyota-sharp-assets/gallery-7618529ac395-1440.jpg" srcset="toyota-sharp-assets/gallery-7618529ac395-480.jpg 480w, toyota-sharp-assets/gallery-7618529ac395-800.jpg 800w, toyota-sharp-assets/gallery-7618529ac395-1440.jpg 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="986" height="669" alt="Toyota Concepción del Uruguay - Imagen 12" loading="lazy" decoding="async">
+  <img src="toyota-sharp-assets/gallery-7618529ac395-1440.webp" srcset="toyota-sharp-assets/gallery-7618529ac395-480.webp 480w, toyota-sharp-assets/gallery-7618529ac395-800.webp 800w, toyota-sharp-assets/gallery-7618529ac395-1440.webp 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="986" height="669" alt="Toyota Concepción del Uruguay - Imagen 12" loading="lazy" decoding="async">
 </picture>
 <figcaption>Vista general del frente del showroom</figcaption></figure>
 <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">
 <picture class="responsive-picture" style="display:block;width:100%;height:auto;">
   <source type="image/webp" srcset="toyota-sharp-assets/gallery-2b5b6c52a8cc-480.webp 480w, toyota-sharp-assets/gallery-2b5b6c52a8cc-800.webp 800w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px">
-  <img src="toyota-sharp-assets/gallery-2b5b6c52a8cc-800.jpg" srcset="toyota-sharp-assets/gallery-2b5b6c52a8cc-480.jpg 480w, toyota-sharp-assets/gallery-2b5b6c52a8cc-800.jpg 800w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="573" height="672" alt="Toyota Concepción del Uruguay - Imagen 13" loading="lazy" decoding="async">
+  <img src="toyota-sharp-assets/gallery-2b5b6c52a8cc-800.webp" srcset="toyota-sharp-assets/gallery-2b5b6c52a8cc-480.webp 480w, toyota-sharp-assets/gallery-2b5b6c52a8cc-800.webp 800w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="573" height="672" alt="Toyota Concepción del Uruguay - Imagen 13" loading="lazy" decoding="async">
 </picture>
 <figcaption>Cartel Toyota en el ingreso principal</figcaption></figure>
 <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">
 <picture class="responsive-picture" style="display:block;width:100%;height:auto;">
   <source type="image/webp" srcset="toyota-sharp-assets/gallery-fe0c4ff615f5-480.webp 480w, toyota-sharp-assets/gallery-fe0c4ff615f5-800.webp 800w, toyota-sharp-assets/gallery-fe0c4ff615f5-1440.webp 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px">
-  <img src="toyota-sharp-assets/gallery-fe0c4ff615f5-1440.jpg" srcset="toyota-sharp-assets/gallery-fe0c4ff615f5-480.jpg 480w, toyota-sharp-assets/gallery-fe0c4ff615f5-800.jpg 800w, toyota-sharp-assets/gallery-fe0c4ff615f5-1440.jpg 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="1225" height="617" alt="Toyota Concepción del Uruguay - Imagen 14" loading="lazy" decoding="async">
+  <img src="toyota-sharp-assets/gallery-fe0c4ff615f5-1440.webp" srcset="toyota-sharp-assets/gallery-fe0c4ff615f5-480.webp 480w, toyota-sharp-assets/gallery-fe0c4ff615f5-800.webp 800w, toyota-sharp-assets/gallery-fe0c4ff615f5-1440.webp 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="1225" height="617" alt="Toyota Concepción del Uruguay - Imagen 14" loading="lazy" decoding="async">
 </picture>
 <figcaption>Entrada al sector de ventas</figcaption></figure>
 <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">
 <picture class="responsive-picture" style="display:block;width:100%;height:auto;">
   <source type="image/webp" srcset="toyota-sharp-assets/gallery-58fd388e3636-480.webp 480w, toyota-sharp-assets/gallery-58fd388e3636-800.webp 800w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px">
-  <img src="toyota-sharp-assets/gallery-58fd388e3636-800.jpg" srcset="toyota-sharp-assets/gallery-58fd388e3636-480.jpg 480w, toyota-sharp-assets/gallery-58fd388e3636-800.jpg 800w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="573" height="668" alt="Toyota Concepción del Uruguay - Imagen 15" loading="lazy" decoding="async">
+  <img src="toyota-sharp-assets/gallery-58fd388e3636-800.webp" srcset="toyota-sharp-assets/gallery-58fd388e3636-480.webp 480w, toyota-sharp-assets/gallery-58fd388e3636-800.webp 800w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="573" height="668" alt="Toyota Concepción del Uruguay - Imagen 15" loading="lazy" decoding="async">
 </picture>
 <figcaption>Elevadores del taller de service oficial</figcaption></figure>
 <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">
 <picture class="responsive-picture" style="display:block;width:100%;height:auto;">
   <source type="image/webp" srcset="toyota-sharp-assets/gallery-08cc971dfb73-480.webp 480w, toyota-sharp-assets/gallery-08cc971dfb73-800.webp 800w, toyota-sharp-assets/gallery-08cc971dfb73-1440.webp 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px">
-  <img src="toyota-sharp-assets/gallery-08cc971dfb73-1440.jpg" srcset="toyota-sharp-assets/gallery-08cc971dfb73-480.jpg 480w, toyota-sharp-assets/gallery-08cc971dfb73-800.jpg 800w, toyota-sharp-assets/gallery-08cc971dfb73-1440.jpg 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="1220" height="619" alt="Toyota Concepción del Uruguay - Imagen 16" loading="lazy" decoding="async">
+  <img src="toyota-sharp-assets/gallery-08cc971dfb73-1440.webp" srcset="toyota-sharp-assets/gallery-08cc971dfb73-480.webp 480w, toyota-sharp-assets/gallery-08cc971dfb73-800.webp 800w, toyota-sharp-assets/gallery-08cc971dfb73-1440.webp 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="1220" height="619" alt="Toyota Concepción del Uruguay - Imagen 16" loading="lazy" decoding="async">
 </picture>
 <figcaption>Ingreso vehicular y exhibición sobre la calle</figcaption></figure>
 <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">
 <picture class="responsive-picture" style="display:block;width:100%;height:auto;">
   <source type="image/webp" srcset="toyota-sharp-assets/gallery-b4ed6c21c721-480.webp 480w, toyota-sharp-assets/gallery-b4ed6c21c721-800.webp 800w, toyota-sharp-assets/gallery-b4ed6c21c721-1440.webp 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px">
-  <img src="toyota-sharp-assets/gallery-b4ed6c21c721-1440.jpg" srcset="toyota-sharp-assets/gallery-b4ed6c21c721-480.jpg 480w, toyota-sharp-assets/gallery-b4ed6c21c721-800.jpg 800w, toyota-sharp-assets/gallery-b4ed6c21c721-1440.jpg 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="990" height="663" alt="Toyota Concepción del Uruguay - Imagen 17" loading="lazy" decoding="async">
+  <img src="toyota-sharp-assets/gallery-b4ed6c21c721-1440.webp" srcset="toyota-sharp-assets/gallery-b4ed6c21c721-480.webp 480w, toyota-sharp-assets/gallery-b4ed6c21c721-800.webp 800w, toyota-sharp-assets/gallery-b4ed6c21c721-1440.webp 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" width="990" height="663" alt="Toyota Concepción del Uruguay - Imagen 17" loading="lazy" decoding="async">
 </picture>
 <figcaption>Portón de acceso al taller</figcaption></figure>
 </div></div></section>
@@ -2178,15 +2210,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
   // ---- gama de modelos ----
   var MODELOS_TOYOTA = [
-    { nombre: "Hilux", tipo: "pickup", desc: "La pickup que no para nunca. Cabina simple o doble, 4x2 o 4x4.", badge: "", foto: "toyota-sharp-assets/enhanced-4a00d0bf85e9.jpg", fotoW: 800, fotoH: 781 },
-    { nombre: "SW4 Diamond", tipo: "suv", desc: "Siete asientos y el Toyota Safety Sense de serie.", badge: "", foto: "toyota-sharp-assets/enhanced-371d49eb8a93.jpg", fotoW: 781, fotoH: 800 },
-    { nombre: "Corolla Cross", tipo: "suv", desc: "El SUV compacto de Toyota, entre el Corolla y la SW4.", badge: "", foto: "toyota-sharp-assets/enhanced-6d088249b097.jpg", fotoW: 800, fotoH: 780 },
-    { nombre: "RAV4", tipo: "suv", desc: "Nafta, híbrida o híbrida enchufable, según cómo la uses.", badge: "", foto: "toyota-sharp-assets/enhanced-9608f3af165f.jpg", fotoW: 800, fotoH: 793 },
-    { nombre: "Corolla", tipo: "sedan", desc: "El sedán más vendido del mundo, también en versión híbrida.", badge: "", foto: "toyota-sharp-assets/enhanced-cf008c7d5b59.jpg", fotoW: 800, fotoH: 778 },
-    { nombre: "Yaris", tipo: "sedan", desc: "Compacto, ágil y con el respaldo de la red oficial Toyota.", badge: "", foto: "toyota-sharp-assets/enhanced-b77ea4b4185d.jpg", fotoW: 800, fotoH: 749 },
-    { nombre: "Land Cruiser 300", tipo: "suv", desc: "El buque insignia todoterreno de Toyota, máximo confort y capacidad off-road.", badge: "", foto: "toyota-sharp-assets/enhanced-40f34102e3e9.jpg", fotoW: 766, fotoH: 800 },
-    { nombre: "Fortuner", tipo: "suv", desc: "SUV robusto sobre plataforma de pick-up, pensado para el trabajo y la aventura.", badge: "", foto: "toyota-sharp-assets/enhanced-a70429bf61f7.jpg", fotoW: 733, fotoH: 800 },
-    { nombre: "Etios", tipo: "sedan", desc: "El acceso más simple a la gama Toyota, ideal para uso urbano diario.", badge: "", foto: "toyota-sharp-assets/enhanced-3cd7479efb85.jpg", fotoW: 800, fotoH: 779 }
+    { nombre: "Hilux", tipo: "pickup", desc: "La pickup que no para nunca. Cabina simple o doble, 4x2 o 4x4.", badge: "", foto: "toyota-sharp-assets/enhanced-4a00d0bf85e9.webp", fotoW: 800, fotoH: 781 },
+    { nombre: "SW4 Diamond", tipo: "suv", desc: "Siete asientos y el Toyota Safety Sense de serie.", badge: "", foto: "toyota-sharp-assets/enhanced-371d49eb8a93.webp", fotoW: 781, fotoH: 800 },
+    { nombre: "Corolla Cross", tipo: "suv", desc: "El SUV compacto de Toyota, entre el Corolla y la SW4.", badge: "", foto: "toyota-sharp-assets/enhanced-6d088249b097.webp", fotoW: 800, fotoH: 780 },
+    { nombre: "RAV4", tipo: "suv", desc: "Nafta, híbrida o híbrida enchufable, según cómo la uses.", badge: "", foto: "toyota-sharp-assets/enhanced-9608f3af165f.webp", fotoW: 800, fotoH: 793 },
+    { nombre: "Corolla", tipo: "sedan", desc: "El sedán más vendido del mundo, también en versión híbrida.", badge: "", foto: "toyota-sharp-assets/enhanced-cf008c7d5b59.webp", fotoW: 800, fotoH: 778 },
+    { nombre: "Yaris", tipo: "sedan", desc: "Compacto, ágil y con el respaldo de la red oficial Toyota.", badge: "", foto: "toyota-sharp-assets/enhanced-b77ea4b4185d.webp", fotoW: 800, fotoH: 749 },
+    { nombre: "Land Cruiser 300", tipo: "suv", desc: "El buque insignia todoterreno de Toyota, máximo confort y capacidad off-road.", badge: "", foto: "toyota-sharp-assets/enhanced-40f34102e3e9.webp", fotoW: 766, fotoH: 800 },
+    { nombre: "Fortuner", tipo: "suv", desc: "SUV robusto sobre plataforma de pick-up, pensado para el trabajo y la aventura.", badge: "", foto: "toyota-sharp-assets/enhanced-a70429bf61f7.webp", fotoW: 733, fotoH: 800 },
+    { nombre: "Etios", tipo: "sedan", desc: "El acceso más simple a la gama Toyota, ideal para uso urbano diario.", badge: "", foto: "toyota-sharp-assets/enhanced-3cd7479efb85.webp", fotoW: 800, fotoH: 779 }
   ];
 
   var ICONOS = {
@@ -2809,13 +2841,15 @@ document.addEventListener("DOMContentLoaded", function(){
   (function(){
   "use strict";
   var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if(window.__toyotaLenis || !window.Lenis || !window.gsap || !window.ScrollTrigger){
+  var coarsePointer=window.matchMedia&&window.matchMedia("(pointer: coarse)").matches;
+  // Touch devices keep native scrolling: it is lower-latency and avoids an unnecessary ticker.
+  if(window.__toyotaLenis || coarsePointer || !window.Lenis || !window.gsap || !window.ScrollTrigger){
     if(reduce) window.__toyotaLenis=null;
   } else if(!reduce){
     var lenis=new Lenis({
       // One interpolation model only: lerp avoids competing duration/easing paths.
       // Higher lerp reduces perceived drag without adding a second smoothing layer.
-      lerp:.2,
+      lerp:.24,
       smoothWheel:true,
       wheelMultiplier:1,
       syncTouch:false,
@@ -2954,8 +2988,9 @@ document.addEventListener("DOMContentLoaded", function(){
 
     // Filter transition: capture before the existing handler, then let Flip preserve spatial continuity.
     var filterbar=document.getElementById("filterbar");
-    if(filterbar&&window.Flip){
+    if(filterbar){
       var onFilter=function(){
+        if(!window.Flip){if(window.__loadToyotaFlip)window.__loadToyotaFlip();return;}
         var gamaGridEl=document.getElementById("gama-grid");
         var state=Flip.getState(gamaGridEl?gamaGridEl.querySelectorAll(".model"):[]);
         requestAnimationFrame(function(){
