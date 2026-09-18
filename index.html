@@ -1026,6 +1026,38 @@ h1,h2,h3,.brand .b1,.section-kicker,.tag{font-kerning:normal;text-wrap:balance}
 .hero-editorial-vehicle img{display:block;backface-visibility:hidden;}
 .hero-editorial-wash,.hero-editorial-copy,.hero-editorial-wordmark,.hero-editorial-specs{will-change:auto}
 </style>
+<style id="client-fix-rails-and-social-icons-20260918">
+/* Barras laterales del hero: más angostas y con todo su contenido perfectamente centrado */
+.hero-editorial-frame{grid-template-columns:42px 1fr 42px!important}
+.hero-editorial-rail{width:42px!important;align-items:center!important;padding:20px 0 20px!important}
+.hero-rail-logo{width:32px!important;height:32px!important}
+.hero-rail-rule{height:56px!important;margin-top:16px!important}
+.hero-rail-label{margin-top:18px!important;font-size:7.5px!important;text-align:center!important}
+.hero-rail-detail{margin-top:20px!important;text-align:center!important;letter-spacing:.1em!important}
+.hero-rail-contact{margin-top:auto!important;text-align:center!important;letter-spacing:.03em!important;font-variant-numeric:tabular-nums}
+.hero-rail-contact,.hero-rail-detail,.hero-rail-label{width:100%!important}
+@media(max-width:900px){
+  .hero-editorial-frame{grid-template-columns:42px 1fr!important}
+}
+@media(max-width:760px){
+  .hero-editorial-frame{grid-template-columns:34px 1fr!important}
+  .hero-editorial-rail{width:34px!important}
+  .hero-rail-logo{width:26px!important;height:26px!important}
+}
+
+/* Íconos de redes reales (Instagram/WhatsApp) en lugar de texto "IG"/"WA"/"AS" en toda la web */
+.icon-outline{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+.icon-solid{fill:currentColor;stroke:none}
+.float-advisor,.float-social{display:grid;place-items:center}
+.float-advisor svg{width:24px;height:24px;stroke:#fff;stroke-width:1.8}
+.float-social svg{width:24px;height:24px;stroke:#fff;stroke-width:1.8}
+.float-wa{display:grid;place-items:center}
+.float-wa svg{width:30px;height:30px}
+.hero-rail-logo-alt svg{width:20px;height:20px;stroke:#fff;stroke-width:1.8}
+.social-mark svg{width:var(--system-icon-md,20px);height:var(--system-icon-md,20px);stroke-width:1.7}
+.contact-plus-icon svg{width:18px;height:18px;stroke-width:1.7}
+.contact-plus-icon{display:grid;place-items:center}
+</style>
 </head>
 <body id="top">
 <script id="demo-scroll-restoration">
@@ -1097,7 +1129,7 @@ h1,h2,h3,.brand .b1,.section-kicker,.tag{font-kerning:normal;text-wrap:balance}
       <span class="hero-rail-rule"></span>
       <span class="hero-rail-label">Concesionario<br>oficial Toyota<br>desde 1987</span>
       <span class="hero-rail-detail">9 DE JULIO 1624<br>CONCEPCIÓN DEL URUGUAY</span>
-      <span class="hero-rail-contact">03442<br><a href="tel:+543442677433">67—7433</a><br><a href="tel:+543442502390">50—2390</a><br><a href="tel:+543442473453"><b>47—3453</b></a></span>
+      <span class="hero-rail-contact">03442<br><a href="tel:+543442677433">67-7433</a><br><a href="tel:+543442502390">50-2390</a><br><a href="tel:+543442473453"><b>47-3453</b></a></span>
     </div>
 
     <div class="hero-editorial-stage">
@@ -1130,7 +1162,7 @@ h1,h2,h3,.brand .b1,.section-kicker,.tag{font-kerning:normal;text-wrap:balance}
     </div>
 
     <div class="hero-editorial-rail hero-editorial-rail-right" aria-label="Seguinos y contactános">
-      <a class="hero-rail-logo hero-rail-logo-alt" target="_blank" rel="noopener" aria-label="Instagram de Piñeyro y Moscatelli" href="https://www.instagram.com/toyotacdelu/?hl=es"><span aria-hidden="true">IG</span></a>
+      <a class="hero-rail-logo hero-rail-logo-alt" target="_blank" rel="noopener" aria-label="Instagram de Piñeyro y Moscatelli" href="https://www.instagram.com/toyotacdelu/?hl=es"><svg class="icon-outline" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5"></rect><circle cx="12" cy="12" r="4.1"></circle><circle cx="17.35" cy="6.65" r="1.1" fill="#fff" stroke="none"></circle></svg></a>
       <span class="hero-rail-rule"></span>
       <span class="hero-rail-label">Seguinos en<br>Instagram</span>
       <span class="hero-rail-detail">@TOYOTACDELU</span>
@@ -1360,7 +1392,7 @@ h1,h2,h3,.brand .b1,.section-kicker,.tag{font-kerning:normal;text-wrap:balance}
 <section id="servicios-adicionales" class="expansion-section premium-reveal"><div class="wrap"><div class="section-head"><div><span class="tag">Servicios adicionales</span><h2>Completá tu consulta con el canal adecuado.</h2><p>Información general, sin atribuir alianzas o beneficios no confirmados.</p></div></div><div class="expansion-grid"><article class="expansion-card"><div class="expansion-icon">$</div><h3>Financiación</h3><p>Consultá alternativas con tu banco y las líneas vigentes en el concesionario.</p><a class="text-link" href="#financiacion">Ver simulador ↗</a></article><article class="expansion-card"><div class="expansion-icon">✓</div><h3>Seguro</h3><p>Pedí orientación sobre los pasos y documentación necesarios para tu operación.</p><a class="text-link" href="#contacto">Consultar orientación ↗</a></article><article class="expansion-card"><div class="expansion-icon">＋</div><h3>Garantía y cobertura</h3><p>La vigencia y las condiciones se revisan según el vehículo y el mantenimiento realizado.</p><a class="text-link" href="#faq">Leer preguntas ↗</a></article><article class="expansion-card"><div class="expansion-icon">↗</div><h3>Entrega</h3><p>Coordiná documentación, condiciones y fecha directamente con el concesionario.</p><a class="text-link" href="#contacto">Coordinar consulta ↗</a></article></div></div></section>
 
 
-<section id="contacto-ampliado" class="expansion-section premium-reveal"><div class="wrap"><div class="section-head"><div><span class="tag">Contacto directo</span><h2>Elegí cómo querés hablar con el equipo.</h2><p>Canales individuales para ventas, turnos, repuestos, neumáticos y ubicación.</p></div></div><div class="contact-plus"><a class="contact-plus-card" target="_blank" rel="noopener" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20hablar%20con%20un%20asesor.%20"><i class="contact-plus-icon">WA</i><div><b>Hablar con un asesor</b><span>Consulta general por WhatsApp</span></div></a><a class="contact-plus-card" href="tel:+543442473453"><i class="contact-plus-icon">☎</i><div><b>Llamar al concesionario</b><span>03442 47-3453</span></div></a><a class="contact-plus-card" target="_blank" rel="noopener" href="https://wa.me/5493442677433?text=Hola!%20Quiero%20consultar%20por%20repuestos%20o%20accesorios.%20"><i class="contact-plus-icon">RP</i><div><b>Repuestos y accesorios</b><span>Consulta de disponibilidad</span></div></a><a class="contact-plus-card" target="_blank" rel="noopener" href="https://wa.me/5493442502390?text=Hola!%20Quiero%20consultar%20por%20neum%C3%A1ticos.%20"><i class="contact-plus-icon">NT</i><div><b>Neumáticos</b><span>Medidas y disponibilidad</span></div></a><a class="contact-plus-card" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Pi%C3%B1eyro%20y%20Moscatelli%20Toyota%20Concepci%C3%B3n%20del%20Uruguay"><i class="contact-plus-icon">↗</i><div><b>Cómo llegar</b><span>Direcciones a 9 de Julio 1624</span></div></a><a class="contact-plus-card" target="_blank" rel="noopener" href="https://www.instagram.com/toyotacdelu/?hl=es"><i class="contact-plus-icon">IG</i><div><b>Instagram</b><span>@toyotacdelu</span></div></a></div><div class="cta-lite"><a class="btn primary" target="_blank" rel="noopener" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20suscribirme%20a%20las%20novedades%20y%20promociones%20vigentes.%20">Recibir novedades por WhatsApp ↗</a><a class="btn" href="#ubicacion">Ver horarios y ubicación ↗</a></div></div></section>
+<section id="contacto-ampliado" class="expansion-section premium-reveal"><div class="wrap"><div class="section-head"><div><span class="tag">Contacto directo</span><h2>Elegí cómo querés hablar con el equipo.</h2><p>Canales individuales para ventas, turnos, repuestos, neumáticos y ubicación.</p></div></div><div class="contact-plus"><a class="contact-plus-card" target="_blank" rel="noopener" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20hablar%20con%20un%20asesor.%20"><i class="contact-plus-icon"><svg class="icon-solid" viewBox="0 0 32 32" aria-hidden="true"><path d="M16.04 4C9.42 4 4.05 9.36 4.05 15.98c0 2.11.55 4.17 1.6 5.98L4 28l6.2-1.62a12 12 0 005.83 1.49h.01c6.62 0 11.99-5.36 11.99-11.98C28.03 9.36 22.66 4 16.04 4zm0 21.9h-.01a9.9 9.9 0 01-5.05-1.38l-.36-.22-3.75.98.99-3.66-.24-.38a9.9 9.9 0 01-1.53-5.28c0-5.48 4.46-9.94 9.96-9.94 2.66 0 5.15 1.04 7.03 2.92a9.85 9.85 0 012.91 7.02c0 5.48-4.46 9.94-9.95 9.94zm5.46-7.44c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.05-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.22 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35z"></path></svg></i><div><b>Hablar con un asesor</b><span>Consulta general por WhatsApp</span></div></a><a class="contact-plus-card" href="tel:+543442473453"><i class="contact-plus-icon">☎</i><div><b>Llamar al concesionario</b><span>03442 47-3453</span></div></a><a class="contact-plus-card" target="_blank" rel="noopener" href="https://wa.me/5493442677433?text=Hola!%20Quiero%20consultar%20por%20repuestos%20o%20accesorios.%20"><i class="contact-plus-icon">RP</i><div><b>Repuestos y accesorios</b><span>Consulta de disponibilidad</span></div></a><a class="contact-plus-card" target="_blank" rel="noopener" href="https://wa.me/5493442502390?text=Hola!%20Quiero%20consultar%20por%20neum%C3%A1ticos.%20"><i class="contact-plus-icon">NT</i><div><b>Neumáticos</b><span>Medidas y disponibilidad</span></div></a><a class="contact-plus-card" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Pi%C3%B1eyro%20y%20Moscatelli%20Toyota%20Concepci%C3%B3n%20del%20Uruguay"><i class="contact-plus-icon">↗</i><div><b>Cómo llegar</b><span>Direcciones a 9 de Julio 1624</span></div></a><a class="contact-plus-card" target="_blank" rel="noopener" href="https://www.instagram.com/toyotacdelu/?hl=es"><i class="contact-plus-icon"><svg class="icon-outline" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5"></rect><circle cx="12" cy="12" r="4.1"></circle><circle cx="17.35" cy="6.65" r="1.1" fill="currentColor" stroke="none"></circle></svg></i><div><b>Instagram</b><span>@toyotacdelu</span></div></a></div><div class="cta-lite"><a class="btn primary" target="_blank" rel="noopener" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20suscribirme%20a%20las%20novedades%20y%20promociones%20vigentes.%20">Recibir novedades por WhatsApp ↗</a><a class="btn" href="#ubicacion">Ver horarios y ubicación ↗</a></div></div></section>
 
 
     <section id="porque" class="premium-reveal dealer-value-section" aria-labelledby="dealerValueTitle">
@@ -1765,7 +1797,7 @@ h1,h2,h3,.brand .b1,.section-kicker,.tag{font-kerning:normal;text-wrap:balance}
 </picture>
 <figcaption>Portón de acceso al taller</figcaption></figure>
 </div></div></section>
-    <section id="concesionario" class="dealer-section premium-reveal"><div class="wrap dealer-grid"><div><span class="tag">Concesionario</span><h2>Una atención local, con el respaldo de la red oficial Toyota.</h2><p>Piñeyro y Moscatelli S.R.L. se presenta en Concepción del Uruguay como concesionario oficial Toyota, con áreas de ventas, service, repuestos y neumáticos.</p><a class="social-cta" target="_blank" rel="noopener" href="https://www.instagram.com/toyotacdelu/?hl=es"><span class="social-mark" aria-hidden="true">IG</span><span><strong>Seguinos en Instagram</strong><small>@toyotacdelu · cuenta pública del negocio</small></span><span>↗</span></a></div><div class="social-preview"><div class="social-preview-top"><span>INSTAGRAM</span><span>@toyotacdelu</span></div><div class="social-preview-art social-preview-art-optimized"><span>Contenido del concesionario</span><strong>Seguinos para novedades</strong><small>Vista previa estática · no reproduce publicaciones ni inventa contenido.</small></div></div></div></section>
+    <section id="concesionario" class="dealer-section premium-reveal"><div class="wrap dealer-grid"><div><span class="tag">Concesionario</span><h2>Una atención local, con el respaldo de la red oficial Toyota.</h2><p>Piñeyro y Moscatelli S.R.L. se presenta en Concepción del Uruguay como concesionario oficial Toyota, con áreas de ventas, service, repuestos y neumáticos.</p><a class="social-cta" target="_blank" rel="noopener" href="https://www.instagram.com/toyotacdelu/?hl=es"><span class="social-mark" aria-hidden="true"><svg class="icon-outline" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5.5"></rect><circle cx="12" cy="12" r="4.1"></circle><circle cx="17.35" cy="6.65" r="1.1" fill="currentColor" stroke="none"></circle></svg></span><span><strong>Seguinos en Instagram</strong><small>@toyotacdelu · cuenta pública del negocio</small></span><span>↗</span></a></div><div class="social-preview"><div class="social-preview-top"><span>INSTAGRAM</span><span>@toyotacdelu</span></div><div class="social-preview-art social-preview-art-optimized"><span>Contenido del concesionario</span><strong>Seguinos para novedades</strong><small>Vista previa estática · no reproduce publicaciones ni inventa contenido.</small></div></div></div></section>
 
   </main>
 
@@ -1822,15 +1854,15 @@ h1,h2,h3,.brand .b1,.section-kicker,.tag{font-kerning:normal;text-wrap:balance}
   </div>
 
 
-  <a class="float-advisor" target="_blank" rel="noopener" aria-label="Hablar con un asesor por WhatsApp" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20hablar%20con%20un%20asesor%20sobre%20un%20Toyota."><span class="float-badge">AS</span></a>
+  <a class="float-advisor" target="_blank" rel="noopener" aria-label="Hablar con un asesor por WhatsApp" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20hablar%20con%20un%20asesor%20sobre%20un%20Toyota."><svg class="icon-outline" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13v-1.2a8 8 0 0116 0V13"></path><rect x="2.4" y="12.4" width="4.2" height="6.4" rx="2.1"></rect><rect x="17.4" y="12.4" width="4.2" height="6.4" rx="2.1"></rect><path d="M19.6 18.8v.7a3 3 0 01-3 3h-3.4"></path></svg></a>
 
   <a class="float-social" target="_blank" rel="noopener" aria-label="Visitar Instagram de Toyota Concepción del Uruguay" href="https://www.instagram.com/toyotacdelu/?hl=es">
-    <span class="float-badge">IG</span>
+    <svg class="icon-outline" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5"></rect><circle cx="12" cy="12" r="4.1"></circle><circle cx="17.35" cy="6.65" r="1.1" fill="#fff" stroke="none"></circle></svg>
   </a>
 
   <a class="float-wa" target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp"
      href="https://wa.me/5493442473453?text=Hola!%20Vi%20la%20p%C3%A1gina%20y%20quiero%20consultar.">
-    <span class="float-badge float-badge-wa">WA</span>
+    <svg class="icon-solid" viewBox="0 0 32 32" aria-hidden="true" fill="#fff"><path d="M16.04 4C9.42 4 4.05 9.36 4.05 15.98c0 2.11.55 4.17 1.6 5.98L4 28l6.2-1.62a12 12 0 005.83 1.49h.01c6.62 0 11.99-5.36 11.99-11.98C28.03 9.36 22.66 4 16.04 4zm0 21.9h-.01a9.9 9.9 0 01-5.05-1.38l-.36-.22-3.75.98.99-3.66-.24-.38a9.9 9.9 0 01-1.53-5.28c0-5.48 4.46-9.94 9.96-9.94 2.66 0 5.15 1.04 7.03 2.92a9.85 9.85 0 012.91 7.02c0 5.48-4.46 9.94-9.95 9.94zm5.46-7.44c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.05-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.22 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35z"></path></svg>
   </a>
 
   <nav class="mobilebar" aria-label="Accesos rápidos">
