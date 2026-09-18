@@ -36,9 +36,7 @@ document.addEventListener('DOMContentLoaded',function(){document.querySelectorAl
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/SplitText.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/Flip.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/CustomEase.min.js" defer></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.css">
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js" defer></script>
 <script id="toyota-scroll-helper">
@@ -729,7 +727,7 @@ body{background:#e9eef0!important;color:#172026!important}
 .rive-vehicle-preview.is-selecting-b .vehicle-3d-redline{stroke-width:5;}
 .rive-vehicle-preview.is-complete .vehicle-3d-art{transform:rotateX(8deg) rotateY(0deg) translate3d(0,-3px,18px) scale(1.1);filter:drop-shadow(0 18px 14px rgba(180,0,18,.26));}
 .rive-vehicle-preview.is-complete .vehicle-3d-scan{opacity:1;animation:vehicleScan 1.8s cubic-bezier(.23,1,.32,1) both;}
-.rive-vehicle-caption{position:relative;z-index:4;min-height:34px;padding:8px 12px 9px;background:rgba(255,255,255,.72);backdrop-filter:blur(5px);}
+.rive-vehicle-caption{position:relative;z-index:4;min-height:34px;padding:8px 12px 9px;background:rgba(255,255,255,.92);}
 .rive-vehicle-caption-label{max-width:170px;overflow:hidden;text-overflow:ellipsis;}
 @keyframes vehicleScan{0%{transform:translateY(-42px);opacity:0}25%{opacity:1}100%{transform:translateY(70px);opacity:0}}
 @media(max-width:700px){.rive-vehicle-preview{flex-basis:auto;min-height:210px}.rive-vehicle-canvas-wrap{min-height:174px}.rive-vehicle-caption-label{max-width:230px}.vehicle-3d-art{transform:rotateX(8deg) rotateY(-9deg) translateZ(6px) scale(1.08);}}
@@ -740,12 +738,8 @@ body{background:#e9eef0!important;color:#172026!important}
 
 .cta-banner-optimized{background-image:image-set(url("toyota-sharp-assets/asset-713411293222-800.avif") type("image/avif"),url("toyota-sharp-assets/asset-713411293222-800.webp") type("image/webp"),url("toyota-sharp-assets/asset-713411293222-800.jpg") type("image/jpeg"));}
 #concesionario .social-preview-art-optimized{background-image:linear-gradient(145deg,rgba(49,58,64,.55),rgba(17,23,26,.75)),image-set(url("toyota-sharp-assets/asset-4a00d0bf85e9-800.avif") type("image/avif"),url("toyota-sharp-assets/asset-4a00d0bf85e9-800.webp") type("image/webp"),url("toyota-sharp-assets/asset-4a00d0bf85e9-800.jpg") type("image/jpeg"))!important;background-size:cover;background-position:center;}
-.float-wa{bottom:calc(20px + env(safe-area-inset-bottom));animation:whatsappPulse 3.4s ease-in-out infinite;}
-@keyframes whatsappPulse{0%,68%,100%{box-shadow:0 10px 28px rgba(235,10,30,.35),0 0 0 0 rgba(235,10,30,.2)}78%{box-shadow:0 10px 28px rgba(235,10,30,.35),0 0 0 10px rgba(235,10,30,0)}}
+.float-wa{bottom:calc(20px + env(safe-area-inset-bottom));}
 @media(max-width:540px){.float-wa{bottom:calc(20px + env(safe-area-inset-bottom))!important;right:16px!important}.float-wa svg{width:24px;height:24px}}
-@media(prefers-reduced-motion:reduce){.float-wa{animation:none}}
-
-
 /* Consolidated CSS block 22: original cascade position 22 */
 
 /* Direction: the car is the composition; copy and dealership identity are editorial annotations. */
@@ -774,7 +768,7 @@ body{background:#e9eef0!important;color:#172026!important}
 .editorial-text-link{color:#f4f1eb;text-decoration:none;text-transform:uppercase;letter-spacing:.1em;font:600 10px var(--display);border-bottom:1px solid rgba(244,241,235,.5);padding-bottom:6px}.editorial-text-link span{color:var(--toyota-red);font-size:15px;margin-left:6px}
 .hero-editorial-specs{position:absolute;right:3.2vw;bottom:30px;z-index:3;display:flex;gap:26px;color:rgba(244,241,235,.6);font:500 9px var(--display);letter-spacing:.12em;text-transform:uppercase}.hero-editorial-specs span{display:flex;gap:8px;align-items:center}.hero-editorial-specs span:first-child{color:var(--toyota-red)}.hero-editorial-specs b{color:#f4f1eb;font-weight:600}
 .hero-editorial-scroll{position:absolute;left:7.4%;bottom:30px;z-index:3;display:flex;align-items:center;gap:10px;color:rgba(244,241,235,.6);text-transform:uppercase;letter-spacing:.15em;font:500 9px var(--display)}.hero-editorial-scroll span{display:block;width:34px;height:1px;background:var(--toyota-red)}
-@media(max-width:760px){.hero-editorial,.hero-editorial-frame{min-height:760px}.hero-editorial-frame{grid-template-columns:48px 1fr}.hero-editorial-rail{padding-top:22px}.hero-rail-rule{height:58px;margin-top:24px}.hero-rail-label{font-size:8px}.hero-editorial-copy{left:8%;top:19%;max-width:78%}.hero-editorial-copy h1{font-size:clamp(43px,12vw,70px);margin-top:20px}.hero-editorial-copy .lead{font-size:15px;max-width:240px}.hero-editorial-actions{display:block}.editorial-text-link{display:inline-block;margin-top:20px}.hero-editorial-wordmark{top:8%;right:5%;font-size:clamp(37px,11vw,70px)}.hero-editorial-specs{left:8%;right:auto;bottom:70px;display:grid;gap:8px}.hero-editorial-scroll{left:8%;bottom:28px}.hero-editorial-vehicle img{object-position:62% center!important}.hero-editorial-vehicle figcaption{left:18px;right:18px;bottom:18px;font-size:8px}.hero-editorial-wash{background:linear-gradient(90deg,rgba(15,17,18,.92),rgba(15,17,18,.34) 74%),linear-gradient(0deg,rgba(15,17,18,.74),transparent 48%)}}
+@media(max-width:760px){.hero-editorial,.hero-editorial-frame{min-height:760px}.hero-editorial-frame{grid-template-columns:48px 1fr}.hero-editorial-rail{padding-top:22px}.hero-rail-rule{height:58px;margin-top:24px}.hero-rail-label{font-size:8px}.hero-editorial-copy{left:8%;top:19%;max-width:78%}.hero-editorial-copy h1{font-size:clamp(43px,12vw,70px);margin-top:20px}.hero-editorial-copy .lead{font-size:15px;max-width:240px}.hero-editorial-actions{display:block}.editorial-text-link{display:inline-block;margin-top:20px}.hero-editorial-wordmark{top:8%;right:5%;font-size:clamp(37px,11vw,70px)}.hero-editorial-specs{left:8%;right:auto;bottom:70px;display:grid;gap:8px}.hero-editorial-scroll{left:8%;bottom:28px}.hero-editorial-vehicle img{object-position:62% center!important}.hero-editorial-vehicle figcaption{left:18px;right:18px;bottom:18px;font-size:8px}.hero-editorial-wash{background:linear-gradient(90deg,rgba(15,17,18,.92),rgba(15,17,18,.34) 74%),linear-gradient(0deg,rgba(15,17,18,.74),transparent 48%)}.hero-editorial-vehicle img{will-change:transform}}
 @media(prefers-reduced-motion:reduce){.hero-editorial-vehicle img{transform:none}.editorial-cta{transition:none}}
 
 
@@ -924,7 +918,7 @@ body{background:#e9eef0!important;color:#172026!important}
 
 /* 5) Mini mapa clickable en el espacio libre de "Cómo comprar" */
 .journey-mini-map{position:relative;margin-top:18px;border-radius:12px;overflow:hidden;min-height:180px;border:1px solid rgba(212,175,55,.35)}
-.journey-mini-map iframe{display:block;width:100%;height:180px;border:0;pointer-events:none;filter:grayscale(.15) contrast(1.05) brightness(.92)}
+.journey-mini-map iframe{display:block;width:100%;height:180px;border:0;pointer-events:none}
 .journey-mini-map-cta{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:2px;padding:14px 16px;text-decoration:none;background:linear-gradient(180deg,rgba(15,20,23,0) 45%,rgba(10,14,16,.86) 100%);color:#fff;transition:background .25s ease}
 .journey-mini-map-cta:hover{background:linear-gradient(180deg,rgba(15,20,23,.12) 40%,rgba(10,14,16,.92) 100%)}
 .journey-mini-map-cta strong{font:700 14px var(--display);color:#fff}
@@ -1237,7 +1231,7 @@ html,body{overflow-x:clip}
     <section class="hero hero-editorial" aria-labelledby="hero-title">
   <div class="hero-editorial-frame">
     <div class="hero-editorial-rail" aria-label="Identidad del concesionario">
-      <a class="hero-rail-logo" href="#top" aria-label="Volver al inicio"><img src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="Piñeyro y Moscatelli — Servicio Oficial Toyota" width="256" height="256"></a>
+      <a class="hero-rail-logo" href="#top" aria-label="Volver al inicio"><img src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="Piñeyro y Moscatelli — Servicio Oficial Toyota" width="256" height="256" decoding="async"></a>
       <span class="hero-rail-rule"></span>
       <span class="hero-rail-label">Concesionario<br>oficial Toyota<br>desde 1987</span>
       <span class="hero-rail-detail">9 DE JULIO 1624<br>CONCEPCIÓN DEL URUGUAY</span>
@@ -1357,9 +1351,9 @@ html,body{overflow-x:clip}
           <h3>Accesorios y merchandising que ya ofrecen</h3>
           <p>Material publicado por el propio concesionario en Instagram (@toyotacdelu) — no son fotos de stock genéricas.</p>
           <div class="access-controls" aria-label="Filtrar accesorios y merchandising"><div class="access-filters" role="group" aria-label="Categorías de accesorios"><button type="button" class="access-filter active" data-access-filter="todos">Todos</button><button type="button" class="access-filter" data-access-filter="exterior">Exterior</button><button type="button" class="access-filter" data-access-filter="interior">Interior</button><button type="button" class="access-filter" data-access-filter="tech">Tech</button></div><div class="access-sort-group"><label for="accessorySort">Ordenar</label><select class="access-sort" id="accessorySort"><option value="default">Recomendados</option><option value="az">A–Z</option><option value="za">Z–A</option></select></div></div><div class="access-grid">
-            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-bae67c9e04b0.webp"><img src="toyota-sharp-assets/enhanced-bae67c9e04b0.jpg" alt="Kit de accesorios genuinos para Toyota Hilux, instalado en planta de Zárate" data-accessory-category="exterior" decoding="async" width="800" height="648"></picture><figcaption>Kit de accesorios genuinos para Hilux</figcaption></figure>
-            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-73f90a43dab0.webp"><img src="toyota-sharp-assets/enhanced-73f90a43dab0.jpg" alt="Vaso térmico Toyota, artículo de merchandising oficial" data-accessory-category="interior" decoding="async" width="598" height="800"></picture><figcaption>Vaso térmico Toyota</figcaption></figure>
-            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-682f1d1786b8.webp"><img src="toyota-sharp-assets/enhanced-682f1d1786b8.jpg" alt="Botella térmica Toyota, artículo de merchandising oficial" data-accessory-category="interior" decoding="async" width="586" height="800"></picture><figcaption>Botella térmica Toyota</figcaption></figure>
+            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-bae67c9e04b0.webp"><img src="toyota-sharp-assets/enhanced-bae67c9e04b0.jpg" alt="Kit de accesorios genuinos para Toyota Hilux, instalado en planta de Zárate" data-accessory-category="exterior" width="800" height="648" loading="lazy" decoding="async"></picture><figcaption>Kit de accesorios genuinos para Hilux</figcaption></figure>
+            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-73f90a43dab0.webp"><img src="toyota-sharp-assets/enhanced-73f90a43dab0.jpg" alt="Vaso térmico Toyota, artículo de merchandising oficial" data-accessory-category="interior" width="598" height="800" loading="lazy" decoding="async"></picture><figcaption>Vaso térmico Toyota</figcaption></figure>
+            <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-682f1d1786b8.webp"><img src="toyota-sharp-assets/enhanced-682f1d1786b8.jpg" alt="Botella térmica Toyota, artículo de merchandising oficial" data-accessory-category="interior" width="586" height="800" loading="lazy" decoding="async"></picture><figcaption>Botella térmica Toyota</figcaption></figure>
             <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-20773d0e6020.webp"><img src="toyota-sharp-assets/enhanced-20773d0e6020.jpg" alt="Banner de accesorios genuinos Toyota" data-accessory-category="exterior" loading="lazy" decoding="async" width="563" height="800"></picture><figcaption>Accesorios genuinos Toyota</figcaption></figure>
             <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-dd56c60bfd4a.webp"><img src="toyota-sharp-assets/enhanced-dd56c60bfd4a.jpg" alt="Infografía de accesorios genuinos Toyota" data-accessory-category="tech" loading="lazy" decoding="async" width="800" height="779"></picture><figcaption>Línea completa de accesorios</figcaption></figure>
             <figure><picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-9580c59d8ea4.webp"><img src="toyota-sharp-assets/enhanced-9580c59d8ea4.jpg" alt="Llaveros de merchandising Toyota" data-accessory-category="interior" loading="lazy" decoding="async" width="550" height="800"></picture><figcaption>Llaveros Toyota</figcaption></figure>
@@ -1558,10 +1552,10 @@ html,body{overflow-x:clip}
     <section id="categorias" class="expansion-dark premium-reveal">
       <div class="wrap"><div class="section-head"><div><span class="tag gold">Explorá por uso</span><h2>Encontrá la categoría que encaja con vos</h2><p class="muted">Filtrá la gama por tipo de vehículo y seguí desde ahí hacia la ficha o el comparador.</p></div></div>
         <div class="category-grid">
-          <article class="category-card" data-category="pickup" data-mark="P"><img class="category-mark-logo" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" aria-hidden="true" width="256" height="256"><h3>Pick-ups</h3><p>Para trabajo, carga y aventura. Incluye la gama Hilux disponible para consultar.</p><a href="#gama" class="category-link">Explorar pick-ups ↗</a></article>
-          <article class="category-card" data-category="suv" data-mark="S"><img class="category-mark-logo" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" aria-hidden="true" width="256" height="256"><h3>SUV</h3><p>Más espacio y versatilidad para moverte en ciudad, ruta y viajes.</p><a href="#gama" class="category-link">Explorar SUV ↗</a></article>
-          <article class="category-card" data-category="sedan" data-mark="C"><img class="category-mark-logo" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" aria-hidden="true" width="256" height="256"><h3>Sedanes</h3><p>Confort y eficiencia para el uso diario, con opciones publicadas para consultar.</p><a href="#gama" class="category-link">Explorar sedanes ↗</a></article>
-          <article class="category-card" data-category="todos" data-mark="T"><img class="category-mark-logo" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" aria-hidden="true" width="256" height="256"><h3>Toda la gama</h3><p>Compará modelos, abrí una ficha y consultá versiones y disponibilidad.</p><a href="#gama" class="category-link">Ver todos ↗</a></article>
+          <article class="category-card" data-category="pickup" data-mark="P"><img class="category-mark-logo" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" aria-hidden="true" width="256" height="256" loading="lazy" decoding="async"><h3>Pick-ups</h3><p>Para trabajo, carga y aventura. Incluye la gama Hilux disponible para consultar.</p><a href="#gama" class="category-link">Explorar pick-ups ↗</a></article>
+          <article class="category-card" data-category="suv" data-mark="S"><img class="category-mark-logo" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" aria-hidden="true" width="256" height="256" loading="lazy" decoding="async"><h3>SUV</h3><p>Más espacio y versatilidad para moverte en ciudad, ruta y viajes.</p><a href="#gama" class="category-link">Explorar SUV ↗</a></article>
+          <article class="category-card" data-category="sedan" data-mark="C"><img class="category-mark-logo" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" aria-hidden="true" width="256" height="256" loading="lazy" decoding="async"><h3>Sedanes</h3><p>Confort y eficiencia para el uso diario, con opciones publicadas para consultar.</p><a href="#gama" class="category-link">Explorar sedanes ↗</a></article>
+          <article class="category-card" data-category="todos" data-mark="T"><img class="category-mark-logo" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" aria-hidden="true" width="256" height="256" loading="lazy" decoding="async"><h3>Toda la gama</h3><p>Compará modelos, abrí una ficha y consultá versiones y disponibilidad.</p><a href="#gama" class="category-link">Ver todos ↗</a></article>
         </div>
       </div>
     </section>
@@ -1674,7 +1668,7 @@ html,body{overflow-x:clip}
 
     <section id="mantenimiento" class="expansion-dark premium-reveal">
       <div class="wrap"><div class="section-head"><div><span class="tag gold">Mantenimiento oficial</span><h2>Lo importante de cuidar tu Toyota después de comprarlo.</h2><p class="muted">Una guía general para orientarte. El alcance, los intervalos y la disponibilidad se confirman según modelo, kilometraje y línea vigente.</p></div></div>
-        <div class="maintenance-grid"><article class="maintenance-card"><img class="maintenance-card-logo" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" aria-hidden="true" width="256" height="256"><h3>Plan programado</h3><p>Consultá qué mantenimiento corresponde a tu vehículo y coordiná el turno con el equipo de service.</p><a class="btn primary" target="_blank" rel="noopener" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20consultar%20el%20mantenimiento%20que%20corresponde%20a%20mi%20Toyota.">Consultar plan ↗</a></article><article class="maintenance-card"><img class="maintenance-card-logo" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" aria-hidden="true" width="256" height="256"><h3>Revisión y diagnóstico</h3><p>Describí el síntoma o la necesidad; el concesionario te indica el canal y el próximo paso.</p><a class="btn" href="#contacto">Describir necesidad ↗</a></article><article class="maintenance-card"><img class="maintenance-card-logo" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" aria-hidden="true" width="256" height="256"><h3>Repuestos y neumáticos</h3><p>Podés consultar piezas genuinas y neumáticos Bridgestone desde sus líneas directas.</p><a class="btn" href="#servicios">Ver postventa ↗</a></article></div>
+        <div class="maintenance-grid"><article class="maintenance-card"><img class="maintenance-card-logo" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" aria-hidden="true" width="256" height="256" loading="lazy" decoding="async"><h3>Plan programado</h3><p>Consultá qué mantenimiento corresponde a tu vehículo y coordiná el turno con el equipo de service.</p><a class="btn primary" target="_blank" rel="noopener" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20consultar%20el%20mantenimiento%20que%20corresponde%20a%20mi%20Toyota.">Consultar plan ↗</a></article><article class="maintenance-card"><img class="maintenance-card-logo" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" aria-hidden="true" width="256" height="256" loading="lazy" decoding="async"><h3>Revisión y diagnóstico</h3><p>Describí el síntoma o la necesidad; el concesionario te indica el canal y el próximo paso.</p><a class="btn" href="#contacto">Describir necesidad ↗</a></article><article class="maintenance-card"><img class="maintenance-card-logo" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" aria-hidden="true" width="256" height="256" loading="lazy" decoding="async"><h3>Repuestos y neumáticos</h3><p>Podés consultar piezas genuinas y neumáticos Bridgestone desde sus líneas directas.</p><a class="btn" href="#servicios">Ver postventa ↗</a></article></div>
         <div style="margin-top:22px;display:flex;gap:10px;flex-wrap:wrap"><a class="btn primary" target="_blank" rel="noopener" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20reservar%20un%20turno%20de%20service%20para%20mi%20Toyota.">Reservar service ↗</a><a class="btn" href="#ubicacion">Ver horarios de atención</a></div><div class="maintenance-intro"><div class="maintenance-note"><strong>Antes de pedir turno</strong><span>Tené a mano modelo, año, kilometraje y una descripción breve de lo que necesitás. Así el equipo puede orientarte mejor desde el primer mensaje.</span></div><div class="maintenance-note"><strong>Atención directa</strong><span>Turnos: <a href="tel:+543442473453">03442 47-3453</a><br>Repuestos: <a href="tel:+543442677433">03442 67-7433</a><br>Neumáticos: <a href="tel:+543442502390">03442 50-2390</a></span></div></div>
       </div>
     </section>
@@ -1725,7 +1719,7 @@ html,body{overflow-x:clip}
 
 
     <section id="instalaciones" class="expansion-section premium-reveal">
-      <div class="wrap"><div class="section-head"><div><span class="tag">Conocé el concesionario</span><h2>Un espacio pensado para acompañarte.</h2><p>Ventas, service y repuestos bajo un mismo techo en 9 de Julio 1624.</p></div></div><div class="facility-grid"><article class="facility-card"><div class="facility-placeholder"><img class="facility-placeholder-logo" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" aria-hidden="true" width="256" height="256"></div><div class="facility-copy"><h3>Showroom</h3><p>Área de consulta de modelos y atención comercial.</p><a class="btn" href="#gama">Ver modelos ↗</a></div></article><article class="facility-card"><div class="facility-placeholder"><img class="facility-placeholder-logo" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" aria-hidden="true" width="256" height="256"></div><div class="facility-copy"><h3>Service oficial</h3><p>Espacio para mantenimiento programado y revisión.</p><a class="btn" href="#mantenimiento">Conocer mantenimiento ↗</a></div></article><article class="facility-card"><div class="facility-placeholder"><img class="facility-placeholder-logo" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" aria-hidden="true" width="256" height="256"></div><div class="facility-copy"><h3>Repuestos y neumáticos</h3><p>Consultá disponibilidad antes de acercarte.</p><a class="btn" href="#repuestos">Consultar repuestos ↗</a></div></article></div><div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap"><a class="btn primary" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Pi%C3%B1eyro%20y%20Moscatelli%20Toyota%20Concepci%C3%B3n%20del%20Uruguay">Cómo llegar ↗</a><a class="btn" href="#contacto">Hablar con el equipo</a></div></div>
+      <div class="wrap"><div class="section-head"><div><span class="tag">Conocé el concesionario</span><h2>Un espacio pensado para acompañarte.</h2><p>Ventas, service y repuestos bajo un mismo techo en 9 de Julio 1624.</p></div></div><div class="facility-grid"><article class="facility-card"><div class="facility-placeholder"><img class="facility-placeholder-logo" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" aria-hidden="true" width="256" height="256" loading="lazy" decoding="async"></div><div class="facility-copy"><h3>Showroom</h3><p>Área de consulta de modelos y atención comercial.</p><a class="btn" href="#gama">Ver modelos ↗</a></div></article><article class="facility-card"><div class="facility-placeholder"><img class="facility-placeholder-logo" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" aria-hidden="true" width="256" height="256" loading="lazy" decoding="async"></div><div class="facility-copy"><h3>Service oficial</h3><p>Espacio para mantenimiento programado y revisión.</p><a class="btn" href="#mantenimiento">Conocer mantenimiento ↗</a></div></article><article class="facility-card"><div class="facility-placeholder"><img class="facility-placeholder-logo" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" aria-hidden="true" width="256" height="256" loading="lazy" decoding="async"></div><div class="facility-copy"><h3>Repuestos y neumáticos</h3><p>Consultá disponibilidad antes de acercarte.</p><a class="btn" href="#repuestos">Consultar repuestos ↗</a></div></article></div><div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap"><a class="btn primary" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Pi%C3%B1eyro%20y%20Moscatelli%20Toyota%20Concepci%C3%B3n%20del%20Uruguay">Cómo llegar ↗</a><a class="btn" href="#contacto">Hablar con el equipo</a></div></div>
     </section>
 
 
@@ -2095,9 +2089,16 @@ document.addEventListener("DOMContentLoaded", function(){
 
   // ---- header con sombra al scrollear ----
   var header = document.getElementById("site-header");
-  window.addEventListener("scroll", function(){
-    header.classList.toggle("is-scrolled", window.scrollY > 4);
-  }, { passive: true });
+  window.__toyotaSyncHeader=function(y){
+    if(!header)return;
+    var scrolled=y>4;
+    // Evita escrituras de clase y recalculo de estilo en cada evento si el estado no cambió.
+    if(header.classList.contains("is-scrolled")!==scrolled)header.classList.toggle("is-scrolled",scrolled);
+  };
+  window.__toyotaHeaderScrollFallback=function(){
+    if(!window.__toyotaLenis)window.__toyotaSyncHeader(window.scrollY);
+  };
+  window.addEventListener("scroll",window.__toyotaHeaderScrollFallback,{passive:true});
 
   // ---- bloqueo de scroll de fondo compartido: hasta ahora ningún overlay (menú mobile,
   // ficha de modelo) bloqueaba el scroll de la página detrás. Contador para que dos
@@ -2671,10 +2672,9 @@ document.addEventListener("DOMContentLoaded", function(){
     else {
       revealSections.forEach(function(el){
         el.classList.add("gsap-ready");
-        // Antes: opacity+y plano. Ahora: una cortina clip-path que descubre la sección
-        // de abajo hacia arriba mientras sube y se asienta en escala, sin tocar layout
-        // ni contenido — el mismo bloque simplemente entra con más cine.
-        gsap.fromTo(el,{clipPath:"inset(0% 0% 8% 0%)",opacity:0,y:28,scale:.986},{clipPath:"inset(0% 0% 0% 0%)",opacity:1,y:0,scale:1,duration:1,ease:premiumEase,clearProps:"clipPath,scale",scrollTrigger:{trigger:el,start:"top 86%",once:true}});
+        // Reveal compositable: opacity + transform evita repaints grandes de clip-path
+        // en cada entrada y conserva una llegada sobria, estable y premium.
+        gsap.fromTo(el,{opacity:0,y:18},{opacity:1,y:0,duration:.68,ease:premiumEase,clearProps:"opacity,transform",scrollTrigger:{trigger:el,start:"top 86%",once:true}});
       });
       [".gama-grid .model",".highlight-track .highlight-card",".access-grid figure",".expansion-grid > *",".category-browser > *",".maintenance-grid > *"].forEach(function(selector){
         ScrollTrigger.batch(selector,{start:"top 88%",once:true,onEnter:function(batch){
@@ -2807,16 +2807,20 @@ document.addEventListener("DOMContentLoaded", function(){
   } else if(!reduce){
     var lenis=new Lenis({
       // One interpolation model only: lerp avoids competing duration/easing paths.
-      // A slightly higher lerp reduces perceived drag while keeping input frame-stable.
-      lerp:.2,
+      // Higher lerp reduces perceived drag without adding a second smoothing layer.
+      lerp:.3,
       smoothWheel:true,
+      wheelMultiplier:1.05,
       syncTouch:false,
       anchors:true,
-      allowNestedScroll:true,
+      allowNestedScroll:false,
       autoRaf:false
     });
     var lenisRaf=function(time){lenis.raf(time*1000)};
     window.__toyotaLenis=lenis;
+    if(window.__toyotaHeaderScrollFallback)window.removeEventListener("scroll",window.__toyotaHeaderScrollFallback);
+    var headerSync=function(event){if(window.__toyotaSyncHeader)window.__toyotaSyncHeader(event&&typeof event.scroll==="number"?event.scroll:lenis.scroll);};
+    lenis.on("scroll",headerSync);
     lenis.on("scroll",ScrollTrigger.update);
     gsap.ticker.add(lenisRaf);
     gsap.ticker.lagSmoothing(0);
@@ -2827,6 +2831,7 @@ document.addEventListener("DOMContentLoaded", function(){
     };
     window.__destroyToyotaLenis=function(){
       gsap.ticker.remove(lenisRaf);
+      lenis.off("scroll",headerSync);
       lenis.off("scroll",ScrollTrigger.update);
       lenis.destroy();
       window.__toyotaLenis=null;
@@ -3124,7 +3129,13 @@ document.addEventListener("DOMContentLoaded", function(){
   var primary=stage.querySelector(".hero-editorial-vehicle:not(.hero-editorial-secondary)"),secondary=stage.querySelector(".hero-editorial-secondary"),wordmark=stage.querySelector(".hero-editorial-wordmark"),ticking=false;
   function update(){ticking=false;var rect=stage.getBoundingClientRect(),progress=Math.max(-1,Math.min(1,(window.innerHeight*.5-(rect.top+rect.height*.5))/Math.max(window.innerHeight,rect.height)));if(primary)primary.style.transform="translate3d(0,"+(progress*-5).toFixed(2)+"px,0)";if(secondary)secondary.style.transform="translate3d(0,"+(progress*3).toFixed(2)+"px,0)";if(wordmark)wordmark.style.transform="translate3d(0,"+(progress*-2).toFixed(2)+"px,0)";}
   function request(){if(!ticking){ticking=true;requestAnimationFrame(update);}}
-  window.addEventListener("scroll",request,{passive:true});window.addEventListener("resize",request,{passive:true});request();
+  var lenis=window.__toyotaLenis,resizeHandler=request,usingLenis=!!(lenis&&lenis.on);
+  if(usingLenis){lenis.on("scroll",update);}else{window.addEventListener("scroll",request,{passive:true});}
+  window.addEventListener("resize",resizeHandler,{passive:true});request();
+  window.addEventListener("pagehide",function(){
+    if(usingLenis){lenis.off("scroll",update);}else{window.removeEventListener("scroll",request);}
+    window.removeEventListener("resize",resizeHandler);
+  },{once:true});
   })();
 });
 </script>
@@ -3203,6 +3214,14 @@ document.addEventListener("DOMContentLoaded", function(){
       },{passive:true});
     });
   }
+  var visibilityObserver=null;
+  function syncPlayback(isVisible){
+    if(!instance)return;
+    try{
+      if(isVisible && !document.hidden){instance.play();}
+      else if(instance.pause){instance.pause();}
+    }catch(error){/* Older Rive runtimes may not expose playback controls. */}
+  }
   function start(){
     if(started)return;started=true;
     loadRuntime().then(function(rive){
@@ -3211,10 +3230,18 @@ document.addEventListener("DOMContentLoaded", function(){
         instance.resizeDrawingSurfaceToCanvas();
         stage.classList.add("is-ready");
         bindPointer();
+        syncPlayback(true);
         window.addEventListener("resize",function(){if(instance)instance.resizeDrawingSurfaceToCanvas();},{passive:true});
+        if("IntersectionObserver" in window){
+          visibilityObserver=new IntersectionObserver(function(entries){
+            if(entries[0])syncPlayback(entries[0].isIntersecting);
+          },{rootMargin:"0px"});
+          visibilityObserver.observe(stage);
+        }
+        document.addEventListener("visibilitychange",function(){syncPlayback(!document.hidden && !!instance);},{passive:true});
       };
       instance=new rive.Rive({
-        src:asset,canvas:canvas,autoplay:true,autoBind:false,
+        src:asset,canvas:canvas,autoplay:false,autoBind:false,
         onLoad:ready,
         onLoadError:fail
       });
@@ -3227,7 +3254,7 @@ document.addEventListener("DOMContentLoaded", function(){
   if("IntersectionObserver" in window){
     var observer=new IntersectionObserver(function(entries){
       if(entries.some(function(entry){return entry.isIntersecting;})){observer.disconnect();start();}
-    },{rootMargin:"180px 0px"});
+    },{rootMargin:"80px 0px"});
     observer.observe(stage);
   }else{start();}
   window.addEventListener("pagehide",function(){if(instance&&instance.cleanup)instance.cleanup();},{once:true});
@@ -3278,18 +3305,5 @@ document.addEventListener("DOMContentLoaded", function(){
 </script>
 
 
-<script id="visibility-aware-contact-animation">
-/* Las animaciones infinitas se pausan cuando la pestaña no está visible. */
-(function(){
-  var animatedContacts=document.querySelectorAll('.float-wa');
-  if(!animatedContacts.length || !('visibilityState' in document)) return;
-  function sync(){
-    var state=document.hidden?'paused':'running';
-    animatedContacts.forEach(function(el){el.style.animationPlayState=state;});
-  }
-  document.addEventListener('visibilitychange',sync,{passive:true});
-  sync();
-})();
-</script>
 </body>
 </html>
