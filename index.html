@@ -1048,6 +1048,23 @@ body.toyota-scroll-locked{overscroll-behavior:none;touch-action:none}
 @media(max-width:480px){.hero-editorial-rail-right,.hero-editorial-rail .hero-rail-detail{display:none!important}.hero-editorial-frame{grid-template-columns:38px 1fr!important}.hero-editorial-rail{width:38px!important;overflow:hidden!important}}
 @media(prefers-reduced-motion:reduce){.mobilebar{transition:none!important}}
 </style>
+<style id="critical-content-visibility-fix">
+/* La información y los canales de contacto no dependen de una animación JS. */
+.float-wa,.float-advisor,.float-social{
+  opacity:1!important;
+  visibility:visible!important;
+}
+.hero-editorial-rail{
+  opacity:1!important;
+}
+.hero-rail-label{
+  color:rgba(244,241,235,.94)!important;
+}
+.hero-rail-detail,.hero-rail-contact{
+  color:rgba(244,241,235,.76)!important;
+}
+.hero-rail-contact b{color:#fff!important}
+</style>
 </head>
 <body id="top">
 <script id="scroll-restoration">
@@ -2861,10 +2878,10 @@ document.addEventListener("DOMContentLoaded", function(){
       cleanupFns.push(function(){el.removeEventListener("pointerdown",down);el.removeEventListener("pointerup",up);el.removeEventListener("pointerleave",up);});
     });
 
-      // Los botones flotantes (WhatsApp/asesor) hasta ahora estaban ya visibles desde el
-      // primer frame; entran con un pequeño retraso tras el hero para leer como parte de
-      // la misma coreografía, no como chrome estático pegado a la página.
-      gsap.from(".float-wa, .float-advisor",{opacity:0,scale:.4,y:20,duration:.55,ease:"back.out(1.6)",stagger:.08,delay:1.5});
+      // Los botones flotantes son canales de contacto críticos: quedan visibles desde
+      // el primer frame. La animación anterior podía dejarlos en opacity:0 si otro
+      // timeline se interrumpía o se destruía antes de completar.
+      gsap.set(".float-wa, .float-advisor, .float-social",{clearProps:"opacity,visibility"});
 
   },document.body);
 
