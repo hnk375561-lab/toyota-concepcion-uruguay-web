@@ -152,6 +152,7 @@ document.addEventListener('DOMContentLoaded',function(){document.querySelectorAl
 *{box-sizing:border-box}
 html{scroll-behavior:auto}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+html.toyota-scroll-locked,html.toyota-scroll-locked body{overflow:hidden;height:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
 img,svg{max-width:100%;display:block} a{color:inherit}
 .wrap{width:min(1160px,calc(100% - 48px));margin:0 auto}
@@ -1981,15 +1982,41 @@ document.addEventListener("DOMContentLoaded", function(){
     header.classList.toggle("is-scrolled", window.scrollY > 4);
   }, { passive: true });
 
+  // ---- bloqueo de scroll de fondo compartido: hasta ahora ningún overlay (menú mobile,
+  // ficha de modelo) bloqueaba el scroll de la página detrás. Contador para que dos
+  // overlays abiertos a la vez no se desbloqueen mutuamente al cerrar solo uno. ----
+  window.__toyotaScrollLockCount = window.__toyotaScrollLockCount || 0;
+  window.__toyotaLockScroll = function(){
+    window.__toyotaScrollLockCount++;
+    document.documentElement.classList.add("toyota-scroll-locked");
+    if(window.__toyotaLenis && window.__toyotaLenis.stop) window.__toyotaLenis.stop();
+  };
+  window.__toyotaUnlockScroll = function(){
+    window.__toyotaScrollLockCount = Math.max(0, window.__toyotaScrollLockCount - 1);
+    if(window.__toyotaScrollLockCount === 0){
+      document.documentElement.classList.remove("toyota-scroll-locked");
+      if(window.__toyotaLenis && window.__toyotaLenis.start) window.__toyotaLenis.start();
+    }
+  };
+
   // ---- menú mobile ----
   var burger = document.getElementById("burger");
   var mobilepanel = document.getElementById("mobilepanel");
   burger.addEventListener("click", function(){
     var open = mobilepanel.classList.toggle("open");
     burger.setAttribute("aria-expanded", open ? "true" : "false");
+    if(open) window.__toyotaLockScroll(); else window.__toyotaUnlockScroll();
   });
   mobilepanel.querySelectorAll("a").forEach(function(a){
-    a.addEventListener("click", function(){ mobilepanel.classList.remove("open"); burger.setAttribute("aria-expanded", "false"); });
+    a.addEventListener("click", function(){ if(mobilepanel.classList.contains("open"))window.__toyotaUnlockScroll(); mobilepanel.classList.remove("open"); burger.setAttribute("aria-expanded", "false"); });
+  });
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape" && mobilepanel.classList.contains("open")){
+      window.__toyotaUnlockScroll();
+      mobilepanel.classList.remove("open");
+      burger.setAttribute("aria-expanded", "false");
+      burger.focus();
+    }
   });
 
   // ---- menús desplegables del header: al abrir uno se cierran los demás ----
@@ -2215,8 +2242,8 @@ document.addEventListener("DOMContentLoaded", function(){
   });
   var detail=document.getElementById("modelDetail"), closeDetail=document.getElementById("detailClose"), detailLastFocus=null;
   function slugifyModel(name){return name.toLowerCase().replace(/\s+/g,"-").replace(/[^a-z0-9-]/g,"");}
-  function closeModelDetail(updateHash){detail.classList.remove("open");if(detailLastFocus&&detailLastFocus.focus)detailLastFocus.focus();if(updateHash!==false)history.replaceState(null,"",location.pathname+location.search+"#gama");}
-  function openDetail(name,fromHash){var d=MODEL_DETAILS[name];if(!d)return;detailLastFocus=document.activeElement;document.getElementById("detailTitle").textContent=name;document.getElementById("detailCrumb").textContent=name;document.getElementById("detailWhatsApp").href=wa("turnos","Hola! Quiero consultar por la Toyota "+name+".");document.getElementById("detailIntro").textContent=d.intro;document.getElementById("detailSpecs").innerHTML=d.specs.map(function(x){return '<div class="detail-spec"><strong>'+x[0]+'</strong>'+x[1]+'</div>';}).join("");document.getElementById("detailGallery").innerHTML=d.gallery.map(function(x,i){return '<a class="gallery-link" href="'+x+'" target="_blank" rel="noopener">Abrir material '+(i+1)+"</a>";}).join("");document.getElementById("detailSource").href=d.source;detail.classList.add("open");closeDetail.focus();if(!fromHash)history.replaceState(null,"",location.pathname+location.search+"#modelo/"+slugifyModel(name));}
+  function closeModelDetail(updateHash){if(detail.classList.contains("open"))window.__toyotaUnlockScroll();detail.classList.remove("open");if(detailLastFocus&&detailLastFocus.focus)detailLastFocus.focus();if(updateHash!==false)history.replaceState(null,"",location.pathname+location.search+"#gama");}
+  function openDetail(name,fromHash){var d=MODEL_DETAILS[name];if(!d)return;detailLastFocus=document.activeElement;document.getElementById("detailTitle").textContent=name;document.getElementById("detailCrumb").textContent=name;document.getElementById("detailWhatsApp").href=wa("turnos","Hola! Quiero consultar por la Toyota "+name+".");document.getElementById("detailIntro").textContent=d.intro;document.getElementById("detailSpecs").innerHTML=d.specs.map(function(x){return '<div class="detail-spec"><strong>'+x[0]+'</strong>'+x[1]+'</div>';}).join("");document.getElementById("detailGallery").innerHTML=d.gallery.map(function(x,i){return '<a class="gallery-link" href="'+x+'" target="_blank" rel="noopener">Abrir material '+(i+1)+"</a>";}).join("");document.getElementById("detailSource").href=d.source;detail.classList.add("open");window.__toyotaLockScroll();closeDetail.focus();if(!fromHash)history.replaceState(null,"",location.pathname+location.search+"#modelo/"+slugifyModel(name));}
   closeDetail.addEventListener("click",function(){closeModelDetail();});detail.addEventListener("click",function(e){if(e.target===detail)closeModelDetail();});
   detail.querySelectorAll(".detail-actions a[href^='#']").forEach(function(a){a.addEventListener("click",function(){closeModelDetail(false);});});
   function trapDetailFocus(e){if(!detail.classList.contains("open"))return;if(e.key==="Escape"){e.preventDefault();closeModelDetail();return;}if(e.key!=="Tab")return;var f=detail.querySelectorAll('a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])');if(!f.length)return;var first=f[0],last=f[f.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}
@@ -2501,17 +2528,27 @@ document.addEventListener("DOMContentLoaded", function(){
       var heroWordmark=document.querySelector(".hero-editorial-wordmark");
       var heroSpecs=gsap.utils.toArray(".hero-editorial-specs > span");
       var heroScrollCue=document.querySelector(".hero-editorial-scroll");
+      var heroWash=document.querySelector(".hero-editorial-wash");
+      var heroCta=document.querySelector(".editorial-cta");
+      // Pass 1 — ritmo: el ambiente (wash) abre la escena como un telón, el vehículo entra
+      // casi encima de él (no después), y la tipografía empieza a revelarse mientras el
+      // vehículo todavía está terminando de asentarse. Nada espera a que lo anterior termine
+      // del todo: se superponen a propósito para que lea como una toma coreografiada.
       heroTl
-        .from(heroRails,{opacity:0,y:14,duration:.5,stagger:.08},0)
-        .fromTo(heroPrimaryFig,{clipPath:"inset(0% 0% 100% 0%)",scale:1.04,opacity:.85},{clipPath:"inset(0% 0% 0% 0%)",scale:1,opacity:1,duration:.95,ease:premiumEase,clearProps:"clipPath,scale,opacity"},.08)
-        .fromTo(heroSecondaryFig,{clipPath:"inset(0% 0% 100% 0%)",opacity:0,y:16},{clipPath:"inset(0% 0% 0% 0%)",opacity:1,y:0,duration:.85,ease:premiumEase,clearProps:"clipPath,opacity,y"},.22)
-        .from(heroWordmark,{opacity:0,x:-14,duration:.6},.3)
-        .from(".hero .tag",{opacity:0,x:-18,duration:.45},.32)
-        .to(heroSplit?heroSplit.chars:".hero h1",{opacity:1,y:0,rotateX:0,stagger:.018,duration:.52,ease:premiumEase},"-=.12")
-        .from(".hero .lead",{opacity:0,y:18,duration:.5},"-=.25")
-        .from(".hero-editorial-actions > *",{opacity:0,y:16,scale:.97,stagger:.09,duration:.48,ease:"back.out(1.4)"},"-=.2")
-        .from(heroSpecs,{opacity:0,y:10,duration:.42,stagger:.06},"-=.15")
-        .from(heroScrollCue,{opacity:0,duration:.5},"-=.1");
+        .fromTo(heroWash,{opacity:0},{opacity:1,duration:.7,ease:"power1.out",clearProps:"opacity"},0)
+        .from(heroRails,{opacity:0,y:14,duration:.5,stagger:.08},.04)
+        .fromTo(heroPrimaryFig,{clipPath:"inset(0% 0% 100% 0%)",scale:1.055,opacity:.85},{clipPath:"inset(0% 0% 0% 0%)",scale:1,opacity:1,duration:1.05,ease:premiumEase,clearProps:"clipPath,scale,opacity"},.1)
+        .fromTo(heroSecondaryFig,{clipPath:"inset(0% 0% 100% 0%)",opacity:0,y:16},{clipPath:"inset(0% 0% 0% 0%)",opacity:1,y:0,duration:.85,ease:premiumEase,clearProps:"clipPath,opacity,y"},.32)
+        .from(heroWordmark,{opacity:0,x:-14,duration:.6},.42)
+        .from(".hero .tag",{opacity:0,x:-18,duration:.45},.46)
+        .to(heroSplit?heroSplit.chars:".hero h1",{opacity:1,y:0,rotateX:0,stagger:.018,duration:.52,ease:premiumEase},.58)
+        .from(".hero .lead",{opacity:0,y:18,duration:.5},"-=.28")
+        .from(".hero-editorial-actions > *",{opacity:0,y:16,scale:.97,stagger:.09,duration:.48,ease:"back.out(1.4)"},"-=.22")
+        .from(heroSpecs,{opacity:0,y:10,duration:.42,stagger:.06},"-=.18")
+        .from(heroScrollCue,{opacity:0,duration:.5},"-=.12");
+      // El móvil no hereda el tempo de escritorio tal cual: el mismo guion pero ~20% más
+      // rápido, porque en pantallas chicas una entrada larga se percibe como demora, no lujo.
+      if(window.matchMedia&&window.matchMedia("(max-width:760px)").matches){heroTl.timeScale(1.2);}
       // Hover de .highlight-card consolidado en gsap-max-motion-runtime (un solo listener por tarjeta).
 
       // Barrido de luz sobre el vehículo principal al cierre de la entrada: una sola
@@ -2551,6 +2588,31 @@ document.addEventListener("DOMContentLoaded", function(){
       // El aviso de scroll respira suavemente en vez de quedar inerte una vez que apareció.
       if(heroScrollCue){
         gsap.to(heroScrollCue,{opacity:.45,duration:1.3,ease:"sine.inOut",yoyo:true,repeat:-1,delay:1.4});
+      }
+
+      // Pass 2 — el CTA principal ya tenía atracción magnética (x/y) desde flagship-motion-runtime,
+      // pero nunca respondía en profundidad ni al instante del click: se sentía "pegado" al
+      // fondo en vez de un control físico que se puede presionar. Se suma escala en hover/press
+      // sobre la misma referencia, sin tocar x/y para no pisar el magnetismo existente.
+      if(heroCta){
+        var ctaScale=gsap.quickTo(heroCta,"scale",{duration:.32,ease:premiumEase});
+        var ctaPressed=false;
+        heroCta.addEventListener("pointerenter",function(){ctaScale(1.035);},{passive:true});
+        heroCta.addEventListener("pointerleave",function(){ctaPressed=false;ctaScale(1);},{passive:true});
+        heroCta.addEventListener("pointerdown",function(){ctaPressed=true;ctaScale(.96);},{passive:true});
+        heroCta.addEventListener("pointerup",function(){if(!ctaPressed)return;ctaPressed=false;ctaScale(heroCta.matches(":hover")?1.035:1);},{passive:true});
+      }
+
+      // Pass 3 — salida del Hero: los elementos livianos (marca de agua, specs, aviso de
+      // scroll) se retiran gradualmente a medida que el Hero sale de pantalla, para que la
+      // transición a la siguiente sección se sienta continua en vez de un corte seco. El
+      // scrub queda limitado a opacity/y de estos elementos chicos — nunca a la imagen
+      // principal, que es la fuente medible de frame drops descartada en otro runtime.
+      if(window.ScrollTrigger){
+        var heroExitTargets=[heroWordmark].concat(heroSpecs).filter(Boolean);
+        if(heroExitTargets.length){
+          gsap.to(heroExitTargets,{opacity:0,y:-14,ease:"none",scrollTrigger:{trigger:".hero",start:"top top",end:"40% top",scrub:.4}});
+        }
       }
     }
   } else { document.querySelectorAll(".premium-reveal").forEach(function(el){el.classList.add("is-visible");}); }
