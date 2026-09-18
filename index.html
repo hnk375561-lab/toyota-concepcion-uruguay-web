@@ -972,6 +972,15 @@ body{background:#e9eef0!important;color:#172026!important}
 .compare-pickers select:focus{outline:2px solid var(--luxury-gold);outline-offset:2px}
 .compare-table{border-radius:10px;overflow:hidden}
 .compare-table thead th{color:#8c111d}
+.compare-detail-table{table-layout:fixed;min-width:760px}
+.compare-detail-table thead th{position:sticky;top:0;z-index:2;background:linear-gradient(180deg,#fff,#f3f5f6);letter-spacing:.02em}
+.compare-detail-table tbody tr:nth-child(even) td,.compare-detail-table tbody tr:nth-child(even) th{background:rgba(247,249,249,.72)}
+.compare-detail-table tbody th{position:sticky;left:0;z-index:1;background:#f4f6f6;letter-spacing:.01em}
+.compare-detail-table td{line-height:1.55;color:#334047}
+.compare-detail-table td a{color:#8c111d;text-decoration:underline;text-decoration-color:rgba(140,17,29,.3);text-underline-offset:3px;overflow-wrap:anywhere}
+.compare-detail-table td a:hover{color:#5e0d15;text-decoration-color:currentColor}
+.compare-detail-table th:first-child{width:190px}
+@media(max-width:700px){.compare-detail-table{min-width:720px}.compare-detail-table th:first-child{width:165px}.compare-detail-table td,.compare-detail-table th{padding:12px 11px;font-size:12.5px}}
 .compare-empty{border:1px dashed #C8CED3;border-radius:10px;padding:14px 16px;background:#fff}
 </style>
 <style id="hero-scroll-performance-fix">
@@ -2122,7 +2131,143 @@ body{background:#e9eef0!important;color:#172026!important}
     var texto="Hola! Soy "+nombre+". "+(labels[motivo.value]||labels.general)+" Detalle: "+mensaje; window.open(wa(key,texto),"_blank");
   });
 
-  // ---- comparador de modelos: usa los mismos datos de MODELOS_TOYOTA / MODEL_DETAILS, no inventa specs nuevas ----
+  // ---- fichas técnicas ampliadas: catálogo exclusivo del comparador ----
+  // Mantiene MODEL_DETAILS intacto para no modificar las fichas/modal generales.
+  var COMPARISON_DETAILS = {
+    "Hilux": { specs: [
+      ["Categoría", "Pick-up"],
+      ["Versiones disponibles", "DX, SR, SRV, SRV+, SRX y Limited. Cabina Simple, Cabina Chasis y Cabina Doble. Combinaciones 4x2/4x4, manual/automática."],
+      ["Motor", "2.4 turbodiésel 2GD, 4 cilindros, para DX/gama de acceso. 2.8 turbodiésel 1GD, 4 cilindros, para SR, SRV, SRV+, SRX y Limited."],
+      ["Potencia", "2.4: 150 CV a 3.400 rpm. 2.8: 204 CV entre 3.000 y 3.400 rpm. Versiones anteriores del mismo motor entregaban 177 CV."],
+      ["Torque", "2.4: 400 Nm entre 1.600 y 2.000 rpm. 2.8 manual: 420 Nm entre 1.400 y 3.400 rpm. 2.8 automática: 500 Nm entre 1.600 y 2.800 rpm."],
+      ["Transmisión", "Manual de 6 velocidades o automática de 6 velocidades, según versión."],
+      ["Tracción", "4x2 o 4x4 desconectable, con reductora en las versiones 4x4."],
+      ["Consumo", "A CONFIRMAR CON EL CONCESIONARIO. Toyota Argentina no publica cifra oficial de consumo combinado en la ficha pública."],
+      ["Dimensiones", "Largo aproximado: 5.330 mm. Despeje al suelo superior a 28 cm. Distancia entre ejes: A CONFIRMAR CON EL CONCESIONARIO; varía según cabina."],
+      ["Baúl o capacidad de carga", "Superior a 1.000 kg según versión. La cifra exacta varía entre Cabina Simple, Chasis y Doble y debe confirmarse."],
+      ["Tanque de combustible", "A CONFIRMAR CON EL CONCESIONARIO."],
+      ["Seguridad", "7 airbags: 2 frontales, 2 laterales delanteros, 2 de cortina y 1 de rodilla para conductor. Control de estabilidad, control de tracción, asistente de arranque en pendiente y control de velocidad crucero. Pantalla táctil de 9 pulgadas con Android Auto y Apple CarPlay inalámbricos desde versiones intermedias."],
+      ["Garantía", "5 años o 150.000 km."],
+      ["Precio de referencia", "Aproximadamente desde $39.900.000 en versiones de acceso hasta más de $72.000.000 en SRX/Limited. Valores variables: confirmar lista vigente con el concesionario."],
+      ["Fuentes", "https://www.toyota.com.ar/modelos/hilux-cabina-simple · La Nación · Mercado Libre · Monkey Motor"],
+      ["Rendimiento y equipamiento destacado", "La configuración, el equipamiento y la capacidad exacta dependen de cabina, versión, transmisión y tracción." ]
+    ], source: "https://www.toyota.com.ar/modelos/hilux-cabina-simple" },
+    "SW4 Diamond": { specs: [
+      ["Categoría", "SUV de 7 asientos"],
+      ["Versiones disponibles", "SRX, Diamond y GR-Sport; todas 4x4."],
+      ["Motor", "1GD, 2.8 litros, 4 cilindros en línea, turbodiésel Diésel Grado 3, turbocompresor de geometría variable e intercooler. Euro 5 con filtro de partículas DPF, 16 válvulas, DOHC y cadena de distribución."],
+      ["Potencia", "SRX/Diamond: 204 CV entre 3.000 y 3.400 rpm. GR-Sport: 224 CV."],
+      ["Torque", "SRX/Diamond: 500 Nm entre 1.600 y 2.800 rpm. GR-Sport: 550 Nm."],
+      ["Transmisión", "Automática de 6 velocidades con levas al volante. Modos ECO, NORM y SPORT."],
+      ["Tracción", "4x4 desconectable con reductora."],
+      ["Consumo", "A CONFIRMAR CON EL CONCESIONARIO. No publicado oficialmente por Toyota Argentina en la ficha pública."],
+      ["Dimensiones", "A CONFIRMAR CON EL CONCESIONARIO. La ficha web actual no publica medidas exteriores exactas; comparte plataforma con Hilux."],
+      ["Baúl o capacidad de carga", "7 asientos, con posibilidad de plegado de tercera fila. Capacidad exacta en litros: A CONFIRMAR CON EL CONCESIONARIO."],
+      ["Tanque de combustible", "80 litros."],
+      ["Seguridad", "Toyota Safety Sense: precolisión frontal con detección de peatones y ciclistas, alerta de cambio de carril y control de velocidad crucero adaptativo. Visión 360°, BSM y RCTA. Suspensión delantera independiente de doble brazo y trasera de eje rígido con resortes helicoidales. Frenos a disco ventilados en las 4 ruedas y dirección hidráulica con asistencia variable."],
+      ["Garantía", "5 años o 150.000 km."],
+      ["Precio de referencia", "SW4 Diamond 4x4: aproximadamente $68.777.000. SW4 GR-Sport: aproximadamente $72.184.000. Referencia de mediados de 2025: confirmar lista vigente."],
+      ["Fuentes", "https://www.toyota.com.ar/modelos/sw4-diamond · Diario UNO · Toyota Yacopini · Toyota Bhassa"],
+      ["Rendimiento y equipamiento destacado", "SUV de 7 plazas con levas, reductora y modos de conducción. La configuración exacta debe confirmarse por versión." ]
+    ], source: "https://www.toyota.com.ar/modelos/sw4-diamond" },
+    "Corolla Cross": { specs: [
+      ["Categoría", "SUV compacto"],
+      ["Versiones disponibles", "XLI, XEI, SEG y GR-Sport nafta 2.0; XEI HEV y SEG HEV híbridas 1.8. Seis configuraciones."],
+      ["Motor", "Nafta: 2.0 litros Dynamic Force, 4 cilindros. HEV: sistema autorrecargable con motor naftero 1.8 VVT-i y motor eléctrico."],
+      ["Potencia", "Nafta: 171 CV. Híbrida: 122 CV combinados."],
+      ["Torque", "Nafta: 203 Nm. Híbrida: 142 Nm."],
+      ["Transmisión", "Nafta: automática CVT Direct Shift con 10 marchas preprogramadas. Híbrida: automática eCVT."],
+      ["Tracción", "Delantera en toda la gama."],
+      ["Consumo", "Cifra oficial combinada: A CONFIRMAR CON EL CONCESIONARIO. La versión híbrida está orientada a reducir consumo urbano frente a la naftera equivalente."],
+      ["Dimensiones", "4.460 mm de largo x 1.825 mm de ancho x 1.620 mm de alto. Distancia entre ejes: 2.640 mm."],
+      ["Baúl o capacidad de carga", "440 litros en versiones nafta e híbrida."],
+      ["Tanque de combustible", "47 litros en versiones nafta / 36 litros en versiones híbridas."],
+      ["Seguridad", "Toyota Safety Sense de serie: precolisión frontal, control crucero adaptativo, alerta y asistencia de carril, luces altas automáticas, alerta de punto ciego y tráfico trasero, asistencia de frenado. 7 airbags, ABS/EBD/BA, control de tracción y estabilidad, Isofix/Latch, frenos a disco en las 4 ruedas, EPB y monitor 360°. Instrumental de 7 pulgadas en XLI/XEI o 12,3 pulgadas full digital en SEG/GR-Sport."],
+      ["Garantía", "5 años o 100.000 km. Tren motriz híbrido y batería: 8 años o 160.000 km."],
+      ["Precio de referencia", "Gama completa aproximadamente entre $51.918.000 y $64.083.000. Referencia septiembre de 2026: confirmar lista vigente."],
+      ["Fuentes", "https://www.toyota.com.ar/modelos/corolla-cross · La Nación · Autotest.com.ar · Monkey Motor"],
+      ["Rendimiento y equipamiento destacado", "Pantalla de instrumental de 7 o 12,3 pulgadas según versión. La disponibilidad de equipamiento debe confirmarse por configuración." ]
+    ], source: "https://www.toyota.com.ar/modelos/corolla-cross" },
+    "RAV4": { specs: [
+      ["Categoría", "SUV híbrido / híbrido enchufable"],
+      ["Versiones disponibles", "Limited HEV, XSE PHEV y GR-Sport PHEV. Sexta generación, lanzamiento argentino junio de 2026."],
+      ["Motor", "HEV: naftero 2.5 litros de 4 cilindros + dos motogeneradores eléctricos MG1 y MG2, sistema híbrido Toyota de 5ª generación. PHEV: conjunto base + motor eléctrico sobre eje trasero y batería de 22,7 kWh."],
+      ["Potencia", "HEV: 239 CV combinados. PHEV: hasta 329 CV combinados en GR-Sport PHEV."],
+      ["Torque", "HEV: 221 Nm del conjunto térmico. PHEV: A CONFIRMAR CON EL CONCESIONARIO; no publicado como cifra única del sistema."],
+      ["Transmisión", "eCVT en ambas motorizaciones."],
+      ["Tracción", "Integral AWD en toda la gama."],
+      ["Consumo", "Aproximadamente 4,5 l/100 km promedio declarado como referencia de mercado para HEV: confirmar cifra oficial. PHEV: hasta 142 km de autonomía 100% eléctrica y autonomía total combinada superior a 1.000 km."],
+      ["Dimensiones", "A CONFIRMAR CON EL CONCESIONARIO. La ficha web actual no publica medidas exteriores exactas de la sexta generación."],
+      ["Baúl o capacidad de carga", "456 litros en HEV / 421 litros en PHEV. Portón eléctrico manos libres en ambas."],
+      ["Tanque de combustible", "HEV: 55 litros. PHEV: combina tanque de nafta y batería; cifra exacta del tanque: A CONFIRMAR CON EL CONCESIONARIO."],
+      ["Seguridad", "Toyota Safety Sense, 7 airbags, alerta de tráfico trasero, monitoreo de punto ciego con asistencia de salida segura, asistente de arranque y descenso. GR-Sport suma Head-Up Display, cámara 360°, techo solar eléctrico, audio JBL de 11 parlantes y pantalla multimedia de 12,9 pulgadas. Selector Multi-Terreno Trail/Snow/Normal y modos Normal/Eco/Sport/EV."],
+      ["Garantía", "Programa Toyota 10: hasta 10 años o 200.000 km, según condiciones del programa."],
+      ["Precio de referencia", "Lanzamiento desde aproximadamente USD 70.200. El resto de la gama y el valor en pesos varían: confirmar lista vigente."],
+      ["Fuentes", "https://www.toyota.com.ar/descubri/newsroom/noticias-de-argentina/toyota-presento-la-nueva-generacion-de-rav4-con-motorizacion-hibrida-e-hibrida-enchufable-mas-aventura-para-el-suv-mas-famoso-del-mundo · Autoblog Argentina · Parabrisas · Perfil · 16 Válvulas · Autocosmos"],
+      ["Rendimiento y equipamiento destacado", "Autonomía eléctrica PHEV de hasta 142 km según la ficha de referencia. Las cifras de autonomía, consumo y equipamiento deben confirmarse por versión." ]
+    ], source: "https://www.toyota.com.ar/descubri/newsroom/noticias-de-argentina/toyota-presento-la-nueva-generacion-de-rav4-con-motorizacion-hibrida-e-hibrida-enchufable-mas-aventura-para-el-suv-mas-famoso-del-mundo" },
+    "Corolla": { specs: [
+      ["Categoría", "Sedán"],
+      ["Versiones disponibles", "XLI, XEI, SEG y GR-Sport nafta 2.0; XEI Hybrid y SEG Hybrid 1.8. Carrocería sedán en Argentina."],
+      ["Motor", "Nafta: 2.0 litros Dynamic Force, 4 cilindros en línea, 16 válvulas DOHC e inyección mixta D4-S. Híbrida: naftero 1.8 ciclo Atkinson de 98 CV + motor eléctrico de 72 CV."],
+      ["Potencia", "Nafta: 171 CV a 6.600 rpm. Híbrida: 122 CV combinados."],
+      ["Torque", "Nafta: 203 Nm. Híbrida: A CONFIRMAR CON EL CONCESIONARIO; cifra combinada no publicada de forma unificada."],
+      ["Transmisión", "Automática CVT con modo secuencial de 10 velocidades preprogramadas en nafta; e-CVT en híbrida."],
+      ["Tracción", "Delantera en toda la gama."],
+      ["Consumo", "Híbrida: promedio de 4 l/100 km en ciudad como referencia de mercado; confirmar cifra oficial. Nafta: A CONFIRMAR CON EL CONCESIONARIO."],
+      ["Dimensiones", "4.630 mm de largo x 1.780 mm de ancho x 1.435 mm de alto. Distancia entre ejes: 2.700 mm."],
+      ["Baúl o capacidad de carga", "470 litros."],
+      ["Tanque de combustible", "A CONFIRMAR CON EL CONCESIONARIO."],
+      ["Seguridad", "Toyota Safety Sense de serie desde SEG: control crucero adaptativo, frenado autónomo de emergencia, alerta de cambio de carril, alerta de punto ciego y tráfico cruzado trasero. Pantalla multimedia de 10 pulgadas con Android Auto/Apple CarPlay inalámbricos. Display de 7 pulgadas en XLI/XEI o full digital configurable de 12,3 pulgadas en SEG. Techo solar eléctrico reservado para XEI naftero."],
+      ["Garantía", "5 años o 100.000 km general. Componentes híbridos: 8 años o 160.000 km."],
+      ["Precio de referencia", "XLI: $44.082.000. XEI: $48.410.000. SEG: $54.392.000. GR-Sport: más de $57.000.000. XEI Hybrid: $50.764.000. SEG Hybrid: $56.180.000. Referencia agosto de 2026: confirmar lista vigente."],
+      ["Fuentes", "https://www.toyota.com.ar/modelos/corolla · Autotest.com.ar · Mercado Libre · LM Neuquén"],
+      ["Rendimiento y equipamiento destacado", "El equipamiento cambia según XLI, XEI, SEG, GR-Sport y variantes Hybrid. Confirmar configuración exacta antes de publicar una oferta." ]
+    ], source: "https://www.toyota.com.ar/modelos/corolla" },
+    "Yaris": { specs: [
+      ["Categoría", "Hatchback (el sitio actual lo clasifica dentro de sedanes)"],
+      ["Versiones disponibles", "XLI, XLS y XLS+ / S. La nomenclatura puede variar; manual en entrada y CVT desde XLS."],
+      ["Motor", "2NR-FE, 1.5 litros, 4 cilindros en línea, 16 válvulas, Dual VVT-i y cadena de distribución."],
+      ["Potencia", "107 CV."],
+      ["Torque", "140 Nm."],
+      ["Transmisión", "Manual de 6 marchas en versiones de entrada o automática CVT de 7 velocidades desde XLS, de serie en XLS+/S."],
+      ["Tracción", "Delantera en toda la gama."],
+      ["Consumo", "A CONFIRMAR CON EL CONCESIONARIO. No publicado de forma oficial unificada."],
+      ["Dimensiones", "A CONFIRMAR CON EL CONCESIONARIO."],
+      ["Baúl o capacidad de carga", "A CONFIRMAR CON EL CONCESIONARIO. No publicado en las fuentes consultadas para el Hatchback."],
+      ["Tanque de combustible", "A CONFIRMAR CON EL CONCESIONARIO."],
+      ["Seguridad", "Detalle completo: A CONFIRMAR CON EL CONCESIONARIO. La gama incluye el paquete de seguridad Toyota estándar, airbags, ABS y control de estabilidad según las fuentes consultadas."],
+      ["Garantía", "5 años o 100.000 km como política estándar; confirmar aplicación específica al Yaris Hatchback."],
+      ["Precio de referencia", "A CONFIRMAR CON EL CONCESIONARIO. Toyota ajustó precios de Yaris en septiembre de 2026 sin cifra exacta unificada en las fuentes consultadas."],
+      ["Fuentes", "https://www.toyota.com.ar/modelos/yaris-hatchback · Mercado Libre"],
+      ["Rendimiento y equipamiento destacado", "Esta ficha corresponde al Yaris Hatchback, no al Yaris Cross. El comparador conserva el ítem Yaris existente." ]
+    ], source: "https://www.toyota.com.ar/modelos/yaris-hatchback" },
+    "Land Cruiser 300": { specs: [
+      ["Categoría", "SUV tope de gama off-road"],
+      ["Versiones disponibles", "VX HEV y GR-S. Ambas con 7 plazas y tracción integral permanente."],
+      ["Motor", "VX HEV: V6 naftero biturbo 3.5 litros + motor eléctrico de alta respuesta, sistema i-FORCE MAX. GR-S: V6 turbodiésel 3.3 litros biturbo."],
+      ["Potencia", "VX HEV: 464 CV combinados. GR-S: 304 CV."],
+      ["Torque", "VX HEV: A CONFIRMAR CON EL CONCESIONARIO; no publicado como cifra combinada única. GR-S: 700 Nm."],
+      ["Transmisión", "Automática de 10 velocidades en ambas versiones."],
+      ["Tracción", "Integral permanente 4WD. GR-S suma bloqueo de diferencial delantero y trasero y suspensión dinámica electrónica E-KDSS."],
+      ["Consumo", "A CONFIRMAR CON EL CONCESIONARIO."],
+      ["Dimensiones", "A CONFIRMAR CON EL CONCESIONARIO; no publicadas para la versión argentina en las fuentes consultadas."],
+      ["Baúl o capacidad de carga", "7 plazas en ambas versiones. Capacidad de baúl en litros: A CONFIRMAR CON EL CONCESIONARIO."],
+      ["Tanque de combustible", "A CONFIRMAR CON EL CONCESIONARIO."],
+      ["Seguridad", "Toyota Safety Sense, múltiples asistentes de conducción, 10 airbags, monitor Multi-Terreno 3D, cámara 360° y Head-Up Display. Modos Normal, Eco y Sport, con modos off-road adicionales en GR-S."],
+      ["Garantía", "10 años o 200.000 km según comunicado de lanzamiento; confirmar condiciones del programa."],
+      ["Precio de referencia", "VX HEV y GR-S: USD 168.300 desde el 01/09/2026 según comunicado de lanzamiento. Confirmar lista vigente."],
+      ["Fuentes", "https://www.lanacion.com.ar/autos/toyota-presento-en-la-argentina-el-nuevo-land-cruiser-300-versiones-precios-y-equipamiento-nid07092026/ · https://cuyomotor.com.ar/2026/09/07/nuevo-land-cruiser-300-lanzamiento/ · https://diariodeautos.com.ar/index.php/autos/novedades/item/20502-toyota · Autoblog Argentina"],
+      ["Rendimiento y equipamiento destacado", "VX HEV: 0 a 100 km/h en aproximadamente 6,5 s y velocidad máxima 210 km/h. GR-S: aproximadamente 8 s y 210 km/h. Climatizador de 4 zonas, asientos delanteros eléctricos calefaccionados y ventilados, audio JBL de 14 parlantes y pantallas multimedia de 12,3 pulgadas. VX suma techo solar y dos pantallas traseras de 11,6 pulgadas." ]
+    ], source: "https://diariodeautos.com.ar/index.php/autos/novedades/item/20502-toyota" },
+    "Fortuner": { specs: [
+      ["Categoría", "SUV"], ["Versiones disponibles", "A CONFIRMAR CON EL CONCESIONARIO."], ["Motor", "A CONFIRMAR CON EL CONCESIONARIO."], ["Potencia", "A CONFIRMAR CON EL CONCESIONARIO."], ["Torque", "A CONFIRMAR CON EL CONCESIONARIO."], ["Transmisión", "A CONFIRMAR CON EL CONCESIONARIO."], ["Tracción", "A CONFIRMAR CON EL CONCESIONARIO."], ["Consumo", "A CONFIRMAR CON EL CONCESIONARIO."], ["Dimensiones", "A CONFIRMAR CON EL CONCESIONARIO."], ["Baúl o capacidad de carga", "A CONFIRMAR CON EL CONCESIONARIO."], ["Tanque de combustible", "A CONFIRMAR CON EL CONCESIONARIO."], ["Seguridad", "A CONFIRMAR CON EL CONCESIONARIO."], ["Garantía", "A CONFIRMAR CON EL CONCESIONARIO."], ["Precio de referencia", "A CONFIRMAR CON EL CONCESIONARIO."], ["Fuentes", "A CONFIRMAR CON EL CONCESIONARIO."], ["Rendimiento y equipamiento destacado", "El TXT adjunto no incluye una ficha de Fortuner. No se agregan cifras ni especificaciones inventadas."]
+    ], source: "https://www.toyota.com.ar/concesionarios" },
+    "Etios": { specs: [
+      ["Categoría", "Sedán / compacto"], ["Versiones disponibles", "A CONFIRMAR CON EL CONCESIONARIO."], ["Motor", "A CONFIRMAR CON EL CONCESIONARIO."], ["Potencia", "A CONFIRMAR CON EL CONCESIONARIO."], ["Torque", "A CONFIRMAR CON EL CONCESIONARIO."], ["Transmisión", "A CONFIRMAR CON EL CONCESIONARIO."], ["Tracción", "A CONFIRMAR CON EL CONCESIONARIO."], ["Consumo", "A CONFIRMAR CON EL CONCESIONARIO."], ["Dimensiones", "A CONFIRMAR CON EL CONCESIONARIO."], ["Baúl o capacidad de carga", "A CONFIRMAR CON EL CONCESIONARIO."], ["Tanque de combustible", "A CONFIRMAR CON EL CONCESIONARIO."], ["Seguridad", "A CONFIRMAR CON EL CONCESIONARIO."], ["Garantía", "A CONFIRMAR CON EL CONCESIONARIO."], ["Precio de referencia", "A CONFIRMAR CON EL CONCESIONARIO."], ["Fuentes", "A CONFIRMAR CON EL CONCESIONARIO."], ["Rendimiento y equipamiento destacado", "El TXT adjunto no incluye una ficha de Etios. No se agregan cifras ni especificaciones inventadas."]
+    ], source: "https://www.toyota.com.ar/concesionarios" }
+  };
+  // ---- comparador de modelos: usa los mismos datos de MODELOS_TOYOTA / COMPARISON_DETAILS, no inventa specs nuevas ----
   (function(){
     var selA = document.getElementById("compareA");
     var selB = document.getElementById("compareB");
@@ -2145,13 +2290,9 @@ body{background:#e9eef0!important;color:#172026!important}
     });
     selB.selectedIndex = MODELOS_TOYOTA.length > 1 ? 2 : 0;
 
-    function specsList(nombre){
-      var d = MODEL_DETAILS[nombre];
-      if(!d) return "<span class=\"compare-na\">Sin ficha ampliada todavía.</span>";
-      return "<ul style=\"margin:0;padding-left:16px;\">" + d.specs.map(function(s){
-        return "<li style=\"margin-bottom:6px;\"><strong>" + s[0] + ":</strong> " + s[1] + "</li>";
-      }).join("") + "</ul>";
-    }
+    function escapeCompare(value){return String(value).replace(/[&<>"']/g,function(ch){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[ch];});}
+    function compareValue(value){return escapeCompare(value).replace(/(https?:\/\/[^\s<]+)/g,'<a href="$1" target="_blank" rel="noopener">$1</a>');}
+    function comparisonSpecs(nombre){var d=COMPARISON_DETAILS[nombre];return d&&d.specs?d.specs:[];}
 
     function render(){
       var a = selA.value, b = selB.value;
@@ -2160,13 +2301,12 @@ body{background:#e9eef0!important;color:#172026!important}
       waA.style.display=""; waB.style.display="";
       var mA = MODELOS_TOYOTA.filter(function(m){return m.nombre===a;})[0];
       var mB = MODELOS_TOYOTA.filter(function(m){return m.nombre===b;})[0];
-      var dA = MODEL_DETAILS[a], dB = MODEL_DETAILS[b];
-      table.innerHTML =
-        "<table><thead><tr><th></th><th>" + a + "</th><th>" + b + "</th></tr></thead><tbody>" +
-        "<tr><td>Categoría</td><td>" + TIPO_LABEL[mA.tipo] + "</td><td>" + TIPO_LABEL[mB.tipo] + "</td></tr>" +
-        "<tr><td>Resumen</td><td>" + mA.desc + "</td><td>" + mB.desc + "</td></tr>" +
-        "<tr><td>Datos publicados</td><td>" + specsList(a) + "</td><td>" + specsList(b) + "</td></tr>" +
-        "<tr><td>Fuente oficial</td><td>" + (dA ? "<a href=\""+dA.source+"\" target=\"_blank\" rel=\"noopener\">Ver en toyota.com.ar</a>" : "—") + "</td><td>" + (dB ? "<a href=\""+dB.source+"\" target=\"_blank\" rel=\"noopener\">Ver en toyota.com.ar</a>" : "—") + "</td></tr>" +
+      var dA = COMPARISON_DETAILS[a], dB = COMPARISON_DETAILS[b];
+      var rowsA=comparisonSpecs(a), rowsB=comparisonSpecs(b);
+      var axes=rowsA.map(function(row){return row[0];});
+      table.innerHTML=
+        "<table class=\"compare-detail-table\"><caption class=\"sr-only\">Comparación técnica detallada entre "+escapeCompare(a)+" y "+escapeCompare(b)+"</caption><thead><tr><th scope=\"col\">Eje técnico</th><th scope=\"col\">"+escapeCompare(a)+"</th><th scope=\"col\">"+escapeCompare(b)+"</th></tr></thead><tbody>"+
+        axes.map(function(axis,index){var va=rowsA[index]&&rowsA[index][1]||"A CONFIRMAR CON EL CONCESIONARIO.";var vb=rowsB[index]&&rowsB[index][1]||"A CONFIRMAR CON EL CONCESIONARIO.";return "<tr><th scope=\"row\">"+escapeCompare(axis)+"</th><td>"+compareValue(va)+"</td><td>"+compareValue(vb)+"</td></tr>";}).join("")+
         "</tbody></table>";
       waA.textContent = "Consultar " + a + " ↗";
       waB.textContent = "Consultar " + b + " ↗";
