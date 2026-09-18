@@ -61,6 +61,8 @@ document.addEventListener('DOMContentLoaded',function(){document.querySelectorAl
   "@context": "https://schema.org",
   "@type": "AutoDealer",
   "name": "Piñeyro y Moscatelli S.R.L. — Toyota Concepción del Uruguay",
+  "url": "https://hnk375561-lab.github.io/toyota-concepcion-uruguay-web/",
+  "image": "https://hnk375561-lab.github.io/toyota-concepcion-uruguay-web/toyota-sharp-assets/asset-371d49eb8a93-1200.jpg",
   "telephone": "+543442473453",
   "sameAs": ["https://www.instagram.com/toyotacdelu/?hl=es"],
   "address": {
@@ -1205,7 +1207,7 @@ html,body{overflow-x:clip}
     <div class="mobilepanel" id="mobilepanel">
       <div class="wrap">
         <a href="#gama">Modelos Toyota</a>
-        <a href="#accesorios">Accesorios y merchandising</a><a href="#gama">Gama completa</a>
+        <a href="#gama">Gama completa</a>
         <a href="#categorias">Explorar por categoría</a>
         <a href="#porque">Por qué elegirnos</a>
         <a href="#como-comprar">Cómo comprar</a>
@@ -1497,7 +1499,7 @@ html,body{overflow-x:clip}
         <div class="section-head split-head">
           <div>
             <span class="tag gold">Destacados</span>
-            <h2>Los modelos que más se consultan.</h2>
+            <h2>Una selección de la gama.</h2>
             <p>Un vistazo rápido a la gama. Deslizá o usá las flechas para ver más.</p>
           </div>
           <div class="highlight-nav" aria-label="Desplazar destacados">
@@ -2004,7 +2006,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
   // ---- EDITAR ACÁ: números de WhatsApp reales (formato wa.me, sin +) ----
   var WHATSAPP_NUMEROS = {
-    turnos:     "5493442473453",
+    ventas:     "5493442473453",
     repuestos:  "5493442677433",
     neumaticos: "5493442502390"
   };
@@ -2086,7 +2088,7 @@ document.addEventListener("DOMContentLoaded", function(){
       var message = "Hola! Quiero que me avisen si ingresa un usado: " + wanted + ". También quisiera conocer disponibilidad y condiciones.";
       if(note) note.textContent = "Abriendo WhatsApp con tu consulta preparada…";
       window.toyotaTrack("used_interest_click", {vehicle_type:wanted});
-      window.open(wa("turnos", message), "_blank", "noopener");
+      window.open(wa("ventas", message), "_blank", "noopener");
       setTimeout(function(){if(note)note.textContent="La consulta quedó preparada en WhatsApp para que la revises y la envíes.";}, 500);
     });
   }
@@ -2206,7 +2208,7 @@ document.addEventListener("DOMContentLoaded", function(){
       '<h3>' + m.nombre + '</h3>' +
       '<p>' + m.desc + '</p>' +
       (hasDetail ? '<button class="model-detail-link" type="button" data-model-detail="' + m.nombre + '" style="border:0;background:none;color:var(--toyota-red);font:inherit;font-weight:700;font-size:13px;text-align:left;padding:0 0 8px;cursor:pointer;">Ver ficha del modelo ›</button>' : '') +
-      '<div style="display:flex;gap:12px;border-top:1px solid var(--border);padding-top:11px;"><a target="_blank" rel="noopener" href="' + wa("turnos", "Hola! Quiero consultar por la " + m.nombre + ".") + '" style="border:0;padding:0;flex:1;">Consultar <span>&rsaquo;</span></a><button class="compare-btn" type="button" data-compare-model="' + m.nombre + '" style="border:0;background:none;color:var(--muted);font:inherit;cursor:pointer;">Comparar</button></div>';
+      '<div style="display:flex;gap:12px;border-top:1px solid var(--border);padding-top:11px;"><a target="_blank" rel="noopener" href="' + wa("ventas", "Hola! Quiero consultar por la " + m.nombre + ".") + '" style="border:0;padding:0;flex:1;">Consultar <span>&rsaquo;</span></a><button class="compare-btn" type="button" data-compare-model="' + m.nombre + '" style="border:0;background:none;color:var(--muted);font:inherit;cursor:pointer;">Comparar</button></div>';
     gamaGrid.appendChild(el);
   });
   gamaGrid.addEventListener("click", function(e){
@@ -2251,12 +2253,12 @@ document.addEventListener("DOMContentLoaded", function(){
     window.toyotaTrack("trade_form_submit",{vehicle:car,vehicle_year:year,interest:interestSel.value});
     note.textContent = "¡Listo! Se abrió WhatsApp con tu consulta ya redactada.";
     note.className = "form-success";
-    var tradeButton=tradeForm.querySelector("button[type=submit]");if(tradeButton){tradeButton.disabled=true;tradeButton.textContent="Abriendo WhatsApp…";}window.open(wa("turnos",text),"_blank");if(tradeButton)setTimeout(function(){tradeButton.disabled=false;tradeButton.textContent="Generar consulta de tasación ↗";},3000);
+    var tradeButton=tradeForm.querySelector("button[type=submit]");if(tradeButton){tradeButton.disabled=true;tradeButton.textContent="Abriendo WhatsApp…";}window.open(wa("ventas",text),"_blank");if(tradeButton)setTimeout(function(){tradeButton.disabled=false;tradeButton.textContent="Generar consulta de tasación ↗";},3000);
   });}
 
   // ---- servicios ----
   var SERVICIOS = [
-    { titulo: "Service oficial", desc: "Mantenimiento programado con la garantía y los tiempos que pide Toyota.", numero: "turnos", msg: "Hola! Quiero sacar un turno de service." },
+    { titulo: "Service oficial", desc: "Mantenimiento programado con la garantía y los tiempos que pide Toyota.", numero: "ventas", msg: "Hola! Quiero sacar un turno de service." },
     { titulo: "Repuestos genuinos", desc: "Piezas originales, no alternativas. Consultá si tenemos la tuya.", numero: "repuestos", msg: "Hola! Quiero consultar por un repuesto." },
     { titulo: "Accesorios Toyota", desc: "Barras, estribos, taperas y el kit completo para tu Hilux.", numero: "repuestos", msg: "Hola! Quiero consultar por accesorios." },
     { titulo: "Neumáticos Bridgestone", desc: "Neumáticos originales, colocados en el concesionario oficial.", numero: "neumaticos", msg: "Hola! Quiero consultar por neumáticos Bridgestone." }
@@ -2301,8 +2303,8 @@ document.addEventListener("DOMContentLoaded", function(){
     anticipoLabel.textContent = Number(anticipoRange.value) + "%";
     tickMoney(document.getElementById("cuotaResultado"),cuota," /mes");
     var financed=document.getElementById("montoFinanciadoLabel");if(financed){financed.textContent="Financiando "+formatoARS(montoFinanciado);financed.dataset.moneyValue=String(montoFinanciado);}
-    var realCta=document.getElementById("financingRealCta");if(realCta){realCta.href=wa("turnos","Hola! Quiero conocer la tasa real para financiar un Toyota. Simulé "+formatoARS(monto)+" a "+n+" meses, con un anticipo del "+Math.round(anticipoPct*100)+"%. El monto financiado estimado sería "+formatoARS(montoFinanciado)+".");}
-    var combinedCta=document.getElementById("combinedPurchaseCta");if(combinedCta){combinedCta.href=wa("turnos","Hola! Quiero consultar una operación combinada con usado y financiación. Simulé "+formatoARS(monto)+" a "+n+" meses, con un anticipo del "+Math.round(anticipoPct*100)+"%. El monto financiado estimado sería "+formatoARS(montoFinanciado)+". También quiero consultar cómo incorporar mi vehículo actual como parte de pago.");}
+    var realCta=document.getElementById("financingRealCta");if(realCta){realCta.href=wa("ventas","Hola! Quiero conocer la tasa real para financiar un Toyota. Simulé "+formatoARS(monto)+" a "+n+" meses, con un anticipo del "+Math.round(anticipoPct*100)+"%. El monto financiado estimado sería "+formatoARS(montoFinanciado)+".");}
+    var combinedCta=document.getElementById("combinedPurchaseCta");if(combinedCta){combinedCta.href=wa("ventas","Hola! Quiero consultar una operación combinada con usado y financiación. Simulé "+formatoARS(monto)+" a "+n+" meses, con un anticipo del "+Math.round(anticipoPct*100)+"%. El monto financiado estimado sería "+formatoARS(montoFinanciado)+". También quiero consultar cómo incorporar mi vehículo actual como parte de pago.");}
   }
 
   montoRange.addEventListener("input", function(){calcular();window.toyotaTrack("financing_simulator_change",{field:"monto",value:this.value});});
@@ -2399,7 +2401,7 @@ document.addEventListener("DOMContentLoaded", function(){
     else if(fallback) fallback.focus();
     if(updateHash!==false)history.replaceState(null,"",location.pathname+location.search+"#gama");
   }
-  function openDetail(name,fromHash){var d=MODEL_DETAILS[name];if(!d)return;if(detail.classList.contains("is-closing")){clearTimeout(detailClosingTimer);detail.classList.remove("is-closing");}var wasOpen=detail.classList.contains("open");if(!wasOpen)detailLastFocus=document.activeElement;document.getElementById("detailTitle").textContent=name;document.getElementById("detailCrumb").textContent=name;document.getElementById("detailWhatsApp").href=wa("turnos","Hola! Quiero consultar por la Toyota "+name+".");document.getElementById("detailIntro").textContent=d.intro;document.getElementById("detailSpecs").innerHTML=d.specs.map(function(x){return '<div class="detail-spec"><strong>'+x[0]+'</strong>'+x[1]+'</div>';}).join("");document.getElementById("detailGallery").innerHTML=d.gallery.map(function(x,i){return '<a class="gallery-link" href="'+x+'" target="_blank" rel="noopener">Abrir material '+(i+1)+"</a>";}).join("");document.getElementById("detailSource").href=d.source;detail.classList.add("open");if(!wasOpen)window.__toyotaLockScroll();closeDetail.focus();if(!fromHash)history.pushState(null,"",location.pathname+location.search+"#modelo/"+slugifyModel(name));}
+  function openDetail(name,fromHash){var d=MODEL_DETAILS[name];if(!d)return;if(detail.classList.contains("is-closing")){clearTimeout(detailClosingTimer);detail.classList.remove("is-closing");}var wasOpen=detail.classList.contains("open");if(!wasOpen)detailLastFocus=document.activeElement;document.getElementById("detailTitle").textContent=name;document.getElementById("detailCrumb").textContent=name;document.getElementById("detailWhatsApp").href=wa("ventas","Hola! Quiero consultar por la Toyota "+name+".");document.getElementById("detailIntro").textContent=d.intro;document.getElementById("detailSpecs").innerHTML=d.specs.map(function(x){return '<div class="detail-spec"><strong>'+x[0]+'</strong>'+x[1]+'</div>';}).join("");document.getElementById("detailGallery").innerHTML=d.gallery.map(function(x,i){return '<a class="gallery-link" href="'+x+'" target="_blank" rel="noopener">Abrir material '+(i+1)+"</a>";}).join("");document.getElementById("detailSource").href=d.source;detail.classList.add("open");if(!wasOpen)window.__toyotaLockScroll();closeDetail.focus();if(!fromHash)history.pushState(null,"",location.pathname+location.search+"#modelo/"+slugifyModel(name));}
   closeDetail.addEventListener("click",function(){closeModelDetail();});detail.addEventListener("click",function(e){if(e.target===detail)closeModelDetail();});
   detail.querySelectorAll(".detail-actions a[href^='#']").forEach(function(a){a.addEventListener("click",function(){closeModelDetail(false);});});
   function trapDetailFocus(e){if(!detail.classList.contains("open"))return;if(e.key==="Escape"){e.preventDefault();closeModelDetail();return;}if(e.key!=="Tab")return;var f=detail.querySelectorAll('a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])');if(!f.length)return;var first=f[0],last=f[f.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}
@@ -2418,7 +2420,7 @@ document.addEventListener("DOMContentLoaded", function(){
       (!nombre ? nameField : messageField).focus(); return;
     }
     if(note){note.textContent="Abriendo WhatsApp…";note.className="form-note";note.setAttribute("role","status");}if(submitButton){submitButton.disabled=true;submitButton.querySelector("span").textContent="Abriendo WhatsApp…";}
-    var key=motivo.value==="repuestos"||motivo.value==="accesorios"?"repuestos":motivo.value==="neumaticos"?"neumaticos":"turnos";
+    var key=motivo.value==="repuestos"||motivo.value==="accesorios"?"repuestos":motivo.value==="neumaticos"?"neumaticos":"ventas";
     var labels={"0km":"Quiero consultar por un Toyota 0 km.","usados":"Quiero consultar por un vehículo usado disponible.","financiacion":"Quiero consultar opciones de financiación para un Toyota.","canje":"Quiero tasar mi vehículo para un plan canje.","turnos":"Quiero solicitar un turno de service.","repuestos":"Quiero consultar por un repuesto genuino Toyota.","accesorios":"Quiero consultar por accesorios Toyota.","neumaticos":"Quiero consultar por neumáticos Bridgestone.","general":"Quiero realizar una consulta general."};
     var texto="Hola! Soy "+nombre+". "+(labels[motivo.value]||labels.general)+" Detalle: "+mensaje; window.open(wa(key,texto),"_blank");if(note){note.textContent="¡Listo! Se abrió WhatsApp con tu consulta ya redactada.";note.className="form-note form-success";}if(submitButton){setTimeout(function(){submitButton.disabled=false;submitButton.querySelector("span").textContent="Solicitar asesoramiento por WhatsApp";},3000);}
   });
@@ -2603,8 +2605,8 @@ document.addEventListener("DOMContentLoaded", function(){
         "</tbody></table>";
       waA.textContent = "Consultar " + a + " ↗";
       waB.textContent = "Consultar " + b + " ↗";
-      waA.href = wa("turnos", "Hola! Estoy comparando la " + a + " con la " + b + " y quiero consultar por la " + a + ".");
-      waB.href = wa("turnos", "Hola! Estoy comparando la " + a + " con la " + b + " y quiero consultar por la " + b + ".");
+      waA.href = wa("ventas", "Hola! Estoy comparando la " + a + " con la " + b + " y quiero consultar por la " + a + ".");
+      waB.href = wa("ventas", "Hola! Estoy comparando la " + a + " con la " + b + " y quiero consultar por la " + b + ".");
       empty.hidden = true; result.hidden = false;
       if(window.gsap && !window.matchMedia("(prefers-reduced-motion: reduce)").matches){
         var freshRows=table.querySelectorAll("tbody tr");
@@ -2629,7 +2631,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
   // ---- expansión de contenido: destacados, categorías, vistos recientes y filtros ----
   var highlightTrack=document.getElementById("highlightTrack");
-  function renderHighlights(){if(!highlightTrack)return;highlightTrack.innerHTML="";MODELOS_TOYOTA.filter(function(m){return !!m.foto;}).slice(0,4).forEach(function(m){var card=document.createElement("article");card.className="highlight-card";card.innerHTML='<div><div class="highlight-visual"><picture><source type="image/webp" srcset="'+m.foto.replace(/\.jpg$/,".webp")+'"><img src="'+m.foto+'" alt="Toyota '+m.nombre+'" loading="lazy" decoding="async" width="'+m.fotoW+'" height="'+m.fotoH+'"></picture></div><h3>'+m.nombre+'</h3><p>'+m.desc+'</p></div><div class="highlight-actions"><a class="btn primary" target="_blank" rel="noopener" href="'+wa("turnos","Hola! Quiero consultar por la "+m.nombre+".")+'">Consultar ↗</a></div>';highlightTrack.appendChild(card);});}
+  function renderHighlights(){if(!highlightTrack)return;highlightTrack.innerHTML="";MODELOS_TOYOTA.filter(function(m){return !!m.foto;}).slice(0,4).forEach(function(m){var card=document.createElement("article");card.className="highlight-card";card.innerHTML='<div><div class="highlight-visual"><picture><source type="image/webp" srcset="'+m.foto.replace(/\.jpg$/,".webp")+'"><img src="'+m.foto+'" alt="Toyota '+m.nombre+'" loading="lazy" decoding="async" width="'+m.fotoW+'" height="'+m.fotoH+'"></picture></div><h3>'+m.nombre+'</h3><p>'+m.desc+'</p></div><div class="highlight-actions"><a class="btn primary" target="_blank" rel="noopener" href="'+wa("ventas","Hola! Quiero consultar por la "+m.nombre+".")+'">Consultar ↗</a></div>';highlightTrack.appendChild(card);});}
   renderHighlights();
   if(highlightTrack){highlightTrack.addEventListener("click",function(e){var b=e.target.closest(".highlight-detail");if(b)openDetail(b.dataset.model);});}
   var hp=document.getElementById("highlightPrev"),hn=document.getElementById("highlightNext");
