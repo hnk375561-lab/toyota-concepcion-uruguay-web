@@ -2858,7 +2858,7 @@ document.addEventListener("DOMContentLoaded", function(){
   var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var coarsePointer=window.matchMedia&&window.matchMedia("(pointer: coarse)").matches;
   var mobileViewport=window.matchMedia&&window.matchMedia("(max-width:760px)").matches;
-  var MOTION=window.__toyotaMotionTokens=window.__toyotaMotionTokens||{entrance:"power3.out",ui:"power2.out",exit:"power2.in",micro:mobileViewport ? .12 : .14,base:mobileViewport ? .28 : .32,slow:mobileViewport ? .58 : .72,hero:mobileViewport ? .9 : 1.1,stagger:mobileViewport ? .045 : .072,distance:mobileViewport ? 16 : 24,scrollDuration:mobileViewport ? .62 : .72,lerp:mobileViewport ? .12 : .18,wheelMultiplier:mobileViewport ? .9 : .96};
+  var MOTION=window.__toyotaMotionTokens=window.__toyotaMotionTokens||{entrance:"power3.out",ui:"power2.out",exit:"power2.in",micro:mobileViewport ? .12 : .14,base:mobileViewport ? .28 : .32,slow:mobileViewport ? .58 : .72,hero:mobileViewport ? .9 : 1.1,stagger:mobileViewport ? .045 : .072,distance:mobileViewport ? 16 : 24,scrollDuration:mobileViewport ? .62 : .72,lerp:mobileViewport ? .12 : .18,wheelMultiplier:mobileViewport ? .9 : .96,velocityMax:mobileViewport ? 2.5 : 4,velocityShift:mobileViewport ? 1.5 : 3,footerDelay:mobileViewport ? .08 : .14};
   // Touch devices keep native scrolling: it is lower-latency and avoids an unnecessary ticker.
   if(window.__toyotaLenis || coarsePointer || !window.Lenis || !window.gsap || !window.ScrollTrigger){
     if(reduce) window.__toyotaLenis=null;
@@ -2875,11 +2875,22 @@ document.addEventListener("DOMContentLoaded", function(){
       autoRaf:false
     });
     var lenisRaf=function(time){lenis.raf(time*1000)};
+    var heroVelocityImage=document.querySelector(".hero-art img, .hero-editorial-stage img");
+    var heroVelocityY=heroVelocityImage?gsap.quickTo(heroVelocityImage,"y",{duration:MOTION.base,ease:MOTION.entrance}):null;
+    var heroVelocityScale=heroVelocityImage?gsap.quickTo(heroVelocityImage,"scale",{duration:MOTION.base,ease:MOTION.entrance}):null;
+    var onLenisVelocity=function(event){
+      if(!heroVelocityImage||!event)return;
+      var velocity=Math.max(-MOTION.velocityMax,Math.min(MOTION.velocityMax,event.velocity||0));
+      var magnitude=Math.min(MOTION.velocityMax,Math.abs(velocity));
+      if(heroVelocityY)heroVelocityY(-velocity*MOTION.velocityShift);
+      if(heroVelocityScale)heroVelocityScale(1+magnitude*.0012);
+    };
     window.__toyotaLenis=lenis;
     if(window.__toyotaHeaderScrollFallback)window.removeEventListener("scroll",window.__toyotaHeaderScrollFallback);
     var headerSync=function(event){if(window.__toyotaSyncHeader)window.__toyotaSyncHeader(event&&typeof event.scroll==="number"?event.scroll:lenis.scroll);};
     lenis.on("scroll",headerSync);
     lenis.on("scroll",ScrollTrigger.update);
+    lenis.on("scroll",onLenisVelocity);
     gsap.ticker.add(lenisRaf);
     gsap.ticker.lagSmoothing(0);
     window.__toyotaScrollToElement=function(target,options){
@@ -2891,6 +2902,7 @@ document.addEventListener("DOMContentLoaded", function(){
       gsap.ticker.remove(lenisRaf);
       lenis.off("scroll",headerSync);
       lenis.off("scroll",ScrollTrigger.update);
+      lenis.off("scroll",onLenisVelocity);
       lenis.destroy();
       window.__toyotaLenis=null;
     };
@@ -3173,6 +3185,16 @@ document.addEventListener("DOMContentLoaded", function(){
       var summary=trigger?trigger.querySelector("summary"):null;
       ScrollTrigger.create({trigger:target,start:"top 45%",end:"bottom 45%",onToggle:function(self){link.classList.toggle("is-motion-active",self.isActive);if(summary)summary.classList.toggle("is-motion-active",self.isActive);}});
     });
+
+    // Final impression: the footer arrives as one composed object, then its channels settle.
+    var footer=document.querySelector("footer");
+    if(footer){
+      var footerBits=footer.querySelectorAll("h4, p, a, .footer-note, .fgrid > *");
+      gsap.set(footer,{opacity:0,y:MOTION.distance*.65});
+      gsap.set(footerBits,{opacity:0,y:MOTION.distance*.35});
+      gsap.to(footer,{opacity:1,y:0,duration:MOTION.slow,ease:ease,scrollTrigger:{trigger:footer,start:"top 88%",once:true}});
+      gsap.to(footerBits,{opacity:1,y:0,duration:MOTION.base,stagger:{each:MOTION.stagger,from:"start"},delay:MOTION.footerDelay,ease:ease,scrollTrigger:{trigger:footer,start:"top 86%",once:true}});
+    }
 
     // ScrollTrigger already refreshes on its native load/resize events.
     // Do not add a second global refresh pass to the Lenis frame pipeline.
