@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <!--
   Toyota Concepción del Uruguay — Piñeyro y Moscatelli S.R.L.
-  Antes de publicar en el dominio final, reemplazar el placeholder del ID de Google Tag Manager
-  y la canonical relativa por los valores definitivos del concesionario.
+  Build estático preparado para la publicación pública verificada del repositorio.
 -->
 <html lang="es-AR">
 <head>
-<!-- PENDIENTE CLIENTE: reemplazar GTM-XXXXXXX por el ID real cuando el concesionario entregue la cuenta. -->
-<script id="google-tag-manager-placeholder">
+<script id="analytics-events">
 window.dataLayer=window.dataLayer||[];
 window.toyotaTrack=function(name,details){window.dataLayer.push(Object.assign({event:name},details||{}));};
-(function(w,d,s,l,i){if(!i||i==='GTM-XXXXXXX')return;w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-XXXXXXX');
 document.addEventListener('click',function(event){var link=event.target.closest&&event.target.closest('a[href*="wa.me"]');if(link)window.toyotaTrack('whatsapp_click',{link_url:link.href,link_text:(link.textContent||'').trim().slice(0,80)});});
 document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('svg').forEach(function(svg){if(!svg.hasAttribute('aria-label'))svg.setAttribute('aria-hidden','true');});document.querySelectorAll('.contact-plus-icon').forEach(function(icon){icon.setAttribute('aria-hidden','true');});});
 </script>
@@ -29,7 +26,7 @@ document.addEventListener('DOMContentLoaded',function(){document.querySelectorAl
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="/">
+<link rel="canonical" href="https://hnk375561-lab.github.io/toyota-concepcion-uruguay-web/">
 <link rel="icon" type="image/webp" href="toyota-sharp-assets/asset-bec83be10e47-256.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1134,6 +1131,12 @@ body.toyota-scroll-locked{overscroll-behavior:none;touch-action:none}
 #financiacion .related-row a:not(.btn):hover,#canje .related-row a:not(.btn):hover{text-decoration:underline;text-underline-offset:4px}
 .finance-disclaimer{max-width:48ch}
 
+/* Phase 2 completion: shared overflow guard and contact secondary action. */
+html,body{overflow-x:clip}
+@supports not (overflow-x:clip){html,body{overflow-x:hidden}}
+#contacto .contact-secondary-link{display:inline-flex;align-items:center;gap:6px;margin-top:12px;color:#8c111d;font-size:13px;font-weight:800;text-decoration:none}
+#contacto .contact-secondary-link:hover,#contacto .contact-secondary-link:focus-visible{text-decoration:underline;text-underline-offset:4px}
+
 /* Audit phase 2 request: consistent CTA hierarchy across post-sale and contact sections. */
 #servicios .serv-item:not(:first-child) .btn,
 #mantenimiento .maintenance-card:not(:first-child) .btn,
@@ -1726,7 +1729,6 @@ body.toyota-scroll-locked{overscroll-behavior:none;touch-action:none}
 
 
     <section id="testimonios" class="real-reviews-section">
-      <!-- ILUSTRATIVO — reemplazar por reseñas reales de Google -->
       <div class="wrap">
         <div class="section-head tight"><div><span class="tag gold">Opiniones reales</span><h2>Consultá las reseñas verificadas</h2><p>No mostramos testimonios inventados ni citas sin atribución. Las opiniones actuales deben consultarse directamente en la ficha pública del concesionario.</p></div></div>
         <div class="real-reviews-card"><div><strong>Reseñas del concesionario en Google</strong><p>Se abrirá la ficha pública para que puedas leer las reseñas y calificaciones reales, sin intermediarios.</p></div><a class="btn primary" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Pi%C3%B1eyro%20y%20Moscatelli%20Toyota%20Concepci%C3%B3n%20del%20Uruguay">Ver reseñas reales en Google ↗</a></div>
@@ -1773,7 +1775,6 @@ body.toyota-scroll-locked{overscroll-behavior:none;touch-action:none}
             <p>Dejanos tu consulta acá y armamos el mensaje de WhatsApp por vos — lo revisás y lo enviás con un toque.</p>
           </div>
         </div>
-        <!-- NEEDS: endpoint de Formspree, Google Apps Script o CRM del cliente para activar un envío backend real. Mientras tanto se ofrecen WhatsApp y el email oficial mediante mailto. -->
         <form class="form-grid" id="contactForm" aria-labelledby="contactFormTitle" aria-describedby="contactFormNote" novalidate>
           <div>
             <label for="cName">Nombre</label>
@@ -1799,7 +1800,7 @@ body.toyota-scroll-locked{overscroll-behavior:none;touch-action:none}
           </div>
           <div>
             <button type="submit" class="btn primary block"><span>Solicitar asesoramiento por WhatsApp</span></button>
-            <a class="btn block" href="mailto:toyotacdelu@gmail.com?subject=Consulta desde la web">Enviar por email</a>
+            <a class="text-link contact-secondary-link" href="mailto:toyotacdelu@gmail.com?subject=Consulta desde la web">Enviar por email <span aria-hidden="true">↗</span></a>
             <p class="form-note" id="contactFormNote" role="status" aria-live="polite">WhatsApp abre un mensaje para que lo revises y lo envíes. El email utiliza la dirección publicada en el listado oficial de Toyota Argentina.</p>
           </div>
         </form>
@@ -3126,7 +3127,6 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 </script>
 
-<!-- Canonical relativa para el demo; reemplazar por la URL pública definitiva cuando el dominio del concesionario esté confirmado. -->
 <script id="page-health-check">
 (function(){
   "use strict";
