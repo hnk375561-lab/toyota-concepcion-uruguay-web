@@ -1911,6 +1911,9 @@ body{background:#e9eef0!important;color:#172026!important}
     sedan: 'Sedán'
   };
 
+  // MODEL_DETAILS is filled below; keep the first rendering pass safe so a
+  // late catalog declaration cannot stop the rest of the page from loading.
+  var MODEL_DETAILS = {};
   var gamaGrid = document.getElementById("gama-grid");
   MODELOS_TOYOTA.forEach(function(m){
     var el = document.createElement("div");
@@ -2081,6 +2084,20 @@ body{background:#e9eef0!important;color:#172026!important}
     "Corolla": {intro:"Sedán Toyota con versiones XLI, XEI y SEG publicadas en la página oficial argentina.", specs:[["Motorización","Toyota Argentina publica motor 2.0L Dynamic Force."],["Tecnología","Pantalla multimedia de 10 pulgadas con Android Auto y Apple CarPlay inalámbricos."],["Equipamiento","Las versiones varían en display, faros, llantas y cargador inalámbrico."]], source:"https://www.toyota.com.ar/modelos/corolla", gallery:["https://www.toyota.com.ar/modelos/corolla","https://media.toyota.com.ar/","https://www.toyota.com.ar/concesionarios"]},
     "Yaris": {intro:"Toyota Argentina mantiene páginas oficiales para Yaris Hatchback y Yaris Cross.", specs:[["Gama publicada","Yaris Hatchback y Yaris Cross aparecen en páginas oficiales separadas."],["Yaris Cross","La ficha consultada publica Full LED, pantalla multimedia de 10 pulgadas y conectividad inalámbrica."],["Disponibilidad","Versiones, stock y equipamiento deben confirmarse con el concesionario."]], source:"https://www.toyota.com.ar/modelos/yaris-hatchback", gallery:["https://www.toyota.com.ar/modelos/yaris-hatchback","https://www.toyota.com.ar/modelos/yaris-cross","https://www.toyota.com.ar/concesionarios"]}
   };
+  // Restore detail buttons after the catalog is populated. The delegated
+  // handler above will open the existing detail dialog when they are clicked.
+  Object.keys(MODEL_DETAILS).forEach(function(name){
+    var card=Array.prototype.slice.call(gamaGrid.querySelectorAll(".model")).filter(function(item){return item.getAttribute("data-model")===name;})[0];
+    if(!card||card.querySelector("[data-model-detail]"))return;
+    var button=document.createElement("button");
+    button.className="model-detail-link";
+    button.type="button";
+    button.setAttribute("data-model-detail",name);
+    button.textContent="Ver ficha del modelo ›";
+    button.style.cssText="border:0;background:none;color:var(--toyota-red);font:inherit;font-weight:700;font-size:13px;text-align:left;padding:0 0 8px;cursor:pointer;";
+    var heading=card.querySelector("h3");
+    if(heading)heading.insertAdjacentElement("afterend",button);
+  });
   var detail=document.getElementById("modelDetail"), closeDetail=document.getElementById("detailClose"), detailLastFocus=null;
   function slugifyModel(name){return name.toLowerCase().replace(/\s+/g,"-").replace(/[^a-z0-9-]/g,"");}
   function closeModelDetail(updateHash){detail.classList.remove("open");if(detailLastFocus&&detailLastFocus.focus)detailLastFocus.focus();if(updateHash!==false)history.replaceState(null,"",location.pathname+location.search+"#gama");}
