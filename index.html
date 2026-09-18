@@ -443,7 +443,7 @@ button,input,select,textarea{font-size:14px}
 .ribbon{background:linear-gradient(100deg,#0F1214,#20262B,#0F1214);color:#fff;padding:11px 16px;letter-spacing:.06em;font-size:12px;box-shadow:var(--shadow-sm)}
 .site{background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(27,31,34,.16);box-shadow:var(--shadow-sm)}
 .site.is-scrolled{box-shadow:var(--shadow-md)}
-.nav{padding:18px 0}.brand .b1{font-weight:800;letter-spacing:-.025em}.brand .b2{color:#46505C}.navlinks{gap:26px;font-weight:500}.navlinks a:hover{color:var(--toyota-red);text-shadow:0 0 18px rgba(235,10,30,.22)}
+.nav{padding:18px 0}.brand .b1{font-weight:800;letter-spacing:-.025em}.brand .b2{color:#46505C}.navlinks{gap:26px;font-weight:500}.navlinks a:hover{color:var(--toyota-red);text-shadow:0 0 18px rgba(235,10,30,.22)}.navlinks>a{position:relative}.navmega>summary{position:relative}.navlinks>a:after{content:"";position:absolute;left:0;right:100%;bottom:-6px;height:2px;background:var(--toyota-red);transition:right .32s cubic-bezier(.16,.8,.28,1)}.navmega>summary:before{content:"";position:absolute;left:0;right:100%;bottom:-6px;height:2px;background:var(--toyota-red);transition:right .32s cubic-bezier(.16,.8,.28,1)}.navlinks>a.is-motion-active,.navmega>summary.is-motion-active{color:var(--toyota-red)}.navlinks>a.is-motion-active:after,.navmega>summary.is-motion-active:before{right:0}
 .navcall{border-left-color:#C8CED3}.navcall:before{box-shadow:0 0 12px rgba(235,10,30,.8)}
 .burger{border-radius:9px;min-width:48px;min-height:48px;box-shadow:var(--shadow-sm)}
 .mobilepanel{background:rgba(255,255,255,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
@@ -2773,6 +2773,11 @@ document.addEventListener("DOMContentLoaded", function(){
       cleanupFns.push(function(){el.removeEventListener("pointerdown",down);el.removeEventListener("pointerup",up);el.removeEventListener("pointerleave",up);});
     });
 
+      // Los botones flotantes (WhatsApp/asesor) hasta ahora estaban ya visibles desde el
+      // primer frame; entran con un pequeño retraso tras el hero para leer como parte de
+      // la misma coreografía, no como chrome estático pegado a la página.
+      gsap.from(".float-wa, .float-advisor",{opacity:0,scale:.4,y:20,duration:.55,ease:"back.out(1.6)",stagger:.08,delay:1.5});
+
   },document.body);
 
   window.__destroyToyotaGsapMotion=function(){
@@ -2870,7 +2875,12 @@ document.addEventListener("DOMContentLoaded", function(){
     navTargets.forEach(function(target){
       var id=target.id, link=document.querySelector('.site-header a[href="#'+id+'"]');
       if(!link)return;
-      ScrollTrigger.create({trigger:target,start:"top 45%",end:"bottom 45%",onToggle:function(self){link.classList.toggle("is-motion-active",self.isActive);}});
+      // Muchos de estos enlaces viven dentro de un dropdown mega-panel cerrado: marcarlos
+      // a ellos solos no se ve nunca. Se marca también el disparador visible (el <summary>)
+      // para que la navegación sí comunique en qué sección está el usuario.
+      var trigger=link.closest("details.navmega");
+      var summary=trigger?trigger.querySelector("summary"):null;
+      ScrollTrigger.create({trigger:target,start:"top 45%",end:"bottom 45%",onToggle:function(self){link.classList.toggle("is-motion-active",self.isActive);if(summary)summary.classList.toggle("is-motion-active",self.isActive);}});
     });
 
     // ScrollTrigger already refreshes on its native load/resize events.
