@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded',function(){document.querySelectorAl
 <link rel="icon" type="image/webp" href="toyota-sharp-assets/asset-bec83be10e47-256.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="image" href="toyota-sharp-assets/hero-sw4-1800.webp" type="image/webp" fetchpriority="high">
+<link rel="preload" as="image" href="toyota-sharp-assets/hero-sw4-1800.webp" imagesrcset="toyota-sharp-assets/hero-sw4-480.webp 480w, toyota-sharp-assets/hero-sw4-1800.webp 1800w" imagesizes="(max-width: 760px) 100vw, 68vw" type="image/webp" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -285,10 +285,10 @@ footer a:hover{color:#fff}
 .float-wa{position:fixed;bottom:20px;right:20px;z-index:60;background:var(--toyota-red);color:#fff;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform .18s ease}
 .float-wa:hover{transform:scale(1.07)}
 
-.mobilebar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:55;background:var(--surface);border-top:1px solid var(--border)}
+.mobilebar{display:none;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .3s ease,transform .3s ease;will-change:opacity,transform;position:fixed;bottom:0;left:0;right:0;z-index:55;background:var(--surface);border-top:1px solid var(--border)}
 .mobilebar .wrap{display:grid;grid-template-columns:repeat(4,1fr);width:100%;margin:0}
 .mobilebar a{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 2px 12px;text-decoration:none;font-size:10.5px;color:var(--muted);border-right:1px solid var(--border)}
-.mobilebar a:last-child{border-right:0}
+.mobilebar a:last-child{border-right:0}.mobilebar.is-visible{opacity:1;transform:translateY(0);pointer-events:auto}
 .mobilebar svg{width:19px;height:19px;color:var(--ink)}
 
 @media(max-width:860px){
@@ -359,7 +359,7 @@ footer a:hover{color:#fff}
 </style>
 <style>
 
-.model-photo{width:calc(100% + 42px);margin:-24px -21px 6px;height:150px;object-fit:cover;display:block}
+.model-photo{aspect-ratio:4 / 3;object-fit:contain;width:calc(100% + 42px);margin:-24px -21px 6px;height:150px;object-fit:cover;display:block}
 .brand-logo{height:38px;width:auto;border-radius:4px;object-fit:contain;background:#fff;padding:2px}
 .cta-banner{position:relative;padding:72px 0;color:#fff;background-size:cover;background-position:center}
 .cta-banner:before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(15,18,20,.92),rgba(15,18,20,.55))}
@@ -527,7 +527,7 @@ section{padding:96px 0;border-bottom:1px solid #C8CED3}
 /* Final delivery pass: centered vehicle media, stronger contrast and editorial hierarchy. */
 .gama-grid{align-items:stretch}
 .model{align-items:stretch;min-width:0}
-.model-photo{display:block;width:100%;height:174px;min-height:174px;object-fit:contain;object-position:center center;background:linear-gradient(145deg,#f7f9f9,#e7ecee);border:1px solid rgba(200,206,211,.72);padding:10px 18px;margin:0 auto;border-radius:10px}
+.model-photo{aspect-ratio:4 / 3;object-fit:contain;display:block;width:100%;height:174px;min-height:174px;object-fit:contain;object-position:center center;background:linear-gradient(145deg,#f7f9f9,#e7ecee);border:1px solid rgba(200,206,211,.72);padding:10px 18px;margin:0 auto;border-radius:10px}
 .model[data-model="Corolla"] .ico{color:#2f78b7;background:linear-gradient(145deg,#eef7fc,#d9eaf5);border:1px solid #b8d5e6;border-radius:10px;padding:3px 10px;}
 .model .ico{height:174px;min-height:174px;display:grid;place-items:center;border:1px solid rgba(200,206,211,.72);border-radius:10px;background:linear-gradient(145deg,#f7f9f9,#e7ecee);margin:0 auto;width:100%;padding:22px}.model .ico svg{width:min(76%,230px);height:auto;max-height:125px;color:#1b1f22}
 .model h3{margin-top:2px}.model p{min-height:48px}
@@ -537,7 +537,7 @@ section{padding:96px 0;border-bottom:1px solid #C8CED3}
 .maintenance-grid{gap:18px}.maintenance-card{position:relative;min-height:250px;background:linear-gradient(145deg,#182126,#27333a);border:1px solid #58656d;box-shadow:0 18px 42px -27px rgba(0,0,0,.8);color:#fff;padding:26px}.maintenance-card:after{content:"";position:absolute;right:18px;top:18px;width:54px;height:54px;border:1px solid rgba(212,175,55,.65);border-radius:50%}.maintenance-card .value-icon{position:relative;z-index:1;width:43px;height:43px;background:linear-gradient(135deg,var(--toyota-red),var(--luxury-gold));box-shadow:0 8px 20px rgba(235,10,30,.24)}.maintenance-card h3{color:#fff;font-size:21px}.maintenance-card p{color:#dbe1e3;font-size:14px;line-height:1.65}.maintenance-card .btn{position:relative;z-index:1;background:rgba(255,255,255,.09);border-color:#77838a;color:#fff}.maintenance-card .btn.primary{background:var(--toyota-red);border-color:var(--toyota-red)}.maintenance-intro{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-top:24px}.maintenance-note{border:1px solid #58656d;border-radius:13px;padding:21px;background:rgba(255,255,255,.06);color:#dbe1e3}.maintenance-note strong{color:#fff;display:block;margin-bottom:5px}.maintenance-note a{color:#f0d274;text-decoration:none;font-weight:700}.maintenance-note a:hover{text-decoration:underline}
 .hero-showcase{display:grid;gap:14px;align-content:start}.hero-showcase .hero-photo{min-height:510px}.hero-qualification{position:relative;overflow:hidden;border:1px solid rgba(212,175,55,.48);background:linear-gradient(135deg,rgba(25,31,34,.96),rgba(43,52,58,.96));padding:17px 20px;color:#fff;box-shadow:0 15px 30px -22px rgba(0,0,0,.8)}.hero-qualification:before{content:"";position:absolute;inset:auto -20px -58px auto;width:150px;height:150px;border:1px solid rgba(212,175,55,.45);border-radius:50%;box-shadow:0 0 0 18px rgba(212,175,55,.05),0 0 0 36px rgba(212,175,55,.03)}.hero-qualification>*{position:relative}.hero-qualification .eyebrow{display:block;color:#f0d274;text-transform:uppercase;letter-spacing:.13em;font:700 10px var(--display);margin-bottom:7px}.hero-qualification strong{display:block;font:700 18px var(--display)}.hero-qualification p{margin:5px 0 12px;color:#d6dde0;font-size:13px;max-width:48ch}.hero-qualification .hero-quicklinks{display:flex;gap:8px;flex-wrap:wrap}.hero-qualification a{color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.28);padding:7px 9px;font-size:11px}.hero-qualification a:hover{border-color:#f0d274;color:#f0d274}
 @media(max-width:900px){.maintenance-intro{grid-template-columns:1fr}.hero-showcase{order:-1}.hero-showcase .hero-photo{min-height:380px}}
-@media(max-width:540px){.model-photo,.model .ico{height:160px;min-height:160px}.model-photo{padding:8px 12px}.hero-showcase .hero-photo{min-height:280px}.journey-premium>div>h2{font-size:clamp(34px,10vw,52px)}.maintenance-card{min-height:230px}.hero-qualification{padding:16px}}
+@media(max-width:540px){.model-photo,.model .ico{height:160px;min-height:160px}.model-photo{aspect-ratio:4 / 3;object-fit:contain;padding:8px 12px}.hero-showcase .hero-photo{min-height:280px}.journey-premium>div>h2{font-size:clamp(34px,10vw,52px)}.maintenance-card{min-height:230px}.hero-qualification{padding:16px}}
 </style>
 <style id="category-contrast-final">.expansion-dark .category-card h3{color:#1b1f22!important}.expansion-dark .category-card .category-link{color:#8c111d!important}</style><style id="last-requested-revision">
 /* Final polish: visual rhythm, editorial media and product-stock contrast. */
@@ -1006,7 +1006,7 @@ h1,h2,h3,.brand .b1,.section-kicker,.tag{font-kerning:normal;text-wrap:balance}
 .hero-rail-rule{width:1px!important;height:40px!important;margin:14px 0!important;flex:none}
 .hero-rail-rule-mid{height:30px!important;margin:12px 0!important}
 .hero-rail-label,.hero-rail-detail{
-  display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;
+  display:grid!important;place-items:center!important;align-content:center!important;justify-content:center!important;align-items:center!important;overflow:hidden!important;
   width:100%!important;margin:0!important;flex:none;
 }
 .hero-rail-label-mid{margin-top:2px!important}
@@ -1038,6 +1038,15 @@ h1,h2,h3,.brand .b1,.section-kicker,.tag{font-kerning:normal;text-wrap:balance}
 .social-mark svg{width:var(--system-icon-md,20px);height:var(--system-icon-md,20px);stroke-width:1.7}
 .contact-plus-icon svg{width:18px;height:18px;stroke-width:1.7}
 .contact-plus-icon{display:grid;place-items:center}
+</style>
+
+<style id="p1-p2-rest-polish">
+body.toyota-scroll-locked{overscroll-behavior:none;touch-action:none}
+.model-photo{aspect-ratio:4 / 3;object-fit:contain}
+.rive-vehicle-preview:not(.is-ready) #riveVehicleCanvas{opacity:0!important}
+.rive-vehicle-preview:not(.is-ready) .rive-vehicle-fallback{opacity:1!important;visibility:visible!important}
+@media(max-width:480px){.hero-editorial-rail-right,.hero-editorial-rail .hero-rail-detail{display:none!important}.hero-editorial-frame{grid-template-columns:38px 1fr!important}.hero-editorial-rail{width:38px!important;overflow:hidden!important}}
+@media(prefers-reduced-motion:reduce){.mobilebar{transition:none!important}}
 </style>
 </head>
 <body id="top">
@@ -1115,7 +1124,7 @@ h1,h2,h3,.brand .b1,.section-kicker,.tag{font-kerning:normal;text-wrap:balance}
 
     <div class="hero-editorial-stage">
       <figure class="hero-editorial-vehicle hero-photo-real" aria-label="Toyota SW4 Diamond">
-        <picture><source type="image/webp" srcset="toyota-sharp-assets/hero-sw4-1800.webp"><img src="toyota-sharp-assets/hero-sw4-1800.jpg" alt="Toyota SW4 Diamond, imagen del vehículo" fetchpriority="high" decoding="sync" width="1800" height="1844"></picture>
+        <picture><source type="image/webp" media="(max-width: 760px)" srcset="toyota-sharp-assets/hero-sw4-480.webp"><source type="image/webp" srcset="toyota-sharp-assets/hero-sw4-1800.webp"><img src="toyota-sharp-assets/hero-sw4-1800.jpg" alt="Toyota SW4 Diamond, imagen del vehículo" fetchpriority="high" decoding="async" width="1800" height="1844"></picture>
         <figcaption><span>SW4 Diamond</span><span>Disponibilidad a confirmar</span></figcaption>
       </figure>
       <figure class="hero-editorial-vehicle hero-editorial-secondary" aria-label="Toyota Hilux roja">
@@ -1967,29 +1976,37 @@ document.addEventListener("DOMContentLoaded", function(){
   // overlays abiertos a la vez no se desbloqueen mutuamente al cerrar solo uno. ----
   window.__toyotaScrollLockCount = window.__toyotaScrollLockCount || 0;
   window.__toyotaLockScroll = function(){
+    var y=window.scrollY||window.pageYOffset||0;
+    window.scrollTo(0,y);
     window.__toyotaScrollLockCount++;
     document.documentElement.classList.add("toyota-scroll-locked");
+    document.body.classList.add("toyota-scroll-locked");
     if(window.__toyotaLenis && window.__toyotaLenis.stop) window.__toyotaLenis.stop();
   };
   window.__toyotaUnlockScroll = function(){
     window.__toyotaScrollLockCount = Math.max(0, window.__toyotaScrollLockCount - 1);
     if(window.__toyotaScrollLockCount === 0){
       document.documentElement.classList.remove("toyota-scroll-locked");
-      if(window.__toyotaLenis && window.__toyotaLenis.start) window.__toyotaLenis.start();
+      document.body.classList.remove("toyota-scroll-locked");
+      if(window.__toyotaLenis && window.__toyotaLenis.start) setTimeout(function(){window.__toyotaLenis.start();},100);
     }
   };
 
   window.__toyotaScrollLockCount = window.__toyotaScrollLockCount || 0;
   window.__toyotaLockScroll = function(){
+    var y=window.scrollY||window.pageYOffset||0;
+    window.scrollTo(0,y);
     window.__toyotaScrollLockCount++;
     document.documentElement.classList.add("toyota-scroll-locked");
+    document.body.classList.add("toyota-scroll-locked");
     if(window.__toyotaLenis && window.__toyotaLenis.stop) window.__toyotaLenis.stop();
   };
   window.__toyotaUnlockScroll = function(){
     window.__toyotaScrollLockCount = Math.max(0, window.__toyotaScrollLockCount - 1);
     if(window.__toyotaScrollLockCount === 0){
       document.documentElement.classList.remove("toyota-scroll-locked");
-      if(window.__toyotaLenis && window.__toyotaLenis.start) window.__toyotaLenis.start();
+      document.body.classList.remove("toyota-scroll-locked");
+      if(window.__toyotaLenis && window.__toyotaLenis.start) setTimeout(function(){window.__toyotaLenis.start();},100);
     }
   };
   // ---- menú mobile ----
@@ -2071,16 +2088,21 @@ document.addEventListener("DOMContentLoaded", function(){
     if(b) openDetail(b.getAttribute("data-model-detail"));
   });
 
-  document.getElementById("filterbar").addEventListener("click", function(e){
-    var btn = e.target.closest(".filterbtn");
-    if(!btn) return;
-    this.querySelectorAll(".filterbtn").forEach(function(b){ b.classList.remove("active"); });
-    btn.classList.add("active");
-    var filtro = btn.getAttribute("data-filter");
-    gamaGrid.querySelectorAll(".model").forEach(function(card){
-      card.hidden = filtro !== "todos" && card.getAttribute("data-tipo") !== filtro;
-    });
-  });
+  var filterBar=document.getElementById("filterbar"), filterStorageKey="toyota-gama-filter";
+  function applyGamaFilter(filtro,updateUrl){
+    if(!filterBar)return;
+    var btn=filterBar.querySelector('.filterbtn[data-filter="'+filtro+'"]')||filterBar.querySelector('.filterbtn[data-filter="todos"]');
+    filtro=btn.getAttribute("data-filter");
+    filterBar.querySelectorAll(".filterbtn").forEach(function(b){b.classList.toggle("active",b===btn);b.setAttribute("aria-pressed",b===btn?"true":"false");});
+    gamaGrid.querySelectorAll(".model").forEach(function(card){card.hidden=filtro!=="todos"&&card.getAttribute("data-tipo")!==filtro;});
+    try{sessionStorage.setItem(filterStorageKey,filtro);}catch(e){}
+    if(updateUrl){var next=filtro==="todos"?location.pathname+location.search+"#gama":location.pathname+location.search+"#gama?filter="+encodeURIComponent(filtro);history.replaceState(null,"",next);}
+  }
+  filterBar.querySelectorAll(".filterbtn").forEach(function(btn){btn.setAttribute("aria-pressed",btn.classList.contains("active")?"true":"false");});
+  filterBar.addEventListener("click",function(e){var btn=e.target.closest(".filterbtn");if(btn)applyGamaFilter(btn.getAttribute("data-filter"),true);});
+  var hashFilter=(location.hash.match(/^#gama\?filter=([^&]+)/)||[])[1],savedFilter=null;
+  try{savedFilter=sessionStorage.getItem(filterStorageKey);}catch(e){}
+  applyGamaFilter(hashFilter?decodeURIComponent(hashFilter):(savedFilter||"todos"),false);
 
 
   // ---- plan canje: captura los datos y genera una consulta contextual, no una tasación automática ----
@@ -2092,16 +2114,18 @@ document.addEventListener("DOMContentLoaded", function(){
     var note=document.getElementById("tradeNote");
     var yearOk = /^(19|20)\d{2}$/.test(year);
     var kmOk = /^\d{1,7}$/.test(km);
+    ["tradeCar","tradeYear","tradeKm"].forEach(function(id){document.getElementById(id).removeAttribute("aria-invalid");});
     if(!car || !yearOk || !kmOk){
-      note.textContent = !car ? "Contanos marca y modelo de tu vehículo." : (!yearOk ? "Ingresá un año válido, por ejemplo 2020." : "Ingresá el kilometraje solo con números.");
-      note.className = "form-error";
-      return;
+      var invalidId=!car?"tradeCar":(!yearOk?"tradeYear":"tradeKm");
+      document.getElementById(invalidId).setAttribute("aria-invalid","true");
+      note.textContent=!car?"Contanos marca y modelo de tu vehículo.":(!yearOk?"El año debe tener 4 dígitos, por ejemplo 2020.":"El kilometraje debe contener solo números.");
+      note.className="form-note form-error";document.getElementById(invalidId).focus();return;
     }
     var text="Hola! Quiero tasar mi vehículo para un plan canje. Vehículo: "+car+". Año: "+year+". Kilometraje: "+km+" km. Estado: "+condition+". Me interesa a cambio: "+(interestLabel[interestSel.value]||interestSel.value)+".";
     window.toyotaTrack("trade_form_submit",{vehicle:car,vehicle_year:year,interest:interestSel.value});
     note.textContent = "¡Listo! Se abrió WhatsApp con tu consulta ya redactada.";
     note.className = "form-success";
-    window.open(wa("turnos",text),"_blank");
+    var tradeButton=tradeForm.querySelector("button[type=submit]");if(tradeButton){tradeButton.disabled=true;tradeButton.textContent="Abriendo WhatsApp…";}window.open(wa("turnos",text),"_blank");if(tradeButton)setTimeout(function(){tradeButton.disabled=false;tradeButton.textContent="Generar consulta de tasación ↗";},3000);
   });}
 
   // ---- servicios ----
@@ -2197,12 +2221,12 @@ document.addEventListener("DOMContentLoaded", function(){
           openItem.classList.remove("open");
           openItem.querySelector(".faq-q").setAttribute("aria-expanded", "false");
           var openPanel=openItem.querySelector(".faq-a");
-          if(window.gsap&&!window.matchMedia("(prefers-reduced-motion: reduce)").matches){gsap.to(openPanel,{maxHeight:0,opacity:0,duration:.34,ease:"power2.inOut",overwrite:true});}else{openPanel.style.maxHeight=null;}
+          if(window.gsap&&!window.matchMedia("(prefers-reduced-motion: reduce)").matches){gsap.to(openPanel,{maxHeight:0,opacity:0,duration:.2,ease:"power2.out",overwrite:true});}else{openPanel.style.maxHeight=null;}
         }
       });
       item.classList.toggle("open", !isOpen);
       btn.setAttribute("aria-expanded", (!isOpen).toString());
-      if(window.gsap&&!window.matchMedia("(prefers-reduced-motion: reduce)").matches){gsap.fromTo(panel,{maxHeight:isOpen?panel.scrollHeight:0,opacity:isOpen?1:0},{maxHeight:isOpen?0:panel.scrollHeight,opacity:isOpen?0:1,duration:.42,ease:"power3.inOut",overwrite:true,onComplete:function(){if(!isOpen){panel.style.maxHeight="none";}}});}else{panel.style.maxHeight = isOpen ? null : panel.scrollHeight + "px";}
+      if(window.gsap&&!window.matchMedia("(prefers-reduced-motion: reduce)").matches){gsap.fromTo(panel,{maxHeight:isOpen?panel.scrollHeight:0,opacity:isOpen?1:0},{maxHeight:isOpen?0:panel.scrollHeight,opacity:isOpen?0:1,duration:.26,ease:"power2.out",overwrite:true,onComplete:function(){if(!isOpen){panel.style.maxHeight="none";}}});}else{panel.style.maxHeight = isOpen ? null : panel.scrollHeight + "px";}
     });
   });
 
@@ -2255,17 +2279,17 @@ document.addEventListener("DOMContentLoaded", function(){
     e.preventDefault(); var nameField=document.getElementById("cName"), messageField=document.getElementById("cMsg");
     var nombre=nameField.value.trim(); var motivo=document.getElementById("cMotivo"); var mensaje=messageField.value.trim();
     [nameField,messageField].forEach(function(field){field.removeAttribute("aria-invalid");});
-    var note=this.querySelector(".form-note");
+    var submitButton=this.querySelector("button[type=submit]"),note=this.querySelector(".form-note");
     if(!nombre || !mensaje){
       if(!nombre) nameField.setAttribute("aria-invalid","true");
       if(!mensaje) messageField.setAttribute("aria-invalid","true");
       if(note){note.textContent=!nombre && !mensaje ? "Completá tu nombre y el mensaje para continuar." : (!nombre ? "Completá tu nombre para continuar." : "Contanos brevemente qué necesitás para continuar.");note.className="form-note form-error";note.setAttribute("role","alert");}
       (!nombre ? nameField : messageField).focus(); return;
     }
-    if(note){note.textContent="Preparando tu consulta…";note.className="form-note";note.setAttribute("role","status");}
+    if(note){note.textContent="Abriendo WhatsApp…";note.className="form-note";note.setAttribute("role","status");}if(submitButton){submitButton.disabled=true;submitButton.querySelector("span").textContent="Abriendo WhatsApp…";}
     var key=motivo.value==="repuestos"||motivo.value==="accesorios"?"repuestos":motivo.value==="neumaticos"?"neumaticos":"turnos";
     var labels={"0km":"Quiero consultar por un Toyota 0 km.","usados":"Quiero consultar por un vehículo usado disponible.","financiacion":"Quiero consultar opciones de financiación para un Toyota.","canje":"Quiero tasar mi vehículo para un plan canje.","turnos":"Quiero solicitar un turno de service.","repuestos":"Quiero consultar por un repuesto genuino Toyota.","accesorios":"Quiero consultar por accesorios Toyota.","neumaticos":"Quiero consultar por neumáticos Bridgestone.","general":"Quiero realizar una consulta general."};
-    var texto="Hola! Soy "+nombre+". "+(labels[motivo.value]||labels.general)+" Detalle: "+mensaje; window.open(wa(key,texto),"_blank");
+    var texto="Hola! Soy "+nombre+". "+(labels[motivo.value]||labels.general)+" Detalle: "+mensaje; window.open(wa(key,texto),"_blank");if(note){note.textContent="¡Listo! Se abrió WhatsApp con tu consulta ya redactada.";note.className="form-note form-success";}if(submitButton){setTimeout(function(){submitButton.disabled=false;submitButton.querySelector("span").textContent="Solicitar asesoramiento por WhatsApp";},3000);}
   });
 
   // ---- fichas técnicas ampliadas: catálogo exclusivo del comparador ----
@@ -2422,6 +2446,7 @@ document.addEventListener("DOMContentLoaded", function(){
       [selA, selB].forEach(function(sel){
         var opt = document.createElement("option");
         opt.value = m.nombre; opt.textContent = m.nombre;
+        if(m.nombre === "Fortuner" || m.nombre === "Etios"){opt.disabled=true;opt.textContent += " — ficha en actualización";}
         sel.appendChild(opt);
       });
     });
@@ -2466,7 +2491,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
   // ---- rutas compartibles por hash ----
-  function restoreHashRoute(){var h=location.hash.replace(/^#/,"");if(h.indexOf("modelo/")===0){var slug=h.slice(7),name=Object.keys(MODEL_DETAILS).filter(function(k){return slugifyModel(k)===slug;})[0];if(name)openDetail(name,true);return;}if(h.indexOf("comparar")===0){var q=h.split("?")[1]||"",p=new URLSearchParams(q),a=p.get("a"),b=p.get("b");if(a&&document.getElementById("compareA")){var ca=document.getElementById("compareA"),cb=document.getElementById("compareB"),validA=Array.prototype.some.call(ca.options,function(o){return o.value===a;}),validB=Array.prototype.some.call(cb.options,function(o){return o.value===b;});if(validA){ca.value=a;cb.value=validB?b:"";ca.dispatchEvent(new Event("change"));}}var c=document.getElementById("comparar");if(c)window.__toyotaScrollToElement(c);return;}if(h){var target=document.getElementById(h);if(target)setTimeout(function(){window.__toyotaScrollToElement(target);},0);}}
+  function restoreHashRoute(){var h=location.hash.replace(/^#/,"");if(h.indexOf("modelo/")===0){var slug=h.slice(7),name=Object.keys(MODEL_DETAILS).filter(function(k){return slugifyModel(k)===slug;})[0];if(name)openDetail(name,true);return;}if(h.indexOf("comparar")===0){var q=h.split("?")[1]||"",p=new URLSearchParams(q),a=p.get("a"),b=p.get("b");if(a&&document.getElementById("compareA")){var ca=document.getElementById("compareA"),cb=document.getElementById("compareB"),validA=Array.prototype.some.call(ca.options,function(o){return o.value===a&&!o.disabled;}),validB=Array.prototype.some.call(cb.options,function(o){return o.value===b&&!o.disabled;});if(validA){ca.value=a;cb.value=validB?b:"";ca.dispatchEvent(new Event("change"));}}var c=document.getElementById("comparar");if(c)window.__toyotaScrollToElement(c);return;}if(h.indexOf("gama?")===0){var gama=document.getElementById("gama");if(gama)setTimeout(function(){window.__toyotaScrollToElement(gama);},0);return;}if(h){var target=document.getElementById(h);if(target)setTimeout(function(){window.__toyotaScrollToElement(target);},0);}}
   window.addEventListener("hashchange",function(){if(!location.hash.match(/^#modelo\//))closeModelDetail(false);restoreHashRoute();});
   restoreHashRoute();
 
@@ -2640,7 +2665,7 @@ document.addEventListener("DOMContentLoaded", function(){
   document.querySelectorAll('[data-category-jump]').forEach(function(a){a.addEventListener('click',function(e){var type=this.dataset.categoryJump;if(type==='general')return;var filter=document.querySelector('.filterbtn[data-filter="'+type+'"]');if(filter){e.preventDefault();filter.click();window.__toyotaScrollToElement(document.getElementById('gama'));}});});
   document.querySelectorAll('.journey-step button').forEach(function(btn){btn.addEventListener('click',function(){this.closest('.journey-step').classList.toggle('open');});});
   var faq=document.getElementById('faqList');
-  if(faq){var original=Array.from(faq.querySelectorAll('.faq-item'));var tabs=document.createElement('div');tabs.className='faq-tabs';tabs.setAttribute('role','tablist');tabs.innerHTML='<button class="faq-tab active" aria-selected="true" role="tab" data-faq-filter="todos" type="button">Todas</button><button class="faq-tab" aria-selected="false" role="tab" data-faq-filter="0km" type="button">0 km</button><button class="faq-tab" aria-selected="false" role="tab" data-faq-filter="usados" type="button">Usados</button><button class="faq-tab" aria-selected="false" role="tab" data-faq-filter="financiacion" type="button">Financiación</button><button class="faq-tab" aria-selected="false" role="tab" data-faq-filter="postventa" type="button">Postventa</button>';faq.parentNode.insertBefore(tabs,faq);var note=document.createElement('p');note.className='faq-category-note';note.textContent='Filtrá las respuestas según el momento de tu compra.';faq.parentNode.insertBefore(note,faq);var keys=['postventa','postventa','postventa','usados','financiacion','financiacion','usados','postventa','usados'];original.forEach(function(item,i){item.dataset.faqCategory=keys[i]||'todos';});tabs.querySelectorAll('.faq-tab').forEach(function(tab){tab.addEventListener('click',function(){tabs.querySelectorAll('.faq-tab').forEach(function(x){x.classList.remove('active');x.setAttribute('aria-selected','false');});this.classList.add('active');this.setAttribute('aria-selected','true');var wanted=this.dataset.faqFilter;original.forEach(function(item){var show=wanted==='todos'||item.dataset.faqCategory===wanted;item.hidden=!show;if(show&&window.gsap&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){gsap.fromTo(item,{opacity:.25,y:8},{opacity:1,y:0,duration:.28,overwrite:'auto'});}});});});}
+  if(faq){var original=Array.from(faq.querySelectorAll('.faq-item'));var tabs=document.createElement('div');tabs.className='faq-tabs';tabs.setAttribute('role','tablist');tabs.innerHTML='<button class="faq-tab active" aria-selected="true" role="tab" data-faq-filter="todos" type="button">Todas</button><button class="faq-tab" aria-selected="false" role="tab" data-faq-filter="0km" type="button">0 km</button><button class="faq-tab" aria-selected="false" role="tab" data-faq-filter="usados" type="button">Usados</button><button class="faq-tab" aria-selected="false" role="tab" data-faq-filter="financiacion" type="button">Financiación</button><button class="faq-tab" aria-selected="false" role="tab" data-faq-filter="postventa" type="button">Postventa</button>';faq.parentNode.insertBefore(tabs,faq);var note=document.createElement('p');note.className='faq-category-note';note.textContent='Filtrá las respuestas según el momento de tu compra.';faq.parentNode.insertBefore(note,faq);var keys=['0km','postventa','postventa','usados','financiacion','financiacion','usados','postventa','0km'];if(original.length!==keys.length)console.warn('FAQ category count mismatch',original.length,keys.length);original.forEach(function(item,i){item.dataset.faqCategory=item.dataset.faqCategory||keys[i]||'postventa';});tabs.querySelectorAll('.faq-tab').forEach(function(tab){tab.addEventListener('click',function(){tabs.querySelectorAll('.faq-tab').forEach(function(x){x.classList.remove('active');x.setAttribute('aria-selected','false');});this.classList.add('active');this.setAttribute('aria-selected','true');var wanted=this.dataset.faqFilter;original.forEach(function(item){var show=wanted==='todos'||item.dataset.faqCategory===wanted;item.hidden=!show;if(show&&window.gsap&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){gsap.fromTo(item,{opacity:.25,y:8},{opacity:1,y:0,duration:.28,overwrite:'auto'});}});});});}
 });
 </script>
 
@@ -3108,5 +3133,19 @@ document.addEventListener("DOMContentLoaded", function(){
 })();
 </script>
 
+
+<script id="p1-p2-responsive-motion">
+document.addEventListener("DOMContentLoaded",function(){
+  "use strict";
+  var stage=document.querySelector(".hero-editorial-stage");
+  if(!stage||window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  var fine=window.matchMedia("(hover: hover) and (pointer: fine)");
+  if(fine.matches)return;
+  var primary=stage.querySelector(".hero-editorial-vehicle:not(.hero-editorial-secondary)"),secondary=stage.querySelector(".hero-editorial-secondary"),wordmark=stage.querySelector(".hero-editorial-wordmark"),ticking=false;
+  function update(){ticking=false;var rect=stage.getBoundingClientRect(),progress=Math.max(-1,Math.min(1,(window.innerHeight*.5-(rect.top+rect.height*.5))/Math.max(window.innerHeight,rect.height)));if(primary)primary.style.transform="translate3d(0,"+(progress*-5).toFixed(2)+"px,0)";if(secondary)secondary.style.transform="translate3d(0,"+(progress*3).toFixed(2)+"px,0)";if(wordmark)wordmark.style.transform="translate3d(0,"+(progress*-2).toFixed(2)+"px,0)";}
+  function request(){if(!ticking){ticking=true;requestAnimationFrame(update);}}
+  window.addEventListener("scroll",request,{passive:true});window.addEventListener("resize",request,{passive:true});request();
+});
+</script>
 </body>
 </html>
