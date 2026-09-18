@@ -1,0 +1,439 @@
+AUDITORÍA PROFUNDA — SECCIÓN 2: DECISIÓN DE COMPRA Y HERRAMIENTAS COMERCIALES
+Toyota Piñeyro y Moscatelli — Concepción del Uruguay
+Repositorio auditado: toyota-concepcion-uruguay-web-main (zip subido por el usuario)
+Archivo base: index.html — 3293 líneas, single-page
+Fecha de esta auditoría: código verificado línea por línea a partir del zip actual
+
+MÉTODO Y DISCIPLINA DE EVIDENCIA
+Todo lo marcado OBSERVED está confirmado leyendo el HTML/CSS/JS real del archivo,
+con número de línea citado para que se pueda verificar sin volver a auditar desde cero.
+Todo lo marcado INFERRED es una lectura razonable del código pero no comprobable sin
+ver el sitio renderizado (esto no tuvo capturas de pantalla, solo código fuente).
+Este documento también contrasta explícitamente contra "auditoria-toyota-fase-2.md"
+(incluido en el propio zip), para dejar claro qué de lo ya auditado sigue igual,
+qué cambió, y qué es un hallazgo nuevo que esa ronda anterior no vio.
+
+IDs de <section> cubiertos en esta auditoría (según el mapa de 5 secciones):
+porque (L1529) · como-comprar (L1568) · formas-de-pago (L1574) · vistos (L1589) ·
+usados (L1594) · canje (L1604) · financiacion (L1629) · novedades (L1512) ·
+servicios-adicionales (L1523)
+Nota: para entender varios de los hallazgos hizo falta mirar también "categorias"
+(L1556) y "contacto-ampliado" (L1526), que en el mapa de 5 secciones están asignadas
+a la Sección 1 y a la Sección 5 respectivamente, pero que en el HTML real están
+físicamente intercaladas en medio de la Sección 2. Ver hallazgo #1.
+
+===========================================================================
+RESUMEN EJECUTIVO
+===========================================================================
+El tramo de "decisión de compra" es, en efecto, la parte más madura y mejor resuelta
+del sitio: el simulador de financiación arma un mensaje de WhatsApp con datos reales
+del usuario, el formulario de plan canje tiene validación real con foco y mensajes de
+error, y "formas de pago" logra unificar 4 vías de compra en una sola vista. Estos
+tres puntos están bien ejecutados y se confirman en el código (ver sección "LO QUE
+FUNCIONA BIEN" al final).
+
+Pero la auditoría profunda encontró 3 problemas que ninguna ronda anterior detectó,
+porque requieren leer la lógica JS completa y no solo el HTML:
+
+1. El orden real del HTML no es el orden que cuenta la historia de "decisión de
+   compra". Un bloque completo de contacto directo (6 canales + 2 CTA) aparece
+   ANTES de que el sitio haya mostrado categorías, el proceso de compra o las
+   formas de pago — literalmente empuja al usuario a "hablar con nosotros" antes
+   de haberle dado ninguna razón nueva para hacerlo.
+2. "Vistos" (modelos que miraste recién) fue reportada como "ya activa" en el mapa
+   de 5 secciones porque perdió el atributo hidden estático — pero el JS la vuelve
+   a ocultar dinámicamente en cada sesión nueva, y además la animación de entrada
+   (GSAP ScrollTrigger) se calcula mientras la sección todavía está oculta, con lo
+   cual es probable que cuando el usuario sí ve un modelo y la sección se muestra,
+   quede visualmente rota (opacity 0 permanente). Ver hallazgo #2, es el más serio
+   de esta ronda.
+3. La tarjeta "Combinada" de formas-de-pago —que la auditoría fase 2 marcó como
+   "sin contexto"— ahora SÍ lleva datos del simulador de financiación al mensaje
+   de WhatsApp. Pero como esa tarjeta está más arriba en la página que el propio
+   simulador, en la mayoría de los casos va a llevar valores por defecto que el
+   usuario nunca eligió, presentados como si los hubiera simulado él. Es un
+   hallazgo nuevo, más sutil que el de fase 2, y contradice la política de
+   honestidad de datos que el resto del sitio sostiene en cada disclaimer.
+
+===========================================================================
+HALLAZGO 1 — EL ORDEN REAL DEL HTML CONTRADICE EL RECORRIDO QUE SE QUIERE CONTAR
+===========================================================================
+Severidad: ALTA (estructural, afecta a toda la sección) · Complejidad de arreglo: BAJA
+(es reordenar <section> existentes, no crear nada nuevo)
+
+OBSERVED — orden real en el HTML (línea de apertura de cada <section>):
+  1512  novedades
+  1523  servicios-adicionales
+  1526  contacto-ampliado     ← pertenece temáticamente a Sección 5 (Contacto)
+  1529  porque
+  1556  categorias            ← pertenece temáticamente a Sección 1 (Descubrimiento)
+  1568  como-comprar
+  1574  formas-de-pago
+  1589  vistos
+  1594  usados
+  1604  canje
+  1629  financiacion
+
+Comparado con el orden narrativo que el propio sitio propone en "porque" (línea 1057:
+"Explorá → Compará → Consultá → Avanzá"), lo que el visitante realmente encuentra
+escrolleando es:
+
+  Novedades (promos genéricas) → Servicios adicionales (4 tarjetas) →
+  Contacto directo completo (6 canales + 2 CTA) → Por qué elegirnos →
+  Categorías (Pick-ups/SUV/Sedanes) → Cómo comprar → Formas de pago → ...
+
+Es decir: el bloque de "contacto directo" —que debería ser el destino final de todo
+este recorrido— aparece en el tercer lugar, antes incluso de que el usuario sepa qué
+categorías de auto existen o cómo es el proceso de compra. Y "categorías", que es
+contenido de descubrimiento temprano, aparece recién después de "por qué elegirnos",
+partiendo en dos la secuencia lógica "por qué elegirnos → cómo comprar" con un bloque
+que no tiene relación directa con ninguno de los dos.
+
+Efecto secundario verificado (OBSERVED, línea 1533 del HTML): dentro de "porque", la
+tarjeta 03 ("Canales directos") linkea a href="#contacto-ampliado" — una sección que,
+en el orden real del documento, está TRES secciones más arriba. Un usuario que lee de
+arriba hacia abajo y hace clic en esa tarjeta es enviado hacia atrás en la página, no
+hacia adelante. Además, si sigue ese link, nunca llega a ver "categorías" ni "cómo
+comprar", que están más abajo — la ruta "hacia atrás" lo saca del recorrido antes de
+que termine.
+
+Esto es exactamente el tipo de "artefacto de ediciones sucesivas" que el propio mapa
+de 5 secciones sugería confirmar (ver su nota sobre accesorios/neumáticos/taller en la
+Sección 1) — el mismo patrón se repite acá, en la Sección 2.
+
+Recomendación concreta: mover <section id="contacto-ampliado"> al final del recorrido
+de compra (después de "financiacion", antes de "mantenimiento") o directamente a su
+lugar temático junto a <section id="contacto">, y mover <section id="categorias"> a
+que quede junto a "gama"/"destacados" en la Sección 1, antes de "porque". Ninguno de
+los dos movimientos requiere tocar JS: ninguna de las dos secciones tiene lógica que
+dependa de su posición en el documento (se confirmó que ningún script usa selectores
+de tipo nextElementSibling/previousElementSibling sobre estos IDs).
+
+===========================================================================
+HALLAZGO 2 — "VISTOS" SIGUE FUNCIONALMENTE APAGADA, Y SU ANIMACIÓN DE ENTRADA
+PROBABLEMENTE ESTÁ ROTA CUANDO SE ACTIVA
+===========================================================================
+Severidad: ALTA · Complejidad de arreglo: BAJA-MEDIA
+
+Contexto: la auditoría fase 2 (incluida en el zip) marcó "Vistos" como NO
+IMPLEMENTADA, señalando que el <section> seguía con el atributo hidden estático en
+el HTML. El documento de división en 5 secciones que se usó para armar esta ronda
+afirma lo contrario: "vistos ('Modelos que miraste recién' — ya activa, no hidden)".
+
+Ambas cosas son ciertas en momentos distintos, y ninguna cuenta la historia completa.
+
+OBSERVED — el atributo hidden estático efectivamente ya no está en el HTML:
+  L1589: <section id="vistos" class="premium-reveal">
+(sin atributo hidden en el tag, a diferencia de lo que describía fase 2)
+
+Pero OBSERVED — el JS vuelve a ocultarla dinámicamente en cada carga de página:
+  L2643: var recentKey="toyota-recent-models";
+  L2644: function renderRecent(){
+           var box=document.getElementById("vistos"), list=document.getElementById("recentList");
+           if(!box||!list)return;
+           var items=readRecent();
+           box.hidden = !items.length;   // <- si no hay modelos vistos, se oculta
+           ...
+         }
+  L2648: renderRecent();  // se ejecuta al cargar la página
+
+readRecent() lee de sessionStorage (L2643), que está vacío en toda sesión nueva. O
+sea: en la primera carga de cualquier visitante, "vistos" queda con hidden=true por
+JS, aunque el HTML ya no lo traiga hardcodeado. La sección solo se muestra después de
+que el usuario abre la ficha de un modelo (rememberRecent() se dispara desde
+openDetail, L2647). Esto es correcto como comportamiento — no tiene sentido mostrar
+"modelos que miraste recién" si todavía no miraste ninguno — pero significa que la
+pregunta del propio documento de auditoría ("¿vistos, ahora activa, realmente se
+llena y se ve bien con 1, con 3 y con muchos modelos?") tiene una respuesta más
+seria de lo esperado: antes de llenarse, hay un problema de animación que puede dejarla
+rota permanentemente. Ver el punto siguiente.
+
+EL PROBLEMA MÁS SERIO — orden de ejecución entre el hidden dinámico y GSAP ScrollTrigger:
+
+Todo el bloque de JS del sitio vive en un único <script> (abre en línea 2001) y se
+ejecuta de arriba hacia abajo de forma síncrona. Dentro de ese mismo script:
+
+  L2648  renderRecent();     → puede dejar #vistos con hidden=true (display:none)
+  L2662  var revealSections = document.querySelectorAll(".premium-reveal");
+  L2672  revealSections.forEach(function(el){
+           ...
+           gsap.fromTo(el, {clipPath:..., opacity:0, y:28, scale:.986},
+             {clipPath:..., opacity:1, y:0, scale:1, ...,
+              scrollTrigger:{trigger:el, start:"top 86%", once:true}});
+         });
+
+"#vistos" tiene la clase "premium-reveal" (L1589), así que entra en este mismo
+forEach. El problema: ScrollTrigger calcula la posición del trigger (dónde está "el
+86% superior" del elemento) en el momento en que se crea el trigger — y si en ese
+momento el elemento está en display:none (por el hidden dinámico de L2644), su altura
+y posición son 0. ScrollTrigger normalmente necesita un refresh() para recalcular
+posiciones después de que el layout cambia.
+
+OBSERVED — se buscó en todo el archivo y ScrollTrigger.refresh() no se llama en
+ningún lugar del código (ni tras abrir una ficha de modelo, ni tras el cambio de
+box.hidden en renderRecent/rememberRecent).
+
+Consecuencia probable (INFERRED, requiere confirmarse en navegador real): cuando el
+usuario efectivamente ve un modelo y "vistos" pasa de hidden=true a hidden=false, el
+trigger de scroll para esa sección ya quedó mal calculado desde el arranque de la
+página. Es razonable esperar que la sección aparezca con la sección "premium-reveal"
+todavía en su estado inicial (opacity:0 seteado inline por gsap.fromTo) sin que el
+trigger vuelva a dispararse — es decir, la sección se vuelve visible en el DOM (deja
+de tener hidden) pero queda invisible en pantalla (opacity 0), o en el mejor de los
+casos aparece sin la animación de entrada, dependiendo de cómo interprete GSAP un
+trigger con posición 0. En cualquier caso, es un comportamiento no probado y no
+buscado por quien escribió el código: nada en el JS contempla que un ".premium-reveal"
+pueda pasar de oculto a visible después del primer render.
+
+Por qué ninguna auditoría anterior lo vio: fase 2 solo comparó el HTML línea por
+línea contra la versión previa (metodología explícita del propio documento: "diff"
+de código fuente) y no llegó a cruzar la lógica de renderRecent() con la del sistema
+de ScrollTrigger, que están a más de 600 líneas de distancia una de otra en el mismo
+archivo.
+
+Recomendación concreta: la forma más simple de arreglarlo sin tocar la lógica de
+sessionStorage es sacar a #vistos del querySelectorAll(".premium-reveal") (por
+ejemplo dándole una clase distinta, o excluyéndola explícitamente), y manejar su
+aparición solo con la transición CSS que ya existe en .recent-shell (L532, con
+opacity/y propios), o bien llamar ScrollTrigger.refresh() dentro de renderRecent()
+cada vez que cambia box.hidden.
+
+===========================================================================
+HALLAZGO 3 — LA TARJETA "COMBINADA" AHORA LLEVA CONTEXTO, PERO POSIBLEMENTE FALSO
+===========================================================================
+Severidad: MEDIA · Complejidad de arreglo: BAJA
+
+Contexto: fase 2 (Parte 1, punto 9 y sección "9. AUDITORÍA SECCIÓN POR SECCIÓN")
+señaló como pendiente que la tarjeta "Combinada" de #formas-de-pago no llevaba
+contexto acumulado a WhatsApp, a diferencia de la de financiación. Eso YA se
+implementó en la versión actual del código:
+
+OBSERVED, L2306 (dentro de la misma función calcular() del simulador financiero):
+  var combinedCta=document.getElementById("combinedPurchaseCta");
+  if(combinedCta){combinedCta.href=wa("turnos","Hola! Quiero consultar una
+  operación combinada con usado y financiación. Simulé "+formatoARS(monto)+" a "+n+
+  " meses, con un anticipo del "+Math.round(anticipoPct*100)+"%. El monto financiado
+  estimado sería "+formatoARS(montoFinanciado)+". También quiero consultar cómo
+  incorporar mi vehículo actual como parte de pago.");}
+
+Buena noticia: el punto 6 del Top 15 de fase 2 ("Dar contexto acumulado al CTA
+Combinada") está resuelto en el código actual.
+
+El matiz nuevo que esta ronda sí detecta: calcular() se ejecuta una vez al cargar la
+página (L2316: la llamada "calcular();" corre inmediatamente después de definir los
+listeners, dentro del mismo script síncrono), usando los valores por defecto de los
+controles — monto=$12.000.000 (L1642, value="12000000"), plazo=24 meses (variable
+plazoActual=24, L2282), anticipo=20% (L1655, value="20"). Esto significa que el href
+de #combinedPurchaseCta queda seteado con esos valores por defecto desde el primer
+instante, antes de que el usuario haya tocado un solo control del simulador.
+
+El problema es de orden en la página: la tarjeta "Combinada" vive en #formas-de-pago
+(L1574), que en el HTML aparece ANTES de #financiacion (L1629), donde está el
+simulador. Un usuario que llega a "formas de pago", ve la tarjeta "Combinada" y hace
+clic en "Consultar mi caso ↗" sin haber bajado hasta el simulador (algo perfectamente
+esperable, dado el orden de la página) va a abrir WhatsApp con un mensaje que dice
+textualmente "Simulé $ 12.000.000 a 24 meses, con un anticipo del 20%" — un dato que
+esa persona nunca ingresó ni vio. Es información fabricada presentada como si fuera
+una acción explícita del usuario.
+
+Esto choca directamente con la política de honestidad que el resto del sitio sostiene
+en cada disclaimer visible de esta misma sección: "No se publican promociones
+inventadas" (novedades, L1512), "Información general, sin atribuir alianzas o
+beneficios no confirmados" (servicios-adicionales, L1523), "No calcula un valor
+automáticamente" (canje, tradeNote L1622), "ESTIMACIÓN ILUSTRATIVA — NO ES UNA
+COTIZACIÓN" (financiacion, L1661). El propio equipo de desarrollo claramente evita
+inventar datos en todos lados menos, sin darse cuenta, en este único punto.
+
+Recomendación concreta: la forma más simple es no precargar el href de
+#combinedPurchaseCta hasta que el usuario haya interactuado al menos una vez con
+algún control del simulador (agregar una bandera `simuladorTocado` que empiece en
+false y se ponga en true en los listeners de montoRange/anticipoRange/plazoSeg,
+y usar un texto de WhatsApp distinto — sin los valores simulados — mientras esa
+bandera siga en false).
+
+===========================================================================
+HALLAZGO 4 — DOS CTA QUE COMPITEN POR EL MISMO OBJETIVO, EN LA MISMA SECCIÓN,
+CON DISTINTO NIVEL DE CONTEXTO
+===========================================================================
+Severidad: MEDIA · Complejidad de arreglo: BAJA
+
+Este patrón se repite igual en "financiacion" y en "canje": un formulario/simulador
+con validación real que arma un mensaje de WhatsApp rico en contexto, seguido a los
+pocos píxeles por un botón genérico que hace básicamente lo mismo pero sin ese
+contexto — y nada en el diseño indica cuál de los dos conviene usar.
+
+OBSERVED, dentro de #financiacion:
+  L1661  <a id="financingRealCta" ...>Pedir mi tasa real por WhatsApp ↗</a>
+         (href dinámico, con monto/plazo/anticipo/monto financiado reales)
+  L1671  <a ...>Consultar financiación ↗</a>
+         (href estático: wa("turnos","Hola! Quiero consultar opciones de
+         financiación para un Toyota.") — sin ningún dato del simulador)
+
+Ambos botones viven en la misma sección, apuntan al mismo número (turnos) y
+resuelven, en la práctica, la misma intención ("quiero hablar de financiación").
+Si un usuario mueve los sliders y después hace clic en el segundo botón en vez del
+primero (algo que ningún elemento visual impide), todo el trabajo de "contexto
+acumulado" que la fase 2 destacó como la mejora de mayor calidad técnica de esa
+ronda se pierde silenciosamente.
+
+OBSERVED, el mismo patrón en #canje:
+  L1622 (tradeForm) arma un mensaje con vehículo, año, km, estado y qué quiere a
+        cambio, todo validado antes de enviarse.
+  L1625 (related-row, fuera del <form>) tiene un botón "Cotizá tu usado ↗" con
+        href estático: wa("turnos","Hola! Quiero cotizar mi usado como parte de
+        pago de un Toyota.") — sin marca, modelo, año ni km.
+
+Recomendación concreta: no es necesario eliminar el segundo botón (cumple una
+función legítima como salida rápida para quien no quiere completar el
+formulario/simulador), pero sí conviene diferenciarlo visualmente con menos peso
+—el propio sitio ya usa ese patrón de jerarquía en las related-row de ambas
+secciones (comentario en el CSS citado por fase 2: "Audit phase 3: one clear
+primary action per journey")— y aplicarlo también al botón "Consultar financiación"
+del journey-grid, que hoy tiene la misma clase .btn.primary que el CTA con contexto
+real.
+
+===========================================================================
+HALLAZGO 5 — FATIGA VISUAL: CINCO BLOQUES DE TARJETAS SEGUIDOS, CON LA MISMA
+ESTÉTICA, ANTES DE LLEGAR A "CÓMO COMPRAR"
+===========================================================================
+Severidad: MEDIA (percepción de producto) · Complejidad de arreglo: MEDIA (rediseño,
+no solo reordenar)
+
+OBSERVED — comparando las definiciones CSS de cada grilla, el patrón visual de
+"tarjeta blanca redondeada con ícono circular + título + texto" se repite en 4 de
+las 5 secciones que aparecen antes de "cómo comprar":
+
+  .promo-categories   L997   grid 4 columnas — novedades
+  .expansion-grid      L638  grid 4 columnas, tarjeta blanca + ícono circular —
+                              servicios-adicionales
+  .contact-plus         L638  grid 2 columnas, misma tarjeta blanca — contacto-ampliado
+  .dealer-value-grid    (atributo data-dealer-value-grid) — porque
+  .category-grid        L549  grid de tarjetas con imagen — categorias
+  .payment-paths-grid   L1112 grid 4 columnas — formas-de-pago (más abajo)
+
+En el recorrido real de scroll, esto se traduce en: grilla de 4 → grilla de 4 →
+grilla de 2 → grilla de 4 → grilla de 4 (categorías) → (recién ahí, "cómo comprar"
+rompe el patrón con su timeline de pasos) → otra grilla de 4 (formas de pago). Un
+visitante que hace scroll de corrido pasa por seis estructuras de grilla con
+variaciones menores de color antes de llegar a contenido con una forma distinta.
+INFERRED (no hay capturas para confirmarlo visualmente): esto puede leerse como
+"la página no termina nunca de decir lo mismo de formas distintas", incluso aunque
+cada bloque individual esté bien escrito.
+
+Recomendación concreta: no es necesario eliminar contenido (fase 2 tampoco encontró
+contenido de baja calidad para sacar), sino variar el formato de presentación de al
+menos 2 de estos 5-6 bloques — por ejemplo, "servicios-adicionales" podría integrarse
+como una fila compacta de links dentro de "formas-de-pago" en vez de ser una sección
+propia con su propia grilla de tarjetas, ya que sus 4 ítems (Financiación, Seguro,
+Garantía, Entrega) ya redirigen a secciones que "formas-de-pago" también cubre.
+
+===========================================================================
+HALLAZGO 6 — BREAKPOINT DE TABLET SIN CUBRIR EN "SERVICIOS ADICIONALES"
+===========================================================================
+Severidad: BAJA-MEDIA · Complejidad de arreglo: BAJA (una línea de CSS)
+
+OBSERVED:
+  L638   .expansion-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  L640   @media(max-width:560px){.expansion-grid,...{grid-template-columns:1fr}...}
+
+.expansion-grid (usada por #servicios-adicionales, 4 tarjetas) solo tiene un
+breakpoint a 560px que la baja a 1 columna. No existe ningún breakpoint intermedio
+(por ejemplo a 900px, que sí tiene .category-grid según L535: "repeat(2,1fr)").
+Esto significa que entre 561px y aproximadamente 900-1000px de ancho de viewport
+—el rango típico de una tablet en vertical, incluyendo un iPad de 768px— las 4
+tarjetas de "servicios adicionales" se siguen mostrando en 4 columnas dentro de un
+contenedor mucho más angosto que en desktop, comprimiendo cada tarjeta a un ancho
+aproximado de 150-180px. .payment-paths-grid, en cambio, sí maneja este caso
+correctamente (L1124: @media(max-width:900px){.payment-paths-grid{grid-template-
+columns:1fr 1fr}}). Es una inconsistencia puntual, fácil de alinear con el patrón que
+ya existe en la misma hoja de estilos para una grilla casi idéntica.
+
+===========================================================================
+HALLAZGO 7 — DETALLES MENORES DE ACCESIBILIDAD Y VALIDACIÓN
+===========================================================================
+Severidad: BAJA · Complejidad de arreglo: BAJA
+
+a) Simulador de financiación — los botones de plazo (L1652-1657, 12/24/36/48 meses)
+   alternan la clase "active" por JS (L2313) pero ningún botón tiene aria-pressed.
+   Un usuario de lector de pantalla no tiene forma de saber cuál plazo está
+   seleccionado actualmente sin depender solo del color. role="group" (L1646) está
+   bien puesto, pero le falta el estado por botón.
+
+b) Plan canje — el campo Año (L1622, tradeYear) valida con /^(19|20)\d{2}$/ (L2242),
+   lo cual acepta cualquier año entre 1900 y 2099 sin tope superior real. Alguien
+   podría cargar "2099" y el formulario lo acepta como válido. No es grave (el
+   asesor humano lo filtra en WhatsApp igual) pero es una validación que se puede
+   ajustar a "no mayor al año próximo" con el mismo costo de implementación.
+
+===========================================================================
+CONTRASTE CON LA AUDITORÍA FASE 2 — QUÉ SIGUE IGUAL, QUÉ CAMBIÓ
+===========================================================================
+Confirmado RESUELTO desde fase 2 (afecta a Sección 2):
+  - Contexto acumulado en el CTA "Combinada" de formas-de-pago — implementado
+    (ver Hallazgo 3 para el matiz nuevo que introduce).
+
+Confirmado SIN CAMBIOS desde fase 2 (sigue vigente, no es hallazgo nuevo, pero se
+revalida con el código actual):
+  - La jerarquía de "1 CTA primario por sección" sigue aplicada solo en
+    "como-comprar" y en las related-row de "canje"/"financiacion" — el resto de
+    la Sección 2 (novedades, servicios-adicionales, contacto-ampliado, porque,
+    categorias, formas-de-pago) sigue con todos los botones al mismo peso visual.
+  - "Usados" (formulario de interés) y "Canje" (formulario de tasación) siguen
+    siendo dos fuentes de datos separadas sin ningún cruce operativo entre demanda
+    y oferta — se revisó el código y no hay ninguna función nueva que las conecte.
+  - "Vistos" sigue, en la práctica, funcionalmente apagada la mayor parte del
+    tiempo (ver Hallazgo 2, que profundiza más de lo que fase 2 pudo ver).
+
+Hallazgo NUEVO que fase 2 no pudo ver con su metodología (diff de HTML):
+  - Hallazgo 1 (orden real del documento vs. orden narrativo)
+  - Hallazgo 2, la parte del bug de ScrollTrigger (fase 2 solo vio que el atributo
+    hidden estático seguía en el HTML de su momento; no llegó a la versión donde
+    ya se sacó y a la interacción con el sistema de reveal)
+  - Hallazgo 4 (CTA redundantes con distinto nivel de contexto)
+  - Hallazgo 5 y 6 (fatiga visual y breakpoint faltante)
+
+===========================================================================
+LO QUE FUNCIONA BIEN (para no perder de vista en medio de los hallazgos)
+===========================================================================
+- El simulador de financiación arma correctamente un mensaje de WhatsApp con monto,
+  plazo, anticipo y monto financiado en vivo (L2303-2304), y el disclaimer de que es
+  una estimación ilustrativa está bien visible justo antes del botón principal.
+- El formulario de plan canje (tradeForm, L2235-2257) tiene validación real: regex
+  de año y kilometraje, foco automático en el campo con error, mensajes de error
+  específicos por tipo de problema, y desactiva el botón mientras abre WhatsApp para
+  evitar doble envío.
+- El sistema de filtro por categoría (categoria-link → filterbtn, L2640) sí conecta
+  correctamente las tarjetas de "categorias" con el filtro real de la grilla de
+  "gama" — se verificó en el código que no es un link decorativo, dispara el filtro
+  correspondiente antes de saltar al ancla.
+- "Formas de pago" cumple bien su rol de bisagra: unifica contado, financiación,
+  canje y combinada en una sola vista comparable, con un disclaimer honesto al pie
+  ("No constituye una oferta ni reemplaza la confirmación del concesionario").
+- El formulario de interés en usados es honesto y de fricción mínima, coherente con
+  el resto del sitio ("No guardamos tus datos en esta página").
+
+===========================================================================
+RECOMENDACIONES PRIORIZADAS PARA ESTA SECCIÓN
+===========================================================================
+1. (ALTA / fácil) Reordenar contacto-ampliado y categorias fuera del medio del
+   recorrido de Sección 2 — Hallazgo 1.
+2. (ALTA / media) Sacar #vistos del sistema de ScrollTrigger o forzar un refresh()
+   cuando cambia su estado hidden — Hallazgo 2. Confirmar en navegador real antes de
+   dar por buena cualquier solución.
+3. (MEDIA / fácil) No precargar valores simulados en el CTA "Combinada" hasta que el
+   usuario interactúe con el simulador — Hallazgo 3.
+4. (MEDIA / fácil) Bajar el peso visual del botón "Consultar financiación" genérico
+   y del botón "Cotizá tu usado" genérico, replicando el patrón ya usado en las
+   related-row — Hallazgo 4.
+5. (MEDIA / media) Revisar si "servicios-adicionales" necesita ser una sección
+   propia o puede integrarse a "formas-de-pago" para bajar la cantidad de grillas
+   consecutivas — Hallazgo 5.
+6. (BAJA / fácil) Agregar breakpoint intermedio a .expansion-grid — Hallazgo 6.
+7. (BAJA / fácil) aria-pressed en los botones de plazo del simulador; tope superior
+   realista en la validación de año del plan canje — Hallazgo 7.
+
+===========================================================================
+FIN — SECCIÓN 2
+===========================================================================
+Para continuar con la Sección 1 (Entrada y descubrimiento de vehículos) u otra,
+indicá el nombre de la sección y se repite este mismo nivel de profundidad.

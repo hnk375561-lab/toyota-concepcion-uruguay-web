@@ -1,0 +1,97 @@
+AUDITORÍA — SECCIÓN 4: CONFIANZA, PRUEBA SOCIAL E INSTALACIONES
+Toyota Piñeyro y Moscatelli — Concepción del Uruguay · index.html (3293 líneas)
+Mismo método que Secciones 2 y 3 (OBSERVED con línea citada), formato breve.
+
+Secciones: instalaciones (L1725) · testimonios (L1731) · faq (L1738) ·
+galeria-google-maps (L1811) · concesionario (L1915)
+
+===========================================================================
+HALLAZGO 1 (EL MÁS FUERTE) — LA GALERÍA DE 17 FOTOS ESTÁ HUÉRFANA
+===========================================================================
+OBSERVED: "galeria-google-maps" (L1811-1913) tiene 17 fotos reales del showroom,
+service, repuestos y taller — probablemente el activo de prueba social más sólido
+de todo el sitio (fotos propias, no stock genérico). Se buscó en TODO el archivo
+cualquier <a href="#galeria-google-maps"> y no aparece ni una sola vez: no está en
+el <nav> principal (L1191-1225, que sí linkea "instalaciones", "testimonios" y
+"faq" explícitamente, L1221-1223), no está en ningún related-row, no está en
+"instalaciones" (que la precede temáticamente) ni en "concesionario" (que la
+sucede). Es una sección que solo se ve si alguien la encuentra escrolleando a
+ciegas.
+
+Arreglo: agregar un link a esta galería en el <nav> junto a "instalaciones", y/o
+un CTA al final de "instalaciones" ("Ver más fotos del concesionario ↗").
+
+===========================================================================
+HALLAZGO 2 — DOS GALERÍAS DE TALLER/SERVICE QUE NO SE CRUZAN
+===========================================================================
+OBSERVED: "taller" (Sección 3, L1398-1422) y "galeria-google-maps" (L1811) muestran
+contenido muy similar sin ningún link entre ambas: "taller" tiene figcaptions como
+"Vehículo sobre elevador" y "Balanceo de ruedas"; "galeria-google-maps" tiene
+"Boxes de service oficial", "Elevadores del taller de service oficial" (L1900),
+"Playa de service" (L1888), "Portón de acceso al taller" (L1913) — mismo tema,
+dos galerías separadas por más de 400 líneas de código, cada una con su propia
+fuente (Instagram vs. Google Maps) y sin ningún "ver más fotos" cruzado.
+
+===========================================================================
+HALLAZGO 3 — BUG DE CATEGORIZACIÓN EN EL FILTRO DE FAQ
+===========================================================================
+OBSERVED, L2793: las categorías de cada pregunta del FAQ se asignan por POSICIÓN,
+con un array separado y hardcodeado:
+  var keys=['0km','postventa','postventa','usados','financiacion','financiacion',
+            'usados','postventa','0km','postventa','postventa','0km'];
+  ...if(original.length!==keys.length)console.warn('FAQ category count mismatch'...)
+
+Cruzando esto contra el array real de preguntas (FAQS, L2324), la primera pregunta
+del sitio —"¿El service oficial mantiene la garantía de fábrica?" (L2325)— queda
+tageada como categoría "0km" (keys[0]) en vez de "postventa". Es, con diferencia,
+la pregunta más claramente de postventa de las 12: habla explícitamente de
+"mantenimiento programado" y "garantía vigente". Resultado verificable: si un
+usuario filtra el FAQ por la pestaña "Postventa" (L2793, data-faq-filter="postventa"),
+esta pregunta NO aparece; si filtra por "0 km", sí aparece una pregunta sobre
+garantía de service que no tiene nada que ver con comprar un 0km.
+
+Causa raíz, no solo el síntoma: el mapeo por posición es frágil por diseño — el
+propio código solo protege contra un cambio de CANTIDAD de preguntas (el
+console.warn), no contra un cambio de ORDEN. Si en el futuro alguien reordena o
+inserta una pregunta en FAQS sin tocar "keys" en el mismo índice exacto, el sitio
+vuelve a categorizar mal sin ningún aviso en consola. Vale la pena resolver el caso
+puntual (mover '0km' a 'postventa' en keys[0]) y además sacar la categoría del
+propio objeto de la pregunta (agregar { q, a, cat } a cada entrada de FAQS) para que
+este tipo de bug no pueda volver a pasar en silencio.
+
+===========================================================================
+CONFIRMADO SIN CAMBIOS DESDE FASE 2 (no es hallazgo nuevo, se revalida)
+===========================================================================
+- "testimonios" (L1731) sigue siendo un único botón hacia Google Maps, sin ninguna
+  reseña citada dentro del sitio — fase 2 ya lo marcó como NO IMPLEMENTADO y el
+  código actual confirma que sigue igual.
+- La tarjeta de Instagram en "concesionario" (L1915) sigue siendo la vista previa
+  estática ("Vista previa estática · no reproduce publicaciones ni inventa
+  contenido") — mismo texto que fase 2 citó, sin cambios.
+
+===========================================================================
+VERIFICADO COMO CORRECTO
+===========================================================================
+- El sistema de tabs del FAQ en sí funciona bien técnicamente (aria-selected,
+  role="tab"/"tablist", animación de entrada al filtrar) — el problema es solo de
+  datos (Hallazgo 3), no de la mecánica.
+- "instalaciones" tiene buena jerarquía de CTA: 3 tarjetas con botón secundario
+  cada una + 1 CTA primario ("Cómo llegar ↗") al pie — consistente con el patrón
+  ya usado en "mantenimiento".
+
+===========================================================================
+RECOMENDACIONES (orden de impacto/costo)
+===========================================================================
+1. (ALTA / muy fácil) Linkear "galeria-google-maps" desde el nav y/o desde
+   "instalaciones" — Hallazgo 1.
+2. (ALTA / muy fácil) Corregir keys[0] de '0km' a 'postventa' en el FAQ — Hallazgo 3.
+   Después, mover la categoría al propio objeto de cada pregunta para blindar el
+   bug a futuro.
+3. (MEDIA / fácil) Cruzar "taller" y "galeria-google-maps" con un link mutuo, o
+   evaluar fusionarlas — Hallazgo 2.
+4. (ya en el radar desde fase 2, sin cambios) Citar 2-3 reseñas reales dentro de
+   "testimonios"; reemplazar la tarjeta estática de Instagram por un feed real.
+
+===========================================================================
+FIN — SECCIÓN 4. Queda la 5 (Contacto, ubicación y base técnica).
+===========================================================================
