@@ -918,6 +918,28 @@ body{background:#e9eef0!important;color:#172026!important}
 .journey-mini-map-cta small{color:#f0d274;font-weight:700;font-size:11.5px}
 .journey-mini-map-cta .ui-icon{display:none}
 #como-comprar .journey-aside .journey-quicklinks{margin-top:16px!important}
+
+/* 6) Hero: la barra lateral izquierda y la derecha quedan del mismo grosor;
+   la izquierda suma los 3 teléfonos del concesionario y la derecha, antes
+   vacía, ahora replica la identidad con Instagram + WhatsApp reales del sitio. */
+.hero-editorial-frame{grid-template-columns:60px 1fr 60px!important}
+.hero-editorial-rail{width:60px!important}
+.hero-rail-contact{line-height:1.7}
+.hero-rail-contact a{color:inherit;text-decoration:none}
+.hero-rail-contact a:hover{color:#fff}
+.hero-editorial-rail-right{border-right:0!important;border-left:1px solid rgba(244,241,235,.22)!important;justify-content:flex-start!important}
+.hero-rail-logo-alt{background:linear-gradient(145deg,#e8532c,#c1136a)!important;display:grid;place-items:center}
+.hero-rail-logo-alt span{color:#fff;font:800 11px var(--display);letter-spacing:.02em}
+.hero-editorial-rail-right .hero-rail-detail{letter-spacing:.1em}
+.hero-editorial-rail-right .hero-rail-contact{text-align:center;cursor:pointer}
+@media(max-width:900px){
+  .hero-editorial-frame{grid-template-columns:60px 1fr!important}
+  .hero-editorial-rail-right{display:none!important}
+}
+@media(max-width:760px){
+  .hero-editorial-frame{grid-template-columns:48px 1fr!important}
+  .hero-editorial-rail{width:48px!important}
+}
 </style>
 <style id="alternating-section-tones">
 /* Alternancia de fondos por sección para evitar exceso de blanco/gris uniforme.
@@ -1075,7 +1097,7 @@ h1,h2,h3,.brand .b1,.section-kicker,.tag{font-kerning:normal;text-wrap:balance}
       <span class="hero-rail-rule"></span>
       <span class="hero-rail-label">Concesionario<br>oficial Toyota<br>desde 1987</span>
       <span class="hero-rail-detail">9 DE JULIO 1624<br>CONCEPCIÓN DEL URUGUAY</span>
-      <span class="hero-rail-contact">03442<br><b>47—3453</b></span>
+      <span class="hero-rail-contact">03442<br><a href="tel:+543442677433">67—7433</a><br><a href="tel:+543442502390">50—2390</a><br><a href="tel:+543442473453"><b>47—3453</b></a></span>
     </div>
 
     <div class="hero-editorial-stage">
@@ -1105,6 +1127,14 @@ h1,h2,h3,.brand .b1,.section-kicker,.tag{font-kerning:normal;text-wrap:balance}
         <span><i class="hero-spec-mark" aria-hidden="true"></i><b>Una misma dirección</b></span>
       </div>
       <div class="hero-editorial-scroll"><span></span>Desplazar para descubrir</div>
+    </div>
+
+    <div class="hero-editorial-rail hero-editorial-rail-right" aria-label="Seguinos y contactános">
+      <a class="hero-rail-logo hero-rail-logo-alt" target="_blank" rel="noopener" aria-label="Instagram de Piñeyro y Moscatelli" href="https://www.instagram.com/toyotacdelu/?hl=es"><span aria-hidden="true">IG</span></a>
+      <span class="hero-rail-rule"></span>
+      <span class="hero-rail-label">Seguinos en<br>Instagram</span>
+      <span class="hero-rail-detail">@TOYOTACDELU</span>
+      <a class="hero-rail-contact hero-rail-contact-link" target="_blank" rel="noopener" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20consultar%20por%20un%20Toyota.">Hablar por<br><b>WhatsApp</b></a>
     </div>
   </div>
 </section>
