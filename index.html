@@ -69,6 +69,7 @@ document.addEventListener('DOMContentLoaded',function(){document.querySelectorAl
 <link rel="icon" type="image/webp" href="toyota-sharp-assets/asset-bec83be10e47-256.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="toyota-sharp-assets/hero-sw4-1800.webp" type="image/webp" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js"></script>
@@ -981,6 +982,18 @@ body{background:#e9eef0!important;color:#172026!important}
 .compare-detail-table td a:hover{color:#5e0d15;text-decoration-color:currentColor}
 .compare-detail-table th:first-child{width:190px}
 @media(max-width:700px){.compare-detail-table{min-width:720px}.compare-detail-table th:first-child{width:165px}.compare-detail-table td,.compare-detail-table th{padding:12px 11px;font-size:12.5px}}
+.map-static-preview{position:relative;isolation:isolate;overflow:hidden;height:440px;background:linear-gradient(135deg,#dbe7e5 0%,#eef2ed 42%,#cddbd9 100%)}
+.map-static-grid{position:absolute;inset:-20%;opacity:.58;transform:rotate(-7deg);background:repeating-linear-gradient(28deg,transparent 0 34px,rgba(255,255,255,.82) 35px 40px,transparent 41px 70px),repeating-linear-gradient(118deg,transparent 0 54px,rgba(140,165,160,.24) 55px 60px,transparent 61px 92px)}
+.map-static-grid:after{content:"";position:absolute;inset:42% -10%;height:30px;background:rgba(255,255,255,.72);box-shadow:0 0 0 8px rgba(190,208,202,.28);transform:rotate(-16deg)}
+.map-static-pin{position:absolute;left:50%;top:48%;display:grid;place-items:center;width:54px;height:54px;border-radius:50% 50% 50% 10%;transform:translate(-50%,-50%) rotate(-45deg);background:var(--toyota-red);color:#fff;font-size:22px;box-shadow:0 14px 22px -12px rgba(99,12,21,.75);z-index:1}
+.map-static-pin::first-letter{transform:rotate(45deg)}
+.map-static-label{position:absolute;left:20px;top:20px;padding:9px 12px;border:1px solid rgba(255,255,255,.8);border-radius:8px;background:rgba(255,255,255,.76);color:#26383d;font:700 11px/1.4 var(--display);letter-spacing:.06em;text-transform:uppercase;box-shadow:0 8px 20px -16px rgba(18,36,43,.6);z-index:1}.map-static-label small{font:500 10px/1.4 var(--body);letter-spacing:0;text-transform:none;color:#526368}
+.journey-mini-map .map-static-preview{height:180px}.journey-mini-map .map-static-label{left:14px;top:14px;font-size:9px}.journey-mini-map .map-static-pin{width:40px;height:40px;font-size:16px}
+@media(max-width:700px){.map-static-preview{height:360px}}
+body{font-optical-sizing:auto;font-synthesis:none;text-rendering:optimizeLegibility}
+h1,h2,h3,.brand .b1,.section-kicker,.tag{font-kerning:normal;text-wrap:balance}
+.section-head h2,.hero-editorial-copy h1{ text-wrap:balance }
+.section-head p,.section-lead{ text-wrap:pretty }
 .compare-empty{border:1px dashed #C8CED3;border-radius:10px;padding:14px 16px;background:#fff}
 </style>
 <style id="hero-scroll-performance-fix">
@@ -1065,7 +1078,7 @@ body{background:#e9eef0!important;color:#172026!important}
 
     <div class="hero-editorial-stage">
       <figure class="hero-editorial-vehicle hero-photo-real" aria-label="Toyota SW4 Diamond">
-        <picture><source type="image/webp" srcset="toyota-sharp-assets/enhanced-371d49eb8a93.webp"><img src="toyota-sharp-assets/enhanced-371d49eb8a93.jpg" alt="Toyota SW4 Diamond, imagen del vehículo" fetchpriority="high" decoding="async" width="960" height="540"></picture>
+        <picture><source type="image/webp" srcset="toyota-sharp-assets/hero-sw4-1800.webp"><img src="toyota-sharp-assets/hero-sw4-1800.jpg" alt="Toyota SW4 Diamond, imagen del vehículo" fetchpriority="high" decoding="async" width="1800" height="1844"></picture>
         <figcaption><span>SW4 Diamond</span><span>Disponibilidad a confirmar</span></figcaption>
       </figure>
       <figure class="hero-editorial-vehicle hero-editorial-secondary" aria-label="Toyota Hilux roja">
@@ -1192,10 +1205,10 @@ body{background:#e9eef0!important;color:#172026!important}
         <div>
           <div class="map-frame map-frame-live" role="group" aria-label="Mapa de ubicación del concesionario">
             <!-- En producción se puede sustituir por Maps Embed API con una clave restringida; este embed de Google Maps es funcional sin clave. -->
-            <iframe title="Ubicación de Piñeyro y Moscatelli en Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen src="https://www.google.com/maps?q=-32.4874489,-58.2483202&z=16&output=embed"></iframe>
+            <div class="map-static-preview" role="img" aria-label="Ubicación de Piñeyro y Moscatelli en Google Maps"><span class="map-static-grid" aria-hidden="true"></span><span class="map-static-pin" aria-hidden="true">●</span><span class="map-static-label">9 de Julio 1624<br><small>Concepción del Uruguay</small></span></div>
             <a class="map-frame-cta" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Pi%C3%B1eyro%20y%20Moscatelli%20Toyota%20Concepci%C3%B3n%20del%20Uruguay"><strong>Ver dirección en Google Maps</strong><small>9 de Julio 1624 · Abrir dirección ↗</small></a>
           </div>
-          <p class="source-note">La tarjeta abre la búsqueda por dirección del concesionario en Google Maps. El mapa embebido conserva una ubicación técnica para mostrar el área.</p>
+          <p class="source-note">La tarjeta muestra una vista previa liviana de la ubicación y abre la dirección exacta del concesionario en Google Maps.</p>
         </div>
       </div>
       <div class="wrap">
@@ -1311,7 +1324,7 @@ body{background:#e9eef0!important;color:#172026!important}
 
 
     <section id="como-comprar" class="premium-reveal">
-      <div class="wrap journey-premium"><div><span class="tag">Cómo comprar</span><h2>Un camino simple, con la información en cada paso.</h2><p class="section-lead">No hace falta resolver todo de una vez. Empezá por el modelo o por tu usado y avanzamos con el equipo.</p><div class="journey-line"><article><b>01</b><div><strong>Explorá</strong><span>Conocé la gama y elegí el tipo de vehículo que te interesa.</span></div></article><article><b>02</b><div><strong>Consultá</strong><span>Pedí disponibilidad, versiones y una respuesta contextual por WhatsApp.</span></div></article><article><b>03</b><div><strong>Definí cómo comprar</strong><span>Podés consultar financiación, plan canje o una operación al contado.</span></div></article><article><b>04</b><div><strong>Coordiná la entrega</strong><span>El equipo confirma documentación, condiciones y próximos pasos.</span></div></article></div><a class="btn primary" target="_blank" rel="noopener" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20hablar%20con%20un%20asesor%20para%20comprar%20un%20Toyota.">Hablar con un asesor ↗</a></div><aside class="journey-aside"><span class="section-kicker">Atajo inteligente</span><h3>¿Ya tenés un vehículo?</h3><p>Entrá al plan canje y prepará una consulta con marca, modelo, año y kilometraje. No calcula un precio automático: la revisión la hace un asesor.</p><a class="btn" href="#canje">Cotizá tu usado ↗</a><a class="btn ghost" href="#financiacion">Ver financiación ↗</a><div class="journey-surprise"><strong>Tu operación, en una sola conversación</strong><p>Elegí modelo, plan canje o financiación y el equipo recibe el contexto correcto desde el primer mensaje.</p><a target="_blank" rel="noopener" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20que%20me%20orienten%20para%20elegir%20mi%20Toyota%20y%20la%20mejor%20forma%20de%20compra.">Comenzar mi recorrido ↗</a></div><div class="journey-mini-map"><iframe title="Ubicación de Piñeyro y Moscatelli" loading="lazy" referrerpolicy="no-referrer-when-downgrade" tabindex="-1" aria-hidden="true" src="https://www.google.com/maps?q=-32.4874489,-58.2483202&z=15&output=embed"></iframe><a class="journey-mini-map-cta" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Pi%C3%B1eyro%20y%20Moscatelli%20Toyota%20Concepci%C3%B3n%20del%20Uruguay" aria-label="Abrir la ubicación exacta del concesionario en Google Maps"><span class="ui-icon icon-map" aria-hidden="true"></span><strong>Ver ubicación en el mapa</strong><small>9 de Julio 1624 ↗</small></a></div><div class="journey-quicklinks"><a href="#ubicacion">Cómo llegar ↗</a><a href="tel:+543442473453">Llamar al concesionario ↗</a><a href="#faq">Preguntas frecuentes ↗</a></div></aside></div>
+      <div class="wrap journey-premium"><div><span class="tag">Cómo comprar</span><h2>Un camino simple, con la información en cada paso.</h2><p class="section-lead">No hace falta resolver todo de una vez. Empezá por el modelo o por tu usado y avanzamos con el equipo.</p><div class="journey-line"><article><b>01</b><div><strong>Explorá</strong><span>Conocé la gama y elegí el tipo de vehículo que te interesa.</span></div></article><article><b>02</b><div><strong>Consultá</strong><span>Pedí disponibilidad, versiones y una respuesta contextual por WhatsApp.</span></div></article><article><b>03</b><div><strong>Definí cómo comprar</strong><span>Podés consultar financiación, plan canje o una operación al contado.</span></div></article><article><b>04</b><div><strong>Coordiná la entrega</strong><span>El equipo confirma documentación, condiciones y próximos pasos.</span></div></article></div><a class="btn primary" target="_blank" rel="noopener" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20hablar%20con%20un%20asesor%20para%20comprar%20un%20Toyota.">Hablar con un asesor ↗</a></div><aside class="journey-aside"><span class="section-kicker">Atajo inteligente</span><h3>¿Ya tenés un vehículo?</h3><p>Entrá al plan canje y prepará una consulta con marca, modelo, año y kilometraje. No calcula un precio automático: la revisión la hace un asesor.</p><a class="btn" href="#canje">Cotizá tu usado ↗</a><a class="btn ghost" href="#financiacion">Ver financiación ↗</a><div class="journey-surprise"><strong>Tu operación, en una sola conversación</strong><p>Elegí modelo, plan canje o financiación y el equipo recibe el contexto correcto desde el primer mensaje.</p><a target="_blank" rel="noopener" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20que%20me%20orienten%20para%20elegir%20mi%20Toyota%20y%20la%20mejor%20forma%20de%20compra.">Comenzar mi recorrido ↗</a></div><div class="journey-mini-map"><div class="map-static-preview" aria-hidden="true"><span class="map-static-grid" aria-hidden="true"></span><span class="map-static-pin" aria-hidden="true">●</span><span class="map-static-label">9 de Julio 1624<br><small>Concepción del Uruguay</small></span></div><a class="journey-mini-map-cta" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Pi%C3%B1eyro%20y%20Moscatelli%20Toyota%20Concepci%C3%B3n%20del%20Uruguay" aria-label="Abrir la ubicación exacta del concesionario en Google Maps"><span class="ui-icon icon-map" aria-hidden="true"></span><strong>Ver ubicación en el mapa</strong><small>9 de Julio 1624 ↗</small></a></div><div class="journey-quicklinks"><a href="#ubicacion">Cómo llegar ↗</a><a href="tel:+543442473453">Llamar al concesionario ↗</a><a href="#faq">Preguntas frecuentes ↗</a></div></aside></div>
     </section>
 
 
