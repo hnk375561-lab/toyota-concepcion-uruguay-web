@@ -94,7 +94,10 @@ document.addEventListener('DOMContentLoaded',function(){document.querySelectorAl
     {"@type":"Question","name":"¿Qué documentación necesito para consultar financiación?","acceptedAnswer":{"@type":"Answer","text":"Para iniciar una consulta, el asesor puede pedirte datos de contacto, información del vehículo y documentación de ingresos. La lista final depende de la línea vigente y de tu perfil."}},
     {"@type":"Question","name":"¿Cómo funciona la tasación de mi usado?","acceptedAnswer":{"@type":"Answer","text":"Se solicitan marca, modelo, año, kilometraje y estado general. El valor no se calcula automáticamente en esta página: un asesor revisa la información y confirma el siguiente paso."}},
     {"@type":"Question","name":"¿Puedo consultar accesorios y neumáticos antes de ir?","acceptedAnswer":{"@type":"Answer","text":"Sí. La página ofrece líneas directas para repuestos, accesorios y neumáticos; la disponibilidad y las medidas se confirman antes de acercarte."}},
-    {"@type":"Question","name":"¿Cómo coordino la entrega de un vehículo?","acceptedAnswer":{"@type":"Answer","text":"Después de definir la operación, el concesionario confirma por sus canales directos la documentación, las condiciones y el día de entrega."}}
+    {"@type":"Question","name":"¿Cómo coordino la entrega de un vehículo?","acceptedAnswer":{"@type":"Answer","text":"Después de definir la operación, el concesionario confirma por sus canales directos la documentación, las condiciones y el día de entrega."}},
+    {"@type":"Question","name":"¿Cada cuánto debo hacer el service de mi Toyota?","acceptedAnswer":{"@type":"Answer","text":"El intervalo depende del modelo, el año y el kilometraje. Consultá el manual de tu vehículo o escribinos con esos datos para confirmar qué mantenimiento corresponde."}},
+    {"@type":"Question","name":"¿Qué tengo que llevar al service?","acceptedAnswer":{"@type":"Answer","text":"Para pedir orientación, tené a mano el modelo, el año, el kilometraje y una descripción breve de lo que necesitás. El equipo confirma si hace falta documentación adicional."}},
+    {"@type":"Question","name":"¿Puedo consultar una visita o test drive?","acceptedAnswer":{"@type":"Answer","text":"Podés consultar por el modelo que te interesa y pedir información sobre disponibilidad y agenda. La posibilidad de realizar una visita o test drive se confirma directamente con el concesionario."}}
   ]
 }
 </script>
@@ -1098,6 +1101,39 @@ body.toyota-scroll-locked{overscroll-behavior:none;touch-action:none}
 @media(prefers-reduced-motion:reduce){.mobilebar{transition:none!important}}
 
 
+/* Audit improvements: intent capture, keyboard escape hatch and mobile density. */
+.skip-link{position:fixed;left:16px;top:12px;z-index:200;padding:10px 14px;background:#171d21;color:#fff;border:2px solid #f0d274;transform:translateY(-160%);transition:transform .18s ease;font-weight:700;text-decoration:none}
+.skip-link:focus{transform:translateY(0)}
+.used-interest-form{display:grid;gap:12px;margin-top:18px;padding-top:18px;border-top:1px solid rgba(23,32,38,.15)}
+.used-interest-form label{font-size:13px;font-weight:700;color:var(--ink)}
+.used-interest-row{display:grid;grid-template-columns:minmax(180px,1fr) minmax(190px,auto);gap:10px;align-items:stretch}
+.used-interest-form select{min-height:48px;border:1px solid #aebac0;background:#fff;color:var(--ink);padding:10px 12px;font:inherit;border-radius:0}
+.used-interest-form .btn{min-height:48px}
+@media(max-width:560px){.used-interest-row{grid-template-columns:1fr}.used-interest-form .btn{width:100%}}
+/* Audit phase 2: unified purchase paths and local relevance. */
+.payment-paths-section{background:#e9eef0!important;color:#172026!important}
+.payment-paths-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.payment-path-card{background:#fff;border:1px solid #c2cdd2;border-top:3px solid #d4af37;border-radius:12px;padding:23px;min-height:238px;display:flex;flex-direction:column;align-items:flex-start;box-shadow:0 12px 28px -22px rgba(22,34,40,.65);transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+.payment-path-card:hover{transform:translateY(-4px);border-top-color:#8c111d;box-shadow:0 20px 36px -24px rgba(22,34,40,.8)}
+.payment-path-card-featured{border-top-color:#8c111d}
+.payment-path-index{font:800 12px var(--display);color:#8c111d;letter-spacing:.08em}
+.payment-path-card h3{font:800 21px var(--display);margin:16px 0 8px;color:#172026}
+.payment-path-card p{font-size:13.5px;line-height:1.6;color:#45535b;margin:0 0 18px;flex-grow:1}
+.payment-path-card .text-link{color:#8c111d;font-weight:800;text-decoration:none;font-size:13px}
+.payment-path-card .text-link:hover{text-decoration:underline;text-underline-offset:3px}
+.payment-path-note{margin:18px 0 0;font-size:12px;color:#5b686f}
+.local-coverage-note{display:grid;grid-template-columns:1fr auto;gap:4px 24px;align-items:center;margin:0 0 28px;padding:20px 22px;background:#fff;border:1px solid #c2cdd2;border-left:4px solid #d4af37;border-radius:10px;box-shadow:0 12px 28px -22px rgba(22,34,40,.55)}
+.local-coverage-note strong{font:800 16px var(--display);color:#172026}.local-coverage-note p{grid-column:1;margin:5px 0 0;color:#45535b;font-size:13.5px;line-height:1.6}.local-coverage-note .text-link{grid-column:2;grid-row:1 / span 2;color:#8c111d;font-weight:800;text-decoration:none;font-size:13px}.local-coverage-note .text-link:hover{text-decoration:underline;text-underline-offset:3px}
+@media(max-width:900px){.payment-paths-grid{grid-template-columns:1fr 1fr}.local-coverage-note{grid-template-columns:1fr}.local-coverage-note p,.local-coverage-note .text-link{grid-column:1}.local-coverage-note .text-link{grid-row:auto;margin-top:9px}}
+@media(max-width:560px){.payment-paths-grid{grid-template-columns:1fr}.payment-path-card{min-height:210px}}
+
+/* Audit phase 3: one clear primary action per journey. */
+#como-comprar .journey-aside>a.btn:not(.primary){display:inline-flex;width:max-content;max-width:100%;padding:7px 0;margin-top:8px;background:transparent!important;border-color:transparent!important;color:#f0d274!important;justify-content:flex-start;font-size:13px}
+#como-comprar .journey-aside>a.btn:not(.primary):hover{transform:translateX(3px);text-decoration:underline;text-underline-offset:4px}
+#financiacion .related-row a:not(.btn),#canje .related-row a:not(.btn){font-weight:700;color:#8c111d;text-decoration:none}
+#financiacion .related-row a:not(.btn):hover,#canje .related-row a:not(.btn):hover{text-decoration:underline;text-underline-offset:4px}
+.finance-disclaimer{max-width:48ch}
+
 /* Consolidated CSS block 33: original cascade position 33 */
 
 /* La información y los canales de contacto no dependen de una animación JS. */
@@ -1119,6 +1155,7 @@ body.toyota-scroll-locked{overscroll-behavior:none;touch-action:none}
 </style>
 </head>
 <body id="top">
+<a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
 <script id="scroll-restoration">
 (function(){
   if(location.hash)return;
@@ -1139,7 +1176,7 @@ body.toyota-scroll-locked{overscroll-behavior:none;touch-action:none}
         <details class="navmega"><summary>Vehículos</summary><div class="mega-panel"><a href="#gama"><strong>0 km</strong><small>Modelos Toyota</small></a><a href="#gama"><strong>Explorar gama</strong><small>SUV, pick-ups y sedanes</small></a><a href="#usados"><strong>Usados</strong><small>Disponibilidad a confirmar</small></a><a href="#comparar"><strong>Comparar modelos</strong><small>Elegí dos y compará</small></a></div></details>
         <details class="navmega"><summary>Compra</summary><div class="mega-panel"><a href="#financiacion"><strong>Financiación</strong><small>Simulador y pasos</small></a><a href="#canje"><strong>Plan canje</strong><small>Tasá tu vehículo</small></a><a href="#contacto"><strong>Consultar</strong><small>Hablar con el equipo</small></a></div></details>
         <details class="navmega"><summary>Postventa</summary><div class="mega-panel"><a href="#servicios"><strong>Service oficial</strong><small>Solicitar turno</small></a><a href="#repuestos"><strong>Repuestos y accesorios</strong><small>Consultar disponibilidad</small></a><a href="#neumaticos"><strong>Neumáticos</strong><small>Consultar Bridgestone</small></a><a href="#taller"><strong>Nuestro taller</strong><small>Conocé el equipo</small></a></div></details>
-        <a href="#porque">Por qué acá</a><a href="#concesionario">Concesionario</a>
+        <a href="#porque">Por qué elegirnos</a><a href="#concesionario">Concesionario</a>
       </nav>
       <div class="navright">
         <a class="nav-cta" target="_blank" rel="noopener" aria-label="Consultar por WhatsApp" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20consultar%20por%20un%20Toyota.">WhatsApp</a>
@@ -1154,7 +1191,7 @@ body.toyota-scroll-locked{overscroll-behavior:none;touch-action:none}
         <a href="#gama">Modelos Toyota</a>
         <a href="#accesorios">Accesorios y merchandising</a><a href="#gama">Gama completa</a>
         <a href="#categorias">Explorar por categoría</a>
-        <a href="#porque">Por qué comprar acá</a>
+        <a href="#porque">Por qué elegirnos</a>
         <a href="#como-comprar">Cómo comprar</a>
         <a href="#usados">Usados</a>
         <a href="#comparar">Comparar modelos</a>
@@ -1173,7 +1210,7 @@ body.toyota-scroll-locked{overscroll-behavior:none;touch-action:none}
       </div>
     </div>
   </header>
-<main>
+<main id="contenido-principal">
 
 <div class="expansion-nav" aria-label="Accesos de esta propuesta ampliada"><div class="wrap">
 <a href="#porque">Por qué elegirnos</a><a href="#categorias">Categorías</a><a href="#como-comprar">Cómo comprar</a><a href="#novedades">Novedades</a><a href="#servicios-adicionales">Servicios adicionales</a><a href="#contacto-ampliado">Contacto directo</a>
@@ -1477,50 +1514,25 @@ body.toyota-scroll-locked{overscroll-behavior:none;touch-action:none}
       <div class="wrap">
         <div class="dealer-value-header">
           <div class="dealer-value-heading">
-            <span class="tag">Valor para el concesionario</span>
-            <h2 id="dealerValueTitle">Una web que trabaja para vender mejor.</h2>
-            <p class="dealer-value-lead">Más descubrimiento, más confianza y un próximo paso claro para cada persona que llega a la concesionaria.</p>
+            <span class="tag">Por qué elegirnos</span>
+            <h2 id="dealerValueTitle">Una atención local, sin promesas difíciles de sostener.</h2>
+            <p class="dealer-value-lead">Te ayudamos a explorar, comparar y avanzar con información clara. Cuando un dato necesita confirmación, te lo decimos.</p>
           </div>
-          <aside class="dealer-value-positioning" aria-label="Objetivo comercial de la propuesta">
-            <span class="dealer-value-overline">OBJETIVO DE NEGOCIO</span>
-            <strong>Convertir interés en conversaciones útiles.</strong>
-            <span>La experiencia ordena el recorrido sin perder la cercanía de la atención local.</span>
+          <aside class="dealer-value-positioning" aria-label="Compromiso de atención">
+            <span class="dealer-value-overline">NUESTRO COMPROMISO</span>
+            <strong>Que sepas cuál es el próximo paso.</strong>
+            <span>Gama, financiación, canje y postventa: cada consulta llega al canal correcto.</span>
           </aside>
         </div>
 
+        <div class="local-coverage-note"><strong>Atención local y consultas regionales</strong><p>Estamos en Concepción del Uruguay y atendemos consultas de personas que buscan vehículos Toyota, financiación, plan canje o postventa en la región. Si estás organizando tu visita desde otra localidad, escribinos antes para confirmar horarios, disponibilidad y el canal más conveniente.</p><a href="#ubicacion" class="text-link">Ver ubicación y horarios <span aria-hidden="true">↗</span></a></div>
         <div class="dealer-value-grid" data-dealer-value-grid>
-          <article class="dealer-value-card" data-value-step="01">
-            <div class="dealer-value-card-top"><span class="dealer-value-marker" aria-hidden="true"></span></div>
-            <h3>Leads más calificados</h3>
-            <p>Cada modelo, consulta de financiación, plan canje o servicio conduce a una acción concreta para que el equipo reciba mejor contexto.</p>
-            <a class="dealer-value-link" href="#contacto">Ver el próximo paso <span aria-hidden="true">↗</span></a>
-          </article>
-          <article class="dealer-value-card" data-value-step="02">
-            <div class="dealer-value-card-top"><span class="dealer-value-marker" aria-hidden="true"></span></div>
-            <h3>Mejor descubrimiento de vehículos</h3>
-            <p>La gama, las fichas y la comparación ayudan a que cada visitante encuentre un modelo antes de abandonar la conversación.</p>
-            <a class="dealer-value-link" href="#gama">Explorar la gama <span aria-hidden="true">↗</span></a>
-          </article>
-          <article class="dealer-value-card" data-value-step="03">
-            <div class="dealer-value-card-top"><span class="dealer-value-marker" aria-hidden="true"></span></div>
-            <h3>Confianza local más visible</h3>
-            <p>Ubicación, postventa, repuestos y canales de contacto aparecen juntos para mostrar qué sucede después de la compra.</p>
-            <a class="dealer-value-link" href="#concesionario">Conocer la propuesta local <span aria-hidden="true">↗</span></a>
-          </article>
-          <article class="dealer-value-card" data-value-step="04">
-            <div class="dealer-value-card-top"><span class="dealer-value-marker" aria-hidden="true"></span></div>
-            <h3>Valor preparado para medirse</h3>
-            <p>La arquitectura deja cada interacción lista para instrumentar: WhatsApp, teléfono, formularios, modelos consultados y ubicación.</p>
-            <a class="dealer-value-link" href="#contacto">Ver canales de contacto <span aria-hidden="true">↗</span></a>
-          </article>
+          <article class="dealer-value-card" data-value-step="01"><div class="dealer-value-card-top"><span class="dealer-value-marker" aria-hidden="true"></span></div><h3>Información honesta</h3><p>Las cuotas son estimativas, el stock se confirma y las reseñas se consultan en Google. Sin datos presentados como certezas si todavía no lo son.</p><a class="dealer-value-link" href="#faq">Leer preguntas frecuentes <span aria-hidden="true">↗</span></a></article>
+          <article class="dealer-value-card" data-value-step="02"><div class="dealer-value-card-top"><span class="dealer-value-marker" aria-hidden="true"></span></div><h3>Modelos para explorar</h3><p>Recorré la gama por categoría, abrí una ficha y compará dos alternativas antes de hablar con un asesor.</p><a class="dealer-value-link" href="#gama">Explorar la gama <span aria-hidden="true">↗</span></a></article>
+          <article class="dealer-value-card" data-value-step="03"><div class="dealer-value-card-top"><span class="dealer-value-marker" aria-hidden="true"></span></div><h3>Canales directos</h3><p>Ventas, turnos, repuestos y neumáticos tienen sus propios canales para que no tengas que explicar tu necesidad dos veces.</p><a class="dealer-value-link" href="#contacto-ampliado">Ver contacto directo <span aria-hidden="true">↗</span></a></article>
+          <article class="dealer-value-card" data-value-step="04"><div class="dealer-value-card-top"><span class="dealer-value-marker" aria-hidden="true"></span></div><h3>Acompañamiento después</h3><p>La relación continúa con service oficial, mantenimiento, repuestos y orientación para cuidar tu Toyota.</p><a class="dealer-value-link" href="#mantenimiento">Conocer postventa <span aria-hidden="true">↗</span></a></article>
         </div>
-
-        <div class="dealer-value-footer">
-          <div class="dealer-value-sequence" aria-label="Recorrido comercial de la experiencia">
-            <span>Descubrimiento</span><i aria-hidden="true">→</i><span>Confianza</span><i aria-hidden="true">→</i><span>Consulta</span><i aria-hidden="true">→</i><span>Seguimiento</span>
-          </div>
-          <a class="btn primary dealer-value-cta" href="#contacto">Llevar la conversación al equipo <span aria-hidden="true">↗</span></a>
-        </div>
+        <div class="dealer-value-footer"><div class="dealer-value-sequence" aria-label="Recorrido de atención"><span>Explorá</span><i aria-hidden="true">→</i><span>Compará</span><i aria-hidden="true">→</i><span>Consultá</span><i aria-hidden="true">→</i><span>Avanzá</span></div><a class="btn primary dealer-value-cta" href="#contacto">Hablar con el equipo <span aria-hidden="true">↗</span></a></div>
       </div>
     </section>
 
@@ -1542,6 +1554,22 @@ body.toyota-scroll-locked{overscroll-behavior:none;touch-action:none}
     </section>
 
 
+
+    <section id="formas-de-pago" class="premium-reveal payment-paths-section" aria-labelledby="paymentPathsTitle">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="tag">Formas de compra</span><h2 id="paymentPathsTitle">Elegí cómo querés avanzar.</h2><p>Las alternativas se pueden combinar. El equipo confirma condiciones, documentación y disponibilidad antes de que tomes una decisión.</p></div>
+        </div>
+        <div class="payment-paths-grid">
+          <article class="payment-path-card payment-path-card-featured"><span class="payment-path-index">01</span><h3>Contado</h3><p>Consultá el modelo que te interesa y pedí una propuesta con las condiciones vigentes.</p><a class="text-link" href="#gama">Explorar modelos <span aria-hidden="true">↗</span></a></article>
+          <article class="payment-path-card"><span class="payment-path-index">02</span><h3>Financiación</h3><p>Usá el simulador como referencia y pedí la tasa real según tu perfil y la línea disponible.</p><a class="text-link" href="#financiacion">Simular cuota <span aria-hidden="true">↗</span></a></article>
+          <article class="payment-path-card"><span class="payment-path-index">03</span><h3>Plan canje</h3><p>Tu vehículo actual puede formar parte de la operación, sea o no Toyota. La tasación la revisa un asesor.</p><a class="text-link" href="#canje">Tasá mi usado <span aria-hidden="true">↗</span></a></article>
+          <article class="payment-path-card"><span class="payment-path-index">04</span><h3>Combinada</h3><p>Podés consultar una operación con usado más financiación. El equipo ordena las alternativas con vos.</p><a class="text-link" href="#contacto">Consultar mi caso <span aria-hidden="true">↗</span></a></article>
+        </div>
+        <p class="payment-path-note">Información orientativa. No constituye una oferta ni reemplaza la confirmación del concesionario.</p>
+      </div>
+    </section>
+
     <section id="vistos" class="premium-reveal" hidden>
       <div class="wrap recent-shell"><strong>Modelos que miraste recién</strong><span class="muted">Retomá una ficha sin volver a buscarla.</span><div class="recent-list" id="recentList" aria-live="polite" aria-atomic="true"></div></div>
     </section>
@@ -1552,7 +1580,7 @@ body.toyota-scroll-locked{overscroll-behavior:none;touch-action:none}
         <div class="section-head split-head"><div><span class="tag">Usados</span><h2>Tu próximo vehículo también puede empezar acá.</h2><p>Una estructura preparada para publicar unidades reales cuando el concesionario confirme stock, datos y fotografías.</p></div><a class="text-link" href="#contacto">Consultar disponibilidad <span>↗</span></a></div>
         <div class="inventory-toolbar"><div><strong>Stock de usados</strong><span>Sin unidades publicadas por el momento</span></div></div>
         <div class="used-grid" id="usedGrid"></div>
-        <div class="empty-state" id="usedEmpty"><strong>Todavía no hay unidades usadas publicadas en la web.</strong><span>El stock rota seguido y se confirma directamente con el concesionario: contanos qué tipo de vehículo buscás y te avisamos apenas haya algo disponible.</span><a class="btn primary" target="_blank" rel="noopener" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20consultar%20disponibilidad%20de%20usados.">Consultar disponibilidad por WhatsApp</a></div>
+        <div class="empty-state" id="usedEmpty"><strong>Todavía no hay unidades usadas publicadas en la web.</strong><span>El stock rota seguido y se confirma directamente con el concesionario: contanos qué tipo de vehículo buscás y te avisamos apenas haya algo disponible.</span><form class="used-interest-form" id="usedInterestForm" aria-label="Consultar por un usado"><label for="usedInterest">¿Qué tipo de usado buscás?</label><div class="used-interest-row"><select id="usedInterest"><option>Toyota usado</option><option>Auto compacto</option><option>SUV</option><option>Pick-up</option><option>Todavía no lo sé</option></select><button class="btn primary" type="submit">Avisarme por WhatsApp ↗</button></div><p class="form-note" id="usedInterestNote" role="status" aria-live="polite">No guardamos tus datos en esta página: se abre una consulta preparada para el equipo.</p></form></div>
       </div>
     </section>
 
@@ -2034,6 +2062,21 @@ document.addEventListener("DOMContentLoaded", function(){
     });
   }
 
+  // ---- captura contextual de interés en usados sin backend ni datos inventados ----
+  var usedInterestForm = document.getElementById("usedInterestForm");
+  if(usedInterestForm){
+    usedInterestForm.addEventListener("submit", function(e){
+      e.preventDefault();
+      var wanted = document.getElementById("usedInterest").value;
+      var note = document.getElementById("usedInterestNote");
+      var message = "Hola! Quiero que me avisen si ingresa un usado: " + wanted + ". También quisiera conocer disponibilidad y condiciones.";
+      if(note) note.textContent = "Abriendo WhatsApp con tu consulta preparada…";
+      window.toyotaTrack("used_interest_click", {vehicle_type:wanted});
+      window.open(wa("turnos", message), "_blank", "noopener");
+      setTimeout(function(){if(note)note.textContent="La consulta quedó preparada en WhatsApp para que la revises y la envíes.";}, 500);
+    });
+  }
+
   // ---- header con sombra al scrollear ----
   var header = document.getElementById("site-header");
   window.addEventListener("scroll", function(){
@@ -2244,6 +2287,7 @@ document.addEventListener("DOMContentLoaded", function(){
     anticipoLabel.textContent = Number(anticipoRange.value) + "%";
     tickMoney(document.getElementById("cuotaResultado"),cuota," /mes");
     var financed=document.getElementById("montoFinanciadoLabel");if(financed){financed.textContent="Financiando "+formatoARS(montoFinanciado);financed.dataset.moneyValue=String(montoFinanciado);}
+    var realCta=document.getElementById("financingRealCta");if(realCta){realCta.href=wa("turnos","Hola! Quiero conocer la tasa real para financiar un Toyota. Simulé "+formatoARS(monto)+" a "+n+" meses, con un anticipo del "+Math.round(anticipoPct*100)+"%. El monto financiado estimado sería "+formatoARS(montoFinanciado)+".");}
   }
 
   montoRange.addEventListener("input", function(){calcular();window.toyotaTrack("financing_simulator_change",{field:"monto",value:this.value});});
@@ -2271,7 +2315,10 @@ document.addEventListener("DOMContentLoaded", function(){
     { q: "¿Qué documentación necesito para consultar financiación?", a: "Para iniciar una consulta, el asesor puede pedirte datos de contacto, información del vehículo y documentación de ingresos. La lista final depende de la línea vigente y de tu perfil." },
     { q: "¿Cómo funciona la tasación de mi usado?", a: "Se solicitan marca, modelo, año, kilometraje y estado general. El valor no se calcula automáticamente en esta página: un asesor revisa la información y confirma el siguiente paso." },
     { q: "¿Puedo consultar accesorios y neumáticos antes de ir?", a: "Sí. La página ofrece líneas directas para repuestos, accesorios y neumáticos; la disponibilidad y las medidas se confirman antes de acercarte." },
-    { q: "¿Cómo coordino la entrega de un vehículo?", a: "Después de definir la operación, el concesionario confirma por sus canales directos la documentación, las condiciones y el día de entrega." }
+    { q: "¿Cómo coordino la entrega de un vehículo?", a: "Después de definir la operación, el concesionario confirma por sus canales directos la documentación, las condiciones y el día de entrega." },
+    { q: "¿Cada cuánto debo hacer el service de mi Toyota?", a: "El intervalo depende del modelo, el año y el kilometraje. Consultá el manual de tu vehículo o escribinos con esos datos para confirmar qué mantenimiento corresponde." },
+    { q: "¿Qué tengo que llevar al service?", a: "Para pedir orientación, tené a mano el modelo, el año, el kilometraje y una descripción breve de lo que necesitás. El equipo confirma si hace falta documentación adicional." },
+    { q: "¿Puedo consultar una visita o test drive?", a: "Podés consultar por el modelo que te interesa y pedir información sobre disponibilidad y agenda. La posibilidad de realizar una visita o test drive se confirma directamente con el concesionario." }
   ];
   var faqList = document.getElementById("faqList");
   FAQS.forEach(function(f, i){
@@ -2728,7 +2775,7 @@ document.addEventListener("DOMContentLoaded", function(){
   document.querySelectorAll('[data-category-jump]').forEach(function(a){a.addEventListener('click',function(e){var type=this.dataset.categoryJump;if(type==='general')return;var filter=document.querySelector('.filterbtn[data-filter="'+type+'"]');if(filter){e.preventDefault();filter.click();window.__toyotaScrollToElement(document.getElementById('gama'));}});});
   document.querySelectorAll('.journey-step button').forEach(function(btn){btn.addEventListener('click',function(){this.closest('.journey-step').classList.toggle('open');});});
   var faq=document.getElementById('faqList');
-  if(faq){var original=Array.from(faq.querySelectorAll('.faq-item'));var tabs=document.createElement('div');tabs.className='faq-tabs';tabs.setAttribute('role','tablist');tabs.innerHTML='<button class="faq-tab active" aria-selected="true" role="tab" data-faq-filter="todos" type="button">Todas</button><button class="faq-tab" aria-selected="false" role="tab" data-faq-filter="0km" type="button">0 km</button><button class="faq-tab" aria-selected="false" role="tab" data-faq-filter="usados" type="button">Usados</button><button class="faq-tab" aria-selected="false" role="tab" data-faq-filter="financiacion" type="button">Financiación</button><button class="faq-tab" aria-selected="false" role="tab" data-faq-filter="postventa" type="button">Postventa</button>';faq.parentNode.insertBefore(tabs,faq);var note=document.createElement('p');note.className='faq-category-note';note.textContent='Filtrá las respuestas según el momento de tu compra.';faq.parentNode.insertBefore(note,faq);var keys=['0km','postventa','postventa','usados','financiacion','financiacion','usados','postventa','0km'];if(original.length!==keys.length)console.warn('FAQ category count mismatch',original.length,keys.length);original.forEach(function(item,i){item.dataset.faqCategory=item.dataset.faqCategory||keys[i]||'postventa';});tabs.querySelectorAll('.faq-tab').forEach(function(tab){tab.addEventListener('click',function(){tabs.querySelectorAll('.faq-tab').forEach(function(x){x.classList.remove('active');x.setAttribute('aria-selected','false');});this.classList.add('active');this.setAttribute('aria-selected','true');var wanted=this.dataset.faqFilter;original.forEach(function(item){var show=wanted==='todos'||item.dataset.faqCategory===wanted;item.hidden=!show;if(show&&window.gsap&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){gsap.fromTo(item,{opacity:.25,y:8},{opacity:1,y:0,duration:.28,overwrite:'auto'});}});});});}
+  if(faq){var original=Array.from(faq.querySelectorAll('.faq-item'));var tabs=document.createElement('div');tabs.className='faq-tabs';tabs.setAttribute('role','tablist');tabs.innerHTML='<button class="faq-tab active" aria-selected="true" role="tab" data-faq-filter="todos" type="button">Todas</button><button class="faq-tab" aria-selected="false" role="tab" data-faq-filter="0km" type="button">0 km</button><button class="faq-tab" aria-selected="false" role="tab" data-faq-filter="usados" type="button">Usados</button><button class="faq-tab" aria-selected="false" role="tab" data-faq-filter="financiacion" type="button">Financiación</button><button class="faq-tab" aria-selected="false" role="tab" data-faq-filter="postventa" type="button">Postventa</button>';faq.parentNode.insertBefore(tabs,faq);var note=document.createElement('p');note.className='faq-category-note';note.textContent='Filtrá las respuestas según el momento de tu compra.';faq.parentNode.insertBefore(note,faq);var keys=['0km','postventa','postventa','usados','financiacion','financiacion','usados','postventa','0km','postventa','postventa','0km'];if(original.length!==keys.length)console.warn('FAQ category count mismatch',original.length,keys.length);original.forEach(function(item,i){item.dataset.faqCategory=item.dataset.faqCategory||keys[i]||'postventa';});tabs.querySelectorAll('.faq-tab').forEach(function(tab){tab.addEventListener('click',function(){tabs.querySelectorAll('.faq-tab').forEach(function(x){x.classList.remove('active');x.setAttribute('aria-selected','false');});this.classList.add('active');this.setAttribute('aria-selected','true');var wanted=this.dataset.faqFilter;original.forEach(function(item){var show=wanted==='todos'||item.dataset.faqCategory===wanted;item.hidden=!show;if(show&&window.gsap&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){gsap.fromTo(item,{opacity:.25,y:8},{opacity:1,y:0,duration:.28,overwrite:'auto'});}});});});}
 });
 </script>
 
