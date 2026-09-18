@@ -1214,6 +1214,27 @@ html,body{overflow-x:clip}
   .highlight-visual,.hero-art,.facility-visual,.workshop-visual,.used-visual{overflow:hidden}
 }
 </style>
+<style id="art-direction-static">
+/* Static art direction: editorial hierarchy and breathing room; motion remains untouched. */
+:root{
+  --space-1:8px;--space-2:16px;--space-3:24px;--space-4:32px;--space-5:48px;--space-6:64px;--space-7:96px;
+  --type-display:clamp(2.9rem,6.2vw,5.15rem);--type-h2:clamp(2rem,3.5vw,3.35rem);--type-h3:clamp(1.15rem,1.7vw,1.5rem);--type-body:clamp(1rem,1.05vw,1.08rem);--type-label:.68rem;
+}
+body{font-size:var(--type-body);line-height:1.62;letter-spacing:-.006em}
+.hero h1{font-size:var(--type-display);line-height:.99;letter-spacing:-.045em;max-width:11.5ch}
+.section-head h2,.section-title{font-size:var(--type-h2);line-height:1.03;letter-spacing:-.035em}
+.section-head p,.hero p.lead{max-width:62ch;line-height:1.68}
+.tag{font-size:var(--type-label);font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.value-icon,.journey-line article>b{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.hero-photo-real{isolation:isolate}
+.hero-photo-real::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(8,11,13,.02) 34%,rgba(8,11,13,.34) 100%),radial-gradient(ellipse at center,transparent 48%,rgba(8,11,13,.22) 100%)}
+footer{padding-top:clamp(80px,9vw,128px);padding-bottom:clamp(32px,5vw,64px)}
+@media(max-width:760px){
+  .hero h1{font-size:clamp(2.7rem,12vw,4.1rem);max-width:12ch}
+  .section-head h2,.section-title{font-size:clamp(1.9rem,8.8vw,2.7rem)}
+  footer{padding-top:72px}
+}
+</style>
 </head>
 <body id="top">
 <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
