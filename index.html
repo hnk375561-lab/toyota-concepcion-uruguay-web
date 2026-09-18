@@ -2918,13 +2918,19 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     // Magnetic action system: stronger on desktop, subtle on tablet, disabled on mobile.
+    // Corrección de auditoría: estos mismos botones (.hero/.cta-banner/.detail-actions
+    // .btn.primary) ya reciben un lift discreto en "y" desde gsap-max-motion-runtime
+    // (pointerenter/leave, con overwrite:true). Ese sistema y este magnetismo competían
+    // por la misma propiedad "y" en cada pointermove, produciendo un micro-temblor
+    // vertical en vez de un movimiento limpio. Se deja el magnetismo solo en "x": el
+    // lift vertical queda como única fuente de verdad para "y" en estos botones.
     mm.add("(min-width: 561px)",function(){
       gsap.utils.toArray(".hero .btn.primary,.cta-banner .btn.primary,.detail-actions .btn.primary").forEach(function(button){
-        var x=gsap.quickTo(button,"x",{duration:.3,ease:ease}),y=gsap.quickTo(button,"y",{duration:.3,ease:ease});
+        var x=gsap.quickTo(button,"x",{duration:.3,ease:ease});
         var rect=null;
         var enter=function(){rect=button.getBoundingClientRect();};
-        var move=function(e){if(!rect)return;var dx=e.clientX-(rect.left+rect.width/2),dy=e.clientY-(rect.top+rect.height/2);x(dx*.055);y(dy*.055);};
-        var leave=function(){rect=null;x(0);y(0);};
+        var move=function(e){if(!rect)return;var dx=e.clientX-(rect.left+rect.width/2);x(dx*.055);};
+        var leave=function(){rect=null;x(0);};
         button.addEventListener("pointerenter",enter,{passive:true});button.addEventListener("pointermove",move,{passive:true});button.addEventListener("pointerleave",leave,{passive:true});
         cleanup.push(function(){button.removeEventListener("pointerenter",enter);button.removeEventListener("pointermove",move);button.removeEventListener("pointerleave",leave);});
       });
