@@ -965,27 +965,44 @@ body{background:#e9eef0!important;color:#172026!important}
 .journey-mini-map-cta .ui-icon{display:none}
 #como-comprar .journey-aside .journey-quicklinks{margin-top:16px!important}
 
-/* 6) Hero: la barra lateral izquierda y la derecha quedan del mismo grosor;
-   la izquierda suma los 3 teléfonos del concesionario y la derecha, antes
-   vacía, ahora replica la identidad con Instagram + WhatsApp reales del sitio. */
-.hero-editorial-frame{grid-template-columns:60px 1fr 60px!important}
-.hero-editorial-rail{width:60px!important}
+/* 6) Hero: la barra izquierda queda como rail fija superpuesta; el contenido
+   principal mantiene su centro geométrico sin reservar una columna lateral. */
+.hero-editorial-frame{grid-template-columns:1fr!important}
+.hero-editorial-rail{position:fixed!important;inset:0 auto 0 0!important;width:44px!important;height:100vh!important;min-height:100vh!important;justify-content:center!important;gap:14px!important;padding:24px 0!important;z-index:45!important}
+.hero-editorial-rail>*{margin-top:0!important}
 .hero-rail-contact{line-height:1.7}
 .hero-rail-contact a{color:inherit;text-decoration:none}
 .hero-rail-contact a:hover{color:#fff}
-.hero-editorial-rail-right{border-right:0!important;border-left:1px solid rgba(244,241,235,.22)!important;justify-content:flex-start!important}
-.hero-rail-logo-alt{background:linear-gradient(145deg,#e8532c,#c1136a)!important;display:grid;place-items:center}
-.hero-rail-logo-alt span{color:#fff;font:800 11px var(--display);letter-spacing:.02em}
-.hero-editorial-rail-right .hero-rail-detail{letter-spacing:.1em}
-.hero-editorial-rail-right .hero-rail-contact{text-align:center;cursor:pointer}
 @media(max-width:900px){
-  .hero-editorial-frame{grid-template-columns:60px 1fr!important}
-  .hero-editorial-rail-right{display:none!important}
+  .hero-editorial-frame{grid-template-columns:44px 1fr!important}
+  .hero-editorial-rail{position:relative!important;inset:auto!important;width:44px!important;height:auto!important;min-height:inherit!important;z-index:5!important;justify-content:flex-start!important;gap:0!important;padding:18px 0!important}
+  .hero-editorial-rail>*{margin-top:0!important}
 }
 @media(max-width:760px){
   .hero-editorial-frame{grid-template-columns:48px 1fr!important}
   .hero-editorial-rail{width:48px!important}
 }
+
+/* Layout pass: the expansion bar is centered in the viewport and never scrolls horizontally. */
+.hero-editorial-frame{contain:none!important}
+.expansion-nav .wrap{width:min(1320px,calc(100% - 48px));max-width:none;margin-inline:auto;display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:10px;padding:12px 0}
+.expansion-nav a{display:inline-flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap}
+.expansion-nav .nav-instagram-icon{width:14px;height:14px;flex:0 0 auto;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.9}
+.contact-float-group{position:fixed;right:24px;bottom:24px;z-index:60;display:flex;align-items:center;gap:10px;padding:0}
+.contact-float-group .float-advisor,.contact-float-group .float-social,.contact-float-group .float-wa{position:static!important;right:auto!important;bottom:auto!important;flex:0 0 auto;width:54px;height:54px}
+.contact-float-group .float-wa{display:grid!important}
+footer{padding-bottom:calc(104px + env(safe-area-inset-bottom))!important}
+@media(max-width:1024px){.expansion-nav .wrap{width:calc(100% - 40px);gap:8px}.expansion-nav a{padding-inline:9px}}
+@media(max-width:760px){
+  .expansion-nav .wrap{width:calc(100% - 24px);gap:7px;padding:10px 0}
+  .expansion-nav a{padding:7px 8px;font-size:11px}
+  .contact-float-group{right:24px;bottom:calc(72px + env(safe-area-inset-bottom));gap:8px}
+  .contact-float-group .float-advisor,.contact-float-group .float-social,.contact-float-group .float-wa{width:48px;height:48px}
+  .contact-float-group .float-advisor svg,.contact-float-group .float-social svg{width:22px;height:22px}
+  .contact-float-group .float-wa svg{width:26px;height:26px}
+  footer{padding-bottom:calc(220px + env(safe-area-inset-bottom))!important}
+}
+@media(max-width:420px){.expansion-nav .wrap{width:calc(100% - 16px);gap:6px}.expansion-nav a{padding-inline:7px;font-size:10.5px}.contact-float-group{right:16px}}
 
 
 /* Consolidated CSS block 28: original cascade position 28 */
@@ -1097,7 +1114,6 @@ h1,h2,h3,.brand .b1,.section-kicker,.tag{font-kerning:normal;text-wrap:balance}
   display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;
   width:100%!important;margin-top:auto!important;gap:1px;letter-spacing:.02em!important;font-variant-numeric:tabular-nums;
 }
-.hero-rail-contact-link{margin-top:auto!important}
 @media(max-width:900px){
   .hero-editorial-frame{grid-template-columns:44px 1fr!important}
 }
@@ -1117,7 +1133,6 @@ h1,h2,h3,.brand .b1,.section-kicker,.tag{font-kerning:normal;text-wrap:balance}
 .float-social svg{width:24px;height:24px;stroke:#fff;stroke-width:1.8}
 .float-wa{display:grid;place-items:center}
 .float-wa svg{width:30px;height:30px}
-.hero-rail-logo-alt svg{width:20px;height:20px;stroke:#fff;stroke-width:1.8}
 .social-mark svg{width:var(--system-icon-md,20px);height:var(--system-icon-md,20px);stroke-width:1.7}
 .contact-plus-icon svg{width:18px;height:18px;stroke-width:1.7}
 .contact-plus-icon{display:grid;place-items:center}
@@ -1129,7 +1144,7 @@ body.toyota-scroll-locked{overscroll-behavior:none;touch-action:none}
 .model-photo{aspect-ratio:4 / 3;object-fit:contain}
 .rive-vehicle-preview:not(.is-ready) #riveVehicleCanvas{opacity:0!important}
 .rive-vehicle-preview:not(.is-ready) .rive-vehicle-fallback{opacity:1!important;visibility:visible!important}
-@media(max-width:480px){.hero-editorial-rail-right,.hero-editorial-rail .hero-rail-detail{display:none!important}.hero-editorial-frame{grid-template-columns:38px 1fr!important}.hero-editorial-rail{width:38px!important;overflow:hidden!important}}
+@media(max-width:480px){.hero-editorial-rail .hero-rail-detail{display:none!important}.hero-editorial-frame{grid-template-columns:38px 1fr!important}.hero-editorial-rail{width:38px!important;overflow:hidden!important}}
 @media(prefers-reduced-motion:reduce){.mobilebar{transition:none!important}}
 
 
@@ -1235,6 +1250,25 @@ footer{padding-top:clamp(80px,9vw,128px);padding-bottom:clamp(32px,5vw,64px)}
   footer{padding-top:72px}
 }
 </style>
+<style id="layout-pass-final">
+/* Final layout authority: the left rail overlays the viewport at every breakpoint. */
+.hero-editorial-frame{grid-template-columns:1fr!important;contain:none!important}
+.hero-editorial-rail{position:fixed!important;inset:0 auto 0 0!important;width:44px!important;height:100vh!important;min-height:100vh!important;justify-content:center!important;gap:14px!important;padding:24px 0!important;z-index:45!important}
+.hero-editorial-rail>*{margin-top:0!important}
+@media(max-width:760px){
+  .hero-editorial-frame{grid-template-columns:1fr!important}
+  .hero-editorial-rail{width:34px!important}
+  .hero-editorial-copy,.hero-editorial-scroll{left:calc(8% + 34px)!important}
+  .hero-editorial-copy{max-width:calc(78% - 34px)!important}
+  .hero-editorial-specs{left:calc(8% + 34px)!important}
+}
+@media(max-width:480px){
+  .hero-editorial-rail{width:38px!important}
+  .hero-editorial-copy,.hero-editorial-scroll{left:calc(8% + 38px)!important}
+  .hero-editorial-copy{max-width:calc(78% - 38px)!important}
+  .hero-editorial-specs{left:calc(8% + 38px)!important}
+}
+</style>
 </head>
 <body id="top">
 <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
@@ -1295,7 +1329,7 @@ footer{padding-top:clamp(80px,9vw,128px);padding-bottom:clamp(32px,5vw,64px)}
 <main id="contenido-principal">
 
 <div class="expansion-nav" aria-label="Accesos de esta propuesta ampliada"><div class="wrap">
-<a href="#porque">Por qué elegirnos</a><a href="#categorias">Categorías</a><a href="#como-comprar">Cómo comprar</a><a href="#novedades">Novedades</a><a href="#servicios-adicionales">Servicios adicionales</a><a href="#contacto-ampliado">Contacto directo</a>
+<a href="#porque">Por qué elegirnos</a><a href="#categorias">Categorías</a><a href="#como-comprar">Cómo comprar</a><a href="#novedades">Novedades</a><a href="#servicios-adicionales">Servicios adicionales</a><a href="#contacto-ampliado">Contacto directo</a><a href="#gama">Vehículos 0 km</a><a class="expansion-nav-instagram" target="_blank" rel="noopener" href="https://www.instagram.com/toyotacdelu/?hl=es"><svg class="nav-instagram-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5"></rect><circle cx="12" cy="12" r="4.1"></circle><circle cx="17.35" cy="6.65" r="1.1" fill="currentColor" stroke="none"></circle></svg><span>Seguinos en Instagram @toyotacdelu</span></a>
 </div></div>
 
     <section class="hero hero-editorial" aria-labelledby="hero-title">
@@ -1345,15 +1379,6 @@ footer{padding-top:clamp(80px,9vw,128px);padding-bottom:clamp(32px,5vw,64px)}
       <div class="hero-editorial-scroll"><span></span>Desplazar para descubrir</div>
     </div>
 
-    <div class="hero-editorial-rail hero-editorial-rail-right" aria-label="Seguinos y contactános">
-      <a class="hero-rail-logo hero-rail-logo-alt" target="_blank" rel="noopener" aria-label="Instagram de Piñeyro y Moscatelli" href="https://www.instagram.com/toyotacdelu/?hl=es"><svg class="icon-outline" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5"></rect><circle cx="12" cy="12" r="4.1"></circle><circle cx="17.35" cy="6.65" r="1.1" fill="#fff" stroke="none"></circle></svg></a>
-      <span class="hero-rail-rule"></span>
-      <span class="hero-rail-label">Seguinos en<br>Instagram</span>
-      <span class="hero-rail-detail">@TOYOTACDELU</span>
-      <span class="hero-rail-rule hero-rail-rule-mid"></span>
-      <span class="hero-rail-label hero-rail-label-mid">Vehículos<br>0 km</span>
-      <a class="hero-rail-contact hero-rail-contact-link" target="_blank" rel="noopener" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20consultar%20por%20un%20Toyota.">Hablar por<br><b>WhatsApp</b></a>
-    </div>
   </div>
 </section>
 
@@ -2042,6 +2067,7 @@ footer{padding-top:clamp(80px,9vw,128px);padding-bottom:clamp(32px,5vw,64px)}
   </div>
 
 
+  <div class="contact-float-group" aria-label="Canales de contacto rápidos">
   <a class="float-advisor" target="_blank" rel="noopener" aria-label="Hablar con un asesor por WhatsApp" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20hablar%20con%20un%20asesor%20sobre%20un%20Toyota."><svg class="icon-outline" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13v-1.2a8 8 0 0116 0V13"></path><rect x="2.4" y="12.4" width="4.2" height="6.4" rx="2.1"></rect><rect x="17.4" y="12.4" width="4.2" height="6.4" rx="2.1"></rect><path d="M19.6 18.8v.7a3 3 0 01-3 3h-3.4"></path></svg></a>
 
   <a class="float-social" target="_blank" rel="noopener" aria-label="Visitar Instagram de Toyota Concepción del Uruguay" href="https://www.instagram.com/toyotacdelu/?hl=es">
@@ -2053,6 +2079,7 @@ footer{padding-top:clamp(80px,9vw,128px);padding-bottom:clamp(32px,5vw,64px)}
     <svg class="icon-solid" viewBox="0 0 32 32" aria-hidden="true" fill="#fff"><path d="M16.04 4C9.42 4 4.05 9.36 4.05 15.98c0 2.11.55 4.17 1.6 5.98L4 28l6.2-1.62a12 12 0 005.83 1.49h.01c6.62 0 11.99-5.36 11.99-11.98C28.03 9.36 22.66 4 16.04 4zm0 21.9h-.01a9.9 9.9 0 01-5.05-1.38l-.36-.22-3.75.98.99-3.66-.24-.38a9.9 9.9 0 01-1.53-5.28c0-5.48 4.46-9.94 9.96-9.94 2.66 0 5.15 1.04 7.03 2.92a9.85 9.85 0 012.91 7.02c0 5.48-4.46 9.94-9.95 9.94zm5.46-7.44c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.65-2.05-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.22 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35z"></path></svg>
   </a>
 
+  </div>
   <nav class="mobilebar" aria-label="Accesos rápidos">
     <div class="wrap">
       <a target="_blank" rel="noopener" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20sacar%20un%20turno%20de%20service.">
