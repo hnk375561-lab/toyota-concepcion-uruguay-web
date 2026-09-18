@@ -2462,21 +2462,25 @@ document.addEventListener("DOMContentLoaded", function(){
     gsap.registerPlugin(ScrollTrigger);
     var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     var revealSections = document.querySelectorAll(".premium-reveal");
+    // Curva de firma compartida: mismo bezier "toyotaEase" usado en los demás runtimes,
+    // registrada acá también por si este bloque corre antes de que otro script lo cree.
+    // Se adelanta (antes vivía más abajo) para que gobierne también el reveal de secciones.
+    var premiumEase="power3.out";
+    if(window.CustomEase){gsap.registerPlugin(CustomEase);CustomEase.create("toyotaEase","M0,0 C0.16,0.8 0.28,1 1,1");premiumEase="toyotaEase";}
     if(reduceMotion){ revealSections.forEach(function(el){el.classList.add("is-visible");}); }
     else {
       revealSections.forEach(function(el){
         el.classList.add("gsap-ready");
-        gsap.to(el,{opacity:1,y:0,duration:.72,ease:"power2.out",scrollTrigger:{trigger:el,start:"top 86%",once:true}});
+        // Antes: opacity+y plano. Ahora: una cortina clip-path que descubre la sección
+        // de abajo hacia arriba mientras sube y se asienta en escala, sin tocar layout
+        // ni contenido — el mismo bloque simplemente entra con más cine.
+        gsap.fromTo(el,{clipPath:"inset(0% 0% 8% 0%)",opacity:0,y:28,scale:.986},{clipPath:"inset(0% 0% 0% 0%)",opacity:1,y:0,scale:1,duration:1,ease:premiumEase,clearProps:"clipPath,scale",scrollTrigger:{trigger:el,start:"top 86%",once:true}});
       });
       [".gama-grid .model",".highlight-track .highlight-card",".access-grid figure",".expansion-grid > *",".category-browser > *",".maintenance-grid > *"].forEach(function(selector){
         document.querySelectorAll(selector).forEach(function(group){
           gsap.from(group,{opacity:0,y:22,duration:.55,ease:"power2.out",scrollTrigger:{trigger:group.parentElement,start:"top 88%",once:true},delay:Array.prototype.indexOf.call(group.parentElement.children,group)*.07});
         });
       });
-      // Curva de firma compartida: mismo bezier "toyotaEase" usado en los demás runtimes,
-      // registrado acá también por si este bloque corre antes de que otro script lo cree.
-      var premiumEase="power3.out";
-      if(window.CustomEase){gsap.registerPlugin(CustomEase);CustomEase.create("toyotaEase","M0,0 C0.16,0.8 0.28,1 1,1");premiumEase="toyotaEase";}
       var heroTl=gsap.timeline({defaults:{ease:premiumEase}});
       var heroTitle=document.querySelector(".hero h1");
       var heroSplit=window.SplitText&&heroTitle?SplitText.create(heroTitle,{type:"words,chars",aria:"auto"}):null;
@@ -2504,6 +2508,45 @@ document.addEventListener("DOMContentLoaded", function(){
         .from(heroSpecs,{opacity:0,y:10,duration:.42,stagger:.06},"-=.15")
         .from(heroScrollCue,{opacity:0,duration:.5},"-=.1");
       // Hover de .highlight-card consolidado en gsap-max-motion-runtime (un solo listener por tarjeta).
+
+      // Barrido de luz sobre el vehículo principal al cierre de la entrada: una sola
+      // pasada, no un loop — el gesto de "campaña automotriz" sin volverse decorativo.
+      if(heroPrimaryFig){
+        var heroSheen=document.createElement("span");
+        heroSheen.setAttribute("aria-hidden","true");
+        heroSheen.style.cssText="position:absolute;inset:0;z-index:2;pointer-events:none;mix-blend-mode:overlay;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.55) 50%,transparent 60%);transform:translateX(-120%) skewX(-12deg);";
+        heroPrimaryFig.style.position=heroPrimaryFig.style.position||"absolute";
+        heroPrimaryFig.appendChild(heroSheen);
+        heroTl.to(heroSheen,{xPercent:220,duration:1.05,ease:"power2.inOut",onComplete:function(){heroSheen.remove();}},"-=.35");
+      }
+
+      // Profundidad por capas: el wordmark, el vehículo secundario y el principal se
+      // mueven a distinta velocidad detrás del cursor, como planos reales de cámara.
+      // Restringido a punteros finos de escritorio para no interferir con el touch.
+      if(window.matchMedia&&window.matchMedia("(hover: hover) and (pointer: fine)").matches){
+        var heroStage=document.querySelector(".hero-editorial-stage");
+        if(heroStage){
+          var heroLayers=[
+            {el:heroWordmark,x:10,y:6},
+            {el:heroSecondaryFig,x:-14,y:8},
+            {el:heroPrimaryFig,x:-6,y:4}
+          ].filter(function(l){return l.el;});
+          var heroMovers=heroLayers.map(function(l){return {x:gsap.quickTo(l.el,"x",{duration:.9,ease:"power3.out"}),y:gsap.quickTo(l.el,"y",{duration:.9,ease:"power3.out"}),depth:l};});
+          var heroStageMove=function(e){
+            var rect=heroStage.getBoundingClientRect();
+            var px=(e.clientX-rect.left)/rect.width-.5, py=(e.clientY-rect.top)/rect.height-.5;
+            heroMovers.forEach(function(m){m.x(px*m.depth.x);m.y(py*m.depth.y);});
+          };
+          var heroStageLeave=function(){heroMovers.forEach(function(m){m.x(0);m.y(0);});};
+          heroStage.addEventListener("pointermove",heroStageMove,{passive:true});
+          heroStage.addEventListener("pointerleave",heroStageLeave,{passive:true});
+        }
+      }
+
+      // El aviso de scroll respira suavemente en vez de quedar inerte una vez que apareció.
+      if(heroScrollCue){
+        gsap.to(heroScrollCue,{opacity:.45,duration:1.3,ease:"sine.inOut",yoyo:true,repeat:-1,delay:1.4});
+      }
     }
   } else { document.querySelectorAll(".premium-reveal").forEach(function(el){el.classList.add("is-visible");}); }
 
@@ -2710,6 +2753,18 @@ document.addEventListener("DOMContentLoaded", function(){
       button.addEventListener("pointerenter",enter,{passive:true});
       button.addEventListener("pointerleave",leave,{passive:true});
       cleanupFns.push(function(){button.removeEventListener("pointerenter",enter);button.removeEventListener("pointerleave",leave);});
+    });
+
+    // Retroalimentación táctil inmediata: el resto del sistema cubre hover/salida,
+    // pero el instante del click en sí no tenía respuesta propia en ningún control.
+    var pressTargets=gsap.utils.toArray(".btn, .loc-btn, .faq-q, .filterbtn, .access-filter, .faq-tab, .compare-btn, .expand-btn");
+    pressTargets.forEach(function(el){
+      var down=function(){gsap.to(el,{scale:.965,duration:.11,ease:"power2.out",overwrite:"auto"});};
+      var up=function(){gsap.to(el,{scale:1,duration:.32,ease:premiumEase,overwrite:"auto"});};
+      el.addEventListener("pointerdown",down,{passive:true});
+      el.addEventListener("pointerup",up,{passive:true});
+      el.addEventListener("pointerleave",up,{passive:true});
+      cleanupFns.push(function(){el.removeEventListener("pointerdown",down);el.removeEventListener("pointerup",up);el.removeEventListener("pointerleave",up);});
     });
 
   },document.body);
