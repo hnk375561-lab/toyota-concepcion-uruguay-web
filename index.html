@@ -2473,11 +2473,36 @@ document.addEventListener("DOMContentLoaded", function(){
           gsap.from(group,{opacity:0,y:22,duration:.55,ease:"power2.out",scrollTrigger:{trigger:group.parentElement,start:"top 88%",once:true},delay:Array.prototype.indexOf.call(group.parentElement.children,group)*.07});
         });
       });
-      var heroTl=gsap.timeline({defaults:{ease:"power2.out"}});
+      // Curva de firma compartida: mismo bezier "toyotaEase" usado en los demás runtimes,
+      // registrado acá también por si este bloque corre antes de que otro script lo cree.
+      var premiumEase="power3.out";
+      if(window.CustomEase){gsap.registerPlugin(CustomEase);CustomEase.create("toyotaEase","M0,0 C0.16,0.8 0.28,1 1,1");premiumEase="toyotaEase";}
+      var heroTl=gsap.timeline({defaults:{ease:premiumEase}});
       var heroTitle=document.querySelector(".hero h1");
       var heroSplit=window.SplitText&&heroTitle?SplitText.create(heroTitle,{type:"words,chars",aria:"auto"}):null;
       if(heroSplit){gsap.set(heroSplit.chars,{opacity:0,y:24,rotateX:-35,transformOrigin:"50% 100%"});}
-      heroTl.from(".hero .tag",{opacity:0,x:-18,duration:.45}).to(heroSplit?heroSplit.chars:".hero h1",{opacity:1,y:0,rotateX:0,stagger:.018,duration:.52,ease:"power3.out"},"-=.12").from(".hero .lead",{opacity:0,y:18,duration:.5},"-=.25").from(".hero-editorial-actions > *",{opacity:0,y:16,scale:.97,stagger:.09,duration:.48,ease:"back.out(1.4)"},"-=.2");
+      // Elementos del hero editorial que hasta ahora aparecían de golpe sin choreografía propia:
+      // rieles laterales, foto principal/secundaria, wordmark, specs y el aviso de scroll.
+      // Solo se anima clip-path/opacity/transform del contenedor (nunca la imagen, que ya
+      // lleva su propio transform:scale con !important) para no pelear con el CSS existente
+      // ni alterar el recorte final: clearProps deja el DOM exactamente como estaba en reposo.
+      var heroRails=gsap.utils.toArray(".hero-editorial-rail");
+      var heroPrimaryFig=document.querySelector(".hero-editorial-vehicle:not(.hero-editorial-secondary)");
+      var heroSecondaryFig=document.querySelector(".hero-editorial-secondary");
+      var heroWordmark=document.querySelector(".hero-editorial-wordmark");
+      var heroSpecs=gsap.utils.toArray(".hero-editorial-specs > span");
+      var heroScrollCue=document.querySelector(".hero-editorial-scroll");
+      heroTl
+        .from(heroRails,{opacity:0,y:14,duration:.5,stagger:.08},0)
+        .fromTo(heroPrimaryFig,{clipPath:"inset(0% 0% 100% 0%)",scale:1.04,opacity:.85},{clipPath:"inset(0% 0% 0% 0%)",scale:1,opacity:1,duration:.95,ease:premiumEase,clearProps:"clipPath,scale,opacity"},.08)
+        .fromTo(heroSecondaryFig,{clipPath:"inset(0% 0% 100% 0%)",opacity:0,y:16},{clipPath:"inset(0% 0% 0% 0%)",opacity:1,y:0,duration:.85,ease:premiumEase,clearProps:"clipPath,opacity,y"},.22)
+        .from(heroWordmark,{opacity:0,x:-14,duration:.6},.3)
+        .from(".hero .tag",{opacity:0,x:-18,duration:.45},.32)
+        .to(heroSplit?heroSplit.chars:".hero h1",{opacity:1,y:0,rotateX:0,stagger:.018,duration:.52,ease:premiumEase},"-=.12")
+        .from(".hero .lead",{opacity:0,y:18,duration:.5},"-=.25")
+        .from(".hero-editorial-actions > *",{opacity:0,y:16,scale:.97,stagger:.09,duration:.48,ease:"back.out(1.4)"},"-=.2")
+        .from(heroSpecs,{opacity:0,y:10,duration:.42,stagger:.06},"-=.15")
+        .from(heroScrollCue,{opacity:0,duration:.5},"-=.1");
       // Hover de .highlight-card consolidado en gsap-max-motion-runtime (un solo listener por tarjeta).
     }
   } else { document.querySelectorAll(".premium-reveal").forEach(function(el){el.classList.add("is-visible");}); }
@@ -2594,6 +2619,11 @@ document.addEventListener("DOMContentLoaded", function(){
   var mm=gsap.matchMedia();
   var splitInstances=[];
   var cleanupFns=[];
+  // Misma curva de firma que el hero (toyotaEase); si CustomEase no cargó todavía, se
+  // degrada a power3.out sin romper nada. Objetivo: una sola sensación de movimiento
+  // para headings, tarjetas y tilt, en vez de varias curvas "power*" mezcladas.
+  var premiumEase="power3.out";
+  if(window.CustomEase){gsap.registerPlugin(CustomEase);CustomEase.create("toyotaEase","M0,0 C0.16,0.8 0.28,1 1,1");premiumEase="toyotaEase";}
   var ctx=gsap.context(function(){
     var hero=document.querySelector(".hero");
     // The hero deliberately has no continuous scrub. The controlled comparison
@@ -2606,9 +2636,9 @@ document.addEventListener("DOMContentLoaded", function(){
         var split=SplitText.create(head,{type:"words",aria:"auto"});
         splitInstances.push(split);
         gsap.set(split.words,{opacity:0,y:18,rotateX:-18,transformOrigin:"50% 100%"});
-        gsap.to(split.words,{opacity:1,y:0,rotateX:0,stagger:.035,duration:.54,ease:"power3.out",scrollTrigger:{trigger:head,start:"top 84%",once:true}});
+        gsap.to(split.words,{opacity:1,y:0,rotateX:0,stagger:.035,duration:.54,ease:premiumEase,scrollTrigger:{trigger:head,start:"top 84%",once:true}});
       }else{
-        gsap.fromTo(head,{opacity:0,y:18},{opacity:1,y:0,duration:.55,ease:"power3.out",scrollTrigger:{trigger:head,start:"top 84%",once:true}});
+        gsap.fromTo(head,{opacity:0,y:18},{opacity:1,y:0,duration:.55,ease:premiumEase,scrollTrigger:{trigger:head,start:"top 84%",once:true}});
       }
     });
 
@@ -2624,13 +2654,13 @@ document.addEventListener("DOMContentLoaded", function(){
     var fineHover=window.matchMedia&&window.matchMedia("(hover: hover) and (pointer: fine)").matches;
     var hoverCards=gsap.utils.toArray(".model, .highlight-card, .category-card, .serv-item, .expansion-card");
     hoverCards.forEach(function(card){
-      var move=gsap.quickTo(card,"y",{duration:.3,ease:"power3.out"});
-      var scale=gsap.quickTo(card,"scale",{duration:.3,ease:"power3.out"});
+      var move=gsap.quickTo(card,"y",{duration:.3,ease:premiumEase});
+      var scale=gsap.quickTo(card,"scale",{duration:.3,ease:premiumEase});
       var icon=card.querySelector(".model-photo, .highlight-visual img, .ico svg, svg");
-      var iconScale=icon?gsap.quickTo(icon,"scale",{duration:.35,ease:"power3.out"}):null;
+      var iconScale=icon?gsap.quickTo(icon,"scale",{duration:.35,ease:premiumEase}):null;
       var tiltCard=fineHover&&card.matches(".model, .highlight-card, .category-card");
-      var rx=tiltCard?gsap.quickTo(card,"rotationX",{duration:.35,ease:"power3.out"}):null;
-      var ry=tiltCard?gsap.quickTo(card,"rotationY",{duration:.35,ease:"power3.out"}):null;
+      var rx=tiltCard?gsap.quickTo(card,"rotationX",{duration:.35,ease:premiumEase}):null;
+      var ry=tiltCard?gsap.quickTo(card,"rotationY",{duration:.35,ease:premiumEase}):null;
       var rect=null;
       var enter=function(){move(-5);scale(1.008);if(iconScale)iconScale(1.035);if(tiltCard)rect=card.getBoundingClientRect();};
       var onMove=function(e){if(!tiltCard||!rect)return;var px=(e.clientX-rect.left)/rect.width-.5,py=(e.clientY-rect.top)/rect.height-.5;rx(py*-3.2);ry(px*3.2);};
@@ -2661,7 +2691,7 @@ document.addEventListener("DOMContentLoaded", function(){
       var modalObserver=new MutationObserver(function(){
         if(!detail.classList.contains("open"))return;
         var bits=panel.querySelectorAll(".detail-head, .detail-grid, .detail-actions, .detail-foot");
-        gsap.fromTo(panel,{opacity:0,y:24,scale:.97},{opacity:1,y:0,scale:1,duration:.5,ease:"power3.out",overwrite:true});
+        gsap.fromTo(panel,{opacity:0,y:24,scale:.97},{opacity:1,y:0,scale:1,duration:.5,ease:premiumEase,overwrite:true});
         gsap.fromTo(bits,{opacity:0,y:12},{opacity:1,y:0,duration:.36,stagger:.055,ease:"power2.out",delay:.08,overwrite:true});
       });
       modalObserver.observe(detail,{attributes:true,attributeFilter:["class"]});
@@ -2669,9 +2699,14 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     // Detail CTA and primary actions get tactile, restrained feedback instead of elastic bounce.
+    // Nota de auditoría: el transform inline que ponía GSAP (solo scale:1.018) tapaba el
+    // translateY(-3px) que el CSS de .btn:hover/.float-wa:hover/.float-advisor:hover ya
+    // pedía (el inline siempre gana sobre :hover normal). Se restaura ese lift por elemento
+    // -mismo valor que su propio CSS- para que quede una sola fuente de verdad, sin colisión.
     gsap.utils.toArray(".btn.primary, .float-wa, .float-advisor").forEach(function(button){
-      var enter=function(){gsap.to(button,{scale:1.018,duration:.22,ease:"power2.out",overwrite:true});};
-      var leave=function(){gsap.to(button,{scale:1,duration:.3,ease:"power2.out",overwrite:true});};
+      var targetScale=button.classList.contains("float-wa")?1.08:button.classList.contains("float-advisor")?1.05:1.03;
+      var enter=function(){gsap.to(button,{y:-3,scale:targetScale,duration:.24,ease:premiumEase,overwrite:true});};
+      var leave=function(){gsap.to(button,{y:0,scale:1,duration:.32,ease:premiumEase,overwrite:true});};
       button.addEventListener("pointerenter",enter,{passive:true});
       button.addEventListener("pointerleave",leave,{passive:true});
       cleanupFns.push(function(){button.removeEventListener("pointerenter",enter);button.removeEventListener("pointerleave",leave);});
@@ -2701,6 +2736,7 @@ document.addEventListener("DOMContentLoaded", function(){
   var cleanup=[];
   var ctx=gsap.context(function(){
     var ease="power3.out";
+    if(window.CustomEase){gsap.registerPlugin(CustomEase);CustomEase.create("toyotaEase","M0,0 C0.16,0.8 0.28,1 1,1");ease="toyotaEase";}
     var desktop="(min-width: 901px)";
     var tablet="(min-width: 561px) and (max-width: 900px)";
 
@@ -2717,7 +2753,7 @@ document.addEventListener("DOMContentLoaded", function(){
     ["#gama .model","#porque .value-card","#categorias .category-card","#como-comprar .journey-line article","#contacto-ampliado .contact-plus-card","#servicios .serv-item"].forEach(function(selector){
       var items=gsap.utils.toArray(selector);
       if(!items.length)return;
-      gsap.fromTo(items,{opacity:.28,y:34,rotateX:-5,transformOrigin:"50% 100%"},{opacity:1,y:0,rotateX:0,duration:.7,stagger:{each:.075,from:"start"},ease:"power3.out",scrollTrigger:{trigger:items[0].parentElement,start:"top 82%",once:true}});
+      gsap.fromTo(items,{opacity:.28,y:34,rotateX:-5,transformOrigin:"50% 100%"},{opacity:1,y:0,rotateX:0,duration:.7,stagger:{each:.075,from:"start"},ease:ease,scrollTrigger:{trigger:items[0].parentElement,start:"top 82%",once:true}});
     });
 
     // Data animation uses only values already printed in the interface (01–04), never invented business KPIs.
@@ -2733,8 +2769,8 @@ document.addEventListener("DOMContentLoaded", function(){
     // de gsap-max-motion-runtime; acá queda solo .contact-plus-card, que no está cubierta ahí.
     if(window.matchMedia&&window.matchMedia("(hover: hover) and (pointer: fine)").matches){
       gsap.utils.toArray(".contact-plus-card").forEach(function(card){
-        var rx=gsap.quickTo(card,"rotationX",{duration:.35,ease:"power3.out"});
-        var ry=gsap.quickTo(card,"rotationY",{duration:.35,ease:"power3.out"});
+        var rx=gsap.quickTo(card,"rotationX",{duration:.35,ease:ease});
+        var ry=gsap.quickTo(card,"rotationY",{duration:.35,ease:ease});
         var rect=null;
         var enter=function(){rect=card.getBoundingClientRect();};
         var move=function(e){if(!rect)return;var px=(e.clientX-rect.left)/rect.width-.5,py=(e.clientY-rect.top)/rect.height-.5;rx(py*-3.2);ry(px*3.2);};
@@ -2747,7 +2783,7 @@ document.addEventListener("DOMContentLoaded", function(){
     // Magnetic action system: stronger on desktop, subtle on tablet, disabled on mobile.
     mm.add("(min-width: 561px)",function(){
       gsap.utils.toArray(".hero .btn.primary,.cta-banner .btn.primary,.detail-actions .btn.primary").forEach(function(button){
-        var x=gsap.quickTo(button,"x",{duration:.3,ease:"power3.out"}),y=gsap.quickTo(button,"y",{duration:.3,ease:"power3.out"});
+        var x=gsap.quickTo(button,"x",{duration:.3,ease:ease}),y=gsap.quickTo(button,"y",{duration:.3,ease:ease});
         var rect=null;
         var enter=function(){rect=button.getBoundingClientRect();};
         var move=function(e){if(!rect)return;var dx=e.clientX-(rect.left+rect.width/2),dy=e.clientY-(rect.top+rect.height/2);x(dx*.055);y(dy*.055);};
