@@ -1375,7 +1375,56 @@ main > section .access-grid, main > section .facility-grid, main > section .deal
 @media(max-width:1023px){.quick-access-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.contact-location-block{display:block}}
 @media(max-width:520px){.tab-block-head,.tablist,.tab-panels,.quick-access-section>.wrap,.contact-location-block>.wrap,.compare-disclosure{width:min(100% - 32px,1160px)}.quick-access-grid{grid-template-columns:1fr}.tablist{margin-inline:16px;width:calc(100% - 32px)}}
 @media(prefers-reduced-motion:reduce){.tab-panel{transition:none}}
-</style></head>
+</style>
+<style id="location-responsive-fix">
+/* Responsive repair: location, route actions and dealership plaque. */
+html,body{overflow-x:clip}
+#contacto-y-ubicacion,#ubicacion,#ubicacion .wrap{min-width:0;max-width:100%;overflow-x:clip}
+#ubicacion .ubic-grid{display:grid!important;grid-template-columns:minmax(0,0.95fr) minmax(0,1.25fr)!important;gap:clamp(24px,3.2vw,52px)!important;align-items:start!important}
+#ubicacion .ubic-grid>div{min-width:0!important;width:100%!important}
+#ubicacion .section-head p{max-width:42ch!important;font-size:clamp(15px,1.4vw,18px)!important;line-height:1.45!important;font-weight:400!important;overflow-wrap:normal!important;word-break:normal!important}
+#ubicacion .location-actions{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;width:100%!important;margin-top:20px!important}
+#ubicacion .loc-btn{display:inline-flex!important;align-items:center!important;justify-content:flex-start!important;gap:9px!important;width:100%!important;min-width:0!important;min-height:52px!important;height:auto!important;padding:10px 14px!important;border-radius:10px!important;white-space:normal!important;overflow:visible!important;aspect-ratio:auto!important;line-height:1.2!important}
+#ubicacion .loc-btn-icon{display:grid!important;place-items:center!important;flex:0 0 30px!important;width:30px!important;height:30px!important;border-radius:50%!important}
+#ubicacion .loc-btn>span:last-child{min-width:0!important;overflow-wrap:anywhere!important}
+#ubicacion .map-frame{width:100%!important;min-width:0!important;min-height:clamp(280px,32vw,430px)!important;overflow:hidden!important;border-radius:14px!important}
+#ubicacion .map-static-preview.map-embed-preview{position:relative!important;display:block!important;width:100%!important;height:clamp(280px,32vw,430px)!important;min-height:0!important;background:#e8e4dc!important;overflow:hidden!important}
+#ubicacion .map-embed-preview iframe{display:block!important;width:100%!important;height:100%!important;border:0!important}
+#ubicacion .location-recognize{width:100%!important;min-width:0!important;overflow:hidden!important}
+#ubicacion .location-recognize-photo{min-width:0!important;width:100%!important}
+#ubicacion .location-recognize-photo img{display:block!important;width:100%!important;height:auto!important;max-width:100%!important}
+#ubicacion .location-recognize-footer{min-width:0!important}
+#ubicacion .route-buttons{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:10px!important;width:100%!important}
+#ubicacion .route-buttons a{min-width:0!important;width:100%!important;white-space:nowrap!important;flex-wrap:nowrap!important;overflow:hidden!important;padding:10px 12px!important;justify-content:center!important}
+#ubicacion .route-buttons a svg{flex:0 0 17px!important}
+.brand-plaque{width:100%!important;max-width:1200px!important;margin-inline:auto!important;min-width:0!important;grid-template-columns:minmax(96px,140px) minmax(0,1fr)!important;gap:clamp(22px,3vw,44px)!important;align-items:start!important}
+.brand-plaque-info{min-width:0!important;width:100%!important}
+.brand-plaque-info>p{max-width:62ch!important}
+.brand-plaque-stats{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:clamp(14px,2vw,30px)!important;width:100%!important}
+.brand-plaque-stats>div{min-width:0!important;padding-inline:0!important;overflow-wrap:anywhere!important}
+.brand-plaque-stats span{display:block!important;line-height:1.45!important}
+.brand-plaque-actions{display:flex!important;flex-wrap:wrap!important;gap:10px!important;min-width:0!important;margin-top:24px!important}
+.brand-plaque-actions .btn{min-height:48px!important;flex:1 1 190px!important;white-space:normal!important}
+@media(max-width:1100px){
+  #ubicacion .ubic-grid{grid-template-columns:1fr!important}
+  #ubicacion .map-frame,#ubicacion .map-static-preview.map-embed-preview{height:clamp(300px,46vw,420px)!important}
+  .brand-plaque-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:700px){
+  #ubicacion .location-actions{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  #ubicacion .route-buttons{grid-template-columns:1fr!important}
+  .brand-plaque{grid-template-columns:1fr!important}
+  .brand-plaque-logo{width:96px!important;height:96px!important}
+  .brand-plaque-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .brand-plaque-actions{margin-top:20px!important}
+}
+@media(max-width:420px){
+  #ubicacion .loc-btn{padding-inline:10px!important;font-size:12px!important}
+  #ubicacion .loc-btn-icon{flex-basis:28px!important;width:28px!important;height:28px!important}
+  .brand-plaque-stats{grid-template-columns:1fr!important}
+}
+</style>
+</head>
 <body id="top">
 <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
 <script id="scroll-restoration">
@@ -1917,7 +1966,9 @@ main > section .access-grid, main > section .facility-grid, main > section .deal
 <div>
 <div aria-label="Mapa de ubicación del concesionario" class="map-frame map-frame-live" role="group">
 <!-- En producción se puede sustituir por Maps Embed API con una clave restringida; este embed de Google Maps es funcional sin clave. -->
-<div aria-label="Ubicación de Piñeyro y Moscatelli en Google Maps" class="map-static-preview" role="img"><span aria-hidden="true" class="map-static-grid"></span><span aria-hidden="true" class="map-static-pin">●</span><span class="map-static-label">9 de Julio 1624<br/><small>Concepción del Uruguay</small></span></div>
+<div class="map-static-preview map-embed-preview" role="group" aria-label="Mapa de ubicación del concesionario">
+<iframe title="Mapa de Piñeyro y Moscatelli en Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=9%20de%20Julio%201624%2C%20Concepci%C3%B3n%20del%20Uruguay%2C%20Entre%20R%C3%ADos&output=embed"></iframe>
+</div>
 <a class="map-frame-cta" href="https://www.google.com/maps/search/?api=1&amp;query=Pi%C3%B1eyro%20y%20Moscatelli%20Toyota%20Concepci%C3%B3n%20del%20Uruguay" rel="noopener" target="_blank"><strong>Ver dirección en Google Maps</strong><small>9 de Julio 1624 · Abrir dirección ↗</small></a>
 </div>
 <p class="source-note">La tarjeta muestra una vista previa liviana de la ubicación y abre la dirección exacta del concesionario en Google Maps.</p>
