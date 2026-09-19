@@ -1,0 +1,74 @@
+    <section id="gama" class="premium-reveal">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="tag">Gama Toyota</span>
+            <h2>La gama Toyota, para consultar hoy</h2>
+            <p>Elegí un modelo. Te contestamos por WhatsApp con precio y disponibilidad real, no un formulario que nadie lee.</p>
+          </div>
+        </div>
+        <div class="filterbar" id="filterbar" role="group" aria-label="Filtrar por tipo de vehículo">
+          <button class="filterbtn active" data-filter="todos" type="button">Todos</button>
+          <button class="filterbtn" data-filter="pickup" type="button">Pickups</button>
+          <button class="filterbtn" data-filter="suv" type="button">SUV</button>
+          <button class="filterbtn" data-filter="sedan" type="button">Sedanes</button>
+        </div>
+        <div class="gama-grid" id="gama-grid"><!-- se completa por JS --></div>
+
+        <div class="compare-tool" id="comparar">
+          <div class="compare-head">
+            <div>
+              <span class="section-kicker">Herramienta</span>
+              <h3>Comparar dos modelos</h3>
+              <p>Elegí dos modelos Toyota y mirá lado a lado la información publicada por la marca.</p>
+            </div>
+            <div class="rive-vehicle-preview" data-rive-vehicle-card role="img" tabindex="0" aria-label="Animación del comparador. Seleccioná uno o dos modelos para actualizar el estado.">
+              <div class="rive-vehicle-canvas-wrap">
+                <div class="vehicle-3d-stage" aria-hidden="true">
+                  <div class="vehicle-3d-scan"></div>
+                  <img class="vehicle-3d-art vehicle-3d-photo dealer-logo-badge" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="Piñeyro y Moscatelli — Concesionario Oficial Toyota" loading="lazy" decoding="async" width="256" height="256">
+                </div>
+                <canvas id="riveVehicleCanvas" width="320" height="170" aria-hidden="true"></canvas>
+              </div>
+              <div class="rive-vehicle-caption"><span class="rive-live-dot"></span><span class="rive-vehicle-caption-label">Elegí un modelo</span><small class="rive-vehicle-caption-meta"></small></div>
+            </div>
+          </div>
+          <div class="compare-pickers">
+            <label for="compareA">Modelo A
+              <select id="compareA"><option value="">Elegir modelo…</option></select>
+            </label>
+            <span class="compare-vs">vs</span>
+            <label for="compareB">Modelo B
+              <select id="compareB"><option value="">Elegir modelo…</option></select>
+            </label>
+          </div>
+          <div style="background:rgba(235,10,30,0.06); border-left:3px solid var(--toyota-red); padding:12px 14px; margin:20px 0; border-radius:4px; font-size:14px; color:var(--ink);">
+            <strong>Especificaciones de referencia:</strong> Los datos mostrados son ilustrativos basados en fichas técnicas oficiales Toyota Argentina (agosto 2026). Confirma disponibilidad, equipamiento y precios con el equipo comercial.
+          </div>
+          <div id="compareResult" class="compare-result" hidden aria-live="polite" aria-atomic="true">
+            <div class="compare-table" id="compareTable"></div>
+            <div class="compare-actions">
+              <a class="btn primary" id="compareWaA" target="_blank" rel="noopener">Consultar modelo A ↗</a>
+              <a class="btn primary" id="compareWaB" target="_blank" rel="noopener">Consultar modelo B ↗</a>
+              <button class="btn ghost" type="button" id="compareReset">Elegir otros dos modelos</button>
+            </div>
+          </div>
+          <p class="compare-empty" id="compareEmpty">Seleccioná los dos modelos arriba para verlos comparados.</p>
+        </div>
+      </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

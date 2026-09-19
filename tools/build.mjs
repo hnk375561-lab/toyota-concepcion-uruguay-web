@@ -1,7 +1,10 @@
-// Genera assets/dist/app.min.css y assets/dist/app.min.js a partir de las fuentes.
-// Uso: npm install && npm run build   (los archivos de assets/js y assets/css NO se tocan)
+// Genera, a partir de las fuentes:
+//   - index.html            <- src/index.template.html + src/partials/**  (directivas <!--@include ruta-->)
+//   - assets/dist/app.min.* <- assets/js/*.js y assets/css/*.css
+// Uso: npm install && npm run build   (las fuentes NO se tocan)
+//      npm run check                  (falla si index.html no coincide con src/; no escribe nada)
 import { transformSync } from "esbuild";
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { gzipSync } from "node:zlib";
 
 // Orden identico al que tenian los <script defer> en index.html.
@@ -13,8 +16,24 @@ const JS = [
 ];
 const CSS = ["fonts", "style"]; // fonts.css primero
 
-mkdirSync("assets/dist", { recursive: true });
 const read = (p) => readFileSync(p, "utf8");
+
+// ---- HTML: ensambla index.html desde la plantilla y los parciales ----
+// La directiva debe ir sola en su línea; el parcial reemplaza la línea completa (sin agregar saltos).
+const INCLUDE = /^[ \t]*<!--@include ([\w./-]+)-->[ \t]*$/gm;
+const html = read("src/index.template.html").replace(INCLUDE, (_, file) => {
+  const path = `src/partials/${file}`;
+  if (!existsSync(path)) { console.error(`Falta el parcial: ${path}`); process.exit(1); }
+  return read(path);
+});
+if (process.argv.includes("--check")) {
+  if (read("index.html") !== html) { console.error("index.html no coincide con src/. Ejecutá: npm run build"); process.exit(1); }
+  console.log("index.html coincide con src/ (OK)"); process.exit(0);
+}
+writeFileSync("index.html", html);
+console.log(`index.html: ${(html.length / 1024).toFixed(1)} KB desde src/index.template.html + parciales`);
+
+mkdirSync("assets/dist", { recursive: true });
 const report = (name, raw, out) =>
   console.log(`${name}: ${(raw / 1024).toFixed(1)} KB -> ${(out.length / 1024).toFixed(1)} KB (gzip ${(gzipSync(out).length / 1024).toFixed(1)} KB)`);
 
