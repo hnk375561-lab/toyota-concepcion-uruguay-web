@@ -1,0 +1,7 @@
+{
+  "name": "toyota-concepcion-uruguay-web",
+  "private": true,
+  "description": "Sitio estatico. Las fuentes viven en assets/css y assets/js; `npm run build` genera assets/dist/.",
+  "scripts": { "build": "node tools/build.mjs" },
+  "devDependencies": { "esbuild": "^0.25.0" }
+}
