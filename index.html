@@ -2329,40 +2329,28 @@ document.addEventListener("DOMContentLoaded", function(){
   // ---- bloqueo de scroll de fondo compartido: hasta ahora ningún overlay (menú mobile,
   // ficha de modelo) bloqueaba el scroll de la página detrás. Contador para que dos
   // overlays abiertos a la vez no se desbloqueen mutuamente al cerrar solo uno. ----
+  // La implementación anterior estaba duplicada y cada cierre programaba otro start()
+  // de Lenis. Con clicks rápidos se acumulaban reinicios diferidos y reentrantes en el
+  // ticker principal; una única transición, sin temporizadores pendientes, evita ese ciclo.
   window.__toyotaScrollLockCount = window.__toyotaScrollLockCount || 0;
+  window.__toyotaUnlockScrollTimer = null;
   window.__toyotaLockScroll = function(){
-    var y=window.scrollY||window.pageYOffset||0;
-    window.scrollTo(0,y);
+    if(window.__toyotaUnlockScrollTimer){
+      clearTimeout(window.__toyotaUnlockScrollTimer);
+      window.__toyotaUnlockScrollTimer = null;
+    }
+    var wasLocked=window.__toyotaScrollLockCount>0;
     window.__toyotaScrollLockCount++;
     document.documentElement.classList.add("toyota-scroll-locked");
     document.body.classList.add("toyota-scroll-locked");
-    if(window.__toyotaLenis && window.__toyotaLenis.stop) window.__toyotaLenis.stop();
+    if(!wasLocked && window.__toyotaLenis && window.__toyotaLenis.stop) window.__toyotaLenis.stop();
   };
   window.__toyotaUnlockScroll = function(){
     window.__toyotaScrollLockCount = Math.max(0, window.__toyotaScrollLockCount - 1);
-    if(window.__toyotaScrollLockCount === 0){
-      document.documentElement.classList.remove("toyota-scroll-locked");
-      document.body.classList.remove("toyota-scroll-locked");
-      if(window.__toyotaLenis && window.__toyotaLenis.start) setTimeout(function(){window.__toyotaLenis.start();},100);
-    }
-  };
-
-  window.__toyotaScrollLockCount = window.__toyotaScrollLockCount || 0;
-  window.__toyotaLockScroll = function(){
-    var y=window.scrollY||window.pageYOffset||0;
-    window.scrollTo(0,y);
-    window.__toyotaScrollLockCount++;
-    document.documentElement.classList.add("toyota-scroll-locked");
-    document.body.classList.add("toyota-scroll-locked");
-    if(window.__toyotaLenis && window.__toyotaLenis.stop) window.__toyotaLenis.stop();
-  };
-  window.__toyotaUnlockScroll = function(){
-    window.__toyotaScrollLockCount = Math.max(0, window.__toyotaScrollLockCount - 1);
-    if(window.__toyotaScrollLockCount === 0){
-      document.documentElement.classList.remove("toyota-scroll-locked");
-      document.body.classList.remove("toyota-scroll-locked");
-      if(window.__toyotaLenis && window.__toyotaLenis.start) setTimeout(function(){window.__toyotaLenis.start();},100);
-    }
+    if(window.__toyotaScrollLockCount !== 0)return;
+    document.documentElement.classList.remove("toyota-scroll-locked");
+    document.body.classList.remove("toyota-scroll-locked");
+    if(window.__toyotaLenis && window.__toyotaLenis.start) window.__toyotaLenis.start();
   };
   // ---- menú mobile ----
   var burger = document.getElementById("burger");
