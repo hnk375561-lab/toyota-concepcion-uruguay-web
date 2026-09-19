@@ -57,7 +57,7 @@ The hero remained the largest desktop request and was not re-encoded. Chromium s
 
 ## Grade decision and visual evidence
 
-A 57-photo contact sheet was generated from every image actually requested in the desktop after-crawl. It shows the current pixels beside a deterministic contrast **1.06** / color **0.97** candidate. The review sheet is [available here](grade-contact-sheet.png), with an HTML version at [grade-contact-sheet/index.html](grade-contact-sheet/index.html).
+A 57-photo contact sheet was generated from every image actually requested in the desktop after-crawl. It shows the current pixels beside a deterministic contrast **1.06** / color **0.97** candidate. The contact sheet and its HTML version were retired from the repository by weight; they are regenerable with `scripts/generate-contact-sheet.py`.
 
 The grade was **not applied**. The contact sheet shows that the proposed grade is subtle but not clearly better across the mixed set of logos, signage, catalog vehicles, product imagery and facilities photos; applying it globally would therefore be blind processing. No images were excluded from production because no graded file was promoted. The existing repeatable pipeline remains available for a future photography-only selection review.
 

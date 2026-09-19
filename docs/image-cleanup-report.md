@@ -2,7 +2,7 @@
 
 ## Reference map
 
-The scan covered HTML, CSS, JavaScript, JSON, Markdown, XML and text files, including dynamic catalog/gallery path construction and manifests. The initial inventory contained **173 image files**: **89 USED**, **84 UNUSED**, and **0 UNCERTAIN** under the conservative rules used by `scripts/reference-map.py`. The UNUSED set consisted of JPEG originals with a corresponding WebP or generated duplicate; each was moved, never deleted, to `/home/ubuntu/toyota-concepcion-uruguay-web-backup-20260918` outside the deployed build.
+The scan covered HTML, CSS, JavaScript, JSON, Markdown, XML and text files, including dynamic catalog/gallery path construction and manifests. The initial inventory contained **173 image files**: **89 USED**, **84 UNUSED**, and **0 UNCERTAIN** under the conservative rules used by `scripts/reference-map.py`. The UNUSED set consisted of JPEG originals with a corresponding WebP or generated duplicate; each was moved, never deleted, to **un directorio de respaldo fuera del repositorio**.
 
 Dynamic model paths were resolved by inspecting the catalog renderer and by validating every generated 480/800 path. `scripts/validate-assets.py` reports 90 static local paths and 0 missing paths, and Pillow successfully decodes all retained image files.
 
