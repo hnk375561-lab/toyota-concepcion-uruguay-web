@@ -36,6 +36,8 @@ document.addEventListener('DOMContentLoaded',function(){document.querySelectorAl
 <meta name="twitter:description" content="0km, usados, plan canje, financiación, service oficial y repuestos genuinos en Concepción del Uruguay.">
 <meta name="twitter:image" content="https://hnk375561-lab.github.io/toyota-concepcion-uruguay-web/toyota-sharp-assets/asset-371d49eb8a93-1200.jpg">
 <link rel="icon" type="image/webp" href="toyota-sharp-assets/asset-bec83be10e47-256.webp">
+<link rel="icon" type="image/png" sizes="32x32" href="toyota-sharp-assets/favicon-32.png">
+<link rel="apple-touch-icon" href="toyota-sharp-assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="image" href="toyota-sharp-assets/hero-sw4-desktop-1800.avif" imagesrcset="toyota-sharp-assets/hero-sw4-mobile-480.avif 480w, toyota-sharp-assets/hero-sw4-mobile-800.avif 800w, toyota-sharp-assets/hero-sw4-desktop-1800.avif 1800w" imagesizes="(max-width: 760px) 100vw, 68vw" type="image/avif" fetchpriority="high">
@@ -1824,7 +1826,7 @@ main > section .access-grid, main > section .facility-grid, main > section .deal
           <h3>¿Con qué auto contás hoy?</h3>
           <p>Escribinos con la marca, el modelo y el año — te decimos qué podemos ofrecerte por él, sin compromiso.</p>
 
-          <form class="trade-form" id="tradeForm"><label for="tradeCar">Marca y modelo</label><input id="tradeCar" placeholder="Ej. Toyota Corolla" required><div class="trade-row"><div><label for="tradeYear">Año</label><input id="tradeYear" inputmode="numeric" placeholder="2020" required maxlength="4"></div><div><label for="tradeKm">Kilometraje</label><input id="tradeKm" inputmode="numeric" placeholder="80000" required></div></div><label for="tradeCondition">Estado general</label><select id="tradeCondition"><option>Muy bueno</option><option>Bueno</option><option>A confirmar</option></select><label for="tradeInterest">¿Qué te interesa a cambio?</label><select id="tradeInterest"><option value="0km">Un 0 km</option><option value="usado">Un usado certificado</option><option value="no-se">Todavía no lo sé</option></select><button class="btn primary block" type="submit">Generar consulta de tasación ↗</button><p class="form-note" id="tradeNote">No calcula un valor automáticamente: prepara una consulta para que un asesor revise el vehículo.</p></form>
+          <form class="trade-form" id="tradeForm"><label for="tradeCar">Marca y modelo</label><input id="tradeCar" placeholder="Ej. Toyota Corolla" required maxlength="60"><div class="trade-row"><div><label for="tradeYear">Año</label><input id="tradeYear" inputmode="numeric" placeholder="2020" required maxlength="4"></div><div><label for="tradeKm">Kilometraje</label><input id="tradeKm" inputmode="numeric" placeholder="80000" required maxlength="7"></div></div><label for="tradeCondition">Estado general</label><select id="tradeCondition"><option>Muy bueno</option><option>Bueno</option><option>A confirmar</option></select><label for="tradeInterest">¿Qué te interesa a cambio?</label><select id="tradeInterest"><option value="0km">Un 0 km</option><option value="usado">Un usado certificado</option><option value="no-se">Todavía no lo sé</option></select><button class="btn primary block" type="submit">Generar consulta de tasación ↗</button><p class="form-note" id="tradeNote">No calcula un valor automáticamente: prepara una consulta para que un asesor revise el vehículo.</p></form>
         </div>
       </div>
       <div class="wrap related-row"><span>También te puede interesar:</span><a class="btn primary" target="_blank" rel="noopener" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20cotizar%20mi%20usado%20como%20parte%20de%20pago%20de%20un%20Toyota.">Cotizá tu usado ↗</a><a href="#gama">Ver modelos 0 km</a><a href="#usados">Ver usados</a><a href="#financiacion">Simular financiación</a></div>
@@ -1991,7 +1993,7 @@ main > section .access-grid, main > section .facility-grid, main > section .deal
         <div class="contact-conversion-grid"><aside class="contact-info-panel"><span class="contact-logo-tile"><img src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="Piñeyro y Moscatelli Servicio Oficial Toyota" width="256" height="256" loading="lazy" decoding="async"></span><span class="section-kicker">Atención directa</span><h3>Un equipo para cada necesidad.</h3><p>Elegí el canal correcto y llegá directamente a ventas, service, repuestos o neumáticos.</p><div class="contact-info-lines"><a href="tel:+543442473453"><b>Turnos de service</b><span>03442 47-3453</span></a><a href="tel:+543442677433"><b>Repuestos</b><span>03442 67-7433</span></a><a href="tel:+543442502390"><b>Neumáticos</b><span>03442 50-2390</span></a></div><p class="contact-address">9 de Julio 1624<br>Concepción del Uruguay<br><small>Lun–vie 8–12 y 15–19 · Sáb 8–12</small></p><a class="btn primary contact-direct-wa" target="_blank" rel="noopener" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20consultar%20con%20el%20equipo%20de%20Pi%C3%B1eyro%20y%20Moscatelli.">Hablar por WhatsApp ↗</a></aside><form class="form-grid" id="contactForm" aria-labelledby="contactFormTitle" aria-describedby="contactFormNote" novalidate>
           <div>
             <label for="cName">Nombre</label>
-            <input type="text" id="cName" name="name" autocomplete="name" required placeholder="Tu nombre">
+            <input type="text" id="cName" name="name" autocomplete="name" required placeholder="Tu nombre" maxlength="80">
           </div>
           <div>
             <label for="cMotivo">Motivo de la consulta</label>
@@ -2009,7 +2011,7 @@ main > section .access-grid, main > section .facility-grid, main > section .deal
           </div>
           <div>
             <label for="cMsg">Mensaje</label>
-            <textarea id="cMsg" name="message" autocomplete="off" required placeholder="Contanos brevemente qué necesitás"></textarea><div class="message-preview" aria-live="polite"><span>Vista previa del mensaje</span><p id="messagePreview">Hola, quiero hacer una consulta por un turno de service.</p></div>
+            <textarea id="cMsg" name="message" autocomplete="off" required placeholder="Contanos brevemente qué necesitás" maxlength="500"></textarea><div class="message-preview" aria-live="polite"><span>Vista previa del mensaje</span><p id="messagePreview">Hola, quiero hacer una consulta por un turno de service.</p></div>
           </div>
           <div>
             <button type="submit" class="btn primary block"><span>Solicitar asesoramiento por WhatsApp</span></button>
@@ -2231,6 +2233,8 @@ document.addEventListener("DOMContentLoaded", function(){
     return "https://wa.me/" + WHATSAPP_NUMEROS[numeroKey] + "?text=" + encodeURIComponent(mensaje);
   }
 
+  function openWa(url){var w=window.open(url,"_blank");if(w){try{w.opener=null;}catch(e){}}else{window.location.href=url;}}
+
   // ---- copiar dirección ----
   var copyBtn = document.getElementById("copyAddressBtn");
   if(copyBtn){
@@ -2304,7 +2308,7 @@ document.addEventListener("DOMContentLoaded", function(){
       var message = "Hola! Quiero que me avisen si ingresa un usado: " + wanted + ". También quisiera conocer disponibilidad y condiciones.";
       if(note) note.textContent = "Abriendo WhatsApp con tu consulta preparada…";
       window.toyotaTrack("used_interest_click", {vehicle_type:wanted});
-      window.open(wa("ventas", message), "_blank", "noopener");
+      openWa(wa("ventas", message));
       setTimeout(function(){if(note)note.textContent="La consulta quedó preparada en WhatsApp para que la revises y la envíes.";}, 500);
     });
   }
@@ -2491,7 +2495,7 @@ document.addEventListener("DOMContentLoaded", function(){
     window.toyotaTrack("trade_form_submit",{vehicle:car,vehicle_year:year,interest:interestSel.value});
     note.textContent = "¡Listo! Se abrió WhatsApp con tu consulta ya redactada.";
     note.className = "form-success";
-    var tradeButton=tradeForm.querySelector("button[type=submit]");if(tradeButton){tradeButton.disabled=true;tradeButton.textContent="Abriendo WhatsApp…";}window.open(wa("ventas",text),"_blank");if(tradeButton)setTimeout(function(){tradeButton.disabled=false;tradeButton.textContent="Generar consulta de tasación ↗";},3000);
+    var tradeButton=tradeForm.querySelector("button[type=submit]");if(tradeButton){tradeButton.disabled=true;tradeButton.textContent="Abriendo WhatsApp…";}openWa(wa("ventas",text));if(tradeButton)setTimeout(function(){tradeButton.disabled=false;tradeButton.textContent="Generar consulta de tasación ↗";},3000);
   });}
 
   // ---- servicios ----
@@ -2580,7 +2584,7 @@ document.addEventListener("DOMContentLoaded", function(){
     var item = document.createElement("div");
     item.className = "faq-item";
     item.innerHTML =
-      '<button class="faq-q" aria-expanded="false" aria-controls="faq-answer-' + i + '" type="button"><span>' + f.q + '</span><span class="faq-logo-tile" aria-hidden="true"><img src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt=""><b class="faq-toggle-badge">+</b></span></button>' +
+      '<button class="faq-q" aria-expanded="false" aria-controls="faq-answer-' + i + '" type="button"><span>' + f.q + '</span><span class="faq-logo-tile" aria-hidden="true"><img src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" width="256" height="256" loading="lazy" decoding="async"><b class="faq-toggle-badge">+</b></span></button>' +
       '<div class="faq-a" id="faq-answer-' + i + '"><p>' + f.a + '</p></div>';
     faqList.appendChild(item);
     var btn = item.querySelector(".faq-q");
@@ -2646,7 +2650,7 @@ document.addEventListener("DOMContentLoaded", function(){
     if(note){note.textContent="Abriendo WhatsApp…";note.className="form-note";note.setAttribute("role","status");}if(submitButton){submitButton.disabled=true;submitButton.querySelector("span").textContent="Abriendo WhatsApp…";}
     var key=motivo.value==="repuestos"||motivo.value==="accesorios"?"repuestos":motivo.value==="neumaticos"?"neumaticos":"ventas";
     var labels={"0km":"Quiero consultar por un Toyota 0 km.","usados":"Quiero consultar por un vehículo usado disponible.","financiacion":"Quiero consultar opciones de financiación para un Toyota.","canje":"Quiero tasar mi vehículo para un plan canje.","turnos":"Quiero solicitar un turno de service.","repuestos":"Quiero consultar por un repuesto genuino Toyota.","accesorios":"Quiero consultar por accesorios Toyota.","neumaticos":"Quiero consultar por neumáticos Bridgestone.","general":"Quiero realizar una consulta general."};
-    var texto="Hola! Soy "+nombre+". "+(labels[motivo.value]||labels.general)+" Detalle: "+mensaje; window.open(wa(key,texto),"_blank");if(note){note.textContent="¡Listo! Se abrió WhatsApp con tu consulta ya redactada.";note.className="form-note form-success";}if(submitButton){setTimeout(function(){submitButton.disabled=false;submitButton.querySelector("span").textContent="Solicitar asesoramiento por WhatsApp";},3000);}
+    var texto="Hola! Soy "+nombre+". "+(labels[motivo.value]||labels.general)+" Detalle: "+mensaje; openWa(wa(key,texto));if(note){note.textContent="¡Listo! Se abrió WhatsApp con tu consulta ya redactada.";note.className="form-note form-success";}if(submitButton){setTimeout(function(){submitButton.disabled=false;submitButton.querySelector("span").textContent="Solicitar asesoramiento por WhatsApp";},3000);}
   });
 
   // ---- fichas técnicas ampliadas: catálogo exclusivo del comparador ----
