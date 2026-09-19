@@ -9,7 +9,7 @@ src/
     head.html              <head>: metas, preloads, CSS/JS
     structured-data.html   JSON-LD (SEO)
     skip-link.html, header.html, footer.html
-    sections/NN-nombre.html  una por sección de <main>, en el orden en que aparecen en la página
+    sections/NN-nombre.html  una por sección de <main>; el ORDEN en la página lo define index.template.html (el número es solo el orden de creación)
     model-detail.html, contact-float.html, mobile-bar.html
 ```
 

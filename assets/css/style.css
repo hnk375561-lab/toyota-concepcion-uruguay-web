@@ -651,8 +651,8 @@ body{background:#e9eef0!important;color:#172026!important}
 
 /* Consolidated CSS block 21: original cascade position 21 */
 
-.cta-banner-optimized{background-image:image-set(url("toyota-sharp-assets/asset-713411293222-800.avif") type("image/avif"),url("toyota-sharp-assets/asset-713411293222-800.webp") type("image/webp"),url("toyota-sharp-assets/asset-713411293222-800.webp") type("image/jpeg"));}
-#concesionario .social-preview-art-optimized{background-image:linear-gradient(145deg,rgba(49,58,64,.55),rgba(17,23,26,.75)),image-set(url("toyota-sharp-assets/asset-4a00d0bf85e9-800.avif") type("image/avif"),url("toyota-sharp-assets/asset-4a00d0bf85e9-800.webp") type("image/webp"),url("toyota-sharp-assets/asset-4a00d0bf85e9-800.webp") type("image/jpeg"))!important;background-size:cover;background-position:center;}
+.cta-banner-optimized{background-image:image-set(url("../../toyota-sharp-assets/asset-713411293222-800.avif") type("image/avif"),url("../../toyota-sharp-assets/asset-713411293222-800.webp") type("image/webp"),url("../../toyota-sharp-assets/asset-713411293222-800.webp") type("image/jpeg"));}
+#concesionario .social-preview-art-optimized{background-image:linear-gradient(145deg,rgba(49,58,64,.55),rgba(17,23,26,.75)),image-set(url("../../toyota-sharp-assets/asset-4a00d0bf85e9-800.avif") type("image/avif"),url("../../toyota-sharp-assets/asset-4a00d0bf85e9-800.webp") type("image/webp"),url("../../toyota-sharp-assets/asset-4a00d0bf85e9-800.webp") type("image/jpeg"))!important;background-size:cover;background-position:center;}
 .float-wa{bottom:calc(20px + env(safe-area-inset-bottom));}
 @media(max-width:540px){.float-wa{bottom:calc(20px + env(safe-area-inset-bottom))!important;right:16px!important}.float-wa svg{width:24px;height:24px}}
 /* Consolidated CSS block 22: original cascade position 22 */
@@ -1339,3 +1339,50 @@ main > section .access-grid, main > section .facility-grid, main > section .deal
 
 /* Fase 3: la fachada ahora va dentro de <picture>; display:contents conserva el recorte 16/8 */
 .location-recognize-photo picture{display:contents}
+
+/* Fase 4: contraste AA del eyebrow dorado sobre el fondo blush de #financiacion (4.33 -> 5.18) */
+#financiacion .tag.gold{color:#5F4A0C!important}
+
+/* Fase 6: turno de service (demo interactiva) */
+#turno-service{padding:72px 0;background:#fff}
+.turno-demo-note{margin:0 0 24px;padding:12px 16px;border-left:4px solid #5F4A0C;background:#F6F1E4;color:#1B1F22;font-size:14.5px;line-height:1.5;border-radius:0 8px 8px 0}
+.turno-layout{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:28px;align-items:start}
+.turno-form{display:grid;gap:22px}
+.turno-fieldset{border:0;margin:0;padding:0;min-width:0}
+.turno-fieldset legend{padding:0;margin:0 0 10px;font-family:var(--display);font-size:15px;font-weight:800;color:#1B1F22}
+.turno-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+.turno-slots{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;min-height:44px}
+.turno-day,.turno-slot{min-height:48px;border:1px solid #C8CED3;border-radius:10px;background:#fff;color:#1B1F22;font:inherit;font-weight:600;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:6px 4px}
+.turno-day-name{font-size:12.5px;color:#46505C}.turno-day-num{font-size:15px}
+.turno-day:hover,.turno-slot:hover:not(:disabled){border-color:#1B1F22}
+.turno-day[aria-pressed="true"],.turno-slot[aria-pressed="true"]{background:#1B1F22;border-color:#1B1F22;color:#fff}
+.turno-day[aria-pressed="true"] .turno-day-name{color:#E7EDEE}
+.turno-slot:disabled{background:#EEF1F3;color:#5B6670;text-decoration:line-through;cursor:not-allowed}
+.turno-day:focus-visible,.turno-slot:focus-visible,.turno-form input:focus-visible,.turno-form select:focus-visible,.turno-cancel:focus-visible,.turno-confirm .btn:focus-visible{outline:3px solid #EB0A1E;outline-offset:2px}
+.turno-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.turno-fields .field{margin:0}
+.turno-form input,.turno-form select{width:100%;min-height:46px;padding:10px 12px;border:1px solid #8A949C;border-radius:10px;background:#fff;color:#1B1F22;font:inherit}
+.turno-form input[aria-invalid="true"]{border-color:#B00016;box-shadow:0 0 0 1px #B00016}
+.turno-err:empty{display:none}
+.turno-err{display:block;margin-top:4px;color:#B00016;font-size:13px;font-weight:600}
+.turno-submit{justify-self:start;min-height:48px}
+.turno-status{margin:0;min-height:1.4em;color:#1B1F22;font-size:14.5px;font-weight:600}
+.turno-hint{margin:0;color:#46505C;font-size:14.5px;grid-column:1/-1;align-self:center}
+.turno-side{display:grid;gap:14px;padding:22px;border:1px solid #D9DEE1;border-radius:14px;background:#F7F9FA}
+.turno-side h3{margin:0;font-size:18px}
+.turno-confirm{padding:18px;border-radius:12px;background:#1B1F22;color:#fff}
+.turno-confirm:focus{outline:3px solid #EB0A1E;outline-offset:2px}
+.turno-confirm p{margin:0}
+.turno-confirm-kicker{font-size:13px;font-weight:700;color:#F0D274}
+.turno-confirm-title{margin-top:6px!important;font-family:var(--display);font-size:20px;font-weight:800;line-height:1.25}
+.turno-confirm-meta{margin-top:6px!important;font-size:14px;color:#E7EDEE}
+.turno-confirm-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.turno-confirm-actions .btn:not(.primary){background:#fff;color:#1B1F22;border-color:#fff}
+.turno-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.turno-item{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px;border:1px solid #D9DEE1;border-radius:10px;background:#fff}
+.turno-item div{display:grid;gap:2px;font-size:14px;min-width:0}
+.turno-item strong{font-size:14.5px}.turno-item span{color:#46505C}
+.turno-cancel{min-height:44px;padding:0 12px;border:1px solid #8A949C;border-radius:8px;background:#fff;color:#1B1F22;font:inherit;font-weight:600;cursor:pointer}
+.turno-cancel:hover{border-color:#B00016;color:#B00016}
+@media(max-width:860px){.turno-layout{grid-template-columns:minmax(0,1fr)}#turno-service{padding:52px 0}}
+@media(max-width:560px){.turno-days{grid-template-columns:repeat(4,minmax(0,1fr))}.turno-slots{grid-template-columns:repeat(3,minmax(0,1fr))}.turno-fields{grid-template-columns:minmax(0,1fr)}.turno-submit{justify-self:stretch}}

@@ -12,7 +12,7 @@ const JS = [
   "analytics", "lenis-loader", "gsap-flip-loader", "scroll-helper", "scroll-restoration",
   "app-core", "favorites", "used-interest-memory", "gama-expansion", "motion-foundation",
   "motion-gsap", "page-health-check", "rive-vehicle-compare", "tel-link-copy",
-  "structural-visibility-guard", "location-status", "contact-form",
+  "structural-visibility-guard", "location-status", "contact-form", "service-booking",
 ];
 const CSS = ["fonts", "style"]; // fonts.css primero
 

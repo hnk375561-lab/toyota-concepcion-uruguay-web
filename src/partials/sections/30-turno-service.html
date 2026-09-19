@@ -1,0 +1,43 @@
+    <section id="turno-service" aria-labelledby="turno-title">
+      <div class="wrap">
+        <div class="section-head tight">
+          <div>
+            <span class="tag gold">Turno de service</span>
+            <h2 id="turno-title">Reservá tu turno en un minuto</h2>
+            <p>Elegí día y horario, dejá tus datos y te armamos el mensaje para confirmarlo por WhatsApp con el taller.</p>
+          </div>
+        </div>
+        <p class="turno-demo-note" role="note"><strong>Demostración interactiva.</strong> La disponibilidad es de ejemplo y el turno queda guardado solo en este navegador. La confirmación real la hace el taller por WhatsApp.</p>
+        <div id="turnoService" class="turno-layout">
+          <form id="turnoForm" class="turno-form" novalidate>
+            <fieldset class="turno-fieldset">
+              <legend>1. Elegí el día</legend>
+              <div class="turno-days" id="turnoDays" role="group" aria-label="Días disponibles"></div>
+            </fieldset>
+            <fieldset class="turno-fieldset">
+              <legend>2. Elegí el horario</legend>
+              <div class="turno-slots" id="turnoSlots" role="group" aria-label="Horarios del día elegido"><p class="turno-hint">Elegí primero un día.</p></div>
+            </fieldset>
+            <fieldset class="turno-fieldset">
+              <legend>3. Tus datos</legend>
+              <div class="turno-fields">
+                <div class="field"><label for="tsNombre">Nombre y apellido</label><input id="tsNombre" name="nombre" type="text" autocomplete="name" maxlength="60" required aria-describedby="tsNombreErr"><small id="tsNombreErr" class="turno-err"></small></div>
+                <div class="field"><label for="tsTel">Teléfono o WhatsApp</label><input id="tsTel" name="telefono" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" required aria-describedby="tsTelErr"><small id="tsTelErr" class="turno-err"></small></div>
+                <div class="field"><label for="tsModelo">Tu Toyota</label>
+                  <select id="tsModelo" name="modelo"><option>Hilux</option><option>SW4</option><option>Corolla</option><option>Corolla Cross</option><option>Yaris</option><option>RAV4</option><option>Etios</option><option>Land Cruiser</option><option>Fortuner</option><option>Otro modelo</option></select></div>
+                <div class="field"><label for="tsServicio">Servicio</label>
+                  <select id="tsServicio" name="servicio"><option>Mantenimiento programado</option><option>Cambio de aceite y filtros</option><option>Revisión general</option><option>Frenos y neumáticos</option><option>Diagnóstico de una falla</option></select></div>
+              </div>
+            </fieldset>
+            <button type="submit" class="btn primary turno-submit">Reservar turno</button>
+            <p id="turnoStatus" class="turno-status" role="status" aria-live="polite"></p>
+          </form>
+          <aside class="turno-side" aria-label="Confirmación y turnos guardados">
+            <div id="turnoConfirm" class="turno-confirm" tabindex="-1" hidden></div>
+            <h3>Mis turnos</h3>
+            <ul id="turnoList" class="turno-list"></ul>
+            <p id="turnoEmpty" class="turno-hint">Todavía no reservaste ningún turno en este navegador.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
