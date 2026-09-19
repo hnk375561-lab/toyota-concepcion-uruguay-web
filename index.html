@@ -1336,6 +1336,27 @@ main > section .access-grid, main > section .facility-grid, main > section .deal
 @media(max-width:520px){#galeria-google-maps .access-grid,#repuestos .access-grid,.facility-grid-real{grid-template-columns:1fr!important}#porque .local-coverage-note{grid-template-columns:1fr}#porque .local-coverage-note a{grid-column:1;grid-row:auto}.location-actions{grid-template-columns:1fr 1fr!important}.brand-plaque-stats{grid-template-columns:1fr}.brand-plaque-actions{grid-template-columns:1fr}.facility-actions{margin-top:18px}.phone-list a span{font-size:18px}}
 </style>
 
+
+<style id="demo-readiness-polish">
+/* Demo-readiness: consistent, centered and explicitly illustrative vehicle imagery. */
+#gama .gama-image-note{margin:18px 0 24px;padding:14px 16px;border:1px solid #d9c68c;border-left:4px solid var(--luxury-gold);border-radius:10px;background:#fffaf0;color:#39434a;font-size:13px;line-height:1.55}
+#gama .gama-image-note strong{color:#8c111d}
+#filterbar .filterbtn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:96px}
+#filterbar .filter-count{font-size:11px;opacity:.72;font-variant-numeric:tabular-nums}
+#gama .filter-empty{padding:22px;border:1px dashed #b9c1c5;border-radius:12px;background:#f8faf9;color:#536069;text-align:center}
+#gama .inline-reset-filter{border:0;background:none;color:#8c111d;text-decoration:underline;font:inherit;font-weight:800;cursor:pointer}
+#gama .model{display:flex;flex-direction:column;min-width:0}
+#gama .model-picture{display:grid;place-items:center;width:100%;height:244px;padding:16px;border-radius:12px;background:linear-gradient(145deg,#f7f9f9,#e9edef);overflow:hidden}
+#gama .model-picture .model-photo{display:block;width:100%;height:100%;max-width:100%;object-fit:contain;object-position:50% 50%;transform:none!important;filter:drop-shadow(0 12px 14px rgba(23,32,38,.16))}
+#gama .model-image-disclaimer{display:block;margin:8px 0 5px;color:#66727a;font-size:10.5px;line-height:1.35;letter-spacing:.01em}
+#gama .model h3{margin-top:4px}
+#gama .model>p{min-height:48px}
+#ubicacion .hours-table tr.is-today td{box-shadow:inset 3px 0 0 #d4af37}
+#ubicacion #locationStatus.is-open{border-color:#8bc59b;background:#f0fbf2;color:#185c31}
+#ubicacion #locationStatus.is-closed{border-color:#d7b5b5;background:#fff7f7;color:#7c252d}
+.compare-tool .compare-pickers select option[title]{cursor:help}
+@media (max-width:700px){#gama .model-picture{height:220px;padding:14px}#filterbar .filterbtn{min-width:82px}.gama-image-note{font-size:12px!important}}
+</style>
 </head>
 <body id="top">
 <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
@@ -1602,12 +1623,14 @@ main > section .access-grid, main > section .facility-grid, main > section .deal
           </div>
         </div>
         <div class="filterbar" id="filterbar" role="group" aria-label="Filtrar por tipo de vehículo">
-          <button class="filterbtn active" data-filter="todos" type="button">Todos</button>
-          <button class="filterbtn" data-filter="pickup" type="button">Pickups</button>
-          <button class="filterbtn" data-filter="suv" type="button">SUV</button>
-          <button class="filterbtn" data-filter="sedan" type="button">Sedanes</button>
+          <button class="filterbtn active" data-filter="todos" type="button" aria-pressed="true">Todos <span class="filter-count" data-count="todos"></span></button>
+          <button class="filterbtn" data-filter="pickup" type="button" aria-pressed="false">Pick-ups <span class="filter-count" data-count="pickup"></span></button>
+          <button class="filterbtn" data-filter="suv" type="button" aria-pressed="false">SUV <span class="filter-count" data-count="suv"></span></button>
+          <button class="filterbtn" data-filter="sedan" type="button" aria-pressed="false">Sedanes <span class="filter-count" data-count="sedan"></span></button>
         </div>
+        <p class="gama-image-note" role="note"><strong>Referencia visual:</strong> algunas fotos son ilustrativas y pueden no corresponder exactamente al modelo, versión, año o equipamiento mostrado. La concesionaria aún no verificó material propio para cada vehículo; confirmá la unidad disponible con el equipo comercial.</p>
         <div class="gama-grid" id="gama-grid"><!-- se completa por JS --></div>
+        <p class="filter-empty" id="filterEmpty" hidden>No hay modelos en esta categoría. Volvé a <button type="button" class="inline-reset-filter">ver toda la gama</button>.</p>
 
         <div class="compare-tool" id="comparar">
           <div class="compare-head">
@@ -2399,7 +2422,7 @@ document.addEventListener("DOMContentLoaded", function(){
     var hasDetail = Object.prototype.hasOwnProperty.call(MODEL_DETAILS, m.nombre);
     el.innerHTML =
       (m.badge ? '<span class="badge">' + m.badge + '</span>' : '') +
-      (m.foto ? '<picture><source type="image/avif" srcset="' + m.foto.replace(/-800\.webp$/, '-800.avif') + ' 800w, ' + m.foto.replace(/-800\.webp$/, '-480.avif') + ' 480w" sizes="(max-width: 600px) 92vw, 280px"><source type="image/webp" srcset="' + m.foto.replace(/-800\.webp$/, '-480.webp') + ' 480w, ' + m.foto + ' 800w" sizes="(max-width: 600px) 92vw, 280px"><img class="model-photo" src="' + m.foto + '" alt="Toyota ' + m.nombre + '" loading="lazy" decoding="async" width="' + m.fotoW + '" height="' + m.fotoH + '"></picture>' : '<div class="ico ico-text">' + ICONOS[m.tipo] + '</div>') +
+      (m.foto ? '<picture class="model-picture"><source type="image/avif" srcset="' + m.foto.replace(/-800\.webp$/, '-800.avif') + ' 800w, ' + m.foto.replace(/-800\.webp$/, '-480.avif') + ' 480w" sizes="(max-width: 600px) 92vw, 280px"><source type="image/webp" srcset="' + m.foto.replace(/-800\.webp$/, '-480.webp') + ' 480w, ' + m.foto + ' 800w" sizes="(max-width: 600px) 92vw, 280px"><img class="model-photo" src="' + m.foto + '" alt="Imagen ilustrativa de Toyota ' + m.nombre + '" loading="lazy" decoding="async" width="' + m.fotoW + '" height="' + m.fotoH + '"></picture><span class="model-image-disclaimer">Imagen ilustrativa · confirmar unidad y versión</span>' : '<div class="ico ico-text">' + ICONOS[m.tipo] + '</div>') +
       '<h3>' + m.nombre + '</h3>' +
       '<p>' + m.desc + '</p>' +
       (hasDetail ? '<button class="model-detail-link" type="button" data-model-detail="' + m.nombre + '" style="border:0;background:none;color:var(--toyota-red);font:inherit;font-weight:700;font-size:13px;text-align:left;padding:0 0 8px;cursor:pointer;">Ver ficha del modelo ›</button>' : '') +
@@ -2417,12 +2440,28 @@ document.addEventListener("DOMContentLoaded", function(){
     var btn=filterBar.querySelector('.filterbtn[data-filter="'+filtro+'"]')||filterBar.querySelector('.filterbtn[data-filter="todos"]');
     filtro=btn.getAttribute("data-filter");
     filterBar.querySelectorAll(".filterbtn").forEach(function(b){b.classList.toggle("active",b===btn);b.setAttribute("aria-pressed",b===btn?"true":"false");});
-    gamaGrid.querySelectorAll(".model").forEach(function(card){card.hidden=filtro!=="todos"&&card.getAttribute("data-tipo")!==filtro;});
+    var visibleCount=0;
+    gamaGrid.querySelectorAll(".model").forEach(function(card){
+      var visible=filtro==="todos"||card.getAttribute("data-tipo")===filtro;
+      card.hidden=!visible;
+      if(visible)visibleCount++;
+    });
+    var empty=document.getElementById("filterEmpty");
+    if(empty)empty.hidden=visibleCount>0;
+    filterBar.querySelectorAll("[data-count]").forEach(function(counter){
+      var type=counter.getAttribute("data-count");
+      var total=Array.prototype.filter.call(gamaGrid.querySelectorAll(".model"),function(card){return type==="todos"||card.getAttribute("data-tipo")===type;}).length;
+      counter.textContent="("+total+")";
+    });
     try{sessionStorage.setItem(filterStorageKey,filtro);}catch(e){}
     if(updateUrl){var next=filtro==="todos"?location.pathname+location.search+"#gama":location.pathname+location.search+"#gama?filter="+encodeURIComponent(filtro);history.replaceState(null,"",next);}
   }
   filterBar.querySelectorAll(".filterbtn").forEach(function(btn){btn.setAttribute("aria-pressed",btn.classList.contains("active")?"true":"false");});
   filterBar.addEventListener("click",function(e){var btn=e.target.closest(".filterbtn");if(btn)applyGamaFilter(btn.getAttribute("data-filter"),true);});
+  document.addEventListener("click",function(e){
+    var reset=e.target.closest(".inline-reset-filter");
+    if(reset){e.preventDefault();applyGamaFilter("todos",true);}
+  });
   var hashFilter=(location.hash.match(/^#gama\?filter=([^&]+)/)||[])[1],savedFilter=null;
   try{savedFilter=sessionStorage.getItem(filterStorageKey);}catch(e){}
   applyGamaFilter(hashFilter?decodeURIComponent(hashFilter):(savedFilter||"todos"),false);
@@ -2774,7 +2813,8 @@ document.addEventListener("DOMContentLoaded", function(){
       [selA, selB].forEach(function(sel){
         var opt = document.createElement("option");
         opt.value = m.nombre; opt.textContent = m.nombre;
-        if(m.nombre === "Fortuner" || m.nombre === "Etios"){opt.disabled=true;opt.textContent += " — ficha en actualización";}
+        opt.setAttribute("data-model-type", m.tipo);
+        opt.title = "Datos de referencia; confirmar disponibilidad y configuración con la concesionaria.";
         sel.appendChild(opt);
       });
     });
@@ -2782,7 +2822,20 @@ document.addEventListener("DOMContentLoaded", function(){
 
     function escapeCompare(value){return String(value).replace(/[&<>"']/g,function(ch){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[ch];});}
     function compareValue(value){return escapeCompare(value).replace(/(https?:\/\/[^\s<]+)/g,'<a href="$1" target="_blank" rel="noopener">$1</a>');}
-    function comparisonSpecs(nombre){var d=COMPARISON_DETAILS[nombre];return d&&d.specs?d.specs:[];}
+    function comparisonSpecs(nombre){
+      var d=COMPARISON_DETAILS[nombre];
+      if(d&&d.specs&&d.specs.length)return d.specs;
+      var model=MODELOS_TOYOTA.filter(function(m){return m.nombre===nombre;})[0]||{};
+      return [
+        ["Categoría",TIPO_LABEL[model.tipo]||"Vehículo Toyota"],
+        ["Motorización","Consultar configuración vigente con el equipo comercial."],
+        ["Versiones","Confirmar versiones, stock y equipamiento disponibles."],
+        ["Seguridad","Consultar el equipamiento de seguridad de la unidad publicada."],
+        ["Dimensiones","Consultar ficha técnica oficial de la versión disponible."],
+        ["Disponibilidad","A confirmar con la concesionaria Piñeyro y Moscatelli."],
+        ["Fuente","Ficha oficial Toyota Argentina y validación comercial pendiente."]
+      ];
+    }
 
     function render(){
       var a = selA.value, b = selB.value;
@@ -3519,7 +3572,6 @@ document.addEventListener("DOMContentLoaded", function(){
   document.addEventListener("click", function(e){
     var a = e.target.closest && e.target.closest('a[href^="tel:"]');
     if(!a) return;
-    e.preventDefault();
     var digits = a.getAttribute("href").replace(/^tel:\+?54\s?9?/, "");
     var copyText = digits.length === 10 ? "0" + digits.slice(0, 4) + " " + digits.slice(4, 6) + "-" + digits.slice(6) : digits;
     function done(ok){ showCopiedTip(a, ok ? "Número copiado: " + copyText : copyText); }
@@ -3555,12 +3607,28 @@ document.addEventListener("DOMContentLoaded", function(){
 document.addEventListener('DOMContentLoaded',function(){
   var box=document.getElementById('locationStatus'), label=document.getElementById('locationStatusText'), note=document.getElementById('locationStatusNote');
   if(!box||!label||!note)return;
-  var now=new Date(), parts={};
-  try{parts=new Intl.DateTimeFormat('en-US',{timeZone:'America/Argentina/Buenos_Aires',weekday:'short',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(now).reduce(function(a,p){a[p.type]=p.value;return a;},{});}catch(e){parts={weekday:'Mon',hour:'12',minute:'00'};}
-  var day={Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6,Sun:0}[parts.weekday]; var minutes=(Number(parts.hour)||0)*60+(Number(parts.minute)||0); var open=(day>=1&&day<=5&&((minutes>=480&&minutes<720)||(minutes>=900&&minutes<1140)))||(day===6&&minutes>=480&&minutes<720);
-  var next=day===0||day===6||minutes>=720?'08:00':'15:00';
-  box.classList.toggle('is-closed',!open); label.textContent=open?'Abierto ahora':'Cerrado ahora'; note.textContent=open?' · Atención en el concesionario':' · Abre hoy a las '+next;
-  var rows=document.querySelectorAll('#ubicacion .hours-table tr'); if(rows[day===6?1:day>=1&&day<=5?0:2])rows[day===6?1:day>=1&&day<=5?0:2].classList.add('is-today');
+  var weekdayMap={Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6,Sun:0};
+  var weekdayNames=['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+  var parts={};
+  try{parts=new Intl.DateTimeFormat('en-US',{timeZone:'America/Argentina/Buenos_Aires',weekday:'short',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date()).reduce(function(a,p){a[p.type]=p.value;return a;},{});}catch(e){parts={weekday:'Mon',hour:'12',minute:'00'};}
+  var day=weekdayMap[parts.weekday]||1, minutes=(Number(parts.hour)||0)*60+(Number(parts.minute)||0);
+  var weekday=day>=1&&day<=5;
+  var open=weekday&&((minutes>=480&&minutes<720)||(minutes>=900&&minutes<1140))||(day===6&&minutes>=480&&minutes<720);
+  var closeTime=open?((minutes<720)?'12:00':'19:00'):'';
+  var nextDay=day, nextTime='08:00', today=true;
+  if(weekday&&minutes<480){nextTime='08:00';}
+  else if(weekday&&minutes>=720&&minutes<900){nextTime='15:00';}
+  else if(weekday&&minutes>=1140){nextDay=day===5?1:day+1;today=false;}
+  else if(day===6&&minutes<480){nextTime='08:00';}
+  else if(day===6){nextDay=1;today=false;}
+  else if(day===0){nextDay=1;today=false;}
+  box.classList.toggle('is-open',open); box.classList.toggle('is-closed',!open);
+  label.textContent=open?'Abierto ahora':'Cerrado ahora';
+  note.textContent=open?' · Cierra a las '+closeTime:' · Abre '+(today?'hoy':'el '+weekdayNames[nextDay])+' a las '+nextTime;
+  box.setAttribute('aria-label',label.textContent+note.textContent);
+  var rows=document.querySelectorAll('#ubicacion .hours-table tr');
+  var rowIndex=day>=1&&day<=5?0:(day===6?1:2);
+  if(rows[rowIndex])rows[rowIndex].classList.add('is-today');
 });
 </script>
 
