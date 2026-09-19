@@ -1389,3 +1389,11 @@ main > section .access-grid, main > section .facility-grid, main > section .deal
 /* Catálogo reducido: las grillas se reparten el ancho según la cantidad real de tarjetas (sin columnas vacías). */
 .gama-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
 .category-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+
+/* Layout tras retirar tarjetas y galerías sin contenido */
+.detail-grid,.dealer-grid{grid-template-columns:1fr}
+.dealer-grid>div{max-width:760px}
+
+/* Marcadores numerados en pasos (reemplazan al logo repetido) */
+.journey-step-logo{font:700 14px var(--display);color:var(--toyota-red)}
+.maintenance-card:after{content:none}
