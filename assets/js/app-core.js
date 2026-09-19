@@ -684,10 +684,19 @@ document.addEventListener("DOMContentLoaded", function(){
         el.style.removeProperty("opacity");
         el.style.removeProperty("transform");
       });
-      [".gama-grid .model",".highlight-track .highlight-card",".access-grid figure",".expansion-grid > *",".category-browser > *",".maintenance-grid > *"].forEach(function(selector){
-        ScrollTrigger.batch(selector,{start:"top 88%",once:true,onEnter:function(batch){
-          gsap.from(batch,{opacity:0,y:22,duration:.55,ease:"power2.out",stagger:.07,clearProps:"opacity,transform"});
-        }});
+      // Los reveals de secciones bajo el pliegue se registran después del primer render:
+      // ScrollTrigger.batch mide el layout de cada grilla y, en móvil, ese trabajo competía
+      // con el pintado del hero (LCP). Nada de esto es visible en el primer frame.
+      var afterFirstPaint=function(fn){
+        var run=function(){if(window.requestIdleCallback){requestIdleCallback(fn,{timeout:1500});}else{setTimeout(fn,200);}};
+        if(window.requestAnimationFrame){requestAnimationFrame(function(){setTimeout(run,0);});}else{run();}
+      };
+      afterFirstPaint(function(){
+        [".gama-grid .model",".highlight-track .highlight-card",".access-grid figure",".expansion-grid > *",".category-browser > *",".maintenance-grid > *"].forEach(function(selector){
+          ScrollTrigger.batch(selector,{start:"top 88%",once:true,onEnter:function(batch){
+            gsap.from(batch,{opacity:0,y:22,duration:.55,ease:"power2.out",stagger:.07,clearProps:"opacity,transform"});
+          }});
+        });
       });
       var heroTl=gsap.timeline({defaults:{ease:premiumEase}});
       var heroTitle=document.querySelector(".hero h1");
@@ -717,7 +726,7 @@ document.addEventListener("DOMContentLoaded", function(){
         .fromTo(heroSecondaryFig,{clipPath:"inset(0% 0% 100% 0%)",opacity:0,y:16},{clipPath:"inset(0% 0% 0% 0%)",opacity:1,y:0,duration:.85,ease:premiumEase,clearProps:"clipPath,opacity,y"},.32)
         .from(heroWordmark,{opacity:0,x:-14,duration:.6},.42)
         .from(".hero .tag",{opacity:0,x:-18,duration:.45},.46)
-        .to(heroSplit?heroSplit.chars:".hero h1",{opacity:1,y:0,rotateX:0,stagger:.018,duration:.52,ease:premiumEase},.58)
+        .to(heroSplit?heroSplit.chars:{},heroSplit?{opacity:1,y:0,rotateX:0,stagger:.018,duration:.52,ease:premiumEase}:{duration:.52},.58)
         .from(".hero .lead",{opacity:0,y:18,duration:.5},"-=.28")
         .from(".hero-editorial-actions > *",{opacity:0,y:16,scale:.97,stagger:.09,duration:.48,ease:"back.out(1.4)"},"-=.22")
         .from(heroSpecs,{opacity:0,y:10,duration:.42,stagger:.06},"-=.18")
