@@ -1386,3 +1386,6 @@ main > section .access-grid, main > section .facility-grid, main > section .deal
 .turno-cancel:hover{border-color:#B00016;color:#B00016}
 @media(max-width:860px){.turno-layout{grid-template-columns:minmax(0,1fr)}#turno-service{padding:52px 0}}
 @media(max-width:560px){.turno-days{grid-template-columns:repeat(4,minmax(0,1fr))}.turno-slots{grid-template-columns:repeat(3,minmax(0,1fr))}.turno-fields{grid-template-columns:minmax(0,1fr)}.turno-submit{justify-self:stretch}}
+/* Catálogo reducido: las grillas se reparten el ancho según la cantidad real de tarjetas (sin columnas vacías). */
+.gama-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.category-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}

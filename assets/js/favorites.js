@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function(){
     try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); }catch(e){ /* localStorage no disponible: la función sigue andando en memoria */ }
   }
 
-  var favorites = readFavorites();
+  var favorites = readFavorites().filter(function(n){return !!gamaGrid.querySelector('.model[data-model="'+n+'"]');});
 
   function isFavorite(name){ return favorites.indexOf(name) !== -1; }
   function toggleFavorite(name){
