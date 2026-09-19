@@ -1336,3 +1336,6 @@ main > section .access-grid, main > section .facility-grid, main > section .deal
 .used-interest-saved strong{font-size:14.5px;color:#1B1F22}
 .used-interest-saved span{font-size:13.5px;color:var(--muted)}
 .used-interest-saved .used-interest-reset{align-self:flex-start;margin-top:4px}
+
+/* Fase 3: la fachada ahora va dentro de <picture>; display:contents conserva el recorte 16/8 */
+.location-recognize-photo picture{display:contents}
