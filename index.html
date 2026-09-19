@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded',function(){document.querySelectorAl
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="image" href="toyota-sharp-assets/hero-sw4-desktop-1800.avif" imagesrcset="toyota-sharp-assets/hero-sw4-mobile-480.avif 480w, toyota-sharp-assets/hero-sw4-mobile-800.avif 800w, toyota-sharp-assets/hero-sw4-desktop-1800.avif 1800w" imagesizes="(max-width: 760px) 100vw, 68vw" type="image/avif" fetchpriority="high">
+<link rel="preload" as="image" href="toyota-sharp-assets/hero-sw4-mobile-4to5-640.avif" type="image/avif" fetchpriority="high" media="(max-width: 760px)">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -1413,8 +1414,8 @@ main > section .access-grid, main > section .facility-grid, main > section .deal
     <div class="hero-editorial-stage">
       <figure class="hero-editorial-vehicle hero-photo-real" aria-label="Toyota SW4 Diamond">
         <picture>
-          <source type="image/avif" media="(max-width: 760px)" srcset="toyota-sharp-assets/hero-sw4-mobile-480.avif 480w, toyota-sharp-assets/hero-sw4-mobile-800.avif 800w" sizes="100vw">
-          <source type="image/webp" media="(max-width: 760px)" srcset="toyota-sharp-assets/hero-sw4-mobile-480.webp 480w, toyota-sharp-assets/hero-sw4-mobile-800.webp 800w" sizes="100vw">
+          <source type="image/avif" media="(max-width: 760px)" srcset="toyota-sharp-assets/hero-sw4-mobile-4to5-640.avif 640w" sizes="100vw">
+          <source type="image/webp" media="(max-width: 760px)" srcset="toyota-sharp-assets/hero-sw4-mobile-4to5-640.webp 640w" sizes="100vw">
           <source type="image/avif" srcset="toyota-sharp-assets/hero-sw4-desktop-1800.avif 1800w" sizes="68vw">
           <source type="image/webp" srcset="toyota-sharp-assets/hero-sw4-1800.webp 1800w" sizes="68vw">
           <img src="toyota-sharp-assets/hero-sw4-1800.webp" alt="Toyota SW4 Diamond, imagen del vehículo" fetchpriority="high" decoding="async" width="1800" height="1844">
@@ -1634,6 +1635,9 @@ main > section .access-grid, main > section .facility-grid, main > section .deal
             <label for="compareB">Modelo B
               <select id="compareB"><option value="">Elegir modelo…</option></select>
             </label>
+          </div>
+          <div style="background:rgba(235,10,30,0.06); border-left:3px solid var(--toyota-red); padding:12px 14px; margin:20px 0; border-radius:4px; font-size:14px; color:var(--ink);">
+            <strong>Especificaciones de referencia:</strong> Los datos mostrados son ilustrativos basados en fichas técnicas oficiales Toyota Argentina (agosto 2026). Confirma disponibilidad, equipamiento y precios con el equipo comercial.
           </div>
           <div id="compareResult" class="compare-result" hidden aria-live="polite" aria-atomic="true">
             <div class="compare-table" id="compareTable"></div>
@@ -2136,6 +2140,10 @@ main > section .access-grid, main > section .facility-grid, main > section .deal
         y disponibilidad de vehículos, repuestos y neumáticos sujetos a confirmación con el
         concesionario.
       </p>
+      <div style="background:#F3F5F6; padding:16px; border-top:1px solid #C8CED3; margin-top:40px; font-size:12px; color:var(--muted); text-align:center;">
+        <strong>Sitio de demostración — Piñeyro y Moscatelli S.R.L.</strong><br>
+        Las funcionalidades, precios y disponibilidad mostrados son ilustrativos. Confirma todos los datos directamente con el equipo comercial.
+      </div>
     </div>
   </footer>
 
@@ -3683,5 +3691,8 @@ document.addEventListener('DOMContentLoaded',function(){
 #ubicacion .location-qr small{text-align:center!important;font-size:13px!important;line-height:1.35!important}
 #ubicacion .ubic-grid>div:first-child>.location-qr{margin-top:22px!important;padding:0!important}
 @media(max-width:760px){#ubicacion .location-qr svg{width:min(100%,240px)!important;max-width:240px!important}#ubicacion .location-qr small{font-size:12px!important}}
+/* Hero mobile 4:5 aspect ratio optimization */
+.hero-photo picture img{aspect-ratio:auto / 1.25}
+@media(max-width:760px){.hero-photo picture img{aspect-ratio:4 / 5}}
 </style></body>
 </html>
