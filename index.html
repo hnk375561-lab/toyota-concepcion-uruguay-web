@@ -1357,6 +1357,11 @@ main > section .access-grid, main > section .facility-grid, main > section .deal
 .compare-tool .compare-pickers select option[title]{cursor:help}
 @media (max-width:700px){#gama .model-picture{height:220px;padding:14px}#filterbar .filterbtn{min-width:82px}.gama-image-note{font-size:12px!important}}
 </style>
+<style id="final-interaction-fixes">
+#accesorios .access-grid figure[hidden]{display:none!important;}
+.access-filter{cursor:pointer;}
+.model-image-disclaimer{margin-bottom:12px;}
+</style>
 </head>
 <body id="top">
 <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
@@ -2425,7 +2430,6 @@ document.addEventListener("DOMContentLoaded", function(){
       (m.foto ? '<picture class="model-picture"><source type="image/avif" srcset="' + m.foto.replace(/-800\.webp$/, '-800.avif') + ' 800w, ' + m.foto.replace(/-800\.webp$/, '-480.avif') + ' 480w" sizes="(max-width: 600px) 92vw, 280px"><source type="image/webp" srcset="' + m.foto.replace(/-800\.webp$/, '-480.webp') + ' 480w, ' + m.foto + ' 800w" sizes="(max-width: 600px) 92vw, 280px"><img class="model-photo" src="' + m.foto + '" alt="Imagen ilustrativa de Toyota ' + m.nombre + '" loading="lazy" decoding="async" width="' + m.fotoW + '" height="' + m.fotoH + '"></picture><span class="model-image-disclaimer">Imagen ilustrativa · confirmar unidad y versión</span>' : '<div class="ico ico-text">' + ICONOS[m.tipo] + '</div>') +
       '<h3>' + m.nombre + '</h3>' +
       '<p>' + m.desc + '</p>' +
-      (hasDetail ? '<button class="model-detail-link" type="button" data-model-detail="' + m.nombre + '" style="border:0;background:none;color:var(--toyota-red);font:inherit;font-weight:700;font-size:13px;text-align:left;padding:0 0 8px;cursor:pointer;">Ver ficha del modelo ›</button>' : '') +
       '<div style="display:flex;gap:12px;border-top:1px solid var(--border);padding-top:11px;"><a target="_blank" rel="noopener" href="' + wa("ventas", "Hola! Quiero consultar por la " + m.nombre + ".") + '" style="border:0;padding:0;flex:1;">Consultar <span>&rsaquo;</span></a><button class="compare-btn" type="button" data-compare-model="' + m.nombre + '" style="border:0;background:none;color:var(--muted);font:inherit;cursor:pointer;">Comparar</button></div>';
     gamaGrid.appendChild(el);
   });
@@ -2607,20 +2611,6 @@ document.addEventListener("DOMContentLoaded", function(){
     "Corolla": {intro:"Sedán Toyota con versiones XLI, XEI y SEG publicadas en la página oficial argentina.", specs:[["Motorización","Toyota Argentina publica motor 2.0L Dynamic Force."],["Tecnología","Pantalla multimedia de 10 pulgadas con Android Auto y Apple CarPlay inalámbricos."],["Equipamiento","Las versiones varían en display, faros, llantas y cargador inalámbrico."]], source:"https://www.toyota.com.ar/modelos/corolla", gallery:["https://www.toyota.com.ar/modelos/corolla","https://media.toyota.com.ar/","https://www.toyota.com.ar/concesionarios"]},
     "Yaris": {intro:"Toyota Argentina mantiene páginas oficiales para Yaris Hatchback y Yaris Cross.", specs:[["Gama publicada","Yaris Hatchback y Yaris Cross aparecen en páginas oficiales separadas."],["Yaris Cross","La ficha consultada publica Full LED, pantalla multimedia de 10 pulgadas y conectividad inalámbrica."],["Disponibilidad","Versiones, stock y equipamiento deben confirmarse con el concesionario."]], source:"https://www.toyota.com.ar/modelos/yaris-hatchback", gallery:["https://www.toyota.com.ar/modelos/yaris-hatchback","https://www.toyota.com.ar/modelos/yaris-cross","https://www.toyota.com.ar/concesionarios"]}
   };
-  // Restore detail buttons after the catalog is populated. The delegated
-  // handler above will open the existing detail dialog when they are clicked.
-  Object.keys(MODEL_DETAILS).forEach(function(name){
-    var card=Array.prototype.slice.call(gamaGrid.querySelectorAll(".model")).filter(function(item){return item.getAttribute("data-model")===name;})[0];
-    if(!card||card.querySelector("[data-model-detail]"))return;
-    var button=document.createElement("button");
-    button.className="model-detail-link";
-    button.type="button";
-    button.setAttribute("data-model-detail",name);
-    button.textContent="Ver ficha del modelo ›";
-    button.style.cssText="border:0;background:none;color:var(--toyota-red);font:inherit;font-weight:700;font-size:13px;text-align:left;padding:0 0 8px;cursor:pointer;";
-    var heading=card.querySelector("h3");
-    if(heading)heading.insertAdjacentElement("afterend",button);
-  });
   var detail=document.getElementById("modelDetail"), closeDetail=document.getElementById("detailClose"), detailLastFocus=null, detailClosingTimer=null;
   function slugifyModel(name){return name.toLowerCase().replace(/\s+/g,"-").replace(/[^a-z0-9-]/g,"");}
   function closeModelDetail(updateHash){
@@ -2900,7 +2890,15 @@ document.addEventListener("DOMContentLoaded", function(){
   var accessoryGrid=document.querySelector("#accesorios .access-grid"), accessorySort=document.getElementById("accessorySort");
   function sortAccessories(mode){if(!accessoryGrid)return;var figs=[].slice.call(accessoryGrid.querySelectorAll("figure"));figs.sort(function(a,b){var aa=a.querySelector("figcaption").textContent.trim(),bb=b.querySelector("figcaption").textContent.trim();return mode==="za"?bb.localeCompare(aa,"es"):mode==="az"?aa.localeCompare(bb,"es"):0;});figs.forEach(function(f){accessoryGrid.appendChild(f);});}
   function animateAccessoryLayout(mutator){if(!accessoryGrid||!window.gsap){mutator();return;}var state=window.Flip?Flip.getState(accessoryGrid.querySelectorAll("figure")):null;mutator();if(state&&window.Flip&&!window.matchMedia("(prefers-reduced-motion: reduce)").matches)Flip.from(state,{duration:.55,ease:"power2.inOut",absolute:false,stagger:.025});}
-  document.querySelectorAll(".access-filter").forEach(function(btn){btn.addEventListener("click",function(){document.querySelectorAll(".access-filter").forEach(function(x){x.classList.remove("active");});this.classList.add("active");var cat=this.dataset.accessFilter;animateAccessoryLayout(function(){if(accessoryGrid)accessoryGrid.querySelectorAll("figure").forEach(function(fig){fig.hidden=cat!=="todos"&&fig.querySelector("img").dataset.accessoryCategory!==cat;});});});});
+  document.querySelectorAll(".access-filter").forEach(function(btn){btn.setAttribute("aria-pressed",btn.classList.contains("active")?"true":"false");});
+  document.addEventListener("click",function(e){
+    var btn=e.target.closest(".access-filter");
+    if(!btn||!accessoryGrid)return;
+    e.preventDefault();
+    var cat=btn.dataset.accessFilter;
+    document.querySelectorAll(".access-filter").forEach(function(x){var active=x===btn;x.classList.toggle("active",active);x.setAttribute("aria-pressed",active?"true":"false");});
+    animateAccessoryLayout(function(){accessoryGrid.querySelectorAll("figure").forEach(function(fig){fig.hidden=cat!=="todos"&&fig.querySelector("img").dataset.accessoryCategory!==cat;});});
+  });
   if(accessorySort)accessorySort.addEventListener("change",function(){animateAccessoryLayout(function(){sortAccessories(accessorySort.value);});});
 
   // Compuerta de calidad honesta: los recursos pequeños no se fuerzan a ocupar un hero.
@@ -3706,6 +3704,7 @@ document.addEventListener('DOMContentLoaded',function(){
 <script id="pasted4-contact-enhancements">
 document.addEventListener('DOMContentLoaded',function(){
   var form=document.getElementById('contactForm'), select=document.getElementById('cMotivo'), name=document.getElementById('cName'), msg=document.getElementById('cMsg'), preview=document.getElementById('messagePreview');
+  if(form){form.addEventListener('submit',function(e){[name,msg].forEach(function(field){if(field)field.value=field.value.trim();});if(!form.checkValidity()){e.preventDefault();form.classList.add('has-validation-error');var first=form.querySelector(':invalid');if(first)first.focus();}});form.addEventListener('input',function(){form.classList.remove('has-validation-error');});}
   if(!form||!select)return;
   var chips=form.querySelectorAll('[data-reason]');
   function sync(){chips.forEach(function(chip){chip.classList.toggle('is-selected',chip.dataset.reason===select.value);});var label=select.options[select.selectedIndex]?select.options[select.selectedIndex].text:'Consulta general';var text=(msg&&msg.value.trim())||'Quiero hacer una consulta por '+label.toLowerCase()+'.';if(preview)preview.textContent='Hola, '+(name&&name.value.trim()?name.value.trim()+'. ':'')+text;}
