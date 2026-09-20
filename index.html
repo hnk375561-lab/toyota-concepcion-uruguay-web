@@ -108,10 +108,10 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
     var lenis = window.__toyotaLenis;
     var header = document.getElementById("site-header");
     var headerOffset = (header ? header.offsetHeight : 0) + 12;
+    var y = target.getBoundingClientRect().top + window.scrollY - headerOffset;
     if(lenis){
-      lenis.scrollTo(target, {offset: -headerOffset, duration: options.duration || 0.85, immediate: false});
+      lenis.scrollTo(Math.max(0, y), {duration: options.duration || 0.85, immediate: false});
     } else {
-      var y = target.getBoundingClientRect().top + window.scrollY - headerOffset;
       window.scrollTo({top: Math.max(0, y), behavior: options.behavior || "auto"});
     }
   };
@@ -1409,11 +1409,6 @@ html,body{overflow-x:clip}
 @media(max-width:760px){.float-advisor,.float-social{display:none!important}.mobilebar{z-index:90}.expansion-nav{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;overflow-y:hidden!important;min-height:48px!important;max-height:48px!important;white-space:nowrap!important;scrollbar-width:none}.expansion-nav::-webkit-scrollbar{display:none}.expansion-nav>*{flex:0 0 auto}}
 </style>
 <style id="performance-accessibility-polish">
-/* Below-the-fold sections keep their layout footprint while avoiding offscreen rendering work. */
-#gama,#comprar,#postventa,#nosotros,#faq,#ubicacion,#contacto,footer{
-  content-visibility:auto;
-  contain-intrinsic-size:1px 820px;
-}
 /* Keep the section title hierarchy change visually identical. */
 #canje .steps h3{margin:17px 0 4px!important;font-size:19px!important;line-height:1.25!important;color:#1B1F22!important}
 .model-image-disclaimer{color:#46505C!important}
@@ -2979,7 +2974,8 @@ document.addEventListener("DOMContentLoaded", function(){window.__toyotaSchedule
       options=options||{};
       var header=document.getElementById("site-header");
       var headerOffset=(header?header.offsetHeight:0)+12;
-      lenis.scrollTo(target,{offset:-headerOffset,duration:options.duration||MOTION.scrollDuration,immediate:false});
+      var y=target.getBoundingClientRect().top+window.scrollY-headerOffset;
+      lenis.scrollTo(Math.max(0,y),{duration:options.duration||MOTION.scrollDuration,immediate:false});
     };
     window.__destroyToyotaLenis=function(){
       gsap.ticker.remove(lenisRaf);
