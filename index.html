@@ -39,13 +39,12 @@ document.addEventListener('DOMContentLoaded',function(){document.querySelectorAl
 <link href="toyota-sharp-assets/asset-bec83be10e47-256.webp" rel="icon" type="image/webp"/>
 <link href="toyota-sharp-assets/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/>
 <link href="toyota-sharp-assets/apple-touch-icon.png" rel="apple-touch-icon"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link as="font" crossorigin="" href="toyota-sharp-assets/fonts/manrope-700-latin.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="toyota-sharp-assets/fonts/ibm-plex-sans-400-latin.woff2" rel="preload" type="font/woff2"/>
 <link as="image" fetchpriority="high" href="toyota-sharp-assets/hero-sw4-desktop-1800.avif" media="(min-width: 761px)" rel="preload" type="image/avif"/>
 <link as="image" fetchpriority="high" href="toyota-sharp-assets/hero-sw4-mobile-4to5-640.avif" media="(max-width: 760px)" rel="preload" type="image/avif"/>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Manrope:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="toyota-sharp-assets/fonts.css" rel="stylesheet"/>
 <link crossorigin="" href="https://cdnjs.cloudflare.com" rel="preconnect"/>
-<link crossorigin="" href="https://cdn.jsdelivr.net" rel="preconnect"/>
 <script defer="" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js"></script>
 <script defer="" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js"></script>
 <style id="lenis-essential-css">
@@ -55,7 +54,19 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
 (function(){
   var touch=window.matchMedia&&window.matchMedia("(pointer: coarse)").matches;
   var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if(!touch&&!reduce){document.write('<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js" defer><\/script>');}
+  if(touch||reduce)return;
+  var load=function(){
+    if(window.Lenis||window.__toyotaLenisLoading)return;
+    window.__toyotaLenisLoading=true;
+    var tag=document.createElement("script");
+    tag.src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js";
+    tag.async=true;
+    tag.onload=function(){window.__toyotaLenisLoading=false;if(window.__initToyotaLenis)window.__initToyotaLenis();};
+    tag.onerror=function(){window.__toyotaLenisLoading=false;};
+    document.head.appendChild(tag);
+  };
+  var idle=window.requestIdleCallback||function(cb){setTimeout(cb,1)};
+  if(document.readyState==="complete")idle(load);else window.addEventListener("load",function(){idle(load)},{once:true});
 })();
 </script>
 <script id="lazy-flip-loader">
@@ -135,6 +146,9 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
 }
 </script>
 <style id="consolidated-site-css">
+@font-face{font-family:"Manrope Fallback";src:local("Arial");size-adjust:106%;ascent-override:93%;descent-override:24%;line-gap-override:0%}
+@font-face{font-family:"IBM Plex Sans Fallback";src:local("Arial");size-adjust:100%;ascent-override:102%;descent-override:24%;line-gap-override:0%}
+
 /* Consolidated CSS block 01: original cascade position 01 */
 
 :root{
@@ -143,8 +157,10 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
   --ink:var(--graphite); --surface:var(--white); --surface-alt:var(--mist);
   --border:var(--line); --muted:var(--steel); --bg:var(--white);
   --panel:#1B1F22; --panel-ink:#FFFFFF; --panel-line:#3A4147; --panel-muted:#C5CDD1;
-  --display:"Manrope", Arial, sans-serif;
-  --body:"IBM Plex Sans", Arial, sans-serif;
+  --display:"Manrope", "Manrope Fallback", Arial, sans-serif;
+  --body:"IBM Plex Sans", "IBM Plex Sans Fallback", Arial, sans-serif;
+  --font-fallback-display:"Manrope Fallback", Arial, sans-serif;
+  --font-fallback-body:"IBM Plex Sans Fallback", Arial, sans-serif;
   /* Motion system: precision and engineered restraint. */
   --motion-entrance:cubic-bezier(.16,.8,.28,1);
   --motion-ui:cubic-bezier(.25,.46,.45,.94);
@@ -2977,6 +2993,7 @@ document.addEventListener("DOMContentLoaded", function(){
   var mobileViewport=window.matchMedia&&window.matchMedia("(max-width:760px)").matches;
   var MOTION=window.__toyotaMotionTokens=window.__toyotaMotionTokens||{entrance:"power3.out",ui:"power2.out",exit:"power2.in",micro:mobileViewport ? .12 : .14,base:mobileViewport ? .28 : .32,slow:mobileViewport ? .58 : .72,hero:mobileViewport ? .9 : 1.1,stagger:mobileViewport ? .045 : .072,distance:mobileViewport ? 16 : 24,scrollDuration:mobileViewport ? .62 : .72,lerp:mobileViewport ? .12 : .18,wheelMultiplier:mobileViewport ? .9 : .96,velocityMax:mobileViewport ? 2.5 : 4,velocityShift:mobileViewport ? 1.5 : 3,footerDelay:mobileViewport ? .08 : .14};
   // Touch devices keep native scrolling: it is lower-latency and avoids an unnecessary ticker.
+  window.__initToyotaLenis=function(){
   if(window.__toyotaLenis || coarsePointer || !window.Lenis || !window.gsap || !window.ScrollTrigger){
     if(reduce) window.__toyotaLenis=null;
   } else if(!reduce){
@@ -3026,6 +3043,8 @@ document.addEventListener("DOMContentLoaded", function(){
   } else {
     window.__toyotaLenis=null;
   }
+  };
+  window.__initToyotaLenis();
   if(!window.gsap||reduce)return;
   var primary=document.querySelector(".editorial-cta");
   if(primary){var label=primary.querySelector("span"),primaryRect=null,movePrimary=gsap.quickTo(primary,"x",{duration:.28,ease:"power3.out"}),movePrimaryY=gsap.quickTo(primary,"y",{duration:.28,ease:"power3.out"}),moveLabel=label?gsap.quickTo(label,"x",{duration:.28,ease:"power3.out"}):null,moveLabelY=label?gsap.quickTo(label,"y",{duration:.28,ease:"power3.out"}):null;primary.addEventListener("pointerenter",function(){primaryRect=primary.getBoundingClientRect();},{passive:true});primary.addEventListener("pointermove",function(e){if(!primaryRect)return;var x=(e.clientX-primaryRect.left-primaryRect.width/2)*.08,y=(e.clientY-primaryRect.top-primaryRect.height/2)*.08;movePrimary(x);movePrimaryY(y);if(moveLabel){moveLabel(x*.25);moveLabelY(y*.25);}} ,{passive:true});primary.addEventListener("pointerleave",function(){primaryRect=null;gsap.to([primary,label].filter(Boolean),{x:0,y:0,duration:.55,ease:"elastic.out(1,.55)",overwrite:true});},{passive:true});}
