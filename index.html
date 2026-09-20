@@ -5,7 +5,21 @@
 <head>
 <script id="analytics-events">
 window.dataLayer=window.dataLayer||[];
-window.toyotaTrack=function(name,details){window.dataLayer.push(Object.assign({event:name},details||{}));};
+  /* Leave empty for demo/preview: no third-party script and no external request. */
+  var GA4_ID="";
+  window.toyotaTrack=function(name,details){
+    var event=Object.assign({event:name},details||{});
+    window.dataLayer.push(event);
+    if(typeof window.gtag==="function")window.gtag("event",name,details||{});
+  };
+  if(GA4_ID){
+    window.dataLayer.push({"gtm.start":new Date().getTime(),event:"gtm.js"});
+    var ga=document.createElement("script");
+    ga.async=true;ga.src="https://www.googletagmanager.com/gtag/js?id="+encodeURIComponent(GA4_ID);
+    document.head.appendChild(ga);
+    window.gtag=function(){window.dataLayer.push(arguments);};
+    window.gtag("js",new Date());window.gtag("config",GA4_ID,{send_page_view:true});
+  }
 document.addEventListener('click',function(event){var link=event.target.closest&&event.target.closest('a[href*="wa.me"]');if(link)window.toyotaTrack('whatsapp_click',{link_url:link.href,link_text:(link.textContent||'').trim().slice(0,80)});});
 document.addEventListener('DOMContentLoaded',function(){var mark=function(){document.querySelectorAll('svg').forEach(function(svg){if(!svg.hasAttribute('aria-label'))svg.setAttribute('aria-hidden','true');});document.querySelectorAll('.contact-plus-icon').forEach(function(icon){icon.setAttribute('aria-hidden','true');});};(window.requestIdleCallback||function(cb){setTimeout(cb,1)})(mark);});
 </script>
@@ -38,9 +52,12 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
 <link href="toyota-sharp-assets/apple-touch-icon.png" rel="apple-touch-icon"/>
 <link as="font" crossorigin="" href="toyota-sharp-assets/fonts/manrope-700-latin.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="toyota-sharp-assets/fonts/ibm-plex-sans-400-latin.woff2" rel="preload" type="font/woff2"/>
-<link as="image" fetchpriority="high" href="toyota-sharp-assets/hero-sw4-desktop-1800.avif" imagesizes="68vw" imagesrcset="toyota-sharp-assets/hero-sw4-desktop-1800.avif 1800w" media="(min-width: 761px)" rel="preload" type="image/avif"/>
-<link as="image" fetchpriority="high" href="toyota-sharp-assets/hero-sw4-mobile-4to5-640.avif" imagesizes="100vw" imagesrcset="toyota-sharp-assets/hero-sw4-mobile-4to5-640.avif 640w" media="(max-width: 760px)" rel="preload" type="image/avif"/>
-<link href="toyota-sharp-assets/fonts.css" rel="stylesheet"/>
+<style id="critical-fonts">
+@font-face{font-family:"Manrope";font-style:normal;font-weight:700;font-display:swap;src:url("toyota-sharp-assets/fonts/manrope-700-latin.woff2") format("woff2");}
+@font-face{font-family:"IBM Plex Sans";font-style:normal;font-weight:400;font-display:swap;src:url("toyota-sharp-assets/fonts/ibm-plex-sans-400-latin.woff2") format("woff2");}
+</style>
+<link as="style" href="toyota-sharp-assets/fonts.css" onload="this.onload=null;this.rel='stylesheet'" rel="preload"/>
+<noscript><link href="toyota-sharp-assets/fonts.css" rel="stylesheet"/></noscript>
 <script defer="" src="toyota-sharp-assets/vendor/gsap-3.15.0.min.js"></script>
 <script defer="" src="toyota-sharp-assets/vendor/ScrollTrigger-3.15.0.min.js"></script>
 <style id="lenis-essential-css">
@@ -335,7 +352,7 @@ section{padding:76px 0;border-bottom:1px solid var(--border)}
 
 footer{padding:52px 0 110px;background:var(--panel);color:var(--panel-ink)}
 footer .fgrid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:32px;margin-bottom:34px}
-footer h4{font-family:var(--display);font-size:15.5px;font-weight:700;margin:0 0 12px}
+footer h3{font-family:var(--display);font-size:15.5px;font-weight:700;margin:0 0 12px}
 footer p{margin:0 0 6px;color:var(--panel-muted);font-size:14px}
 footer a{color:var(--panel-muted);text-decoration:none;display:block;font-size:14px;padding:5px 0}
 footer a:hover{color:#fff}
@@ -528,7 +545,7 @@ section{padding:96px 0;border-bottom:1px solid #C8CED3}
 .faq-item{border-color:#C8CED3;background:#fff}.faq-item button{min-height:52px;color:#1B1F22;font-weight:700}.faq-answer{color:#46505C}
 .map-frame,.map-card{border-radius:12px;border-color:#C8CED3;box-shadow:var(--shadow-md)}.map-card{background:linear-gradient(145deg,#171D21,#0F1214);color:#fff}.map-card p,.map-card span{color:#E4E8EA}.map-card .btn{background:transparent;color:#fff;border-color:#D4AF37}.map-card .btn:hover{background:var(--luxury-gold);color:#0F1214}
 .form-grid input,.form-grid select,.form-grid textarea,.trade-form input,.trade-form select{background:rgba(15,18,20,.94);color:#fff;border:1px solid #AEB7BE;border-radius:8px;min-height:48px;padding:12px 14px;line-height:1.5}.form-grid textarea{min-height:120px}.form-grid label,.trade-form label{color:#1B1F22}.form-grid input::placeholder,.form-grid textarea::placeholder,.trade-form input::placeholder{color:#D5DADF}.form-grid input:focus,.form-grid select:focus,.form-grid textarea:focus,.trade-form input:focus,.trade-form select:focus{border-color:var(--luxury-gold);box-shadow:0 0 0 3px rgba(212,175,55,.2),0 0 18px rgba(212,175,55,.16);outline:0}.form-note{color:#46505C;line-height:1.6}.form-error{color:#8C111D}.form-success{color:#23613C}
-.dealer-section,.footer,footer{background:var(--deep-charcoal);color:#fff}.dealer-section p,footer p,footer a,.disclaimer{color:#D1D6DB}footer a:hover{color:#fff;text-decoration:underline;text-decoration-color:var(--luxury-gold);text-underline-offset:5px}footer{padding-top:72px}footer h4{color:#fff}
+.dealer-section,.footer,footer{background:var(--deep-charcoal);color:#fff}.dealer-section p,footer p,footer a,.disclaimer{color:#D1D6DB}footer a:hover{color:#fff;text-decoration:underline;text-decoration-color:var(--luxury-gold);text-underline-offset:5px}footer{padding-top:72px}footer h3{color:#fff}
 .social-link{border-radius:8px;border-color:#747B86}.social-link:hover{border-color:var(--luxury-gold);box-shadow:0 0 16px rgba(212,175,55,.16)}
 .model-detail{background:rgba(15,18,20,.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}.detail-panel{border-radius:12px;box-shadow:var(--shadow-lg);border-color:#C8CED3;overflow:auto}.detail-head{background:linear-gradient(135deg,#171D21,#0F1214);color:#fff;border-bottom-color:#454C54}.detail-head p,.breadcrumbs{color:#E4E8EA}.detail-close{border-radius:8px;background:#fff;color:#1B1F22;min-width:48px;min-height:48px;box-shadow:var(--shadow-sm)}.detail-close:hover{background:var(--luxury-gold);transform:scale(1.04)}.detail-spec{border-color:#C8CED3;color:#1B1F22}.gallery-link{border-radius:8px;border-color:#C8CED3;background:#F3F5F6;color:#1B1F22;min-height:140px}.gallery-link:hover{border-color:var(--luxury-gold);box-shadow:var(--shadow-sm);transform:translateY(-3px)}.detail-foot{color:#46505C}.detail-foot a{color:#8C111D}
 .premium-reveal{opacity:0;transform:translateY(18px);transition:opacity 650ms var(--ease),transform 650ms var(--ease)}.premium-reveal.is-visible{opacity:1;transform:none}
@@ -1390,7 +1407,20 @@ html,body{overflow-x:clip}
 #financiacion .journey-steps .sr-only{white-space:nowrap;min-width:max-content}
 /* Only WhatsApp remains floating on narrow screens while the mobile bar is present. */
 @media(max-width:760px){.float-advisor,.float-social{display:none!important}.mobilebar{z-index:90}.expansion-nav{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;overflow-y:hidden!important;min-height:48px!important;max-height:48px!important;white-space:nowrap!important;scrollbar-width:none}.expansion-nav::-webkit-scrollbar{display:none}.expansion-nav>*{flex:0 0 auto}}
-</style></head>
+</style>
+<style id="performance-accessibility-polish">
+/* Below-the-fold sections keep their layout footprint while avoiding offscreen rendering work. */
+#gama,#comprar,#postventa,#nosotros,#faq,#ubicacion,#contacto,footer{
+  content-visibility:auto;
+  contain-intrinsic-size:1px 820px;
+}
+/* Keep the section title hierarchy change visually identical. */
+#canje .steps h3{margin:17px 0 4px!important;font-size:19px!important;line-height:1.25!important;color:#1B1F22!important}
+.model-image-disclaimer{color:#46505C!important}
+.compare-btn{color:#1B1F22!important;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+footer a[href="tel:+543442502390"]{color:#F4F6F7!important}
+</style>
+</head>
 <body id="top">
 <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><linearGradient id="cs-body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#55646c"/><stop offset=".5" stop-color="#2b363c"/><stop offset="1" stop-color="#161e23"/></linearGradient><linearGradient id="cs-glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c3d3da"/><stop offset=".55" stop-color="#829aa6"/><stop offset="1" stop-color="#586f7b"/></linearGradient><linearGradient id="cs-rim" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f1f4f6"/><stop offset="1" stop-color="#94a3ab"/></linearGradient><radialGradient id="cs-shadow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#0f1519" stop-opacity=".4"/><stop offset="1" stop-color="#0f1519" stop-opacity="0"/></radialGradient><g id="cs-wheel"><circle r="26" fill="#0b1014"/><circle r="18.5" fill="url(#cs-rim)"/><circle r="13.5" fill="#26313a"/><path d="M0-12V12M-12 0H12M-8.5-8.5L8.5 8.5M8.5-8.5L-8.5 8.5" stroke="#dfe6ea" stroke-width="3" stroke-linecap="round"/><circle r="4.5" fill="#c9d2d7"/></g></defs><symbol id="car-sedan" viewBox="0 0 400 180"><ellipse cx="200" cy="168" rx="182" ry="7" fill="url(#cs-shadow)"/><path fill="url(#cs-body)" d="M26 142 L22 122 Q21 106 34 102 L88 97 C106 95 122 66 168 58 C212 54 254 76 296 94 L352 102 Q378 107 381 126 L381 134 L372 142 L327 142 A32 32 0 0 0 263 142 L137 142 A32 32 0 0 0 73 142 Z"/><path fill="url(#cs-glass)" d="M112 94 C126 74 144 66 168 65 C204 63 238 76 272 93 Z"/><path d="M190 64 L194 94" stroke="#2b363c" stroke-width="5"/><path d="M62 106 L352 108" stroke="#fff" stroke-opacity=".22" stroke-width="1.6" fill="none"/><path d="M304 97 L346 105" stroke="#fff" stroke-opacity=".16" stroke-width="5" stroke-linecap="round" fill="none"/><path fill="#eef6f9" d="M354 109 L378 114 L375 121 L352 116 Z"/><path fill="#eb0a1e" d="M23 108 L36 106 L36 111 L24 113 Z"/><path fill="#0b1014" opacity=".7" d="M359 126 L380 128 L379 135 L359 134 Z"/><use href="#cs-wheel" x="105" y="142"/><use href="#cs-wheel" x="295" y="142"/></symbol><symbol id="car-suv" viewBox="0 0 400 180"><ellipse cx="200" cy="174" rx="182" ry="6" fill="url(#cs-shadow)"/><path fill="url(#cs-body)" d="M34 146 L30 116 Q29 100 40 96 L56 60 C60 48 70 42 84 42 L214 40 C246 40 264 62 288 86 L326 96 L354 101 Q378 106 380 128 L380 138 L372 146 L336 146 A36 36 0 0 0 264 146 L134 146 A36 36 0 0 0 62 146 Z"/><path fill="#0b1014" opacity=".34" d="M32 134 L378 134 L372 146 L32 146 Z"/><path fill="url(#cs-glass)" d="M62 92 L74 56 C77 52 82 51 90 51 L146 50 L148 92 Z"/><path fill="url(#cs-glass)" d="M154 50 L208 49 C228 49 244 64 264 92 L154 92 Z"/><path d="M150 50 L151 93" stroke="#2b363c" stroke-width="6"/><path d="M76 41 L216 39" stroke="#a6b6be" stroke-width="3.5" stroke-linecap="round" fill="none"/><path d="M44 104 L354 107" stroke="#fff" stroke-opacity=".22" stroke-width="1.6" fill="none"/><path d="M62 146 A36 36 0 0 1 134 146 M264 146 A36 36 0 0 1 336 146" stroke="#0b1014" stroke-width="6" fill="none" stroke-linecap="round"/><path fill="#eef6f9" d="M356 108 L378 113 L376 121 L354 115 Z"/><path fill="#eb0a1e" d="M31 102 L40 100 L40 106 L32 108 Z"/><use href="#cs-wheel" x="98" y="146" transform="translate(98 146) scale(1.14) translate(-98 -146)"/><use href="#cs-wheel" x="300" y="146" transform="translate(300 146) scale(1.14) translate(-300 -146)"/></symbol><symbol id="car-hatch" viewBox="0 0 400 180"><ellipse cx="200" cy="168" rx="165" ry="7" fill="url(#cs-shadow)"/><path fill="url(#cs-body)" d="M56 142 L51 120 Q50 106 62 102 L78 90 C92 68 114 56 144 54 L208 54 C240 54 264 80 290 94 L334 102 Q356 107 359 126 L359 134 L350 142 L323 142 A32 32 0 0 0 259 142 L141 142 A32 32 0 0 0 77 142 Z"/><path fill="url(#cs-glass)" d="M90 92 C102 72 118 63 144 62 L206 62 C228 62 246 78 270 92 Z"/><path d="M180 62 L184 92" stroke="#2b363c" stroke-width="5"/><path d="M60 106 L334 108" stroke="#fff" stroke-opacity=".22" stroke-width="1.6" fill="none"/><path fill="#eef6f9" d="M336 109 L357 114 L355 121 L334 116 Z"/><path fill="#eb0a1e" d="M52 108 L62 104 L63 110 L53 114 Z"/><use href="#cs-wheel" x="109" y="142"/><use href="#cs-wheel" x="291" y="142"/></symbol></svg>
 <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
@@ -1590,11 +1620,11 @@ html,body{overflow-x:clip}
 <h2 style="font-family:var(--display);font-size:clamp(29px,3.6vw,42px);font-weight:700;letter-spacing:-.01em;margin:14px 0 12px;line-height:1.1;">Tu usado, como parte de pago de tu Toyota nuevo</h2>
 <p style="color:var(--muted);font-size:15.5px;max-width:52ch;margin:0 0 6px;">Tasamos tu vehículo actual — sea o no Toyota — y lo descontamos del 0km o del usado certificado que elijas. Sin vueltas, sin terceros.</p>
 <ol class="steps">
-<li><span aria-hidden="true" class="journey-step-logo"><img alt="" decoding="async" height="256" loading="lazy" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" width="256"/></span><span class="sr-only">Paso 01</span><div><h4>Nos contás qué tenés</h4><p>Marca, modelo, año y kilometraje por WhatsApp o en el concesionario.</p></div></li>
-<li><span aria-hidden="true" class="journey-step-logo"><img alt="" decoding="async" height="256" loading="lazy" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" width="256"/></span><span class="sr-only">Paso 02</span><div><h4>Tasamos en el momento</h4><p>Un asesor revisa el vehículo y te da un valor de referencia real.</p></div></li>
-<li><span aria-hidden="true" class="journey-step-logo"><img alt="" decoding="async" height="256" loading="lazy" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" width="256"/></span><span class="sr-only">Paso 03</span><div><h4>Definís tu Toyota</h4><p>Ese valor se descuenta de un 0km o de un usado certificado de nuestro stock.</p></div></li>
-<li><span aria-hidden="true" class="journey-step-logo"><img alt="" decoding="async" height="256" loading="lazy" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" width="256"/></span><span class="sr-only">Paso 04</span><div><h4>Revisás la propuesta</h4><p>El asesor te explica condiciones, documentación y alternativas de financiación antes de avanzar.</p></div></li>
-<li><span aria-hidden="true" class="journey-step-logo"><img alt="" decoding="async" height="256" loading="lazy" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" width="256"/></span><span class="sr-only">Paso 05</span><div><h4>Coordinás el próximo paso</h4><p>Si la propuesta te cierra, el equipo confirma la operación y el calendario de entrega.</p></div></li>
+<li><span aria-hidden="true" class="journey-step-logo"><img alt="" decoding="async" height="256" loading="lazy" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" width="256"/></span><span class="sr-only">Paso 01</span><div><h3>Nos contás qué tenés</h3><p>Marca, modelo, año y kilometraje por WhatsApp o en el concesionario.</p></div></li>
+<li><span aria-hidden="true" class="journey-step-logo"><img alt="" decoding="async" height="256" loading="lazy" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" width="256"/></span><span class="sr-only">Paso 02</span><div><h3>Tasamos en el momento</h3><p>Un asesor revisa el vehículo y te da un valor de referencia real.</p></div></li>
+<li><span aria-hidden="true" class="journey-step-logo"><img alt="" decoding="async" height="256" loading="lazy" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" width="256"/></span><span class="sr-only">Paso 03</span><div><h3>Definís tu Toyota</h3><p>Ese valor se descuenta de un 0km o de un usado certificado de nuestro stock.</p></div></li>
+<li><span aria-hidden="true" class="journey-step-logo"><img alt="" decoding="async" height="256" loading="lazy" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" width="256"/></span><span class="sr-only">Paso 04</span><div><h3>Revisás la propuesta</h3><p>El asesor te explica condiciones, documentación y alternativas de financiación antes de avanzar.</p></div></li>
+<li><span aria-hidden="true" class="journey-step-logo"><img alt="" decoding="async" height="256" loading="lazy" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" width="256"/></span><span class="sr-only">Paso 05</span><div><h3>Coordinás el próximo paso</h3><p>Si la propuesta te cierra, el equipo confirma la operación y el calendario de entrega.</p></div></li>
 </ol>
 </div>
 <div class="canje-card">
@@ -2005,12 +2035,12 @@ html,body{overflow-x:clip}
 <div class="wrap">
 <div aria-label="Información del concesionario" class="fgrid">
 <div>
-<h4>Piñeyro y Moscatelli S.R.L.</h4>
+<h3>Piñeyro y Moscatelli S.R.L.</h3>
 <p>9 de Julio 1624, Concepción del Uruguay, Entre Ríos.</p>
 <p>Concesionario Oficial Toyota.</p>
 </div>
 <div>
-<h4>Explorar</h4>
+<h3>Explorar</h3>
 <a href="#gama">Modelos 0 km</a>
 <a href="#usados">Usados</a>
 <a href="#canje">Plan canje</a>
@@ -2018,14 +2048,14 @@ html,body{overflow-x:clip}
 <a href="#faq">Preguntas frecuentes</a>
 </div>
 <div>
-<h4>Postventa</h4>
+<h3>Postventa</h3>
 <a href="#servicios">Service oficial</a>
 <a href="#repuestos">Repuestos genuinos</a>
 <a href="#accesorios">Accesorios</a>
 <a href="#neumaticos">Neumáticos Bridgestone</a>
 </div>
 <div>
-<h4>Contacto directo</h4>
+<h3>Contacto directo</h3>
 <a class="social-link" href="https://www.instagram.com/toyotacdelu/?hl=es" rel="noopener noreferrer" target="_blank">Instagram @toyotacdelu</a>
 <a href="tel:+543442473453">Turnos: 03442 47-3453</a>
 <a href="tel:+543442677433">Repuestos: 03442 67-7433</a>
@@ -2898,8 +2928,22 @@ document.addEventListener("DOMContentLoaded", function(){
   if(faq){var original=Array.from(faq.querySelectorAll('.faq-item'));var tabs=document.createElement('div');tabs.className='faq-tabs';tabs.setAttribute('role','tablist');tabs.innerHTML='<button class="faq-tab active" aria-selected="true" role="tab" data-faq-filter="todos" type="button">Todas</button><button class="faq-tab" aria-selected="false" role="tab" data-faq-filter="0km" type="button">0 km</button><button class="faq-tab" aria-selected="false" role="tab" data-faq-filter="usados" type="button">Usados</button><button class="faq-tab" aria-selected="false" role="tab" data-faq-filter="financiacion" type="button">Financiación</button><button class="faq-tab" aria-selected="false" role="tab" data-faq-filter="postventa" type="button">Postventa</button>';faq.parentNode.insertBefore(tabs,faq);var note=document.createElement('p');note.className='faq-category-note';note.textContent='Filtrá las respuestas según el momento de tu compra.';faq.parentNode.insertBefore(note,faq);var keys=['0km','postventa','postventa','usados','financiacion','financiacion','usados','postventa','0km','postventa','postventa','0km'];if(original.length!==keys.length)console.warn('FAQ category count mismatch',original.length,keys.length);original.forEach(function(item,i){item.dataset.faqCategory=item.dataset.faqCategory||keys[i]||'postventa';});tabs.querySelectorAll('.faq-tab').forEach(function(tab){tab.addEventListener('click',function(){tabs.querySelectorAll('.faq-tab').forEach(function(x){x.classList.remove('active');x.setAttribute('aria-selected','false');});this.classList.add('active');this.setAttribute('aria-selected','true');var wanted=this.dataset.faqFilter;original.forEach(function(item){var show=wanted==='todos'||item.dataset.faqCategory===wanted;item.hidden=!show;if(show&&window.gsap&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){gsap.fromTo(item,{opacity:.25,y:8},{opacity:1,y:0,duration:.28,overwrite:'auto'});}});});});}
 });
 </script>
+<script id="deferred-motion-bootstrap">
+(function(){
+  var queued=false,started=false;
+  window.__toyotaScheduleMotion=function(fn){
+    if(started)return;
+    var run=function(){if(started)return;started=true;fn();};
+    var idle=window.requestIdleCallback||function(cb){setTimeout(cb,180);};
+    idle(run,{timeout:1200});
+    window.addEventListener("scroll",run,{once:true,passive:true});
+    window.addEventListener("pointerdown",run,{once:true,passive:true});
+    window.addEventListener("keydown",run,{once:true,passive:true});
+  };
+})();
+</script>
 <script id="consolidated-foundation-motion-runtime">
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function(){window.__toyotaScheduleMotion(function(){
   (function(){
   "use strict";
   var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -2994,9 +3038,10 @@ document.addEventListener("DOMContentLoaded", function(){
   // and a custom cursor would add visual noise rather than improve the dealership decision path.
   })();
 });
+});
 </script>
 <script id="consolidated-gsap-motion-runtime">
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function(){window.__toyotaScheduleMotion(function(){
   (function(){
 
   "use strict";
@@ -3242,7 +3287,7 @@ document.addEventListener("DOMContentLoaded", function(){
     // Final impression: the footer arrives as one composed object, then its channels settle.
     var footer=document.querySelector("footer");
     if(footer){
-      var footerBits=footer.querySelectorAll("h4, p, a, .footer-note, .fgrid > *");
+      var footerBits=footer.querySelectorAll("h3, p, a, .footer-note, .fgrid > *");
       gsap.set(footer,{opacity:0,y:MOTION.distance*.65});
       gsap.set(footerBits,{opacity:0,y:MOTION.distance*.35});
       gsap.to(footer,{opacity:1,y:0,duration:MOTION.slow,ease:ease,scrollTrigger:{trigger:footer,start:"top 88%",once:true}});
@@ -3256,6 +3301,7 @@ document.addEventListener("DOMContentLoaded", function(){
   window.addEventListener("pagehide",window.__destroyToyotaGalacticMotion,{once:true});
   })();
 
+});
 });
 </script>
 <script id="page-health-check">
