@@ -2288,6 +2288,13 @@ document.addEventListener("DOMContentLoaded", function(){
     suv: 'SUV',
     sedan: 'Sedán'
   };
+  // Mapa de fotos: para incorporar una imagen real, reemplazar solo foto: con la ruta 800px.
+  // El render deriva automáticamente las variantes -480.avif y -480.webp cuando existen.
+  var PLACEHOLDER_SILHOUETTES = {
+    sedan: '<svg class="model-placeholder-vehicle" viewBox="0 0 240 112" focusable="false" aria-hidden="true"><path d="M22 78h12l7-27 24-19h72l27 19 8 27h12M43 52h101M67 32l-7 20m69-20 8 20M47 78a10 10 0 1 0 20 0m103 0a10 10 0 1 0 20 0M81 78h71" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/><circle cx="57" cy="78" r="3" fill="currentColor"/><circle cx="173" cy="78" r="3" fill="currentColor"/></svg>',
+    suv: '<svg class="model-placeholder-vehicle" viewBox="0 0 240 112" focusable="false" aria-hidden="true"><path d="M20 79h13l9-34 22-18h78l30 18 9 34h19M44 47h127M67 27l-8 20m72-20 10 20M45 79a11 11 0 1 0 22 0m101 0a11 11 0 1 0 22 0M79 79h78" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/><circle cx="56" cy="79" r="3" fill="currentColor"/><circle cx="179" cy="79" r="3" fill="currentColor"/></svg>',
+    pickup: '<svg class="model-placeholder-vehicle" viewBox="0 0 240 112" focusable="false" aria-hidden="true"><path d="M18 78h12l8-30 22-17h59l20 17h36l20 12v18h15M42 48h74m-53-17-8 17m47-17 8 17M40 78a10 10 0 1 0 20 0m112 0a10 10 0 1 0 20 0M73 78h91" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/><circle cx="50" cy="78" r="3" fill="currentColor"/><circle cx="162" cy="78" r="3" fill="currentColor"/></svg>'
+  };
 
   var gamaGrid = document.getElementById("gama-grid");
   MODELOS_TOYOTA.forEach(function(m){
@@ -2297,7 +2304,7 @@ document.addEventListener("DOMContentLoaded", function(){
     el.setAttribute("data-model", m.nombre);
     el.innerHTML =
       (m.badge ? '<span class="badge">' + m.badge + '</span>' : '') +
-      (m.foto ? '<picture class="model-picture"><source type="image/avif" srcset="' + m.foto.replace(/-800\.webp$/, '-800.avif') + ' 800w, ' + m.foto.replace(/-800\.webp$/, '-480.avif') + ' 480w" sizes="(max-width: 600px) 92vw, 280px"><source type="image/webp" srcset="' + m.foto.replace(/-800\.webp$/, '-480.webp') + ' 480w, ' + m.foto + ' 800w" sizes="(max-width: 600px) 92vw, 280px"><img class="model-photo" src="' + m.foto + '" alt="Toyota ' + m.nombre + '" loading="lazy" decoding="async" width="' + m.fotoW + '" height="' + m.fotoH + '"></picture><span class="model-image-disclaimer">Imagen ilustrativa · confirmá unidad y versión</span>' : '<div class="model-picture model-placeholder"><img src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" aria-hidden="true"><strong>' + m.nombre + '</strong><span>' + ICONOS[m.tipo] + '</span></div>') +
+      (m.foto ? '<picture class="model-picture"><source type="image/avif" srcset="' + m.foto.replace(/-800\.webp$/, '-800.avif') + ' 800w, ' + m.foto.replace(/-800\.webp$/, '-480.avif') + ' 480w" sizes="(max-width: 600px) 92vw, 280px"><source type="image/webp" srcset="' + m.foto.replace(/-800\.webp$/, '-480.webp') + ' 480w, ' + m.foto + ' 800w" sizes="(max-width: 600px) 92vw, 280px"><img class="model-photo" src="' + m.foto + '" alt="Toyota ' + m.nombre + '" loading="lazy" decoding="async" width="' + m.fotoW + '" height="' + m.fotoH + '"></picture><span class="model-image-disclaimer">Imagen ilustrativa · confirmar unidad y versión</span>' : '<div class="model-picture model-placeholder" role="img" aria-label="Toyota ' + m.nombre + ', silueta ' + ICONOS[m.tipo] + '"><div class="model-placeholder-art">' + PLACEHOLDER_SILHOUETTES[m.tipo] + '</div><strong>' + m.nombre + '</strong><span>' + ICONOS[m.tipo] + '</span></div>') +
       '<h3>' + m.nombre + '</h3>' +
       '<p>' + m.desc + '</p>' +
       '<div style="display:flex;gap:12px;border-top:1px solid var(--border);padding-top:11px;"><a target="_blank" rel="noopener noreferrer" href="' + wa("ventas", "Hola! Quiero consultar por la " + m.nombre + ".") + '" style="border:0;padding:0;flex:1;">Consultar <span>&rsaquo;</span></a><button class="compare-btn" type="button" data-compare-model="' + m.nombre + '" style="border:0;background:none;color:var(--muted);font:inherit;cursor:pointer;">Comparar</button></div>';
@@ -3583,5 +3590,16 @@ document.addEventListener('DOMContentLoaded',function(){
 <noscript><div class="noscript-contact">JavaScript está desactivado. Llamanos al <a href="tel:+543442473453">03442 47-3453</a>, escribinos por <a href="https://wa.me/5493442473453">WhatsApp</a> o visitanos en 9 de Julio 1624, Concepción del Uruguay.</div></noscript>
 <style id="new-mobile-polish">@media(max-width:760px){.hero-rail-contact{display:none!important}}@media(max-width:480px){.brand .b1{display:block;max-width:18ch;line-height:1.12}.brand .b2{display:none!important}}</style>
 <style id="new-mobile-polish">@media(max-width:760px){.hero-rail-contact{display:none!important}}@media(max-width:480px){.brand .b1{display:block;max-width:18ch;line-height:1.12}.brand .b2{display:none!important}}</style>
+<style id="model-card-placeholder-polish">
+#gama .model-picture{height:244px;padding:16px;border:1px solid var(--border);background:linear-gradient(145deg,#f7f9f9,#e9edef);}
+#gama .model-picture .model-photo{height:100%;width:100%;object-fit:contain;object-position:50% 50%;}
+#gama .model-placeholder{height:244px;padding:16px;display:grid;grid-template-rows:minmax(0,1fr) auto auto;align-content:center;gap:6px;border-radius:12px;overflow:hidden;background:linear-gradient(145deg,#f7f9f9,#e9edef);color:var(--ink);text-align:center;}
+#gama .model-placeholder:after{content:none;}
+#gama .model-placeholder-art{display:grid;place-items:center;min-height:0;width:100%;color:#66737b;}
+#gama .model-placeholder-vehicle{display:block;width:min(82%,220px);height:auto;max-height:142px;}
+#gama .model-placeholder strong{font:700 clamp(22px,2.5vw,30px)/1.05 var(--display);letter-spacing:-.035em;color:var(--ink);}
+#gama .model-placeholder span{font:700 10px var(--display);letter-spacing:.18em;text-transform:uppercase;color:var(--toyota-red);}
+@media(max-width:700px){#gama .model-picture,#gama .model-placeholder{height:220px;padding:14px}#gama .model-placeholder-vehicle{max-height:122px;}}
+</style>
 </body>
 </html>
