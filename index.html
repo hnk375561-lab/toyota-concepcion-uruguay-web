@@ -41,12 +41,11 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
 <link href="toyota-sharp-assets/apple-touch-icon.png" rel="apple-touch-icon"/>
 <link as="font" crossorigin="" href="toyota-sharp-assets/fonts/manrope-700-latin.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="toyota-sharp-assets/fonts/ibm-plex-sans-400-latin.woff2" rel="preload" type="font/woff2"/>
-<link as="image" fetchpriority="high" href="toyota-sharp-assets/hero-sw4-desktop-1800.avif" media="(min-width: 761px)" rel="preload" type="image/avif"/>
-<link as="image" fetchpriority="high" href="toyota-sharp-assets/hero-sw4-mobile-4to5-640.avif" media="(max-width: 760px)" rel="preload" type="image/avif"/>
+<link as="image" fetchpriority="high" href="toyota-sharp-assets/hero-sw4-desktop-1800.avif" imagesizes="68vw" imagesrcset="toyota-sharp-assets/hero-sw4-desktop-1800.avif 1800w" media="(min-width: 761px)" rel="preload" type="image/avif"/>
+<link as="image" fetchpriority="high" href="toyota-sharp-assets/hero-sw4-mobile-4to5-640.avif" imagesizes="100vw" imagesrcset="toyota-sharp-assets/hero-sw4-mobile-4to5-640.avif 640w" media="(max-width: 760px)" rel="preload" type="image/avif"/>
 <link href="toyota-sharp-assets/fonts.css" rel="stylesheet"/>
-<link crossorigin="" href="https://cdnjs.cloudflare.com" rel="preconnect"/>
-<script defer="" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js"></script>
-<script defer="" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js"></script>
+<script defer="" src="toyota-sharp-assets/vendor/gsap-3.15.0.min.js"></script>
+<script defer="" src="toyota-sharp-assets/vendor/ScrollTrigger-3.15.0.min.js"></script>
 <style id="lenis-essential-css">
 html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopped{overflow:clip}.lenis [data-lenis-prevent],.lenis [data-lenis-prevent-wheel],.lenis [data-lenis-prevent-touch],.lenis [data-lenis-prevent-vertical],.lenis [data-lenis-prevent-horizontal]{overscroll-behavior:contain}.lenis.lenis-smooth iframe{pointer-events:none}.lenis.lenis-autoToggle{transition-property:overflow;transition-duration:1ms;transition-behavior:allow-discrete}
 </style>
@@ -59,7 +58,7 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
     if(window.Lenis||window.__toyotaLenisLoading)return;
     window.__toyotaLenisLoading=true;
     var tag=document.createElement("script");
-    tag.src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js";
+    tag.src="toyota-sharp-assets/vendor/lenis-1.3.26.min.js";
     tag.async=true;
     tag.onload=function(){window.__toyotaLenisLoading=false;if(window.__initToyotaLenis)window.__initToyotaLenis();};
     tag.onerror=function(){window.__toyotaLenisLoading=false;};
@@ -77,7 +76,7 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
     if(promise)return promise;
     promise=new Promise(function(resolve,reject){
       var tag=document.createElement("script");
-      tag.src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/Flip.min.js";
+      tag.src="toyota-sharp-assets/vendor/Flip-3.15.0.min.js";
       tag.async=true;
       tag.onload=function(){resolve(window.Flip);};
       tag.onerror=reject;
@@ -1512,7 +1511,7 @@ html,body{overflow-x:clip}
 <button aria-pressed="false" class="filterbtn" data-filter="suv" type="button">SUV <span class="filter-count" data-count="suv"></span></button>
 <button aria-pressed="false" class="filterbtn" data-filter="sedan" type="button">Sedanes <span class="filter-count" data-count="sedan"></span></button>
 </div>
-<p class="gama-image-note" role="note"><strong>Referencia visual:</strong> algunas fotos son ilustrativas y pueden no corresponder exactamente al modelo, versión, año o equipamiento mostrado. La concesionaria aún no verificó material propio para cada vehículo; confirmá la unidad disponible con el equipo comercial.</p>
+<p class="gama-image-note" role="note"><strong>Referencia visual:</strong> confirmá con nuestro equipo la versión, equipamiento y disponibilidad de cada vehículo.</p>
 <div class="gama-grid" id="gama-grid"><!-- se completa por JS --></div>
 <p class="filter-empty" hidden="" id="filterEmpty">No hay modelos en esta categoría. Volvé a <button class="inline-reset-filter" type="button">ver toda la gama</button>.</p>
 </div>
@@ -1533,7 +1532,7 @@ html,body{overflow-x:clip}
 </label>
 </div>
 <div style="background:rgba(235,10,30,0.06); border-left:3px solid var(--toyota-red); padding:12px 14px; margin:20px 0; border-radius:4px; font-size:14px; color:var(--ink);">
-<strong>Especificaciones de referencia:</strong> Los datos mostrados son ilustrativos basados en fichas técnicas oficiales Toyota Argentina (agosto 2026). Confirma disponibilidad, equipamiento y precios con el equipo comercial.
+<strong>Especificaciones de referencia:</strong> Conocé las características de cada modelo y confirmá disponibilidad, equipamiento y precios con nuestro equipo.
           </div>
 <div aria-atomic="true" aria-live="polite" class="compare-result" hidden="" id="compareResult">
 <div class="compare-table" id="compareTable"></div>
@@ -1606,20 +1605,20 @@ html,body{overflow-x:clip}
 <div class="wrap related-row"><span>También te puede interesar:</span><a class="btn primary" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20cotizar%20mi%20usado%20como%20parte%20de%20pago%20de%20un%20Toyota." rel="noopener noreferrer" target="_blank">Cotizá tu usado ↗</a><a href="#gama">Ver modelos 0 km</a><a href="#usados">Ver usados</a><a href="#financiacion">Simular financiación</a></div>
 </section></div><div aria-labelledby="tab-usados" class="tab-panel" hidden="True" id="panel-usados" role="tabpanel"><section class="ecosystem-section premium-reveal" id="usados">
 <div class="wrap">
-<div class="section-head split-head"><div><span class="tag">Usados</span><h2>Tu próximo vehículo también puede empezar acá.</h2><p>Una estructura preparada para publicar unidades reales cuando el concesionario confirme stock, datos y fotografías.</p></div><a class="text-link" href="#contacto">Consultar disponibilidad <span>↗</span></a></div>
+<div class="section-head split-head"><div><span class="tag">Usados</span><h2>Tu próximo vehículo también puede empezar acá.</h2><p>Consultá el stock de usados disponible hoy y encontrá una opción que se adapte a vos.</p></div><a class="text-link" href="#contacto">Consultar disponibilidad <span>↗</span></a></div>
 <div class="inventory-toolbar"><div><strong>Stock de usados</strong><span>Sin unidades publicadas por el momento</span></div></div>
 <div class="used-grid" id="usedGrid"></div>
-<div class="empty-state" id="usedEmpty"><strong>Todavía no hay unidades usadas publicadas en la web.</strong><span>El stock rota seguido y se confirma directamente con el concesionario: contanos qué tipo de vehículo buscás y te avisamos apenas haya algo disponible.</span><form aria-label="Consultar por un usado" class="used-interest-form" id="usedInterestForm"><label for="usedInterest">¿Qué tipo de usado buscás?</label><div class="used-interest-row"><select id="usedInterest"><option>Toyota usado</option><option>Auto compacto</option><option>SUV</option><option>Pick-up</option><option>Todavía no lo sé</option></select><button class="btn primary" type="submit">Avisarme por WhatsApp ↗</button></div><p aria-live="polite" class="form-note" id="usedInterestNote" role="status">No guardamos tus datos en esta página: se abre una consulta preparada para el equipo.</p></form></div>
+<div class="empty-state" id="usedEmpty"><strong>Encontrá tu próximo usado.</strong><span>El stock rota seguido y se confirma directamente con el concesionario: contanos qué tipo de vehículo buscás y te avisamos apenas haya algo disponible.</span><form aria-label="Consultar por un usado" class="used-interest-form" id="usedInterestForm"><label for="usedInterest">¿Qué tipo de usado buscás?</label><div class="used-interest-row"><select id="usedInterest"><option>Toyota usado</option><option>Auto compacto</option><option>SUV</option><option>Pick-up</option><option>Todavía no lo sé</option></select><button class="btn primary" type="submit">Avisarme por WhatsApp ↗</button></div><p aria-live="polite" class="form-note" id="usedInterestNote" role="status">No guardamos tus datos en esta página: se abre una consulta preparada para el equipo.</p></form></div>
 </div>
-</section></div><div aria-labelledby="tab-novedades" class="tab-panel" hidden="True" id="panel-novedades" role="tabpanel"><section class="expansion-section premium-reveal" id="novedades"><div class="wrap"><div class="section-head"><div><span class="tag gold">Novedades y promociones</span><h2>Consultá lo vigente antes de decidir.</h2><p>No se publican promociones inventadas ni condiciones desactualizadas. El equipo confirma las campañas, bonificaciones y líneas disponibles al momento de la consulta.</p></div></div>
+</section></div><div aria-labelledby="tab-novedades" class="tab-panel" hidden="True" id="panel-novedades" role="tabpanel"><section class="expansion-section premium-reveal" id="novedades"><div class="wrap"><div class="section-head"><div><span class="tag gold">Novedades y promociones</span><h2>Consultá lo vigente antes de decidir.</h2><p>Conocé las promociones vigentes, bonificaciones y opciones de financiación disponibles para tu próximo Toyota.</p></div></div>
 <div aria-label="Categorías habituales de promoción" class="promo-categories">
 <div class="promo-cat"><span class="promo-cat-ico">%</span><div><strong>Tasa promocional</strong><p>Líneas de financiación con tasa preferencial en modelos y plazos puntuales.</p></div></div>
 <div class="promo-cat"><span class="promo-cat-ico">⇄</span><div><strong>Plan canje potenciado</strong><p>Bonificación adicional al entregar tu usado como parte de pago.</p></div></div>
 <div class="promo-cat"><span class="promo-cat-ico">⚡</span><div><strong>Entrega inmediata</strong><p>Beneficios para unidades con stock disponible para entregar ya.</p></div></div>
 <div class="promo-cat"><span class="promo-cat-ico">＋</span><div><strong>Accesorios de bonificación</strong><p>Equipamiento o accesorios incluidos según la campaña vigente del mes.</p></div></div>
-<p class="promo-categories-note">Categorías ilustrativas de lo que suele ofrecer la red oficial Toyota. Cuáles están activas, en qué modelos y con qué condiciones se confirma directamente con el concesionario.</p>
+<p class="promo-categories-note">Consultá qué beneficios están activos, para qué modelos y bajo qué condiciones.</p>
 </div>
-<div class="expansion-card promo-card-centered"><div class="expansion-icon">↗</div><h3>Promociones vigentes</h3><p>Espacio preparado para comunicar ofertas reales cuando sean confirmadas por el concesionario.</p><div class="cta-lite"><a class="btn primary" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20consultar%20las%20promociones%20vigentes.%20Por%20favor%20indiquen%20modelos%20y%20condiciones.%20" rel="noopener noreferrer" target="_blank">Consultar promociones ↗</a><a class="btn" href="#gama">Ver modelos ↗</a></div></div></div></section></div><div aria-labelledby="tab-como-comprar" class="tab-panel" hidden="True" id="panel-como-comprar" role="tabpanel"><section class="premium-reveal" id="como-comprar">
+<div class="expansion-card promo-card-centered"><div class="expansion-icon">↗</div><h3>Promociones vigentes</h3><p>Conocé las ofertas vigentes y consultá modelos y condiciones por WhatsApp.</p><div class="cta-lite"><a class="btn primary" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20consultar%20las%20promociones%20vigentes.%20Por%20favor%20indiquen%20modelos%20y%20condiciones.%20" rel="noopener noreferrer" target="_blank">Consultar promociones ↗</a><a class="btn" href="#gama">Ver modelos ↗</a></div></div></div></section></div><div aria-labelledby="tab-como-comprar" class="tab-panel" hidden="True" id="panel-como-comprar" role="tabpanel"><section class="premium-reveal" id="como-comprar">
 <div class="wrap journey-premium"><div><span class="tag">Cómo comprar</span><h2>Un camino simple, con la información en cada paso.</h2><p class="section-lead">No hace falta resolver todo de una vez. Empezá por el modelo o por tu usado y avanzamos con el equipo.</p><div class="journey-line"><article><span aria-hidden="true" class="journey-step-logo"><img alt="" decoding="async" height="256" loading="lazy" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" width="256"/></span><span class="sr-only">Paso 01</span><div><strong>Explorá</strong><span>Conocé la gama y elegí el tipo de vehículo que te interesa.</span></div></article><article><span aria-hidden="true" class="journey-step-logo"><img alt="" decoding="async" height="256" loading="lazy" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" width="256"/></span><span class="sr-only">Paso 02</span><div><strong>Consultá</strong><span>Pedí disponibilidad, versiones y una respuesta contextual por WhatsApp.</span></div></article><article><span aria-hidden="true" class="journey-step-logo"><img alt="" decoding="async" height="256" loading="lazy" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" width="256"/></span><span class="sr-only">Paso 03</span><div><strong>Definí cómo comprar</strong><span>Podés consultar financiación, plan canje o una operación al contado.</span></div></article><article><span aria-hidden="true" class="journey-step-logo"><img alt="" decoding="async" height="256" loading="lazy" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" width="256"/></span><span class="sr-only">Paso 04</span><div><strong>Coordiná la entrega</strong><span>El equipo confirma documentación, condiciones y próximos pasos.</span></div></article></div><a class="btn primary" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20hablar%20con%20un%20asesor%20para%20comprar%20un%20Toyota." rel="noopener noreferrer" target="_blank">Hablar con un asesor ↗</a></div><aside class="journey-aside"><span class="section-kicker">Atajo inteligente</span><h3>¿Ya tenés un vehículo?</h3><p>Entrá al plan canje y prepará una consulta con marca, modelo, año y kilometraje. No calcula un precio automático: la revisión la hace un asesor.</p><a class="btn" href="#canje">Cotizá tu usado ↗</a><a class="btn ghost" href="#financiacion">Ver financiación ↗</a><div class="journey-surprise"><strong>Tu operación, en una sola conversación</strong><p>Elegí modelo, plan canje o financiación y el equipo recibe el contexto correcto desde el primer mensaje.</p><a href="https://wa.me/5493442473453?text=Hola!%20Quiero%20que%20me%20orienten%20para%20elegir%20mi%20Toyota%20y%20la%20mejor%20forma%20de%20compra." rel="noopener noreferrer" target="_blank">Comenzar mi recorrido ↗</a></div><div class="journey-mini-map"><div aria-hidden="true" class="map-static-preview"><span aria-hidden="true" class="map-static-grid"></span><span aria-hidden="true" class="map-static-pin">●</span><span class="map-static-label">9 de Julio 1624<br/><small>Concepción del Uruguay</small></span></div><a aria-label="Abrir la ubicación exacta del concesionario en Google Maps" class="journey-mini-map-cta" href="https://www.google.com/maps/search/?api=1&amp;query=9%20de%20Julio%201624%2C%20Concepci%C3%B3n%20del%20Uruguay%2C%20Entre%20R%C3%ADos" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" class="ui-icon" viewbox="0 0 24 24"><path d="M4 5.5 9 3l6 3 5-2.5v15L15 21l-6-3-5 2.5v-15Z"></path><path d="M9 3v15M15 6v15"></path></svg><strong>Ver ubicación en el mapa</strong><small>9 de Julio 1624 ↗</small></a></div><div class="journey-quicklinks"><a href="#ubicacion">Cómo llegar ↗</a><a href="tel:+543442473453">Llamar al concesionario ↗</a><a href="#faq">Preguntas frecuentes ↗</a></div></aside></div>
 </section><section aria-labelledby="paymentPathsTitle" class="premium-reveal payment-paths-section" id="formas-de-pago">
 <div class="wrap">
@@ -1662,7 +1661,7 @@ html,body{overflow-x:clip}
 <figure><picture><source srcset="toyota-sharp-assets/enhanced-64e8966f6f8a-800.webp" type="image/webp"/><img alt="Medalla de producto de confianza para repuestos Toyota" data-source="redes-toyota" decoding="async" height="779" loading="lazy" src="toyota-sharp-assets/enhanced-64e8966f6f8a-800.webp" width="800"/></picture><figcaption>Repuestos, producto de confianza</figcaption></figure>
 <figure><picture><source srcset="toyota-sharp-assets/enhanced-c81e41382a00-800.webp" type="image/webp"/><img alt="Texto sobre repuestos originales Toyota" data-source="redes-toyota" decoding="async" height="671" loading="lazy" src="toyota-sharp-assets/enhanced-c81e41382a00-800.webp" width="800"/></picture><figcaption>Por qué elegir repuestos originales</figcaption></figure>
 </div>
-<p class="source-note">Fuente: publicaciones de Instagram @toyotacdelu. Consultar disponibilidad del repuesto que necesitás.</p><a class="parts-consult-cta btn primary" href="https://wa.me/5493442677433?text=Hola!%20Quiero%20consultar%20por%20repuestos%20originales.%20" rel="noopener noreferrer" target="_blank">Consultar repuestos por WhatsApp ↗</a>
+<p class="source-note">Consultá por el repuesto original que necesitás y confirmá su disponibilidad por WhatsApp.</p><a class="parts-consult-cta btn primary" href="https://wa.me/5493442677433?text=Hola!%20Quiero%20consultar%20por%20repuestos%20originales.%20" rel="noopener noreferrer" target="_blank">Consultar repuestos por WhatsApp ↗</a>
 </div>
 </div>
 </section></div><div aria-labelledby="tab-neumaticos" class="tab-panel" hidden="True" id="panel-neumaticos" role="tabpanel"><section class="premium-reveal" id="neumaticos">
@@ -1682,7 +1681,7 @@ html,body{overflow-x:clip}
 <figure><picture><source srcset="toyota-sharp-assets/enhanced-eb51882d797d-800.webp" type="image/webp"/><img alt="Kit de neumáticos Bridgestone Ecopia" data-source="redes-toyota" decoding="async" height="794" loading="lazy" src="toyota-sharp-assets/enhanced-eb51882d797d-800.webp" width="800"/></picture><figcaption>Kit Bridgestone Ecopia</figcaption></figure>
 <figure><picture><source srcset="toyota-sharp-assets/enhanced-10b9781f8b0e-800.webp" type="image/webp"/><img alt="Depósito de neumáticos del concesionario" data-source="redes-toyota" decoding="async" height="800" loading="lazy" src="toyota-sharp-assets/enhanced-10b9781f8b0e-800.webp" width="565"/></picture><figcaption>Depósito de neumáticos</figcaption></figure>
 </div>
-<p class="source-note">Fuente: publicaciones de Instagram @toyotacdelu. Confirmar medidas y disponibilidad de neumáticos con el concesionario.</p>
+<p class="source-note">Consultá medidas, marcas y disponibilidad de neumáticos con nuestro equipo.</p>
 </div>
 <div class="related-row" style="margin-top:8px;"><span>También te puede interesar:</span><a href="#servicios">Pedir turno de service</a><a href="#repuestos">Repuestos originales</a><a href="#contacto">Consultar por WhatsApp</a></div>
 </div>
@@ -1702,7 +1701,7 @@ html,body{overflow-x:clip}
 <figure><picture><source srcset="toyota-sharp-assets/enhanced-707dc0a2e3e2-800.webp" type="image/webp"/><img alt="Portallaves de cuero Toyota" data-accessory-category="interior" data-source="redes-toyota" decoding="async" height="800" loading="lazy" src="toyota-sharp-assets/enhanced-707dc0a2e3e2-800.webp" width="552"/></picture><figcaption>Portallaves Toyota</figcaption></figure>
 <figure><picture><source srcset="toyota-sharp-assets/enhanced-4ebd96e1ff9c-800.webp" type="image/webp"/><img alt="Billetera de cuero Toyota" data-accessory-category="interior" data-source="redes-toyota" decoding="async" height="800" loading="lazy" src="toyota-sharp-assets/enhanced-4ebd96e1ff9c-800.webp" width="556"/></picture><figcaption>Billetera de cuero Toyota</figcaption></figure>
 </div>
-<p class="source-note">Fuente: publicaciones y destacados de Instagram @toyotacdelu. Confirmar con el concesionario qué accesorios y merchandising siguen vigentes antes de publicar.</p>
+<p class="source-note">Consultá por accesorios y merchandising disponibles para tu Toyota.</p>
 </div>
 </div>
 </section></div><div aria-labelledby="tab-taller" class="tab-panel" hidden="True" id="panel-taller" role="tabpanel"><section class="ecosystem-section premium-reveal" id="taller">
@@ -1724,7 +1723,7 @@ html,body{overflow-x:clip}
 <figure><picture><source srcset="toyota-sharp-assets/enhanced-ad8b147fb69f-800.webp" type="image/webp"/><img alt="Revisión de los 1000 km" data-source="redes-toyota" decoding="async" height="750" loading="lazy" src="toyota-sharp-assets/enhanced-ad8b147fb69f-800.webp" width="800"/></picture><figcaption>Revisión de los 1.000 km</figcaption></figure>
 <figure><picture><source srcset="toyota-sharp-assets/enhanced-3545495d2aea-800.webp" type="image/webp"/><img alt="Campaña especial de posventa Toyota" data-source="redes-toyota" decoding="async" height="767" loading="lazy" src="toyota-sharp-assets/enhanced-3545495d2aea-800.webp" width="800"/></picture><figcaption>Campañas especiales de posventa</figcaption></figure>
 </div>
-<p class="source-note">Fuente: publicaciones de Instagram @toyotacdelu. Imágenes ilustrativas del taller y su equipamiento.</p>
+<p class="source-note">Conocé nuestro servicio oficial y consultá por turnos y trabajos disponibles.</p>
 </div>
 </div>
 </section><section class="expansion-dark premium-reveal" id="mantenimiento">
@@ -1871,7 +1870,7 @@ html,body{overflow-x:clip}
 <figcaption>Portón de acceso al taller</figcaption></figure>
 </div></div></section></div><div aria-labelledby="tab-testimonios" class="tab-panel" hidden="True" id="panel-testimonios" role="tabpanel"><section class="real-reviews-section" id="testimonios">
 <div class="wrap">
-<div class="section-head tight"><div><span class="tag gold">Opiniones reales</span><h2>Consultá las reseñas verificadas</h2><p>No mostramos testimonios inventados ni citas sin atribución. Las opiniones actuales deben consultarse directamente en la ficha pública del concesionario.</p></div></div>
+<div class="section-head tight"><div><span class="tag gold">Opiniones reales</span><h2>Consultá las reseñas verificadas</h2><p>Conocé las reseñas verificadas de quienes ya eligieron nuestro servicio y atención Toyota.</p></div></div>
 <div class="real-reviews-card"><div><strong>Reseñas del concesionario en Google</strong><p>Se abrirá la ficha pública para que puedas leer las reseñas y calificaciones reales, sin intermediarios.</p></div><a class="btn primary" href="https://www.google.com/maps/search/?api=1&amp;query=9%20de%20Julio%201624%2C%20Concepci%C3%B3n%20del%20Uruguay%2C%20Entre%20R%C3%ADos" rel="noopener noreferrer" target="_blank">Ver reseñas reales en Google ↗</a></div>
 </div>
 </section></div></div></section>
@@ -3574,5 +3573,14 @@ document.addEventListener('DOMContentLoaded',function(){
 .hero-editorial-vehicle img{transform:scale(1)!important}
 .compare-head{display:block!important}
 </style>
+<style id="polish-accessibility">
+/* Public-facing final polish: keep keyboard focus and touch targets visible. */
+:where(a,button,input,select,textarea):focus-visible{outline:3px solid #D4AF37;outline-offset:3px}
+@media(min-width:761px){.hero-rail-label,.hero-rail-detail,.hero-rail-contact{font-size:max(11px,1em);line-height:1.45;color:#fff!important;text-shadow:0 1px 2px rgba(0,0,0,.7)}}
+@media(max-width:760px){.hero-editorial-rail{display:none!important}}
+@media(max-width:760px){.btn,.editorial-cta,.editorial-text-link,.filterbtn,.faq-q,.loc-btn{min-height:44px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.001ms!important}.hero-editorial-vehicle,.hero-editorial-vehicle img{transform:none!important;animation:none!important;transition:none!important}}
+</style>
+<noscript><div class="noscript-contact">JavaScript está desactivado. Llamanos al <a href="tel:+543442473453">03442 47-3453</a>, escribinos por <a href="https://wa.me/5493442473453">WhatsApp</a> o visitanos en 9 de Julio 1624, Concepción del Uruguay.</div></noscript>
 </body>
 </html>
