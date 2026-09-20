@@ -736,68 +736,7 @@ body{background:#e9eef0!important;color:#172026!important}
 
 
 
-/* Consolidated CSS block 19: original cascade position 19 */
-
-/* Rive: one deliberate, high-intent interaction in the comparison decision moment. */
-.compare-head{display:flex;align-items:center;justify-content:space-between;gap:28px}
-.rive-vehicle-preview{flex:0 0 220px;position:relative;align-self:stretch;display:flex;flex-direction:column;justify-content:center;min-width:0;overflow:hidden;border:1px solid rgba(109,125,133,.3);border-radius:16px;background:linear-gradient(145deg,rgba(255,255,255,.95),rgba(234,241,243,.72));box-shadow:inset 0 1px rgba(255,255,255,.85),0 12px 28px rgba(22,37,43,.08);transition:transform .24s cubic-bezier(.23,1,.32,1),box-shadow .24s ease,border-color .24s ease}
-.rive-vehicle-preview:hover,.rive-vehicle-preview:focus-within{transform:translateY(-2px);border-color:rgba(180,0,18,.4);box-shadow:inset 0 1px rgba(255,255,255,.9),0 16px 34px rgba(22,37,43,.13)}
-.rive-vehicle-canvas-wrap{position:relative;min-height:108px;display:grid;place-items:center;overflow:hidden;background:radial-gradient(circle at 70% 25%,rgba(235,10,30,.12),transparent 38%),linear-gradient(165deg,#f5f9fa,#e2ebee)}
-#riveVehicleCanvas{display:block;width:100%;height:112px;max-width:210px;opacity:0;transition:opacity .35s ease;touch-action:none}
-.rive-vehicle-preview.is-ready #riveVehicleCanvas{opacity:1}
-.rive-vehicle-fallback{position:absolute;width:150px;height:44px;left:50%;top:50%;transform:translate(-50%,-52%);border:2px solid #58717c;border-radius:52% 58% 18% 18%;opacity:.82;transition:opacity .25s ease,transform .25s ease}
-.rive-vehicle-fallback:before,.rive-vehicle-fallback:after{content:"";position:absolute;bottom:-9px;width:18px;height:18px;border:2px solid #58717c;border-radius:50%;background:#eaf1f3}
-.rive-vehicle-fallback:before{left:20px}.rive-vehicle-fallback:after{right:20px}
-.rive-vehicle-fallback span{position:absolute;left:34px;top:-16px;width:60px;height:22px;border:2px solid #58717c;border-bottom:0;border-radius:42px 42px 0 0;transform:skew(-12deg)}
-.rive-vehicle-fallback i{position:absolute;left:41px;top:-10px;width:25px;height:12px;border-left:1px solid #8aa0a8;border-right:1px solid #8aa0a8;transform:skew(-12deg)}
-.rive-vehicle-fallback b{position:absolute;right:12px;top:17px;width:7px;height:7px;border-radius:50%;background:#b40012;box-shadow:0 0 0 4px rgba(180,0,18,.1)}
-.rive-vehicle-preview.is-ready .rive-vehicle-fallback{opacity:0;transform:translate(-50%,-52%) scale(.94)}
-.rive-vehicle-preview.is-failed #riveVehicleCanvas{display:none}
-.rive-vehicle-caption{display:flex;align-items:center;gap:6px;min-height:28px;padding:7px 11px 8px;color:#41525a;font-size:10px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
-.rive-vehicle-caption small{margin-left:auto;color:#7b8b91;font-size:9px;letter-spacing:.05em}
-.rive-live-dot{width:6px;height:6px;flex:none;border-radius:50%;background:#8a9aa0;box-shadow:0 0 0 3px rgba(138,154,160,.13);transition:background .25s ease,box-shadow .25s ease}
-.rive-vehicle-preview.is-ready .rive-live-dot{background:#b40012;box-shadow:0 0 0 3px rgba(180,0,18,.14),0 0 12px rgba(180,0,18,.32)}
-.rive-vehicle-preview.is-ready .rive-vehicle-caption-label{color:#26363d}
-.rive-vehicle-preview.is-selecting-a{border-color:rgba(79,105,116,.58);box-shadow:inset 0 1px rgba(255,255,255,.9),0 16px 34px rgba(22,37,43,.11)}
-.rive-vehicle-preview.is-selecting-b{border-color:rgba(180,0,18,.38);background:linear-gradient(145deg,rgba(255,255,255,.98),rgba(249,239,240,.82))}
-.rive-vehicle-preview.is-complete{border-color:rgba(180,0,18,.68);box-shadow:inset 0 1px rgba(255,255,255,.95),0 18px 40px rgba(180,0,18,.13)}
-.rive-vehicle-preview.is-complete .rive-live-dot{background:#b40012;box-shadow:0 0 0 4px rgba(180,0,18,.13),0 0 16px rgba(180,0,18,.38)}
-.rive-vehicle-preview.is-complete .rive-vehicle-caption-meta{color:#b40012}
-.rive-vehicle-preview:focus-visible{outline:2px solid #b40012;outline-offset:4px}
-@media(max-width:700px){.compare-head{align-items:stretch;flex-direction:column;gap:18px}.rive-vehicle-preview{flex-basis:auto;min-height:156px}.rive-vehicle-canvas-wrap{min-height:124px}#riveVehicleCanvas{height:126px;max-width:240px}.rive-vehicle-caption{min-height:29px}}
-@media(prefers-reduced-motion:reduce){.rive-vehicle-preview{transition:none}.rive-vehicle-preview #riveVehicleCanvas{display:none}.rive-vehicle-preview .rive-vehicle-fallback{opacity:.82}}
-
-
-/* Consolidated CSS block 20: original cascade position 20 */
-
-/* Premium vehicle visualization: SVG carries the legible silhouette; Rive adds a restrained live layer. */
-.rive-vehicle-preview{flex-basis:292px;background:linear-gradient(145deg,#f9fbfc 0%,#e5edf0 100%);}
-.rive-vehicle-canvas-wrap{min-height:174px;position:relative;isolation:isolate;background:radial-gradient(circle at 72% 20%,rgba(227,24,43,.18),transparent 30%),linear-gradient(155deg,#f5f9fa 0%,#d7e3e7 100%);perspective:900px;overflow:hidden;}
-.rive-vehicle-canvas-wrap:before{content:"";position:absolute;inset:18% 8% 12%;background:linear-gradient(90deg,rgba(48,73,82,.09) 1px,transparent 1px),linear-gradient(rgba(48,73,82,.09) 1px,transparent 1px);background-size:22px 22px;mask-image:linear-gradient(to bottom,transparent,#000 35%,transparent);opacity:.55;transform:perspective(420px) rotateX(58deg) translateY(30%);transform-origin:center bottom;}
-.vehicle-3d-stage{position:absolute;inset:4px 4px 0;display:grid;place-items:center;transform-style:preserve-3d;}
-.vehicle-3d-art{width:100%;height:100%;overflow:visible;transform:rotateX(8deg) rotateY(-11deg) translateZ(8px) scale(1.03);transform-origin:center;transition:transform .7s cubic-bezier(.23,1,.32,1),filter .7s ease;filter:drop-shadow(0 13px 9px rgba(22,39,47,.2));}
-.vehicle-3d-shadow{fill:rgba(23,39,47,.25);}
-.vehicle-3d-glass-line{fill:none;stroke:rgba(227,244,248,.68);stroke-width:2;}
-.vehicle-3d-belt{fill:none;stroke:rgba(37,57,65,.42);stroke-width:2;}
-.vehicle-3d-redline{fill:none;stroke:url(#vehicleRed);stroke-width:4;stroke-linecap:round;opacity:.9;}
-.vehicle-3d-light{opacity:.92;filter:drop-shadow(0 0 4px rgba(255,255,255,.75));}
-.vehicle-3d-wheel{fill:#17262d;stroke:#92a7ae;stroke-width:2;}
-.vehicle-3d-hub{fill:#dce7ea;stroke:#40555e;stroke-width:2;}
-.vehicle-3d-scan{position:absolute;z-index:2;left:8%;right:8%;top:22%;height:1px;background:linear-gradient(90deg,transparent,rgba(235,10,30,.72),transparent);opacity:0;transform:translateY(-30px);}
-#riveVehicleCanvas{position:absolute;z-index:3;inset:0;width:100%;height:100%;max-width:none;opacity:0;mix-blend-mode:screen;pointer-events:none;transition:opacity .5s ease;}
-.rive-vehicle-preview.is-ready #riveVehicleCanvas{opacity:.16;}
-.rive-vehicle-preview.is-selecting-a .vehicle-3d-art{transform:rotateX(8deg) rotateY(-14deg) translate3d(-5px,0,12px) scale(1.05);}
-.rive-vehicle-preview.is-selecting-b .vehicle-3d-art{transform:rotateX(8deg) rotateY(10deg) translate3d(7px,-2px,14px) scale(1.07);filter:drop-shadow(0 16px 12px rgba(180,0,18,.22));}
-.rive-vehicle-preview.is-selecting-b .vehicle-3d-redline{stroke-width:5;}
-.rive-vehicle-preview.is-complete .vehicle-3d-art{transform:rotateX(8deg) rotateY(0deg) translate3d(0,-3px,18px) scale(1.1);filter:drop-shadow(0 18px 14px rgba(180,0,18,.26));}
-.rive-vehicle-preview.is-complete .vehicle-3d-scan{opacity:1;animation:vehicleScan 1.8s cubic-bezier(.23,1,.32,1) both;}
-.rive-vehicle-caption{position:relative;z-index:4;min-height:34px;padding:8px 12px 9px;background:rgba(255,255,255,.92);}
-.rive-vehicle-caption-label{max-width:170px;overflow:hidden;text-overflow:ellipsis;}
-@keyframes vehicleScan{0%{transform:translateY(-42px);opacity:0}25%{opacity:1}100%{transform:translateY(70px);opacity:0}}
-@media(max-width:700px){.rive-vehicle-preview{flex-basis:auto;min-height:210px}.rive-vehicle-canvas-wrap{min-height:174px}.rive-vehicle-caption-label{max-width:230px}.vehicle-3d-art{transform:rotateX(8deg) rotateY(-9deg) translateZ(6px) scale(1.08);}}
-@media(prefers-reduced-motion:reduce){.vehicle-3d-art,.rive-vehicle-preview.is-selecting-a .vehicle-3d-art,.rive-vehicle-preview.is-selecting-b .vehicle-3d-art,.rive-vehicle-preview.is-complete .vehicle-3d-art{transition:none;transform:none}.rive-vehicle-preview.is-complete .vehicle-3d-scan{animation:none;opacity:0}.rive-vehicle-preview #riveVehicleCanvas{display:none}.rive-vehicle-caption{backdrop-filter:none;}}
-
-
+/* Consolidated CSS block 19: removed Rive comparison decoration. */
 /* Consolidated CSS block 21: original cascade position 21 */
 
 .cta-banner-optimized{background-image:image-set(url("toyota-sharp-assets/asset-713411293222-800.avif") type("image/avif"),url("toyota-sharp-assets/asset-713411293222-800.webp") type("image/webp"),url("toyota-sharp-assets/asset-713411293222-800.webp") type("image/jpeg"));}
@@ -817,7 +756,7 @@ body{background:#e9eef0!important;color:#172026!important}
 .hero-rail-index{margin-top:auto;font:600 10px var(--display);letter-spacing:.16em;color:#f4f1eb}.hero-rail-index b{color:var(--toyota-red);font-weight:600;margin:0 4px}
 .hero-editorial-stage{min-height:inherit;position:relative;isolation:isolate;overflow:hidden}
 .hero-editorial-vehicle{position:absolute;inset:0 0 0 0!important;margin:0!important;width:auto!important;height:auto!important;align-self:stretch!important;min-height:0!important;border-radius:0!important;box-shadow:none!important;background:#111;overflow:hidden;z-index:0}
-.hero-editorial-vehicle img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important;transform:scale(1.04)}
+.hero-editorial-vehicle img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important;transform:scale(1)}
 .hero-editorial-vehicle figcaption{position:absolute;left:32px;right:32px;bottom:28px;padding:0!important;background:none!important;display:flex;justify-content:space-between;color:rgba(244,241,235,.68);font:500 10px var(--display);letter-spacing:.08em;text-transform:uppercase;z-index:2}
 .hero-editorial-vehicle figcaption span:first-child{color:#f4f1eb;font-weight:700}
 .hero-editorial-wash{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(15,17,18,.88) 0%,rgba(15,17,18,.45) 32%,rgba(15,17,18,.06) 63%,rgba(15,17,18,.28) 100%),linear-gradient(0deg,rgba(15,17,18,.54),transparent 32%);pointer-events:none}
@@ -868,7 +807,7 @@ body{background:#e9eef0!important;color:#172026!important}
 .hero-editorial-vehicle img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;object-fit:cover!important;object-position:center center!important;transform:scale(1.035)!important}
 .hero-editorial-vehicle figcaption{display:none!important}
 .hero-editorial-secondary{grid-column:2!important;background:#3a1612!important;border-left:1px solid rgba(244,241,235,.45);z-index:0}
-.hero-editorial-secondary img{object-position:58% center!important;transform:scale(1.025)!important}
+.hero-editorial-secondary img{object-position:58% center!important;transform:scale(1)!important}
 .hero-secondary-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,17,18,.54),rgba(15,17,18,.04) 45%,rgba(15,17,18,.2)),linear-gradient(0deg,rgba(15,17,18,.5),transparent 45%);z-index:1}
 .hero-editorial-wash{grid-row:1!important;grid-column:1 / -1!important;z-index:2!important;pointer-events:none;background:linear-gradient(90deg,rgba(15,17,18,.88) 0%,rgba(15,17,18,.42) 30%,rgba(15,17,18,.04) 56%,rgba(15,17,18,.13) 100%),linear-gradient(0deg,rgba(15,17,18,.56),transparent 38%)!important}
 .hero-editorial-copy{z-index:4!important;top:23%!important;max-width:480px!important}
@@ -1117,7 +1056,7 @@ h1,h2,h3,.brand .b1,.section-kicker,.tag{font-kerning:normal;text-wrap:balance}
 /* The hero is static while scrolling: isolate its paint and avoid permanent layer promotion. */
 .hero-editorial-frame{contain:paint;}
 .hero-editorial-vehicle{contain:layout paint;}
-.hero-editorial-vehicle img{display:block;backface-visibility:hidden;}
+.hero-editorial-vehicle img{display:block;backface-visibility:hidden;transform:scale(1)!important;transition:none!important;animation:none!important;will-change:auto!important;}
 
 
 /* Consolidated CSS block 31: original cascade position 31 */
@@ -1167,8 +1106,6 @@ h1,h2,h3,.brand .b1,.section-kicker,.tag{font-kerning:normal;text-wrap:balance}
 
 body.toyota-scroll-locked{overscroll-behavior:none;touch-action:none}
 .model-photo{aspect-ratio:4 / 3;object-fit:contain}
-.rive-vehicle-preview:not(.is-ready) #riveVehicleCanvas{opacity:0!important}
-.rive-vehicle-preview:not(.is-ready) .rive-vehicle-fallback{opacity:1!important;visibility:visible!important}
 @media(max-width:480px){.hero-editorial-rail .hero-rail-detail{display:none!important}.hero-editorial-frame{grid-template-columns:38px 1fr!important}.hero-editorial-rail{width:38px!important;overflow:hidden!important}}
 @media(prefers-reduced-motion:reduce){.mobilebar{transition:none!important}}
 
@@ -1537,7 +1474,7 @@ html,body{overflow-x:clip}
 <figcaption><span>SW4 Diamond</span><span>Disponibilidad a confirmar</span></figcaption>
 </figure>
 <figure aria-label="Toyota Hilux roja" class="hero-editorial-vehicle hero-editorial-secondary">
-<picture><source srcset="toyota-sharp-assets/enhanced-bae67c9e04b0-800.webp" type="image/webp"/><img alt="Toyota Hilux roja, imagen del vehículo" data-source="redes-toyota" decoding="async" fetchpriority="low" height="1296" loading="lazy" src="toyota-sharp-assets/enhanced-bae67c9e04b0-800.webp" width="1600"/></picture>
+<picture><source srcset="toyota-sharp-assets/enhanced-bae67c9e04b0-800.webp 800w, toyota-sharp-assets/enhanced-bae67c9e04b0.webp 1600w" sizes="(max-width:760px) 100vw, 50vw" type="image/webp"/><img alt="Toyota Hilux roja, imagen del vehículo" data-source="redes-toyota" decoding="async" fetchpriority="low" height="1296" loading="lazy" sizes="(max-width:760px) 100vw, 50vw" src="toyota-sharp-assets/enhanced-bae67c9e04b0-800.webp" srcset="toyota-sharp-assets/enhanced-bae67c9e04b0-800.webp 800w, toyota-sharp-assets/enhanced-bae67c9e04b0.webp 1600w" width="1600"/></picture>
 <div aria-hidden="true" class="hero-secondary-overlay"></div>
 <figcaption><span>HILUX</span><span>La pickup que no para</span></figcaption>
 </figure>
@@ -1585,17 +1522,6 @@ html,body{overflow-x:clip}
 <span class="section-kicker">Herramienta</span>
 <h3>Comparar dos modelos</h3>
 <p>Elegí dos modelos Toyota y mirá lado a lado la información publicada por la marca.</p>
-</div>
-<div aria-label="Animación del comparador. Seleccioná uno o dos modelos para actualizar el estado." class="rive-vehicle-preview" data-rive-vehicle-card="" role="img" tabindex="0">
-<div class="rive-vehicle-canvas-wrap">
-<div aria-hidden="true" class="vehicle-3d-stage">
-<div class="vehicle-3d-scan"></div>
-<img alt="Piñeyro y Moscatelli — Concesionario Oficial Toyota" class="vehicle-3d-art vehicle-3d-photo dealer-logo-badge" decoding="async" height="256" loading="lazy" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" width="256"/>
-</div>
-<canvas aria-hidden="true" height="170" id="riveVehicleCanvas" width="320"></canvas>
-</div>
-<div class="rive-vehicle-caption"><span class="rive-live-dot"></span><span class="rive-vehicle-caption-label">Elegí un modelo</span><small class="rive-vehicle-caption-meta"></small></div>
-</div>
 </div>
 <div class="compare-pickers">
 <label for="compareA">Modelo A
@@ -2051,12 +1977,12 @@ html,body{overflow-x:clip}
 <option value="repuestos">Repuestos genuinos</option>
 <option value="accesorios">Accesorios</option>
 <option value="neumaticos">Neumáticos Bridgestone</option>
-<option value="general">Consulta general</option>
-</select><div aria-label="Motivo de la consulta" class="reason-chips" role="group"><button data-reason="turnos" type="button">Turno de service</button><button data-reason="0km" type="button">Consulta por un 0km</button><button data-reason="usados" type="button">Vehículo usado</button><button data-reason="financiacion" type="button">Financiación</button><button data-reason="canje" type="button">Plan canje</button><button data-reason="repuestos" type="button">Repuestos genuinos</button><button data-reason="accesorios" type="button">Accesorios</button><button data-reason="neumaticos" type="button">Neumáticos Bridgestone</button><button data-reason="general" type="button">Consulta general</button></div>
+<option selected="" value="general">Consulta general</option>
+</select><div aria-label="Motivo de la consulta" class="reason-chips" role="group"><button data-reason="turnos" type="button">Turno de service</button><button data-reason="0km" type="button">Consulta por un 0km</button><button data-reason="usados" type="button">Vehículo usado</button><button data-reason="financiacion" type="button">Financiación</button><button data-reason="canje" type="button">Plan canje</button><button data-reason="repuestos" type="button">Repuestos genuinos</button><button data-reason="accesorios" type="button">Accesorios</button><button data-reason="neumaticos" type="button">Neumáticos Bridgestone</button><button class="is-selected" data-reason="general" type="button">Consulta general</button></div>
 </div>
 <div>
 <label for="cMsg">Mensaje</label>
-<textarea autocomplete="off" id="cMsg" maxlength="500" name="message" placeholder="Contanos brevemente qué necesitás" required=""></textarea><div aria-live="polite" class="message-preview"><span>Vista previa del mensaje</span><p id="messagePreview">Hola, quiero hacer una consulta por un turno de service.</p></div>
+<textarea autocomplete="off" id="cMsg" maxlength="500" name="message" placeholder="Contanos brevemente qué necesitás" required=""></textarea><div aria-live="polite" class="message-preview"><span>Vista previa del mensaje</span><p id="messagePreview">Hola, quiero hacer una consulta general.</p></div>
 </div>
 <div>
 <button class="btn primary block" type="submit"><span>Solicitar asesoramiento por WhatsApp</span></button>
@@ -2904,7 +2830,7 @@ document.addEventListener("DOMContentLoaded", function(){
       heroTl
         .fromTo(heroWash,{opacity:0},{opacity:1,duration:.7,ease:"power1.out",clearProps:"opacity"},0)
         .from(heroRails,{opacity:0,y:14,duration:.5,stagger:.08},.04)
-        .fromTo(heroPrimaryFig,{clipPath:"inset(0% 0% 100% 0%)",scale:1.055,opacity:.85},{clipPath:"inset(0% 0% 0% 0%)",scale:1,opacity:1,duration:1.05,ease:premiumEase,clearProps:"clipPath,scale,opacity"},.1)
+        .fromTo(heroPrimaryFig,{clipPath:"inset(0% 0% 100% 0%)",scale:1.055,opacity:.85},{clipPath:"inset(0% 0% 0% 0%)",scale:1,opacity:1,duration:1.05,ease:premiumEase,clearProps:"clipPath,opacity"},.1)
         .fromTo(heroSecondaryFig,{clipPath:"inset(0% 0% 100% 0%)",opacity:0,y:16},{clipPath:"inset(0% 0% 0% 0%)",opacity:1,y:0,duration:.85,ease:premiumEase,clearProps:"clipPath,opacity,y"},.32)
         .from(heroWordmark,{opacity:0,x:-14,duration:.6},.42)
         .from(".hero .tag",{opacity:0,x:-18,duration:.45},.46)
@@ -2927,29 +2853,6 @@ document.addEventListener("DOMContentLoaded", function(){
         heroPrimaryFig.style.position=heroPrimaryFig.style.position||"absolute";
         heroPrimaryFig.appendChild(heroSheen);
         heroTl.to(heroSheen,{xPercent:220,duration:1.05,ease:"power2.inOut",onComplete:function(){heroSheen.remove();}},"-=.35");
-      }
-
-      // Profundidad por capas: el wordmark, el vehículo secundario y el principal se
-      // mueven a distinta velocidad detrás del cursor, como planos reales de cámara.
-      // Restringido a punteros finos de escritorio para no interferir con el touch.
-      if(window.matchMedia&&window.matchMedia("(hover: hover) and (pointer: fine)").matches){
-        var heroStage=document.querySelector(".hero-editorial-stage");
-        if(heroStage){
-          var heroLayers=[
-            {el:heroWordmark,x:10,y:6},
-            {el:heroSecondaryFig,x:-14,y:8},
-            {el:heroPrimaryFig,x:-6,y:4}
-          ].filter(function(l){return l.el;});
-          var heroMovers=heroLayers.map(function(l){return {x:gsap.quickTo(l.el,"x",{duration:.9,ease:"power3.out"}),y:gsap.quickTo(l.el,"y",{duration:.9,ease:"power3.out"}),depth:l};});
-          var heroStageMove=function(e){
-            var rect=heroStage.getBoundingClientRect();
-            var px=(e.clientX-rect.left)/rect.width-.5, py=(e.clientY-rect.top)/rect.height-.5;
-            heroMovers.forEach(function(m){m.x(px*m.depth.x);m.y(py*m.depth.y);});
-          };
-          var heroStageLeave=function(){heroMovers.forEach(function(m){m.x(0);m.y(0);});};
-          heroStage.addEventListener("pointermove",heroStageMove,{passive:true});
-          heroStage.addEventListener("pointerleave",heroStageLeave,{passive:true});
-        }
       }
 
       // El aviso de scroll respira suavemente en vez de quedar inerte una vez que apareció.
@@ -3018,22 +2921,11 @@ document.addEventListener("DOMContentLoaded", function(){
 	      autoRaf:false
     });
     var lenisRaf=function(time){lenis.raf(time*1000)};
-    var heroVelocityImage=document.querySelector(".hero-art img, .hero-editorial-stage img");
-    var heroVelocityY=heroVelocityImage?gsap.quickTo(heroVelocityImage,"y",{duration:MOTION.base,ease:MOTION.entrance}):null;
-    var heroVelocityScale=heroVelocityImage?gsap.quickTo(heroVelocityImage,"scale",{duration:MOTION.base,ease:MOTION.entrance}):null;
-    var onLenisVelocity=function(event){
-      if(!heroVelocityImage||!event)return;
-      var velocity=Math.max(-MOTION.velocityMax,Math.min(MOTION.velocityMax,event.velocity||0));
-      var magnitude=Math.min(MOTION.velocityMax,Math.abs(velocity));
-      if(heroVelocityY)heroVelocityY(-velocity*MOTION.velocityShift);
-      if(heroVelocityScale)heroVelocityScale(1+magnitude*.0012);
-    };
     window.__toyotaLenis=lenis;
     if(window.__toyotaHeaderScrollFallback)window.removeEventListener("scroll",window.__toyotaHeaderScrollFallback);
     var headerSync=function(event){if(window.__toyotaSyncHeader)window.__toyotaSyncHeader(event&&typeof event.scroll==="number"?event.scroll:lenis.scroll);};
     lenis.on("scroll",headerSync);
     lenis.on("scroll",ScrollTrigger.update);
-    lenis.on("scroll",onLenisVelocity);
     gsap.ticker.add(lenisRaf);
     gsap.ticker.lagSmoothing(0);
     window.__toyotaScrollToElement=function(target,options){
@@ -3045,7 +2937,6 @@ document.addEventListener("DOMContentLoaded", function(){
       gsap.ticker.remove(lenisRaf);
       lenis.off("scroll",headerSync);
       lenis.off("scroll",ScrollTrigger.update);
-      lenis.off("scroll",onLenisVelocity);
       lenis.destroy();
       window.__toyotaLenis=null;
     };
@@ -3348,23 +3239,6 @@ document.addEventListener("DOMContentLoaded", function(){
   window.addEventListener("pagehide",window.__destroyToyotaGalacticMotion,{once:true});
   })();
 
-  (function(){
-  "use strict";
-  var stage=document.querySelector(".hero-editorial-stage");
-  if(!stage||window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
-  var fine=window.matchMedia("(hover: hover) and (pointer: fine)");
-  if(fine.matches)return;
-  var primary=stage.querySelector(".hero-editorial-vehicle:not(.hero-editorial-secondary)"),secondary=stage.querySelector(".hero-editorial-secondary"),wordmark=stage.querySelector(".hero-editorial-wordmark"),ticking=false;
-  function update(){ticking=false;var rect=stage.getBoundingClientRect(),progress=Math.max(-1,Math.min(1,(window.innerHeight*.5-(rect.top+rect.height*.5))/Math.max(window.innerHeight,rect.height)));if(primary)primary.style.transform="translate3d(0,"+(progress*-5).toFixed(2)+"px,0)";if(secondary)secondary.style.transform="translate3d(0,"+(progress*3).toFixed(2)+"px,0)";if(wordmark)wordmark.style.transform="translate3d(0,"+(progress*-2).toFixed(2)+"px,0)";}
-  function request(){if(!ticking){ticking=true;requestAnimationFrame(update);}}
-  var lenis=window.__toyotaLenis,resizeHandler=request,usingLenis=!!(lenis&&lenis.on);
-  if(usingLenis){lenis.on("scroll",update);}else{window.addEventListener("scroll",request,{passive:true});}
-  window.addEventListener("resize",resizeHandler,{passive:true});request();
-  window.addEventListener("pagehide",function(){
-    if(usingLenis){lenis.off("scroll",update);}else{window.removeEventListener("scroll",request);}
-    window.removeEventListener("resize",resizeHandler);
-  },{once:true});
-  })();
 });
 </script>
 <script id="page-health-check">
@@ -3378,112 +3252,6 @@ document.addEventListener("DOMContentLoaded", function(){
       return {ready: document.readyState === "complete", missing: missing, missingCount: missing.length};
     }
   };
-})();
-</script>
-<script id="rive-premium-runtime">
-(function(){
-  "use strict";
-  var stage=document.querySelector("[data-rive-vehicle-card]");
-  var canvas=document.getElementById("riveVehicleCanvas");
-  if(!stage||!canvas||window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
-  var asset="https://cdn.rive.app/animations/vehicles.riv";
-  var runtime="https://unpkg.com/@rive-app/canvas@2.40.1";
-  var instance=null,started=false,scriptPromise=null;
-  var compareA=document.getElementById("compareA");
-  var compareB=document.getElementById("compareB");
-  var compareResult=document.getElementById("compareResult");
-  var label=stage.querySelector(".rive-vehicle-caption-label");
-  var meta=stage.querySelector(".rive-vehicle-caption-meta");
-  function fail(){stage.classList.add("is-failed");}
-  function syncContext(){
-    var hasA=!!(compareA&&compareA.value),hasB=!!(compareB&&compareB.value);
-    var nameA=hasA&&compareA.selectedOptions[0]?compareA.selectedOptions[0].textContent.trim():"";
-    var nameB=hasB&&compareB.selectedOptions[0]?compareB.selectedOptions[0].textContent.trim():"";
-    stage.classList.remove("is-selecting-a","is-selecting-b","is-complete");
-    if(hasA&&hasB){
-      stage.classList.add("is-complete");
-      if(label)label.textContent=nameA+" × "+nameB;
-      if(meta)meta.textContent="vista 3D · lado a lado";
-    }else if(hasA){
-      stage.classList.add("is-selecting-b");
-      if(label)label.textContent=nameA;
-      if(meta)meta.textContent="vista 3D · elegí el segundo";
-    }else{
-      stage.classList.add("is-selecting-a");
-      if(label)label.textContent="Elegí un modelo";
-      if(meta)meta.textContent="vista 3D · paso 01/02";
-    }
-  }
-  [compareA,compareB].forEach(function(select){if(select)select.addEventListener("change",syncContext);});
-  if(compareResult){
-    new MutationObserver(syncContext).observe(compareResult,{attributes:true,attributeFilter:["hidden"]});
-  }
-  syncContext();
-  function loadRuntime(){
-    if(window.rive)return Promise.resolve(window.rive);
-    if(scriptPromise)return scriptPromise;
-    scriptPromise=new Promise(function(resolve,reject){
-      var tag=document.createElement("script");
-      tag.src=runtime;tag.async=true;tag.crossOrigin="anonymous";
-      tag.onload=function(){window.rive?resolve(window.rive):reject(new Error("Rive runtime unavailable"));};
-      tag.onerror=reject;document.head.appendChild(tag);
-    });
-    return scriptPromise;
-  }
-  function bindPointer(){
-    if(!instance)return;
-    ["pointermove","pointerdown","pointerup"].forEach(function(type){
-      canvas.addEventListener(type,function(event){
-        if(!instance)return;
-        try{instance[type](event);}catch(error){/* Runtime versions without pointer helpers stay graceful. */}
-      },{passive:true});
-    });
-  }
-  var visibilityObserver=null;
-  function syncPlayback(isVisible){
-    if(!instance)return;
-    try{
-      if(isVisible && !document.hidden){instance.play();}
-      else if(instance.pause){instance.pause();}
-    }catch(error){/* Older Rive runtimes may not expose playback controls. */}
-  }
-  function start(){
-    if(started)return;started=true;
-    loadRuntime().then(function(rive){
-      var ready=function(){
-        if(!instance||stage.classList.contains("is-ready"))return;
-        instance.resizeDrawingSurfaceToCanvas();
-        stage.classList.add("is-ready");
-        bindPointer();
-        syncPlayback(true);
-        window.addEventListener("resize",function(){if(instance)instance.resizeDrawingSurfaceToCanvas();},{passive:true});
-        if("IntersectionObserver" in window){
-          visibilityObserver=new IntersectionObserver(function(entries){
-            if(entries[0])syncPlayback(entries[0].isIntersecting);
-          },{rootMargin:"0px"});
-          visibilityObserver.observe(stage);
-        }
-        document.addEventListener("visibilitychange",function(){syncPlayback(!document.hidden && !!instance);},{passive:true});
-      };
-      instance=new rive.Rive({
-        src:asset,canvas:canvas,autoplay:false,autoBind:false,
-        onLoad:ready,
-        onLoadError:fail
-      });
-      if(rive.EventType&&instance.on){
-        instance.on(rive.EventType.Load,ready);
-        instance.on(rive.EventType.LoadError,fail);
-      }
-    }).catch(fail);
-  }
-  if("IntersectionObserver" in window){
-    var observer=new IntersectionObserver(function(entries){
-      if(entries.some(function(entry){return entry.isIntersecting;})){observer.disconnect();start();}
-    },{rootMargin:"80px 0px"});
-    observer.observe(stage);
-  }else{start();}
-  window.addEventListener("pagehide",function(){if(instance&&instance.cleanup)instance.cleanup();},{once:true});
-  window.__toyotaRive={start:start,getInstance:function(){return instance;},asset:asset};
 })();
 </script>
 <script>
@@ -3647,7 +3415,7 @@ document.addEventListener('DOMContentLoaded',function(){
   if(form){form.addEventListener('submit',function(e){[name,msg].forEach(function(field){if(field)field.value=field.value.trim();});if(!form.checkValidity()){e.preventDefault();form.classList.add('has-validation-error');var first=form.querySelector(':invalid');if(first)first.focus();}});form.addEventListener('input',function(){form.classList.remove('has-validation-error');});}
   if(!form||!select)return;
   var chips=form.querySelectorAll('[data-reason]');
-  function sync(){chips.forEach(function(chip){chip.classList.toggle('is-selected',chip.dataset.reason===select.value);});var label=select.options[select.selectedIndex]?select.options[select.selectedIndex].text:'Consulta general';var text=(msg&&msg.value.trim())||'Quiero hacer una consulta por '+label.toLowerCase()+'.';if(preview)preview.textContent='Hola, '+(name&&name.value.trim()?name.value.trim()+'. ':'')+text;}
+  function sync(){chips.forEach(function(chip){chip.classList.toggle('is-selected',chip.dataset.reason===select.value);});var label=select.options[select.selectedIndex]?select.options[select.selectedIndex].text:'Consulta general';var text=(msg&&msg.value.trim())||(select.value==='general'?'Quiero hacer una consulta general.':'Quiero hacer una consulta por '+label.toLowerCase()+'.');var person=name&&name.value.trim();if(!person)text=text.charAt(0).toLowerCase()+text.slice(1);if(preview)preview.textContent='Hola, '+(person?person+'. ':'')+text;}
   chips.forEach(function(chip){chip.addEventListener('click',function(){select.value=chip.dataset.reason;select.dispatchEvent(new Event('change',{bubbles:true}));sync();});});
   [select,name,msg].forEach(function(el){if(el){el.addEventListener('input',sync);el.addEventListener('change',sync);}});sync();
 });
@@ -3800,6 +3568,11 @@ document.addEventListener('DOMContentLoaded',function(){
 #gama .compare-disclosure{width:min(1200px,calc(100% - 48px))!important}
 #gama .compare-disclosure-button{display:block!important;margin-inline:0!important}
 @media(max-width:520px){#gama .compare-disclosure{width:calc(100% - 32px)!important}}
+</style>
+<style id="request-2-static-hero-final">
+.hero-editorial-vehicle,.hero-editorial-vehicle img,.hero-editorial-wordmark,.hero-editorial-secondary{transition:none!important;animation:none!important;will-change:auto!important}
+.hero-editorial-vehicle img{transform:scale(1)!important}
+.compare-head{display:block!important}
 </style>
 </body>
 </html>
