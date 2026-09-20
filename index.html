@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
 <title>Toyota Concepción del Uruguay — Piñeyro y Moscatelli</title>
 <meta content="Piñeyro y Moscatelli, concesionario oficial Toyota en Concepción del Uruguay. 0km, usados, plan canje, financiación, service oficial, repuestos genuinos y neumáticos Bridgestone. 9 de Julio 1624." name="description"/>
 <meta content="Piñeyro y Moscatelli S.R.L." name="author"/>
-<!-- DEMO: al pasar a producción restaurar "index, follow" y quitar googlebot; ver docs/DEMO-a-produccion.md -->
+<!-- Revisión previa a publicación: mantener la indexación bloqueada. -->
 <meta content="noindex, nofollow, noarchive, nosnippet" name="robots"/>
 <meta content="noindex, nofollow, noarchive, nosnippet" name="googlebot"/>
 <meta content="#EB0A1E" name="theme-color"/>
@@ -1409,7 +1409,7 @@ html,body{overflow-x:clip}
 <span class="b2">Piñeyro y Moscatelli S.R.L. — Concesionario Oficial</span>
 </div></div>
 <nav aria-label="Navegación principal" class="navlinks">
-<details class="navmega"><summary>Vehículos</summary><div class="mega-panel"><a href="#gama"><strong>0 km</strong><small>Modelos Toyota</small></a><a href="#gama"><strong>Explorar gama</strong><small>SUV, pick-ups y sedanes</small></a><a href="#usados"><strong>Usados</strong><small>Disponibilidad a confirmar</small></a><a href="#comparar"><strong>Comparar modelos</strong><small>Elegí dos y compará</small></a></div></details>
+<details class="navmega"><summary>Vehículos</summary><div class="mega-panel"><a href="#gama"><strong>0 km</strong><small>Modelos Toyota</small></a><a href="#usados"><strong>Usados</strong><small>Disponibilidad a confirmar</small></a><a href="#comparar"><strong>Comparar modelos</strong><small>Elegí dos y compará</small></a></div></details>
 <details class="navmega"><summary>Compra</summary><div class="mega-panel"><a href="#financiacion"><strong>Financiación</strong><small>Simulador y pasos</small></a><a href="#canje"><strong>Plan canje</strong><small>Tasá tu vehículo</small></a><a href="#contacto"><strong>Consultar</strong><small>Hablar con el equipo</small></a></div></details>
 <details class="navmega"><summary>Postventa</summary><div class="mega-panel"><a href="#servicios"><strong>Service oficial</strong><small>Solicitar turno</small></a><a href="#repuestos"><strong>Repuestos y accesorios</strong><small>Consultar disponibilidad</small></a><a href="#neumaticos"><strong>Neumáticos</strong><small>Consultar Bridgestone</small></a><a href="#taller"><strong>Nuestro taller</strong><small>Conocé el equipo</small></a></div></details>
 <a href="#porque">Por qué elegirnos</a><a href="#concesionario">Concesionario</a>
@@ -1605,20 +1605,20 @@ html,body{overflow-x:clip}
 <div class="wrap related-row"><span>También te puede interesar:</span><a class="btn primary" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20cotizar%20mi%20usado%20como%20parte%20de%20pago%20de%20un%20Toyota." rel="noopener noreferrer" target="_blank">Cotizá tu usado ↗</a><a href="#gama">Ver modelos 0 km</a><a href="#usados">Ver usados</a><a href="#financiacion">Simular financiación</a></div>
 </section></div><div aria-labelledby="tab-usados" class="tab-panel" hidden="True" id="panel-usados" role="tabpanel"><section class="ecosystem-section premium-reveal" id="usados">
 <div class="wrap">
-<div class="section-head split-head"><div><span class="tag">Usados</span><h2>Tu próximo vehículo también puede empezar acá.</h2><p>Consultá el stock de usados disponible hoy y encontrá una opción que se adapte a vos.</p></div><a class="text-link" href="#contacto">Consultar disponibilidad <span>↗</span></a></div>
+<div class="section-head split-head"><div><span class="tag">Usados</span><h2>Usados y certificados</h2><p>El stock rota seguido: contanos qué buscás y te avisamos apenas ingrese una unidad.</p></div><a class="text-link" href="#contacto">Consultar disponibilidad <span>↗</span></a></div>
 <div class="inventory-toolbar"><div><strong>Stock de usados</strong><span>Sin unidades publicadas por el momento</span></div></div>
 <div class="used-grid" id="usedGrid"></div>
-<div class="empty-state" id="usedEmpty"><strong>Encontrá tu próximo usado.</strong><span>El stock rota seguido y se confirma directamente con el concesionario: contanos qué tipo de vehículo buscás y te avisamos apenas haya algo disponible.</span><form aria-label="Consultar por un usado" class="used-interest-form" id="usedInterestForm"><label for="usedInterest">¿Qué tipo de usado buscás?</label><div class="used-interest-row"><select id="usedInterest"><option>Toyota usado</option><option>Auto compacto</option><option>SUV</option><option>Pick-up</option><option>Todavía no lo sé</option></select><button class="btn primary" type="submit">Avisarme por WhatsApp ↗</button></div><p aria-live="polite" class="form-note" id="usedInterestNote" role="status">No guardamos tus datos en esta página: se abre una consulta preparada para el equipo.</p></form></div>
+<div class="empty-state" id="usedEmpty"><strong>Usados y certificados</strong><span>El stock rota seguido: contanos qué buscás y te avisamos apenas ingrese una unidad.</span><form aria-label="Consultar por un usado" class="used-interest-form" id="usedInterestForm"><label for="usedInterest">¿Qué tipo de usado buscás?</label><div class="used-interest-row"><select id="usedInterest"><option>Toyota usado</option><option>Auto compacto</option><option>SUV</option><option>Pick-up</option><option>Todavía no lo sé</option></select><button class="btn primary" type="submit">Avisarme por WhatsApp ↗</button></div><p aria-live="polite" class="form-note" id="usedInterestNote" role="status">No guardamos tus datos en esta página: se abre una consulta preparada para el equipo.</p></form></div>
 </div>
-</section></div><div aria-labelledby="tab-novedades" class="tab-panel" hidden="True" id="panel-novedades" role="tabpanel"><section class="expansion-section premium-reveal" id="novedades"><div class="wrap"><div class="section-head"><div><span class="tag gold">Novedades y promociones</span><h2>Consultá lo vigente antes de decidir.</h2><p>Conocé las promociones vigentes, bonificaciones y opciones de financiación disponibles para tu próximo Toyota.</p></div></div>
+</section></div><div aria-labelledby="tab-novedades" class="tab-panel" hidden="True" id="panel-novedades" role="tabpanel"><section class="expansion-section premium-reveal" id="novedades"><div class="wrap"><div class="section-head"><div><span class="tag gold">Novedades y promociones</span><h2>Consultá lo vigente antes de decidir.</h2><p>Consultá por WhatsApp qué campañas, bonificaciones y líneas de financiación están activas este mes.</p></div></div>
 <div aria-label="Categorías habituales de promoción" class="promo-categories">
 <div class="promo-cat"><span class="promo-cat-ico">%</span><div><strong>Tasa promocional</strong><p>Líneas de financiación con tasa preferencial en modelos y plazos puntuales.</p></div></div>
 <div class="promo-cat"><span class="promo-cat-ico">⇄</span><div><strong>Plan canje potenciado</strong><p>Bonificación adicional al entregar tu usado como parte de pago.</p></div></div>
 <div class="promo-cat"><span class="promo-cat-ico">⚡</span><div><strong>Entrega inmediata</strong><p>Beneficios para unidades con stock disponible para entregar ya.</p></div></div>
 <div class="promo-cat"><span class="promo-cat-ico">＋</span><div><strong>Accesorios de bonificación</strong><p>Equipamiento o accesorios incluidos según la campaña vigente del mes.</p></div></div>
-<p class="promo-categories-note">Consultá qué beneficios están activos, para qué modelos y bajo qué condiciones.</p>
+<p class="promo-categories-note">Consultá por WhatsApp qué campañas, bonificaciones y líneas de financiación están activas este mes.</p>
 </div>
-<div class="expansion-card promo-card-centered"><div class="expansion-icon">↗</div><h3>Promociones vigentes</h3><p>Conocé las ofertas vigentes y consultá modelos y condiciones por WhatsApp.</p><div class="cta-lite"><a class="btn primary" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20consultar%20las%20promociones%20vigentes.%20Por%20favor%20indiquen%20modelos%20y%20condiciones.%20" rel="noopener noreferrer" target="_blank">Consultar promociones ↗</a><a class="btn" href="#gama">Ver modelos ↗</a></div></div></div></section></div><div aria-labelledby="tab-como-comprar" class="tab-panel" hidden="True" id="panel-como-comprar" role="tabpanel"><section class="premium-reveal" id="como-comprar">
+<div class="expansion-card promo-card-centered"><div class="expansion-icon">↗</div><h3>Promociones vigentes</h3><p>Consultá por WhatsApp qué campañas, bonificaciones y líneas de financiación están activas este mes.</p><div class="cta-lite"><a class="btn primary" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20consultar%20las%20promociones%20vigentes.%20Por%20favor%20indiquen%20modelos%20y%20condiciones.%20" rel="noopener noreferrer" target="_blank">Consultar promociones ↗</a><a class="btn" href="#gama">Ver modelos ↗</a></div></div></div></section></div><div aria-labelledby="tab-como-comprar" class="tab-panel" hidden="True" id="panel-como-comprar" role="tabpanel"><section class="premium-reveal" id="como-comprar">
 <div class="wrap journey-premium"><div><span class="tag">Cómo comprar</span><h2>Un camino simple, con la información en cada paso.</h2><p class="section-lead">No hace falta resolver todo de una vez. Empezá por el modelo o por tu usado y avanzamos con el equipo.</p><div class="journey-line"><article><span aria-hidden="true" class="journey-step-logo"><img alt="" decoding="async" height="256" loading="lazy" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" width="256"/></span><span class="sr-only">Paso 01</span><div><strong>Explorá</strong><span>Conocé la gama y elegí el tipo de vehículo que te interesa.</span></div></article><article><span aria-hidden="true" class="journey-step-logo"><img alt="" decoding="async" height="256" loading="lazy" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" width="256"/></span><span class="sr-only">Paso 02</span><div><strong>Consultá</strong><span>Pedí disponibilidad, versiones y una respuesta contextual por WhatsApp.</span></div></article><article><span aria-hidden="true" class="journey-step-logo"><img alt="" decoding="async" height="256" loading="lazy" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" width="256"/></span><span class="sr-only">Paso 03</span><div><strong>Definí cómo comprar</strong><span>Podés consultar financiación, plan canje o una operación al contado.</span></div></article><article><span aria-hidden="true" class="journey-step-logo"><img alt="" decoding="async" height="256" loading="lazy" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" width="256"/></span><span class="sr-only">Paso 04</span><div><strong>Coordiná la entrega</strong><span>El equipo confirma documentación, condiciones y próximos pasos.</span></div></article></div><a class="btn primary" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20hablar%20con%20un%20asesor%20para%20comprar%20un%20Toyota." rel="noopener noreferrer" target="_blank">Hablar con un asesor ↗</a></div><aside class="journey-aside"><span class="section-kicker">Atajo inteligente</span><h3>¿Ya tenés un vehículo?</h3><p>Entrá al plan canje y prepará una consulta con marca, modelo, año y kilometraje. No calcula un precio automático: la revisión la hace un asesor.</p><a class="btn" href="#canje">Cotizá tu usado ↗</a><a class="btn ghost" href="#financiacion">Ver financiación ↗</a><div class="journey-surprise"><strong>Tu operación, en una sola conversación</strong><p>Elegí modelo, plan canje o financiación y el equipo recibe el contexto correcto desde el primer mensaje.</p><a href="https://wa.me/5493442473453?text=Hola!%20Quiero%20que%20me%20orienten%20para%20elegir%20mi%20Toyota%20y%20la%20mejor%20forma%20de%20compra." rel="noopener noreferrer" target="_blank">Comenzar mi recorrido ↗</a></div><div class="journey-mini-map"><div aria-hidden="true" class="map-static-preview"><span aria-hidden="true" class="map-static-grid"></span><span aria-hidden="true" class="map-static-pin">●</span><span class="map-static-label">9 de Julio 1624<br/><small>Concepción del Uruguay</small></span></div><a aria-label="Abrir la ubicación exacta del concesionario en Google Maps" class="journey-mini-map-cta" href="https://www.google.com/maps/search/?api=1&amp;query=9%20de%20Julio%201624%2C%20Concepci%C3%B3n%20del%20Uruguay%2C%20Entre%20R%C3%ADos" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" class="ui-icon" viewbox="0 0 24 24"><path d="M4 5.5 9 3l6 3 5-2.5v15L15 21l-6-3-5 2.5v-15Z"></path><path d="M9 3v15M15 6v15"></path></svg><strong>Ver ubicación en el mapa</strong><small>9 de Julio 1624 ↗</small></a></div><div class="journey-quicklinks"><a href="#ubicacion">Cómo llegar ↗</a><a href="tel:+543442473453">Llamar al concesionario ↗</a><a href="#faq">Preguntas frecuentes ↗</a></div></aside></div>
 </section><section aria-labelledby="paymentPathsTitle" class="premium-reveal payment-paths-section" id="formas-de-pago">
 <div class="wrap">
@@ -1765,7 +1765,7 @@ html,body{overflow-x:clip}
 </div>
 <div class="facility-actions"><a class="btn primary" href="https://www.google.com/maps/search/?api=1&amp;query=9%20de%20Julio%201624%2C%20Concepci%C3%B3n%20del%20Uruguay%2C%20Entre%20R%C3%ADos" rel="noopener noreferrer" target="_blank">Cómo llegar ↗</a><a class="btn ghost" href="#contacto">Hablar con el equipo</a></div>
 </div>
-</section><section class="dealer-section premium-reveal" id="concesionario"><div class="wrap dealer-grid"><div><span class="tag">Concesionario</span><h2>Una atención local, con el respaldo de la red oficial Toyota.</h2><p>Piñeyro y Moscatelli S.R.L. se presenta en Concepción del Uruguay como concesionario oficial Toyota, con áreas de ventas, service, repuestos y neumáticos.</p><a class="social-cta" href="https://www.instagram.com/toyotacdelu/?hl=es" rel="noopener noreferrer" target="_blank"><span aria-hidden="true" class="social-mark"><svg class="icon-outline" viewbox="0 0 24 24"><rect height="18" rx="5.5" width="18" x="3" y="3"></rect><circle cx="12" cy="12" r="4.1"></circle><circle cx="17.35" cy="6.65" fill="currentColor" r="1.1" stroke="none"></circle></svg></span><span><strong>Seguinos en Instagram</strong><small>@toyotacdelu · cuenta pública del negocio</small></span><span>↗</span></a></div><div class="social-preview"><div class="social-preview-top"><span>INSTAGRAM</span><span>@toyotacdelu</span></div><div class="social-preview-art social-preview-art-optimized"><span>Contenido del concesionario</span><strong>Seguinos para novedades</strong><small>Vista previa estática · no reproduce publicaciones ni inventa contenido.</small></div></div></div></section></div><div aria-labelledby="tab-galeria-google-maps" class="tab-panel" hidden="True" id="panel-galeria-google-maps" role="tabpanel"><section class="expansion-section premium-reveal" id="galeria-google-maps"><div class="wrap"><div class="section-head"><div><span class="tag">Galería fotográfica</span><h2>Conocé nuestras instalaciones desde adentro.</h2><p>Fotos reales del concesionario Piñeyro y Moscatelli desde Google Maps. Visita nuestro showroom, área de service, repuestos y neumáticos.</p></div></div><div class="access-grid" style="grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:16px;">
+</section><section class="dealer-section premium-reveal" id="concesionario"><div class="wrap dealer-grid"><div><span class="tag">Concesionario</span><h2>Una atención local, con el respaldo de la red oficial Toyota.</h2><p>Piñeyro y Moscatelli S.R.L. se presenta en Concepción del Uruguay como concesionario oficial Toyota, con áreas de ventas, service, repuestos y neumáticos.</p><a class="social-cta" href="https://www.instagram.com/toyotacdelu/?hl=es" rel="noopener noreferrer" target="_blank"><span aria-hidden="true" class="social-mark"><svg class="icon-outline" viewbox="0 0 24 24"><rect height="18" rx="5.5" width="18" x="3" y="3"></rect><circle cx="12" cy="12" r="4.1"></circle><circle cx="17.35" cy="6.65" fill="currentColor" r="1.1" stroke="none"></circle></svg></span><span><strong>Seguinos en Instagram</strong><small>@toyotacdelu · cuenta pública del negocio</small></span><span>↗</span></a></div><div class="social-preview"><div class="social-preview-top"><span>INSTAGRAM</span><span>@toyotacdelu</span></div><div class="social-preview-art social-preview-art-optimized"><span>Contenido del concesionario</span><strong>Seguinos para novedades</strong><small>Seguinos en Instagram para ver novedades, entregas y promociones.</small></div></div></div></section></div><div aria-labelledby="tab-galeria-google-maps" class="tab-panel" hidden="True" id="panel-galeria-google-maps" role="tabpanel"><section class="expansion-section premium-reveal" id="galeria-google-maps"><div class="wrap"><div class="section-head"><div><span class="tag">Galería fotográfica</span><h2>Conocé nuestras instalaciones desde adentro.</h2><p>Fotos reales del concesionario Piñeyro y Moscatelli desde Google Maps. Visita nuestro showroom, área de service, repuestos y neumáticos.</p></div></div><div class="access-grid" style="grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:16px;">
 <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">
 <picture class="responsive-picture" style="display:block;width:100%;height:auto;">
 <source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-0d09b54107eb-480.avif 480w, toyota-sharp-assets/gallery-0d09b54107eb-800.avif 800w, toyota-sharp-assets/gallery-0d09b54107eb-1440.avif 1440w" type="image/avif"/><source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-0d09b54107eb-480.webp 480w, toyota-sharp-assets/gallery-0d09b54107eb-800.webp 800w, toyota-sharp-assets/gallery-0d09b54107eb-1440.webp 1440w" type="image/webp"/>
@@ -1871,7 +1871,7 @@ html,body{overflow-x:clip}
 </div></div></section></div><div aria-labelledby="tab-testimonios" class="tab-panel" hidden="True" id="panel-testimonios" role="tabpanel"><section class="real-reviews-section" id="testimonios">
 <div class="wrap">
 <div class="section-head tight"><div><span class="tag gold">Opiniones reales</span><h2>Consultá las reseñas verificadas</h2><p>Conocé las reseñas verificadas de quienes ya eligieron nuestro servicio y atención Toyota.</p></div></div>
-<div class="real-reviews-card"><div><strong>Reseñas del concesionario en Google</strong><p>Se abrirá la ficha pública para que puedas leer las reseñas y calificaciones reales, sin intermediarios.</p></div><a class="btn primary" href="https://www.google.com/maps/search/?api=1&amp;query=9%20de%20Julio%201624%2C%20Concepci%C3%B3n%20del%20Uruguay%2C%20Entre%20R%C3%ADos" rel="noopener noreferrer" target="_blank">Ver reseñas reales en Google ↗</a></div>
+<div class="real-reviews-card"><div><strong>Reseñas del concesionario en Google</strong><p>Mirá lo que dicen nuestros clientes en Google.</p></div><a class="btn primary" href="https://www.google.com/maps/search/?api=1&amp;query=9%20de%20Julio%201624%2C%20Concepci%C3%B3n%20del%20Uruguay%2C%20Entre%20R%C3%ADos" rel="noopener noreferrer" target="_blank">Ver reseñas en Google ↗</a></div>
 </div>
 </section></div></div></section>
 <section id="faq">
@@ -2041,7 +2041,7 @@ html,body{overflow-x:clip}
         concesionario.
       </p>
 <div style="background:#F3F5F6; padding:16px; border-top:1px solid #C8CED3; margin-top:40px; font-size:12px; color:var(--muted); text-align:center;">
-        Las funcionalidades, precios y disponibilidad mostrados son ilustrativos. Confirma todos los datos directamente con el equipo comercial.
+        Las funcionalidades, precios y disponibilidad mostrados son ilustrativos. Confirmá todos los datos directamente con el equipo comercial.
       </div>
 </div>
 </footer>
@@ -2289,19 +2289,15 @@ document.addEventListener("DOMContentLoaded", function(){
     sedan: 'Sedán'
   };
 
-  // MODEL_DETAILS is filled below; keep the first rendering pass safe so a
-  // late catalog declaration cannot stop the rest of the page from loading.
-  var MODEL_DETAILS = {};
   var gamaGrid = document.getElementById("gama-grid");
   MODELOS_TOYOTA.forEach(function(m){
     var el = document.createElement("div");
     el.className = "model";
     el.setAttribute("data-tipo", m.tipo);
     el.setAttribute("data-model", m.nombre);
-    var hasDetail = Object.prototype.hasOwnProperty.call(MODEL_DETAILS, m.nombre);
     el.innerHTML =
       (m.badge ? '<span class="badge">' + m.badge + '</span>' : '') +
-      (m.foto ? '<picture class="model-picture"><source type="image/avif" srcset="' + m.foto.replace(/-800\.webp$/, '-800.avif') + ' 800w, ' + m.foto.replace(/-800\.webp$/, '-480.avif') + ' 480w" sizes="(max-width: 600px) 92vw, 280px"><source type="image/webp" srcset="' + m.foto.replace(/-800\.webp$/, '-480.webp') + ' 480w, ' + m.foto + ' 800w" sizes="(max-width: 600px) 92vw, 280px"><img class="model-photo" src="' + m.foto + '" alt="Toyota ' + m.nombre + '" loading="lazy" decoding="async" width="' + m.fotoW + '" height="' + m.fotoH + '"></picture><span class="model-image-disclaimer">Imagen ilustrativa · confirmar unidad y versión</span>' : '<div class="model-picture model-placeholder"><img src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" aria-hidden="true"><strong>' + m.nombre + '</strong><span>' + ICONOS[m.tipo] + '</span></div>') +
+      (m.foto ? '<picture class="model-picture"><source type="image/avif" srcset="' + m.foto.replace(/-800\.webp$/, '-800.avif') + ' 800w, ' + m.foto.replace(/-800\.webp$/, '-480.avif') + ' 480w" sizes="(max-width: 600px) 92vw, 280px"><source type="image/webp" srcset="' + m.foto.replace(/-800\.webp$/, '-480.webp') + ' 480w, ' + m.foto + ' 800w" sizes="(max-width: 600px) 92vw, 280px"><img class="model-photo" src="' + m.foto + '" alt="Toyota ' + m.nombre + '" loading="lazy" decoding="async" width="' + m.fotoW + '" height="' + m.fotoH + '"></picture><span class="model-image-disclaimer">Imagen ilustrativa · confirmá unidad y versión</span>' : '<div class="model-picture model-placeholder"><img src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" aria-hidden="true"><strong>' + m.nombre + '</strong><span>' + ICONOS[m.tipo] + '</span></div>') +
       '<h3>' + m.nombre + '</h3>' +
       '<p>' + m.desc + '</p>' +
       '<div style="display:flex;gap:12px;border-top:1px solid var(--border);padding-top:11px;"><a target="_blank" rel="noopener noreferrer" href="' + wa("ventas", "Hola! Quiero consultar por la " + m.nombre + ".") + '" style="border:0;padding:0;flex:1;">Consultar <span>&rsaquo;</span></a><button class="compare-btn" type="button" data-compare-model="' + m.nombre + '" style="border:0;background:none;color:var(--muted);font:inherit;cursor:pointer;">Comparar</button></div>';
@@ -2614,10 +2610,10 @@ document.addEventListener("DOMContentLoaded", function(){
       ["Garantía", "5 años o 100.000 km general. Componentes híbridos: 8 años o 160.000 km."],
       ["Precio", "Consultar con el equipo comercial (WhatsApp o teléfono)."],
       ["Fuentes", "https://www.toyota.com.ar/modelos/corolla · Autotest.com.ar · Mercado Libre · LM Neuquén"],
-      ["Rendimiento y equipamiento destacado", "El equipamiento cambia según XLI, XEI, SEG, GR-Sport y variantes Hybrid. Confirmar configuración exacta antes de publicar una oferta." ]
+      ["Rendimiento y equipamiento destacado", "El equipamiento cambia según XLI, XEI, SEG, GR-Sport y variantes Hybrid. Confirmá la configuración exacta antes de elegir tu versión." ]
     ], source: "https://www.toyota.com.ar/modelos/corolla" },
     "Yaris": { specs: [
-      ["Categoría", "Hatchback (el sitio actual lo clasifica dentro de sedanes)"],
+      ["Categoría", "Hatchback"],
       ["Versiones disponibles", "XLI, XLS y XLS+ / S. La nomenclatura puede variar; manual en entrada y CVT desde XLS."],
       ["Motor", "2NR-FE, 1.5 litros, 4 cilindros en línea, 16 válvulas, Dual VVT-i y cadena de distribución."],
       ["Potencia", "107 CV."],
@@ -2647,7 +2643,7 @@ document.addEventListener("DOMContentLoaded", function(){
       ["Baúl o capacidad de carga", "7 plazas en ambas versiones. Capacidad de baúl en litros: Consultar disponibilidad y configuración vigente."],
       ["Tanque de combustible", "Consultar disponibilidad y configuración vigente."],
       ["Seguridad", "Toyota Safety Sense, múltiples asistentes de conducción, 10 airbags, monitor Multi-Terreno 3D, cámara 360° y Head-Up Display. Modos Normal, Eco y Sport, con modos off-road adicionales en GR-S."],
-      ["Garantía", "10 años o 200.000 km según comunicado de lanzamiento; confirmar condiciones del programa."],
+      ["Garantía", "10 años o 200.000 km según comunicado de lanzamiento; confirmá condiciones del programa."],
       ["Precio", "Consultar con el equipo comercial (WhatsApp o teléfono)."],
       ["Fuentes", "https://www.lanacion.com.ar/autos/toyota-presento-en-la-argentina-el-nuevo-land-cruiser-300-versiones-precios-y-equipamiento-nid07092026/ · https://cuyomotor.com.ar/2026/09/07/nuevo-land-cruiser-300-lanzamiento/ · https://diariodeautos.com.ar/index.php/autos/novedades/item/20502-toyota · Autoblog Argentina"],
       ["Rendimiento y equipamiento destacado", "VX HEV: 0 a 100 km/h en aproximadamente 6,5 s y velocidad máxima 210 km/h. GR-S: aproximadamente 8 s y 210 km/h. Climatizador de 4 zonas, asientos delanteros eléctricos calefaccionados y ventilados, audio JBL de 14 parlantes y pantallas multimedia de 12,3 pulgadas. VX suma techo solar y dos pantallas traseras de 11,6 pulgadas." ]
@@ -2673,16 +2669,19 @@ document.addEventListener("DOMContentLoaded", function(){
 
     var TIPO_LABEL = {pickup:"Pick-up", suv:"SUV", sedan:"Sedán"};
 
+    var compareExcluded = {"Fortuner":true,"Etios":true,"Land Cruiser 300":true,"Yaris":true};
+    var compareModels = MODELOS_TOYOTA.filter(function(m){return !compareExcluded[m.nombre];});
     MODELOS_TOYOTA.forEach(function(m){
+      if(compareExcluded[m.nombre]) return;
       [selA, selB].forEach(function(sel){
         var opt = document.createElement("option");
         opt.value = m.nombre; opt.textContent = m.nombre;
         opt.setAttribute("data-model-type", m.tipo);
-        opt.title = "Datos de referencia; confirmar disponibilidad y configuración con la concesionaria.";
+        opt.title = "Datos de referencia; confirmá disponibilidad y configuración con la concesionaria.";
         sel.appendChild(opt);
       });
     });
-    selB.selectedIndex = MODELOS_TOYOTA.length > 1 ? 2 : 0;
+    selB.selectedIndex = compareModels.length > 1 ? 2 : 0;
 
     function escapeCompare(value){return String(value).replace(/[&<>"']/g,function(ch){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[ch];});}
     function compareValue(value){return escapeCompare(value).replace(/(https?:\/\/[^\s<]+)/g,'<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');}
@@ -2713,7 +2712,7 @@ document.addEventListener("DOMContentLoaded", function(){
       var axes=rowsA.map(function(row){return row[0];});
       table.innerHTML=
         "<table class=\"compare-detail-table\"><caption class=\"sr-only\">Comparación técnica detallada entre "+escapeCompare(a)+" y "+escapeCompare(b)+"</caption><thead><tr><th scope=\"col\">Eje técnico</th><th scope=\"col\">"+escapeCompare(a)+"</th><th scope=\"col\">"+escapeCompare(b)+"</th></tr></thead><tbody>"+
-        axes.map(function(axis,index){var va=rowsA[index]&&rowsA[index][1]||"Consultar disponibilidad y configuración vigente.";var vb=rowsB[index]&&rowsB[index][1]||"Consultar disponibilidad y configuración vigente.";return "<tr><th scope=\"row\">"+escapeCompare(axis)+"</th><td>"+compareValue(va)+"</td><td>"+compareValue(vb)+"</td></tr>";}).join("")+
+        axes.map(function(axis,index){var filler="Consultar disponibilidad y configuración vigente.";var va=rowsA[index]&&rowsA[index][1]||filler;var vb=rowsB[index]&&rowsB[index][1]||filler;if(va===filler&&vb===filler)return "";if(va===filler)va="Consultar con un asesor";if(vb===filler)vb="Consultar con un asesor";return "<tr><th scope=\"row\">"+escapeCompare(axis)+"</th><td>"+compareValue(va)+"</td><td>"+compareValue(vb)+"</td></tr>";}).join("")+
         "</tbody></table>";
       waA.textContent = "Consultar " + a + " ↗";
       waB.textContent = "Consultar " + b + " ↗";
@@ -2736,7 +2735,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
   // ---- rutas compartibles por hash ----
-  function restoreHashRoute(){var h=location.hash.replace(/^#/,"");if(h.indexOf("modelo/")===0){var slug=h.slice(7),name=Object.keys(MODEL_DETAILS).filter(function(k){return slugifyModel(k)===slug;})[0];if(name)openDetail(name,true);return;}if(h.indexOf("comparar")===0){var q=h.split("?")[1]||"",p=new URLSearchParams(q),a=p.get("a"),b=p.get("b");if(a&&document.getElementById("compareA")){var ca=document.getElementById("compareA"),cb=document.getElementById("compareB"),validA=Array.prototype.some.call(ca.options,function(o){return o.value===a&&!o.disabled;}),validB=Array.prototype.some.call(cb.options,function(o){return o.value===b&&!o.disabled;});if(validA){ca.value=a;cb.value=validB?b:"";ca.dispatchEvent(new Event("change"));}}var c=document.getElementById("comparar");if(c)window.__toyotaScrollToElement(c);return;}if(h.indexOf("gama?")===0){var gama=document.getElementById("gama");if(gama)setTimeout(function(){window.__toyotaScrollToElement(gama);},0);return;}if(h){var target=document.getElementById(h);if(target)setTimeout(function(){window.__toyotaScrollToElement(target);},0);}}
+  function restoreHashRoute(){var h=location.hash.replace(/^#/,"");if(h.indexOf("modelo/")===0){return;}if(h.indexOf("comparar")===0){var q=h.split("?")[1]||"",p=new URLSearchParams(q),a=p.get("a"),b=p.get("b");if(a&&document.getElementById("compareA")){var ca=document.getElementById("compareA"),cb=document.getElementById("compareB"),validA=Array.prototype.some.call(ca.options,function(o){return o.value===a&&!o.disabled;}),validB=Array.prototype.some.call(cb.options,function(o){return o.value===b&&!o.disabled;});if(validA){ca.value=a;cb.value=validB?b:"";ca.dispatchEvent(new Event("change"));}}var c=document.getElementById("comparar");if(c)window.__toyotaScrollToElement(c);return;}if(h.indexOf("gama?")===0){var gama=document.getElementById("gama");if(gama)setTimeout(function(){window.__toyotaScrollToElement(gama);},0);return;}if(h){var target=document.getElementById(h);if(target)setTimeout(function(){window.__toyotaScrollToElement(target);},0);}}
   window.addEventListener("hashchange",function(){if(!location.hash.match(/^#modelo\//))closeModelDetail(false);restoreHashRoute();});
   restoreHashRoute();
 
@@ -3582,5 +3581,7 @@ document.addEventListener('DOMContentLoaded',function(){
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.001ms!important}.hero-editorial-vehicle,.hero-editorial-vehicle img{transform:none!important;animation:none!important;transition:none!important}}
 </style>
 <noscript><div class="noscript-contact">JavaScript está desactivado. Llamanos al <a href="tel:+543442473453">03442 47-3453</a>, escribinos por <a href="https://wa.me/5493442473453">WhatsApp</a> o visitanos en 9 de Julio 1624, Concepción del Uruguay.</div></noscript>
+<style id="new-mobile-polish">@media(max-width:760px){.hero-rail-contact{display:none!important}}@media(max-width:480px){.brand .b1{display:block;max-width:18ch;line-height:1.12}.brand .b2{display:none!important}}</style>
+<style id="new-mobile-polish">@media(max-width:760px){.hero-rail-contact{display:none!important}}@media(max-width:480px){.brand .b1{display:block;max-width:18ch;line-height:1.12}.brand .b2{display:none!important}}</style>
 </body>
 </html>
