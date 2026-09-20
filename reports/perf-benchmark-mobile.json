@@ -2,73 +2,73 @@
   "runs": [
     {
       "lcp": null,
-      "fcp": 280,
+      "fcp": 348,
       "cls": 0,
       "longTasks": [],
-      "dom": 2753,
+      "dom": 2770,
       "requests": 15,
-      "contentLength": 859038
+      "contentLength": 863538
     },
     {
       "lcp": null,
       "fcp": 212,
       "cls": 0,
       "longTasks": [],
-      "dom": 2753,
+      "dom": 2770,
       "requests": 15,
-      "contentLength": 859038
+      "contentLength": 863538
     },
     {
       "lcp": null,
-      "fcp": 148,
+      "fcp": 212,
       "cls": 0,
       "longTasks": [],
-      "dom": 2753,
+      "dom": 2770,
       "requests": 15,
-      "contentLength": 859038
+      "contentLength": 863538
     },
     {
       "lcp": null,
-      "fcp": 216,
+      "fcp": 228,
       "cls": 0,
       "longTasks": [],
-      "dom": 2753,
+      "dom": 2770,
       "requests": 15,
-      "contentLength": 859038
+      "contentLength": 863538
     },
     {
       "lcp": null,
-      "fcp": 232,
+      "fcp": 140,
       "cls": 0,
       "longTasks": [],
-      "dom": 2753,
+      "dom": 2770,
       "requests": 15,
-      "contentLength": 859038
+      "contentLength": 863538
     }
   ],
   "median": {
     "lcp": null,
-    "fcp": 216,
+    "fcp": 212,
     "cls": 0,
     "requests": 15,
-    "contentLength": 859038,
-    "dom": 2753
+    "contentLength": 863538,
+    "dom": 2770
   },
   "min": {
     "lcp": null,
-    "fcp": 148,
+    "fcp": 140,
     "cls": 0,
     "requests": 15,
-    "contentLength": 859038,
-    "dom": 2753
+    "contentLength": 863538,
+    "dom": 2770
   },
   "max": {
     "lcp": null,
-    "fcp": 280,
+    "fcp": 348,
     "cls": 0,
     "requests": 15,
-    "contentLength": 859038,
-    "dom": 2753
+    "contentLength": 863538,
+    "dom": 2770
   },
   "longTasks": {
     "medianCount": 0,

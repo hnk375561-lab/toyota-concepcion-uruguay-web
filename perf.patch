@@ -44,10 +44,57 @@
 [32m+[m[32m## Probados y no declarados como logrados[m
 [32m+[m
 [32m+[m[32mNo se declara Lighthouse Performance, LCP, TBT, Speed Index, waterfall comprimido, diff de píxeles en seis anchos ni comparación de cinco medianas antes/después porque no se obtuvo una ejecución Lighthouse válida en esta tanda. El benchmark reproducible deja los datos disponibles para la siguiente tanda y registra explícitamente las métricas no disponibles.[m
+[1mdiff --git a/docs/rendimiento-tanda2.md b/docs/rendimiento-tanda2.md[m
+[1mnew file mode 100644[m
+[1mindex 0000000..083ffa8[m
+[1m--- /dev/null[m
+[1m+++ b/docs/rendimiento-tanda2.md[m
+[36m@@ -0,0 +1,32 @@[m
+[32m+[m[32m# Rendimiento — tanda 2: imágenes y trabajo bajo pliegue[m
+[32m+[m
+[32m+[m[32m## Cambios planeados y aplicados[m
+[32m+[m
+[32m+[m[32mLa Tanda 2 se definió sobre las tareas pendientes del brief: reducir el peso de imágenes referenciadas, aprovechar variantes responsive modernas, diferir trabajo no crítico y quitar hints de pintado permanentes sin modificar contenido ni comportamiento.[m
+[32m+[m
+[32m+[m[32m| Cambio | Aplicación |[m
+[32m+[m[32m|---|---|[m
+[32m+[m[32m| Variantes AVIF de imágenes grandes | Se generaron 48 variantes AVIF nuevas para imágenes WebP referenciadas, conservando WebP como fallback y las mismas dimensiones, `alt`, `sizes` y `srcset`. La galería incorporó una fuente AVIF antes de WebP. |[m
+[32m+[m[32m| Responsive images | Las galerías existentes mantienen 480/800/1440 según disponibilidad; el navegador puede seleccionar AVIF con el mismo `sizes`, evitando descargar 1440 px en móviles. |[m
+[32m+[m[32m| Barrido de SVG no crítico | El marcado decorativo de SVG y `.contact-plus-icon` se difiere a `requestIdleCallback` con fallback a `setTimeout`, sin tocar el listener de tracking ni el contenido accesible con `aria-label`. |[m
+[32m+[m[32m| Pintado | Se eliminó el `will-change: transform` permanente del vehículo editorial y se dejó `will-change: auto`; las reglas existentes `will-change: opacity,transform` solo quedan donde ya se usan para animaciones concretas. |[m
+[32m+[m
+[32m+[m[32m## Verificación[m
+[32m+[m
+[32m+[m[32m- `validate-assets.py`: **verde**, 145 referencias locales y 0 faltantes; los AVIF decodifican correctamente.[m
+[32m+[m[32m- `qa-critical-route.py`: **verde** en 390 px touch y 1280 px escritorio; cero errores de consola y red, fuentes locales cargadas, Lenis ausente en touch y activo bajo demanda en escritorio.[m
+[32m+[m[32m- `check-business-data.py`: **verde**, sin diferencias en teléfonos, WhatsApp, mails, precios, horarios ni direcciones.[m
+[32m+[m[32m- `git diff --check`: **verde**.[m
+[32m+[m[32m- Benchmark móvil de cinco corridas: FCP mediano **212 ms**, CLS mediano **0**, **15 requests**, **863.538 bytes** de `Content-Length`, **2.770 nodos DOM**. LCP no produjo una entrada confiable en este runner local y queda explícitamente como `null`; no se afirma mejora de LCP sin Lighthouse o una traza CDP válida.[m
+[32m+[m
+[32m+[m[32m## Ahorro de assets[m
+[32m+[m
+[32m+[m[32mComo referencia del conjunto de pares AVIF/WebP disponible en `toyota-sharp-assets`, 118 pares suman 15.192.186 bytes en WebP frente a 9.839.189 bytes en AVIF: 5.352.997 bytes menos, equivalente a 35,2%. La cifra incluye variantes AVIF que ya existían antes de esta tanda; las 48 nuevas variantes se generaron solo cuando AVIF quedó más liviano que su WebP correspondiente.[m
+[32m+[m
+[32m+[m[32m## No aplicado en esta tanda[m
+[32m+[m
+[32m+[m[32mNo se aplicó `content-visibility: auto` sobre secciones con anchors porque puede modificar alturas iniciales y el aterrizaje exacto de `#gama`, `#ubicacion` y otros destinos; requiere capturas full-page y validación de scroll específica. Tampoco se externalizó el bloque principal de JS/CSS inline: hacerlo sin una etapa de build y diff de píxeles completa sería más riesgoso que beneficioso en este HTML monolítico.[m
+[32m+[m
+[32m+[m[32m## Hashes[m
+[32m+[m
+[32m+[m[32mEl HTML conserva el cambio de Tanda 1 y agrega las mejoras de Tanda 2. SHA-256 final: `ec105344ee60d300f0fd9f745394ef692cd85f67ee8224bca2e794c78af3fb38`.[m
 [1mdiff --git a/index.html b/index.html[m
-[1mindex ebeea39..6307993 100644[m
+[1mindex ebeea39..3fa6505 100644[m
 [1m--- a/index.html[m
 [1m+++ b/index.html[m
+[36m@@ -10,7 +10,7 @@[m
+ window.dataLayer=window.dataLayer||[];[m
+ window.toyotaTrack=function(name,details){window.dataLayer.push(Object.assign({event:name},details||{}));};[m
+ document.addEventListener('click',function(event){var link=event.target.closest&&event.target.closest('a[href*="wa.me"]');if(link)window.toyotaTrack('whatsapp_click',{link_url:link.href,link_text:(link.textContent||'').trim().slice(0,80)});});[m
+[31m-document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('svg').forEach(function(svg){if(!svg.hasAttribute('aria-label'))svg.setAttribute('aria-hidden','true');});document.querySelectorAll('.contact-plus-icon').forEach(function(icon){icon.setAttribute('aria-hidden','true');});});[m
+[32m+[m[32mdocument.addEventListener('DOMContentLoaded',function(){var mark=function(){document.querySelectorAll('svg').forEach(function(svg){if(!svg.hasAttribute('aria-label'))svg.setAttribute('aria-hidden','true');});document.querySelectorAll('.contact-plus-icon').forEach(function(icon){icon.setAttribute('aria-hidden','true');});};(window.requestIdleCallback||function(cb){setTimeout(cb,1)})(mark);});[m
+ </script>[m
+ <meta charset="utf-8"/>[m
+ <meta content="width=device-width, initial-scale=1.0" name="viewport"/>[m
 [36m@@ -39,13 +39,12 @@[m [mdocument.addEventListener('DOMContentLoaded',function(){document.querySelectorAl[m
  <link href="toyota-sharp-assets/asset-bec83be10e47-256.webp" rel="icon" type="image/webp"/>[m
  <link href="toyota-sharp-assets/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/>[m
@@ -109,6 +156,15 @@
    /* Motion system: precision and engineered restraint. */[m
    --motion-entrance:cubic-bezier(.16,.8,.28,1);[m
    --motion-ui:cubic-bezier(.25,.46,.45,.94);[m
+[36m@@ -816,7 +832,7 @@[m [mbody{background:#e9eef0!important;color:#172026!important}[m
+ .editorial-text-link{color:#f4f1eb;text-decoration:none;text-transform:uppercase;letter-spacing:.1em;font:600 10px var(--display);border-bottom:1px solid rgba(244,241,235,.5);padding-bottom:6px}.editorial-text-link span{color:var(--toyota-red);font-size:15px;margin-left:6px}[m
+ .hero-editorial-specs{position:absolute;right:3.2vw;bottom:30px;z-index:3;display:flex;gap:26px;color:rgba(244,241,235,.6);font:500 9px var(--display);letter-spacing:.12em;text-transform:uppercase}.hero-editorial-specs span{display:flex;gap:8px;align-items:center}.hero-editorial-specs span:first-child{color:var(--toyota-red)}.hero-editorial-specs b{color:#f4f1eb;font-weight:600}[m
+ .hero-editorial-scroll{position:absolute;left:7.4%;bottom:30px;z-index:3;display:flex;align-items:center;gap:10px;color:rgba(244,241,235,.6);text-transform:uppercase;letter-spacing:.15em;font:500 9px var(--display)}.hero-editorial-scroll span{display:block;width:34px;height:1px;background:var(--toyota-red)}[m
+[31m-@media(max-width:760px){.hero-editorial,.hero-editorial-frame{min-height:760px}.hero-editorial-frame{grid-template-columns:48px 1fr}.hero-editorial-rail{padding-top:22px}.hero-rail-rule{height:58px;margin-top:24px}.hero-rail-label{font-size:8px}.hero-editorial-copy{left:8%;top:19%;max-width:78%}.hero-editorial-copy h1{font-size:clamp(43px,12vw,70px);margin-top:20px}.hero-editorial-copy .lead{font-size:15px;max-width:240px}.hero-editorial-actions{display:block}.editorial-text-link{display:inline-block;margin-top:20px}.hero-editorial-wordmark{top:8%;right:5%;font-size:clamp(37px,11vw,70px)}.hero-editorial-specs{left:8%;right:auto;bottom:70px;display:grid;gap:8px}.hero-editorial-scroll{left:8%;bottom:28px}.hero-editorial-vehicle img{object-position:62% center!important}.hero-editorial-vehicle figcaption{left:18px;right:18px;bottom:18px;font-size:8px}.hero-editorial-wash{background:linear-gradient(90deg,rgba(15,17,18,.92),rgba(15,17,18,.34) 74%),linear-gradient(0deg,rgba(15,17,18,.74),transparent 48%)}.hero-editorial-vehicle img{will-change:transform}}[m
+[32m+[m[32m@media(max-width:760px){.hero-editorial,.hero-editorial-frame{min-height:760px}.hero-editorial-frame{grid-template-columns:48px 1fr}.hero-editorial-rail{padding-top:22px}.hero-rail-rule{height:58px;margin-top:24px}.hero-rail-label{font-size:8px}.hero-editorial-copy{left:8%;top:19%;max-width:78%}.hero-editorial-copy h1{font-size:clamp(43px,12vw,70px);margin-top:20px}.hero-editorial-copy .lead{font-size:15px;max-width:240px}.hero-editorial-actions{display:block}.editorial-text-link{display:inline-block;margin-top:20px}.hero-editorial-wordmark{top:8%;right:5%;font-size:clamp(37px,11vw,70px)}.hero-editorial-specs{left:8%;right:auto;bottom:70px;display:grid;gap:8px}.hero-editorial-scroll{left:8%;bottom:28px}.hero-editorial-vehicle img{object-position:62% center!important}.hero-editorial-vehicle figcaption{left:18px;right:18px;bottom:18px;font-size:8px}.hero-editorial-wash{background:linear-gradient(90deg,rgba(15,17,18,.92),rgba(15,17,18,.34) 74%),linear-gradient(0deg,rgba(15,17,18,.74),transparent 48%)}.hero-editorial-vehicle img{will-change:auto}}[m
+ @media(prefers-reduced-motion:reduce){.hero-editorial-vehicle img{transform:none}.editorial-cta{transition:none}}[m
+ [m
+ [m
 [36m@@ -1438,7 +1454,7 @@[m [mhtml,body{overflow-x:clip}[m
  </script>[m
  <header class="site" id="site-header">[m
@@ -118,6 +174,127 @@
  <span class="b1">Toyota Concepción del Uruguay</span>[m
  <span class="b2">Piñeyro y Moscatelli S.R.L. — Concesionario Oficial</span>[m
  </div></div>[m
+[36m@@ -1813,103 +1829,103 @@[m [mhtml,body{overflow-x:clip}[m
+ </section><section class="dealer-section premium-reveal" id="concesionario"><div class="wrap dealer-grid"><div><span class="tag">Concesionario</span><h2>Una atención local, con el respaldo de la red oficial Toyota.</h2><p>Piñeyro y Moscatelli S.R.L. se presenta en Concepción del Uruguay como concesionario oficial Toyota, con áreas de ventas, service, repuestos y neumáticos.</p><a class="social-cta" href="https://www.instagram.com/toyotacdelu/?hl=es" rel="noopener noreferrer" target="_blank"><span aria-hidden="true" class="social-mark"><svg class="icon-outline" viewbox="0 0 24 24"><rect height="18" rx="5.5" width="18" x="3" y="3"></rect><circle cx="12" cy="12" r="4.1"></circle><circle cx="17.35" cy="6.65" fill="currentColor" r="1.1" stroke="none"></circle></svg></span><span><strong>Seguinos en Instagram</strong><small>@toyotacdelu · cuenta pública del negocio</small></span><span>↗</span></a></div><div class="social-preview"><div class="social-preview-top"><span>INSTAGRAM</span><span>@toyotacdelu</span></div><div class="social-preview-art social-preview-art-optimized"><span>Contenido del concesionario</span><strong>Seguinos para novedades</strong><small>Vista previa estática · no reproduce publicaciones ni inventa contenido.</small></div></div></div></section></div><div aria-labelledby="tab-galeria-google-maps" class="tab-panel" hidden="True" id="panel-galeria-google-maps" role="tabpanel"><section class="expansion-section premium-reveal" id="galeria-google-maps"><div class="wrap"><div class="section-head"><div><span class="tag">Galería fotográfica</span><h2>Conocé nuestras instalaciones desde adentro.</h2><p>Fotos reales del concesionario Piñeyro y Moscatelli desde Google Maps. Visita nuestro showroom, área de service, repuestos y neumáticos.</p></div></div><div class="access-grid" style="grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:16px;">[m
+ <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">[m
+ <picture class="responsive-picture" style="display:block;width:100%;height:auto;">[m
+[31m-<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-0d09b54107eb-480.webp 480w, toyota-sharp-assets/gallery-0d09b54107eb-800.webp 800w, toyota-sharp-assets/gallery-0d09b54107eb-1440.webp 1440w" type="image/webp"/>[m
+[32m+[m[32m<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-0d09b54107eb-480.avif 480w, toyota-sharp-assets/gallery-0d09b54107eb-800.avif 800w, toyota-sharp-assets/gallery-0d09b54107eb-1440.avif 1440w" type="image/avif"/><source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-0d09b54107eb-480.webp 480w, toyota-sharp-assets/gallery-0d09b54107eb-800.webp 800w, toyota-sharp-assets/gallery-0d09b54107eb-1440.webp 1440w" type="image/webp"/>[m
+ <img alt="Toyota Concepción del Uruguay - Imagen 1" decoding="async" height="615" loading="lazy" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" src="toyota-sharp-assets/gallery-0d09b54107eb-1440.webp" srcset="toyota-sharp-assets/gallery-0d09b54107eb-480.webp 480w, toyota-sharp-assets/gallery-0d09b54107eb-800.webp 800w, toyota-sharp-assets/gallery-0d09b54107eb-1440.webp 1440w" width="1221"/>[m
+ </picture>[m
+ <figcaption>Fachada principal del showroom</figcaption></figure>[m
+ <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">[m
+ <picture class="responsive-picture" style="display:block;width:100%;height:auto;">[m
+[31m-<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-1f878b8ec433-480.webp 480w, toyota-sharp-assets/gallery-1f878b8ec433-800.webp 800w, toyota-sharp-assets/gallery-1f878b8ec433-1440.webp 1440w" type="image/webp"/>[m
+[32m+[m[32m<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-1f878b8ec433-480.avif 480w, toyota-sharp-assets/gallery-1f878b8ec433-800.avif 800w, toyota-sharp-assets/gallery-1f878b8ec433-1440.avif 1440w" type="image/avif"/><source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-1f878b8ec433-480.webp 480w, toyota-sharp-assets/gallery-1f878b8ec433-800.webp 800w, toyota-sharp-assets/gallery-1f878b8ec433-1440.webp 1440w" type="image/webp"/>[m
+ <img alt="Toyota Concepción del Uruguay - Imagen 2" decoding="async" height="678" loading="lazy" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" src="toyota-sharp-assets/gallery-1f878b8ec433-1440.webp" srcset="toyota-sharp-assets/gallery-1f878b8ec433-480.webp 480w, toyota-sharp-assets/gallery-1f878b8ec433-800.webp 800w, toyota-sharp-assets/gallery-1f878b8ec433-1440.webp 1440w" width="990"/>[m
+ </picture>[m
+ <figcaption>Frente del concesionario</figcaption></figure>[m
+ <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">[m
+ <picture class="responsive-picture" style="display:block;width:100%;height:auto;">[m
+[31m-<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-b3438e74805e-480.webp 480w, toyota-sharp-assets/gallery-b3438e74805e-800.webp 800w, toyota-sharp-assets/gallery-b3438e74805e-1440.webp 1440w" type="image/webp"/>[m
+[32m+[m[32m<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-b3438e74805e-480.avif 480w, toyota-sharp-assets/gallery-b3438e74805e-800.avif 800w, toyota-sharp-assets/gallery-b3438e74805e-1440.avif 1440w" type="image/avif"/><source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-b3438e74805e-480.webp 480w, toyota-sharp-assets/gallery-b3438e74805e-800.webp 800w, toyota-sharp-assets/gallery-b3438e74805e-1440.webp 1440w" type="image/webp"/>[m
+ <img alt="Toyota Concepción del Uruguay - Imagen 3" decoding="async" height="669" loading="lazy" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" src="toyota-sharp-assets/gallery-b3438e74805e-1440.webp" srcset="toyota-sharp-assets/gallery-b3438e74805e-480.webp 480w, toyota-sharp-assets/gallery-b3438e74805e-800.webp 800w, toyota-sharp-assets/gallery-b3438e74805e-1440.webp 1440w" width="990"/>[m
+ </picture>[m
+ <figcaption>Recepción y sala de espera</figcaption></figure>[m
+ <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">[m
+ <picture class="responsive-picture" style="display:block;width:100%;height:auto;">[m
+[31m-<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-3e3dd79299e5-480.webp 480w, toyota-sharp-assets/gallery-3e3dd79299e5-800.webp 800w, toyota-sharp-assets/gallery-3e3dd79299e5-1440.webp 1440w" type="image/webp"/>[m
+[32m+[m[32m<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-3e3dd79299e5-480.avif 480w, toyota-sharp-assets/gallery-3e3dd79299e5-800.avif 800w, toyota-sharp-assets/gallery-3e3dd79299e5-1440.avif 1440w" type="image/avif"/><source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-3e3dd79299e5-480.webp 480w, toyota-sharp-assets/gallery-3e3dd79299e5-800.webp 800w, toyota-sharp-assets/gallery-3e3dd79299e5-1440.webp 1440w" type="image/webp"/>[m
+ <img alt="Toyota Concepción del Uruguay - Imagen 4" decoding="async" height="620" loading="lazy" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" src="toyota-sharp-assets/gallery-3e3dd79299e5-1440.webp" srcset="toyota-sharp-assets/gallery-3e3dd79299e5-480.webp 480w, toyota-sharp-assets/gallery-3e3dd79299e5-800.webp 800w, toyota-sharp-assets/gallery-3e3dd79299e5-1440.webp 1440w" width="1162"/>[m
+ </picture>[m
+ <figcaption>Boxes de service oficial</figcaption></figure>[m
+ <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">[m
+ <picture class="responsive-picture" style="display:block;width:100%;height:auto;">[m
+[31m-<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-c13c92475721-480.webp 480w, toyota-sharp-assets/gallery-c13c92475721-800.webp 800w, toyota-sharp-assets/gallery-c13c92475721-1440.webp 1440w" type="image/webp"/>[m
+[32m+[m[32m<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-c13c92475721-480.avif 480w, toyota-sharp-assets/gallery-c13c92475721-800.avif 800w, toyota-sharp-assets/gallery-c13c92475721-1440.avif 1440w" type="image/avif"/><source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-c13c92475721-480.webp 480w, toyota-sharp-assets/gallery-c13c92475721-800.webp 800w, toyota-sharp-assets/gallery-c13c92475721-1440.webp 1440w" type="image/webp"/>[m
+ <img alt="Toyota Concepción del Uruguay - Imagen 5" decoding="async" height="672" loading="lazy" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" src="toyota-sharp-assets/gallery-c13c92475721-1440.webp" srcset="toyota-sharp-assets/gallery-c13c92475721-480.webp 480w, toyota-sharp-assets/gallery-c13c92475721-800.webp 800w, toyota-sharp-assets/gallery-c13c92475721-1440.webp 1440w" width="989"/>[m
+ </picture>[m
+ <figcaption>Mostrador de repuestos y neumáticos</figcaption></figure>[m
+ <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">[m
+ <picture class="responsive-picture" style="display:block;width:100%;height:auto;">[m
+[31m-<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-235c7262a67e-480.webp 480w, toyota-sharp-assets/gallery-235c7262a67e-800.webp 800w, toyota-sharp-assets/gallery-235c7262a67e-1440.webp 1440w" type="image/webp"/>[m
+[32m+[m[32m<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-235c7262a67e-480.avif 480w, toyota-sharp-assets/gallery-235c7262a67e-800.avif 800w, toyota-sharp-assets/gallery-235c7262a67e-1440.avif 1440w" type="image/avif"/><source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-235c7262a67e-480.webp 480w, toyota-sharp-assets/gallery-235c7262a67e-800.webp 800w, toyota-sharp-assets/gallery-235c7262a67e-1440.webp 1440w" type="image/webp"/>[m
+ <img alt="Toyota Concepción del Uruguay - Imagen 6" decoding="async" height="677" loading="lazy" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" src="toyota-sharp-assets/gallery-235c7262a67e-1440.webp" srcset="toyota-sharp-assets/gallery-235c7262a67e-480.webp 480w, toyota-sharp-assets/gallery-235c7262a67e-800.webp 800w, toyota-sharp-assets/gallery-235c7262a67e-1440.webp 1440w" width="987"/>[m
+ </picture>[m
+ <figcaption>Área de espera con vista al taller</figcaption></figure>[m
+ <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">[m
+ <picture class="responsive-picture" style="display:block;width:100%;height:auto;">[m
+[31m-<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-88e84595c95e-480.webp 480w, toyota-sharp-assets/gallery-88e84595c95e-800.webp 800w, toyota-sharp-assets/gallery-88e84595c95e-1440.webp 1440w" type="image/webp"/>[m
+[32m+[m[32m<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-88e84595c95e-480.avif 480w, toyota-sharp-assets/gallery-88e84595c95e-800.avif 800w, toyota-sharp-assets/gallery-88e84595c95e-1440.avif 1440w" type="image/avif"/><source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-88e84595c95e-480.webp 480w, toyota-sharp-assets/gallery-88e84595c95e-800.webp 800w, toyota-sharp-assets/gallery-88e84595c95e-1440.webp 1440w" type="image/webp"/>[m
+ <img alt="Toyota Concepción del Uruguay - Imagen 7" decoding="async" height="672" loading="lazy" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" src="toyota-sharp-assets/gallery-88e84595c95e-1440.webp" srcset="toyota-sharp-assets/gallery-88e84595c95e-480.webp 480w, toyota-sharp-assets/gallery-88e84595c95e-800.webp 800w, toyota-sharp-assets/gallery-88e84595c95e-1440.webp 1440w" width="989"/>[m
+ </picture>[m
+ <figcaption>Playa de service</figcaption></figure>[m
+ <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">[m
+ <picture class="responsive-picture" style="display:block;width:100%;height:auto;">[m
+[31m-<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-24f91b3c2cd2-480.webp 480w, toyota-sharp-assets/gallery-24f91b3c2cd2-800.webp 800w, toyota-sharp-assets/gallery-24f91b3c2cd2-1440.webp 1440w" type="image/webp"/>[m
+[32m+[m[32m<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-24f91b3c2cd2-480.avif 480w, toyota-sharp-assets/gallery-24f91b3c2cd2-800.avif 800w, toyota-sharp-assets/gallery-24f91b3c2cd2-1440.avif 1440w" type="image/avif"/><source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-24f91b3c2cd2-480.webp 480w, toyota-sharp-assets/gallery-24f91b3c2cd2-800.webp 800w, toyota-sharp-assets/gallery-24f91b3c2cd2-1440.webp 1440w" type="image/webp"/>[m
+ <img alt="Toyota Concepción del Uruguay - Imagen 8" decoding="async" height="670" loading="lazy" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" src="toyota-sharp-assets/gallery-24f91b3c2cd2-1440.webp" srcset="toyota-sharp-assets/gallery-24f91b3c2cd2-480.webp 480w, toyota-sharp-assets/gallery-24f91b3c2cd2-800.webp 800w, toyota-sharp-assets/gallery-24f91b3c2cd2-1440.webp 1440w" width="989"/>[m
+ </picture>[m
+ <figcaption>Living y exhibidor de accesorios</figcaption></figure>[m
+ <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">[m
+ <picture class="responsive-picture" style="display:block;width:100%;height:auto;">[m
+[31m-<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-0fa705fc438b-480.webp 480w, toyota-sharp-assets/gallery-0fa705fc438b-800.webp 800w" type="image/webp"/>[m
+[32m+[m[32m<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-0fa705fc438b-480.avif 480w, toyota-sharp-assets/gallery-0fa705fc438b-800.avif 800w" type="image/avif"/><source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-0fa705fc438b-480.webp 480w, toyota-sharp-assets/gallery-0fa705fc438b-800.webp 800w" type="image/webp"/>[m
+ <img alt="Toyota Concepción del Uruguay - Imagen 9" decoding="async" height="666" loading="lazy" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" src="toyota-sharp-assets/gallery-0fa705fc438b-800.webp" srcset="toyota-sharp-assets/gallery-0fa705fc438b-480.webp 480w, toyota-sharp-assets/gallery-0fa705fc438b-800.webp 800w" width="573"/>[m
+ </picture>[m
+ <figcaption>Ingreso al sector de service</figcaption></figure>[m
+ <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">[m
+ <picture class="responsive-picture" style="display:block;width:100%;height:auto;">[m
+[31m-<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-d56615fd9da8-480.webp 480w, toyota-sharp-assets/gallery-d56615fd9da8-800.webp 800w, toyota-sharp-assets/gallery-d56615fd9da8-1440.webp 1440w" type="image/webp"/>[m
+[32m+[m[32m<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-d56615fd9da8-480.avif 480w, toyota-sharp-assets/gallery-d56615fd9da8-800.avif 800w, toyota-sharp-assets/gallery-d56615fd9da8-1440.avif 1440w" type="image/avif"/><source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-d56615fd9da8-480.webp 480w, toyota-sharp-assets/gallery-d56615fd9da8-800.webp 800w, toyota-sharp-assets/gallery-d56615fd9da8-1440.webp 1440w" type="image/webp"/>[m
+ <img alt="Toyota Concepción del Uruguay - Imagen 10" decoding="async" height="615" loading="lazy" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" src="toyota-sharp-assets/gallery-d56615fd9da8-1440.webp" srcset="toyota-sharp-assets/gallery-d56615fd9da8-480.webp 480w, toyota-sharp-assets/gallery-d56615fd9da8-800.webp 800w, toyota-sharp-assets/gallery-d56615fd9da8-1440.webp 1440w" width="1156"/>[m
+ </picture>[m
+ <figcaption>Mostrador de repuestos con tarifario de service</figcaption></figure>[m
+ <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">[m
+ <picture class="responsive-picture" style="display:block;width:100%;height:auto;">[m
+[31m-<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-cefa390de5c0-480.webp 480w, toyota-sharp-assets/gallery-cefa390de5c0-800.webp 800w, toyota-sharp-assets/gallery-cefa390de5c0-1440.webp 1440w" type="image/webp"/>[m
+[32m+[m[32m<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-cefa390de5c0-480.avif 480w, toyota-sharp-assets/gallery-cefa390de5c0-800.avif 800w, toyota-sharp-assets/gallery-cefa390de5c0-1440.avif 1440w" type="image/avif"/><source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-cefa390de5c0-480.webp 480w, toyota-sharp-assets/gallery-cefa390de5c0-800.webp 800w, toyota-sharp-assets/gallery-cefa390de5c0-1440.webp 1440w" type="image/webp"/>[m
+ <img alt="Toyota Concepción del Uruguay - Imagen 11" decoding="async" height="616" loading="lazy" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" src="toyota-sharp-assets/gallery-cefa390de5c0-1440.webp" srcset="toyota-sharp-assets/gallery-cefa390de5c0-480.webp 480w, toyota-sharp-assets/gallery-cefa390de5c0-800.webp 800w, toyota-sharp-assets/gallery-cefa390de5c0-1440.webp 1440w" width="1225"/>[m
+ </picture>[m
+ <figcaption>Fachada del concesionario sobre 9 de Julio</figcaption></figure>[m
+ <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">[m
+ <picture class="responsive-picture" style="display:block;width:100%;height:auto;">[m
+[31m-<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-7618529ac395-480.webp 480w, toyota-sharp-assets/gallery-7618529ac395-800.webp 800w, toyota-sharp-assets/gallery-7618529ac395-1440.webp 1440w" type="image/webp"/>[m
+[32m+[m[32m<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-7618529ac395-480.avif 480w, toyota-sharp-assets/gallery-7618529ac395-800.avif 800w, toyota-sharp-assets/gallery-7618529ac395-1440.avif 1440w" type="image/avif"/><source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-7618529ac395-480.webp 480w, toyota-sharp-assets/gallery-7618529ac395-800.webp 800w, toyota-sharp-assets/gallery-7618529ac395-1440.webp 1440w" type="image/webp"/>[m
+ <img alt="Toyota Concepción del Uruguay - Imagen 12" decoding="async" height="669" loading="lazy" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" src="toyota-sharp-assets/gallery-7618529ac395-1440.webp" srcset="toyota-sharp-assets/gallery-7618529ac395-480.webp 480w, toyota-sharp-assets/gallery-7618529ac395-800.webp 800w, toyota-sharp-assets/gallery-7618529ac395-1440.webp 1440w" width="986"/>[m
+ </picture>[m
+ <figcaption>Vista general del frente del showroom</figcaption></figure>[m
+ <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">[m
+ <picture class="responsive-picture" style="display:block;width:100%;height:auto;">[m
+[31m-<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-2b5b6c52a8cc-480.webp 480w, toyota-sharp-assets/gallery-2b5b6c52a8cc-800.webp 800w" type="image/webp"/>[m
+[32m+[m[32m<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-2b5b6c52a8cc-480.avif 480w, toyota-sharp-assets/gallery-2b5b6c52a8cc-800.avif 800w" type="image/avif"/><source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-2b5b6c52a8cc-480.webp 480w, toyota-sharp-assets/gallery-2b5b6c52a8cc-800.webp 800w" type="image/webp"/>[m
+ <img alt="Toyota Concepción del Uruguay - Imagen 13" decoding="async" height="672" loading="lazy" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" src="toyota-sharp-assets/gallery-2b5b6c52a8cc-800.webp" srcset="toyota-sharp-assets/gallery-2b5b6c52a8cc-480.webp 480w, toyota-sharp-assets/gallery-2b5b6c52a8cc-800.webp 800w" width="573"/>[m
+ </picture>[m
+ <figcaption>Cartel Toyota en el ingreso principal</figcaption></figure>[m
+ <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">[m
+ <picture class="responsive-picture" style="display:block;width:100%;height:auto;">[m
+[31m-<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-fe0c4ff615f5-480.webp 480w, toyota-sharp-assets/gallery-fe0c4ff615f5-800.webp 800w, toyota-sharp-assets/gallery-fe0c4ff615f5-1440.webp 1440w" type="image/webp"/>[m
+[32m+[m[32m<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-fe0c4ff615f5-480.avif 480w, toyota-sharp-assets/gallery-fe0c4ff615f5-800.avif 800w, toyota-sharp-assets/gallery-fe0c4ff615f5-1440.avif 1440w" type="image/avif"/><source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-fe0c4ff615f5-480.webp 480w, toyota-sharp-assets/gallery-fe0c4ff615f5-800.webp 800w, toyota-sharp-assets/gallery-fe0c4ff615f5-1440.webp 1440w" type="image/webp"/>[m
+ <img alt="Toyota Concepción del Uruguay - Imagen 14" decoding="async" height="617" loading="lazy" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" src="toyota-sharp-assets/gallery-fe0c4ff615f5-1440.webp" srcset="toyota-sharp-assets/gallery-fe0c4ff615f5-480.webp 480w, toyota-sharp-assets/gallery-fe0c4ff615f5-800.webp 800w, toyota-sharp-assets/gallery-fe0c4ff615f5-1440.webp 1440w" width="1225"/>[m
+ </picture>[m
+ <figcaption>Entrada al sector de ventas</figcaption></figure>[m
+ <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">[m
+ <picture class="responsive-picture" style="display:block;width:100%;height:auto;">[m
+[31m-<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-58fd388e3636-480.webp 480w, toyota-sharp-assets/gallery-58fd388e3636-800.webp 800w" type="image/webp"/>[m
+[32m+[m[32m<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-58fd388e3636-480.avif 480w, toyota-sharp-assets/gallery-58fd388e3636-800.avif 800w" type="image/avif"/><source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-58fd388e3636-480.webp 480w, toyota-sharp-assets/gallery-58fd388e3636-800.webp 800w" type="image/webp"/>[m
+ <img alt="Toyota Concepción del Uruguay - Imagen 15" decoding="async" height="668" loading="lazy" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" src="toyota-sharp-assets/gallery-58fd388e3636-800.webp" srcset="toyota-sharp-assets/gallery-58fd388e3636-480.webp 480w, toyota-sharp-assets/gallery-58fd388e3636-800.webp 800w" width="573"/>[m
+ </picture>[m
+ <figcaption>Elevadores del taller de service oficial</figcaption></figure>[m
+ <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">[m
+ <picture class="responsive-picture" style="display:block;width:100%;height:auto;">[m
+[31m-<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-08cc971dfb73-480.webp 480w, toyota-sharp-assets/gallery-08cc971dfb73-800.webp 800w, toyota-sharp-assets/gallery-08cc971dfb73-1440.webp 1440w" type="image/webp"/>[m
+[32m+[m[32m<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-08cc971dfb73-480.avif 480w, toyota-sharp-assets/gallery-08cc971dfb73-800.avif 800w, toyota-sharp-assets/gallery-08cc971dfb73-1440.avif 1440w" type="image/avif"/><source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-08cc971dfb73-480.webp 480w, toyota-sharp-assets/gallery-08cc971dfb73-800.webp 800w, toyota-sharp-assets/gallery-08cc971dfb73-1440.webp 1440w" type="image/webp"/>[m
+ <img alt="Toyota Concepción del Uruguay - Imagen 16" decoding="async" height="619" loading="lazy" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" src="toyota-sharp-assets/gallery-08cc971dfb73-1440.webp" srcset="toyota-sharp-assets/gallery-08cc971dfb73-480.webp 480w, toyota-sharp-assets/gallery-08cc971dfb73-800.webp 800w, toyota-sharp-assets/gallery-08cc971dfb73-1440.webp 1440w" width="1220"/>[m
+ </picture>[m
+ <figcaption>Ingreso vehicular y exhibición sobre la calle</figcaption></figure>[m
+ <figure style="margin:0;border:1px solid var(--border);background:var(--surface);overflow:hidden;">[m
+ <picture class="responsive-picture" style="display:block;width:100%;height:auto;">[m
+[31m-<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-b4ed6c21c721-480.webp 480w, toyota-sharp-assets/gallery-b4ed6c21c721-800.webp 800w, toyota-sharp-assets/gallery-b4ed6c21c721-1440.webp 1440w" type="image/webp"/>[m
+[32m+[m[32m<source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-b4ed6c21c721-480.avif 480w, toyota-sharp-assets/gallery-b4ed6c21c721-800.avif 800w, toyota-sharp-assets/gallery-b4ed6c21c721-1440.avif 1440w" type="image/avif"/><source sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" srcset="toyota-sharp-assets/gallery-b4ed6c21c721-480.webp 480w, toyota-sharp-assets/gallery-b4ed6c21c721-800.webp 800w, toyota-sharp-assets/gallery-b4ed6c21c721-1440.webp 1440w" type="image/webp"/>[m
+ <img alt="Toyota Concepción del Uruguay - Imagen 17" decoding="async" height="663" loading="lazy" sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 360px" src="toyota-sharp-assets/gallery-b4ed6c21c721-1440.webp" srcset="toyota-sharp-assets/gallery-b4ed6c21c721-480.webp 480w, toyota-sharp-assets/gallery-b4ed6c21c721-800.webp 800w, toyota-sharp-assets/gallery-b4ed6c21c721-1440.webp 1440w" width="990"/>[m
+ </picture>[m
+ <figcaption>Portón de acceso al taller</figcaption></figure>[m
 [36m@@ -2977,6 +2993,7 @@[m [mdocument.addEventListener("DOMContentLoaded", function(){[m
    var mobileViewport=window.matchMedia&&window.matchMedia("(max-width:760px)").matches;[m
    var MOTION=window.__toyotaMotionTokens=window.__toyotaMotionTokens||{entrance:"power3.out",ui:"power2.out",exit:"power2.in",micro:mobileViewport ? .12 : .14,base:mobileViewport ? .28 : .32,slow:mobileViewport ? .58 : .72,hero:mobileViewport ? .9 : 1.1,stagger:mobileViewport ? .045 : .072,distance:mobileViewport ? 16 : 24,scrollDuration:mobileViewport ? .62 : .72,lerp:mobileViewport ? .12 : .18,wheelMultiplier:mobileViewport ? .9 : .96,velocityMax:mobileViewport ? 2.5 : 4,velocityShift:mobileViewport ? 1.5 : 3,footerDelay:mobileViewport ? .08 : .14};[m
@@ -137,7 +314,7 @@
    if(primary){var label=primary.querySelector("span"),primaryRect=null,movePrimary=gsap.quickTo(primary,"x",{duration:.28,ease:"power3.out"}),movePrimaryY=gsap.quickTo(primary,"y",{duration:.28,ease:"power3.out"}),moveLabel=label?gsap.quickTo(label,"x",{duration:.28,ease:"power3.out"}):null,moveLabelY=label?gsap.quickTo(label,"y",{duration:.28,ease:"power3.out"}):null;primary.addEventListener("pointerenter",function(){primaryRect=primary.getBoundingClientRect();},{passive:true});primary.addEventListener("pointermove",function(e){if(!primaryRect)return;var x=(e.clientX-primaryRect.left-primaryRect.width/2)*.08,y=(e.clientY-primaryRect.top-primaryRect.height/2)*.08;movePrimary(x);movePrimaryY(y);if(moveLabel){moveLabel(x*.25);moveLabelY(y*.25);}} ,{passive:true});primary.addEventListener("pointerleave",function(){primaryRect=null;gsap.to([primary,label].filter(Boolean),{x:0,y:0,duration:.55,ease:"elastic.out(1,.55)",overwrite:true});},{passive:true});}[m
 [1mdiff --git a/reports/perf-benchmark-mobile.json b/reports/perf-benchmark-mobile.json[m
 [1mnew file mode 100644[m
-[1mindex 0000000..f6a6023[m
+[1mindex 0000000..ff1b1ff[m
 [1m--- /dev/null[m
 [1m+++ b/reports/perf-benchmark-mobile.json[m
 [36m@@ -0,0 +1,77 @@[m
@@ -145,73 +322,73 @@
 [32m+[m[32m  "runs": [[m
 [32m+[m[32m    {[m
 [32m+[m[32m      "lcp": null,[m
-[32m+[m[32m      "fcp": 280,[m
+[32m+[m[32m      "fcp": 348,[m
 [32m+[m[32m      "cls": 0,[m
 [32m+[m[32m      "longTasks": [],[m
-[32m+[m[32m      "dom": 2753,[m
+[32m+[m[32m      "dom": 2770,[m
 [32m+[m[32m      "requests": 15,[m
-[32m+[m[32m      "contentLength": 859038[m
+[32m+[m[32m      "contentLength": 863538[m
 [32m+[m[32m    },[m
 [32m+[m[32m    {[m
 [32m+[m[32m      "lcp": null,[m
 [32m+[m[32m      "fcp": 212,[m
 [32m+[m[32m      "cls": 0,[m
 [32m+[m[32m      "longTasks": [],[m
-[32m+[m[32m      "dom": 2753,[m
+[32m+[m[32m      "dom": 2770,[m
 [32m+[m[32m      "requests": 15,[m
-[32m+[m[32m      "contentLength": 859038[m
+[32m+[m[32m      "contentLength": 863538[m
 [32m+[m[32m    },[m
 [32m+[m[32m    {[m
 [32m+[m[32m      "lcp": null,[m
-[32m+[m[32m      "fcp": 148,[m
+[32m+[m[32m      "fcp": 212,[m
 [32m+[m[32m      "cls": 0,[m
 [32m+[m[32m      "longTasks": [],[m
-[32m+[m[32m      "dom": 2753,[m
+[32m+[m[32m      "dom": 2770,[m
 [32m+[m[32m      "requests": 15,[m
-[32m+[m[32m      "contentLength": 859038[m
+[32m+[m[32m      "contentLength": 863538[m
 [32m+[m[32m    },[m
 [32m+[m[32m    {[m
 [32m+[m[32m      "lcp": null,[m
-[32m+[m[32m      "fcp": 216,[m
+[32m+[m[32m      "fcp": 228,[m
 [32m+[m[32m      "cls": 0,[m
 [32m+[m[32m      "longTasks": [],[m
-[32m+[m[32m      "dom": 2753,[m
+[32m+[m[32m      "dom": 2770,[m
 [32m+[m[32m      "requests": 15,[m
-[32m+[m[32m      "contentLength": 859038[m
+[32m+[m[32m      "contentLength": 863538[m
 [32m+[m[32m    },[m
 [32m+[m[32m    {[m
 [32m+[m[32m      "lcp": null,[m
-[32m+[m[32m      "fcp": 232,[m
+[32m+[m[32m      "fcp": 140,[m
 [32m+[m[32m      "cls": 0,[m
 [32m+[m[32m      "longTasks": [],[m
-[32m+[m[32m      "dom": 2753,[m
+[32m+[m[32m      "dom": 2770,[m
 [32m+[m[32m      "requests": 15,[m
-[32m+[m[32m      "contentLength": 859038[m
+[32m+[m[32m      "contentLength": 863538[m
 [32m+[m[32m    }[m
 [32m+[m[32m  ],[m
 [32m+[m[32m  "median": {[m
 [32m+[m[32m    "lcp": null,[m
-[32m+[m[32m    "fcp": 216,[m
+[32m+[m[32m    "fcp": 212,[m
 [32m+[m[32m    "cls": 0,[m
 [32m+[m[32m    "requests": 15,[m
-[32m+[m[32m    "contentLength": 859038,[m
-[32m+[m[32m    "dom": 2753[m
+[32m+[m[32m    "contentLength": 863538,[m
+[32m+[m[32m    "dom": 2770[m
 [32m+[m[32m  },[m
 [32m+[m[32m  "min": {[m
 [32m+[m[32m    "lcp": null,[m
-[32m+[m[32m    "fcp": 148,[m
+[32m+[m[32m    "fcp": 140,[m
 [32m+[m[32m    "cls": 0,[m
 [32m+[m[32m    "requests": 15,[m
-[32m+[m[32m    "contentLength": 859038,[m
-[32m+[m[32m    "dom": 2753[m
+[32m+[m[32m    "contentLength": 863538,[m
+[32m+[m[32m    "dom": 2770[m
 [32m+[m[32m  },[m
 [32m+[m[32m  "max": {[m
 [32m+[m[32m    "lcp": null,[m
-[32m+[m[32m    "fcp": 280,[m
+[32m+[m[32m    "fcp": 348,[m
 [32m+[m[32m    "cls": 0,[m
 [32m+[m[32m    "requests": 15,[m
-[32m+[m[32m    "contentLength": 859038,[m
-[32m+[m[32m    "dom": 2753[m
+[32m+[m[32m    "contentLength": 863538,[m
+[32m+[m[32m    "dom": 2770[m
 [32m+[m[32m  },[m
 [32m+[m[32m  "longTasks": {[m
 [32m+[m[32m    "medianCount": 0,[m
@@ -345,6 +522,27 @@
 [32m+[m[32m    raise SystemExit(f"expected exactly one header logo, found {html.count(old)}")[m
 [32m+[m[32mpath.write_text(html.replace(old, new), encoding="utf-8")[m
 [32m+[m[32mprint("optimized header logo reference")[m
+[1mdiff --git a/scripts/apply-tanda2-runtime-polish.py b/scripts/apply-tanda2-runtime-polish.py[m
+[1mnew file mode 100644[m
+[1mindex 0000000..cb34c1f[m
+[1m--- /dev/null[m
+[1m+++ b/scripts/apply-tanda2-runtime-polish.py[m
+[36m@@ -0,0 +1,15 @@[m
+[32m+[m[32mfrom pathlib import Path[m
+[32m+[m
+[32m+[m[32mpath = Path(__file__).resolve().parents[1] / 'index.html'[m
+[32m+[m[32mhtml = path.read_text(encoding='utf-8')[m
+[32m+[m[32mold = "document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('svg').forEach(function(svg){if(!svg.hasAttribute('aria-label'))svg.setAttribute('aria-hidden','true');});document.querySelectorAll('.contact-plus-icon').forEach(function(icon){icon.setAttribute('aria-hidden','true');});});"[m
+[32m+[m[32mnew = "document.addEventListener('DOMContentLoaded',function(){var mark=function(){document.querySelectorAll('svg').forEach(function(svg){if(!svg.hasAttribute('aria-label'))svg.setAttribute('aria-hidden','true');});document.querySelectorAll('.contact-plus-icon').forEach(function(icon){icon.setAttribute('aria-hidden','true');});};(window.requestIdleCallback||function(cb){setTimeout(cb,1)})(mark);});"[m
+[32m+[m[32mif html.count(old) != 1:[m
+[32m+[m[32m    raise SystemExit(f'analytics initializer count: {html.count(old)}')[m
+[32m+[m[32mhtml = html.replace(old, new)[m
+[32m+[m[32mold_css = '.hero-editorial-vehicle img{will-change:transform}'[m
+[32m+[m[32mif html.count(old_css) != 1:[m
+[32m+[m[32m    raise SystemExit(f'will-change rule count: {html.count(old_css)}')[m
+[32m+[m[32mhtml = html.replace(old_css, '.hero-editorial-vehicle img{will-change:auto}')[m
+[32m+[m[32mpath.write_text(html, encoding='utf-8')[m
+[32m+[m[32mprint('applied Tanda 2 runtime polish')[m
 [1mdiff --git a/scripts/check-business-data.py b/scripts/check-business-data.py[m
 [1mnew file mode 100644[m
 [1mindex 0000000..6424f6d[m
@@ -383,6 +581,80 @@
 [32m+[m[32mif failed:[m
 [32m+[m[32m    raise SystemExit(1)[m
 [32m+[m[32mprint('business data: identical')[m
+[1mdiff --git a/scripts/inventory-referenced-images.py b/scripts/inventory-referenced-images.py[m
+[1mnew file mode 100644[m
+[1mindex 0000000..a14fe44[m
+[1m--- /dev/null[m
+[1m+++ b/scripts/inventory-referenced-images.py[m
+[36m@@ -0,0 +1,17 @@[m
+[32m+[m[32mfrom pathlib import Path[m
+[32m+[m[32mimport re[m
+[32m+[m[32mfrom PIL import Image[m
+[32m+[m
+[32m+[m[32mroot = Path(__file__).resolve().parents[1][m
+[32m+[m[32mhtml = (root / 'index.html').read_text(encoding='utf-8')[m
+[32m+[m[32mrefs = sorted(set(re.findall(r'toyota-sharp-assets/[^"\' )>]+\.(?:avif|webp|png|jpg|jpeg)', html)))[m
+[32m+[m[32mfor ref in refs:[m
+[32m+[m[32m    path = root / ref[m
+[32m+[m[32m    if not path.exists():[m
+[32m+[m[32m        continue[m
+[32m+[m[32m    try:[m
+[32m+[m[32m        im = Image.open(path)[m
+[32m+[m[32m        if path.stat().st_size > 150_000:[m
+[32m+[m[32m            print(f'{path.stat().st_size}\t{im.width}x{im.height}\t{ref}')[m
+[32m+[m[32m    except Exception:[m
+[32m+[m[32m        pass[m
+[1mdiff --git a/scripts/optimize-gallery-avif.py b/scripts/optimize-gallery-avif.py[m
+[1mnew file mode 100644[m
+[1mindex 0000000..f9e9f54[m
+[1m--- /dev/null[m
+[1m+++ b/scripts/optimize-gallery-avif.py[m
+[36m@@ -0,0 +1,45 @@[m
+[32m+[m[32mfrom pathlib import Path[m
+[32m+[m[32mimport re[m
+[32m+[m[32mfrom PIL import Image[m
+[32m+[m
+[32m+[m[32mroot = Path(__file__).resolve().parents[1][m
+[32m+[m[32mhtml_path = root / 'index.html'[m
+[32m+[m[32mhtml = html_path.read_text(encoding='utf-8')[m
+[32m+[m[32mrefs = sorted(set(re.findall(r'toyota-sharp-assets/[^"\' )>]+\.webp', html)))[m
+[32m+[m[32mcreated = [][m
+[32m+[m[32mfor ref in refs:[m
+[32m+[m[32m    if not re.search(r'-(?:480|800|1200|1440|1800)\.webp$', ref):[m
+[32m+[m[32m        continue[m
+[32m+[m[32m    source = root / ref[m
+[32m+[m[32m    target = source.with_suffix('.avif')[m
+[32m+[m[32m    if not source.exists() or target.exists():[m
+[32m+[m[32m        continue[m
+[32m+[m[32m    with Image.open(source) as im:[m
+[32m+[m[32m        im.save(target, format='AVIF', quality=82, speed=6)[m
+[32m+[m[32m    if target.stat().st_size >= source.stat().st_size:[m
+[32m+[m[32m        target.unlink()[m
+[32m+[m[32m    else:[m
+[32m+[m[32m        created.append((ref, str(target.relative_to(root)), source.stat().st_size, target.stat().st_size))[m
+[32m+[m
+[32m+[m[32m# Add AVIF before the existing WebP source for responsive gallery pictures only.[m
+[32m+[m[32mdef add_avif(match):[m
+[32m+[m[32m    attrs, srcset = match.group(1), match.group(2)[m
+[32m+[m[32m    avif = re.sub(r'\.webp(\s|$)', r'.avif\1', srcset)[m
+[32m+[m[32m    if avif == srcset or not all((root / p).exists() for p in re.findall(r'(toyota-sharp-assets/[^ ]+\.avif)', avif)):[m
+[32m+[m[32m        return match.group(0)[m
+[32m+[m[32m    return f'<picture class="responsive-picture"{attrs}><source sizes="{match.group(3)}" srcset="{avif}" type="image/avif"/><source sizes="{match.group(3)}" srcset="{srcset}" type="image/webp"/>'[m
+[32m+[m
+[32m+[m[32mpattern = re.compile(r'<picture class="responsive-picture"([^>]*)>\s*<source sizes="([^"]+)" srcset="([^"]+)" type="image/webp"/>')[m
+[32m+[m[32m# Groups are attrs, sizes, srcset in the source pattern.[m
+[32m+[m[32mdef add_avif2(match):[m
+[32m+[m[32m    attrs, sizes, srcset = match.groups()[m
+[32m+[m[32m    avif = re.sub(r'\.webp\b', '.avif', srcset)[m
+[32m+[m[32m    paths = re.findall(r'(toyota-sharp-assets/[^ ]+\.avif)', avif)[m
+[32m+[m[32m    if not paths or not all((root / p).exists() for p in paths):[m
+[32m+[m[32m        return match.group(0)[m
+[32m+[m[32m    return f'<picture class="responsive-picture"{attrs}>\n<source sizes="{sizes}" srcset="{avif}" type="image/avif"/><source sizes="{sizes}" srcset="{srcset}" type="image/webp"/>'[m
+[32m+[m[32mhtml, picture_count = pattern.subn(add_avif2, html)[m
+[32m+[m[32mhtml_path.write_text(html, encoding='utf-8')[m
+[32m+[m[32mprint(f'created={len(created)} responsive_pictures={picture_count}')[m
+[32m+[m[32mfor ref, target, old, new in created:[m
+[32m+[m[32m    print(f'{old-new} bytes saved: {target}')[m
 [1mdiff --git a/scripts/perf-benchmark.py b/scripts/perf-benchmark.py[m
 [1mnew file mode 100644[m
 [1mindex 0000000..a0cbaec[m
@@ -635,3 +907,195 @@ Binary files /dev/null and b/toyota-sharp-assets/fonts/manrope-700-latin.woff2 d
 [1mnew file mode 100644[m
 [1mindex 0000000..71eb731[m
 Binary files /dev/null and b/toyota-sharp-assets/fonts/manrope-800-latin.woff2 differ
+[1mdiff --git a/toyota-sharp-assets/gallery-08cc971dfb73-1440.avif b/toyota-sharp-assets/gallery-08cc971dfb73-1440.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..9864031[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-08cc971dfb73-1440.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-08cc971dfb73-480.avif b/toyota-sharp-assets/gallery-08cc971dfb73-480.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..6bb3627[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-08cc971dfb73-480.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-08cc971dfb73-800.avif b/toyota-sharp-assets/gallery-08cc971dfb73-800.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..750b3c2[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-08cc971dfb73-800.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-0d09b54107eb-1440.avif b/toyota-sharp-assets/gallery-0d09b54107eb-1440.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..0418d27[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-0d09b54107eb-1440.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-0d09b54107eb-480.avif b/toyota-sharp-assets/gallery-0d09b54107eb-480.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..7a33187[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-0d09b54107eb-480.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-0d09b54107eb-800.avif b/toyota-sharp-assets/gallery-0d09b54107eb-800.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..0cf2441[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-0d09b54107eb-800.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-0fa705fc438b-480.avif b/toyota-sharp-assets/gallery-0fa705fc438b-480.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..9039942[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-0fa705fc438b-480.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-0fa705fc438b-800.avif b/toyota-sharp-assets/gallery-0fa705fc438b-800.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..3b60701[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-0fa705fc438b-800.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-1f878b8ec433-1440.avif b/toyota-sharp-assets/gallery-1f878b8ec433-1440.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..7e1c83a[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-1f878b8ec433-1440.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-1f878b8ec433-480.avif b/toyota-sharp-assets/gallery-1f878b8ec433-480.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..634fc80[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-1f878b8ec433-480.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-1f878b8ec433-800.avif b/toyota-sharp-assets/gallery-1f878b8ec433-800.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..96c36fa[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-1f878b8ec433-800.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-235c7262a67e-1440.avif b/toyota-sharp-assets/gallery-235c7262a67e-1440.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..f9f149a[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-235c7262a67e-1440.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-235c7262a67e-480.avif b/toyota-sharp-assets/gallery-235c7262a67e-480.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..f0691ca[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-235c7262a67e-480.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-235c7262a67e-800.avif b/toyota-sharp-assets/gallery-235c7262a67e-800.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..51e3e31[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-235c7262a67e-800.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-24f91b3c2cd2-1440.avif b/toyota-sharp-assets/gallery-24f91b3c2cd2-1440.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..71adaa6[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-24f91b3c2cd2-1440.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-24f91b3c2cd2-480.avif b/toyota-sharp-assets/gallery-24f91b3c2cd2-480.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..c00142d[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-24f91b3c2cd2-480.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-24f91b3c2cd2-800.avif b/toyota-sharp-assets/gallery-24f91b3c2cd2-800.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..9d506be[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-24f91b3c2cd2-800.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-2b5b6c52a8cc-480.avif b/toyota-sharp-assets/gallery-2b5b6c52a8cc-480.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..d06b90f[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-2b5b6c52a8cc-480.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-2b5b6c52a8cc-800.avif b/toyota-sharp-assets/gallery-2b5b6c52a8cc-800.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..85d56bc[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-2b5b6c52a8cc-800.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-3e3dd79299e5-1440.avif b/toyota-sharp-assets/gallery-3e3dd79299e5-1440.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..8619917[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-3e3dd79299e5-1440.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-3e3dd79299e5-480.avif b/toyota-sharp-assets/gallery-3e3dd79299e5-480.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..c6816c9[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-3e3dd79299e5-480.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-3e3dd79299e5-800.avif b/toyota-sharp-assets/gallery-3e3dd79299e5-800.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..330f316[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-3e3dd79299e5-800.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-58fd388e3636-480.avif b/toyota-sharp-assets/gallery-58fd388e3636-480.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..d188e46[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-58fd388e3636-480.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-58fd388e3636-800.avif b/toyota-sharp-assets/gallery-58fd388e3636-800.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..2bf0c3d[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-58fd388e3636-800.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-7618529ac395-1440.avif b/toyota-sharp-assets/gallery-7618529ac395-1440.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..8b06d69[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-7618529ac395-1440.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-7618529ac395-480.avif b/toyota-sharp-assets/gallery-7618529ac395-480.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..5979336[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-7618529ac395-480.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-7618529ac395-800.avif b/toyota-sharp-assets/gallery-7618529ac395-800.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..5602a2c[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-7618529ac395-800.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-88e84595c95e-1440.avif b/toyota-sharp-assets/gallery-88e84595c95e-1440.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..44af913[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-88e84595c95e-1440.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-88e84595c95e-480.avif b/toyota-sharp-assets/gallery-88e84595c95e-480.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..a0839b8[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-88e84595c95e-480.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-88e84595c95e-800.avif b/toyota-sharp-assets/gallery-88e84595c95e-800.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..9186c87[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-88e84595c95e-800.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-b3438e74805e-1440.avif b/toyota-sharp-assets/gallery-b3438e74805e-1440.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..6df71ef[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-b3438e74805e-1440.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-b3438e74805e-480.avif b/toyota-sharp-assets/gallery-b3438e74805e-480.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..aae6a59[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-b3438e74805e-480.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-b3438e74805e-800.avif b/toyota-sharp-assets/gallery-b3438e74805e-800.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..514512f[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-b3438e74805e-800.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-b4ed6c21c721-1440.avif b/toyota-sharp-assets/gallery-b4ed6c21c721-1440.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..4ac56d3[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-b4ed6c21c721-1440.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-b4ed6c21c721-480.avif b/toyota-sharp-assets/gallery-b4ed6c21c721-480.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..433c0a0[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-b4ed6c21c721-480.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-b4ed6c21c721-800.avif b/toyota-sharp-assets/gallery-b4ed6c21c721-800.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..531d5b1[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-b4ed6c21c721-800.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-c13c92475721-1440.avif b/toyota-sharp-assets/gallery-c13c92475721-1440.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..1457c64[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-c13c92475721-1440.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-c13c92475721-480.avif b/toyota-sharp-assets/gallery-c13c92475721-480.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..803534c[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-c13c92475721-480.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-c13c92475721-800.avif b/toyota-sharp-assets/gallery-c13c92475721-800.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..f2ad972[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-c13c92475721-800.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-cefa390de5c0-1440.avif b/toyota-sharp-assets/gallery-cefa390de5c0-1440.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..def1bc2[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-cefa390de5c0-1440.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-cefa390de5c0-480.avif b/toyota-sharp-assets/gallery-cefa390de5c0-480.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..c73dbd3[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-cefa390de5c0-480.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-cefa390de5c0-800.avif b/toyota-sharp-assets/gallery-cefa390de5c0-800.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..509be1c[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-cefa390de5c0-800.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-d56615fd9da8-1440.avif b/toyota-sharp-assets/gallery-d56615fd9da8-1440.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..7267e59[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-d56615fd9da8-1440.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-d56615fd9da8-480.avif b/toyota-sharp-assets/gallery-d56615fd9da8-480.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..a5b5307[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-d56615fd9da8-480.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-d56615fd9da8-800.avif b/toyota-sharp-assets/gallery-d56615fd9da8-800.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..34b4ba5[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-d56615fd9da8-800.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-fe0c4ff615f5-1440.avif b/toyota-sharp-assets/gallery-fe0c4ff615f5-1440.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..1123b93[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-fe0c4ff615f5-1440.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-fe0c4ff615f5-480.avif b/toyota-sharp-assets/gallery-fe0c4ff615f5-480.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..d535410[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-fe0c4ff615f5-480.avif differ
+[1mdiff --git a/toyota-sharp-assets/gallery-fe0c4ff615f5-800.avif b/toyota-sharp-assets/gallery-fe0c4ff615f5-800.avif[m
+[1mnew file mode 100644[m
+[1mindex 0000000..9b0c08a[m
+Binary files /dev/null and b/toyota-sharp-assets/gallery-fe0c4ff615f5-800.avif differ
