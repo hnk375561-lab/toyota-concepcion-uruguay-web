@@ -3620,5 +3620,23 @@ document.addEventListener('DOMContentLoaded',function(){
 section[id],main [id]{scroll-margin-top:112px}
 #gama .model-placeholder .car-sil{width:min(86%,300px);height:auto;margin:0 auto;display:block}
 </style>
+<style id="final-overflow-audit-fixes">
+/* Final overflow audit: protect the narrow editorial rail and tablet header. */
+.hero-editorial-rail{box-sizing:border-box}
+.hero-rail-contact{display:grid!important;width:100%!important;max-width:100%!important;gap:3px!important;align-content:end!important;justify-items:center!important;white-space:normal!important;overflow:hidden!important;overflow-wrap:anywhere!important;word-break:break-word!important;font-size:clamp(7px,.64vw,8px)!important;line-height:1.25!important;letter-spacing:.025em!important}
+.hero-rail-contact a,.hero-rail-contact b{display:block!important;max-width:100%!important;min-width:0!important;white-space:normal!important;overflow-wrap:anywhere!important;word-break:break-word!important;text-align:center!important}
+.hero-rail-contact a{line-height:1.25!important}
+.faq-logo-tile{box-sizing:border-box!important}
+.faq-logo-tile img{display:block!important;max-width:100%!important}
+@media(max-width:900px) and (min-width:761px){
+  #site-header .nav{width:calc(100% - 32px)!important;gap:12px!important}
+  #site-header .brand{min-width:0!important}
+  #site-header .brand .b1{font-size:clamp(16px,2.4vw,20px)!important;max-width:25ch!important}
+  #site-header .navlinks,#site-header .navright .navcall{display:none!important}
+  #site-header .navright{margin-left:auto!important}
+  #site-header .burger{display:flex!important;flex:0 0 38px!important}
+}
+@media(min-width:761px){.hero-editorial-rail{width:52px!important}}
+</style>
 </body>
 </html>
