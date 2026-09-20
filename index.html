@@ -92,10 +92,13 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
     if(!target) return;
     options = options || {};
     var lenis = window.__toyotaLenis;
+    var header = document.getElementById("site-header");
+    var headerOffset = (header ? header.offsetHeight : 0) + 12;
     if(lenis){
-      lenis.scrollTo(target, {offset: options.offset || 0, duration: options.duration || 0.85, immediate: false});
+      lenis.scrollTo(target, {offset: -headerOffset, duration: options.duration || 0.85, immediate: false});
     } else {
-      target.scrollIntoView({behavior: options.behavior || "auto", block: options.block || "start"});
+      var y = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+      window.scrollTo({top: Math.max(0, y), behavior: options.behavior || "auto"});
     }
   };
 })();
@@ -1392,6 +1395,7 @@ html,body{overflow-x:clip}
 @media(max-width:760px){.float-advisor,.float-social{display:none!important}.mobilebar{z-index:90}.expansion-nav{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;overflow-y:hidden!important;min-height:48px!important;max-height:48px!important;white-space:nowrap!important;scrollbar-width:none}.expansion-nav::-webkit-scrollbar{display:none}.expansion-nav>*{flex:0 0 auto}}
 </style></head>
 <body id="top">
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><linearGradient id="cs-body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#55646c"/><stop offset=".5" stop-color="#2b363c"/><stop offset="1" stop-color="#161e23"/></linearGradient><linearGradient id="cs-glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c3d3da"/><stop offset=".55" stop-color="#829aa6"/><stop offset="1" stop-color="#586f7b"/></linearGradient><linearGradient id="cs-rim" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f1f4f6"/><stop offset="1" stop-color="#94a3ab"/></linearGradient><radialGradient id="cs-shadow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#0f1519" stop-opacity=".4"/><stop offset="1" stop-color="#0f1519" stop-opacity="0"/></radialGradient><g id="cs-wheel"><circle r="26" fill="#0b1014"/><circle r="18.5" fill="url(#cs-rim)"/><circle r="13.5" fill="#26313a"/><path d="M0-12V12M-12 0H12M-8.5-8.5L8.5 8.5M8.5-8.5L-8.5 8.5" stroke="#dfe6ea" stroke-width="3" stroke-linecap="round"/><circle r="4.5" fill="#c9d2d7"/></g></defs><symbol id="car-sedan" viewBox="0 0 400 180"><ellipse cx="200" cy="168" rx="182" ry="7" fill="url(#cs-shadow)"/><path fill="url(#cs-body)" d="M26 142 L22 122 Q21 106 34 102 L88 97 C106 95 122 66 168 58 C212 54 254 76 296 94 L352 102 Q378 107 381 126 L381 134 L372 142 L327 142 A32 32 0 0 0 263 142 L137 142 A32 32 0 0 0 73 142 Z"/><path fill="url(#cs-glass)" d="M112 94 C126 74 144 66 168 65 C204 63 238 76 272 93 Z"/><path d="M190 64 L194 94" stroke="#2b363c" stroke-width="5"/><path d="M62 106 L352 108" stroke="#fff" stroke-opacity=".22" stroke-width="1.6" fill="none"/><path d="M304 97 L346 105" stroke="#fff" stroke-opacity=".16" stroke-width="5" stroke-linecap="round" fill="none"/><path fill="#eef6f9" d="M354 109 L378 114 L375 121 L352 116 Z"/><path fill="#eb0a1e" d="M23 108 L36 106 L36 111 L24 113 Z"/><path fill="#0b1014" opacity=".7" d="M359 126 L380 128 L379 135 L359 134 Z"/><use href="#cs-wheel" x="105" y="142"/><use href="#cs-wheel" x="295" y="142"/></symbol><symbol id="car-suv" viewBox="0 0 400 180"><ellipse cx="200" cy="174" rx="182" ry="6" fill="url(#cs-shadow)"/><path fill="url(#cs-body)" d="M34 146 L30 116 Q29 100 40 96 L56 60 C60 48 70 42 84 42 L214 40 C246 40 264 62 288 86 L326 96 L354 101 Q378 106 380 128 L380 138 L372 146 L336 146 A36 36 0 0 0 264 146 L134 146 A36 36 0 0 0 62 146 Z"/><path fill="#0b1014" opacity=".34" d="M32 134 L378 134 L372 146 L32 146 Z"/><path fill="url(#cs-glass)" d="M62 92 L74 56 C77 52 82 51 90 51 L146 50 L148 92 Z"/><path fill="url(#cs-glass)" d="M154 50 L208 49 C228 49 244 64 264 92 L154 92 Z"/><path d="M150 50 L151 93" stroke="#2b363c" stroke-width="6"/><path d="M76 41 L216 39" stroke="#a6b6be" stroke-width="3.5" stroke-linecap="round" fill="none"/><path d="M44 104 L354 107" stroke="#fff" stroke-opacity=".22" stroke-width="1.6" fill="none"/><path d="M62 146 A36 36 0 0 1 134 146 M264 146 A36 36 0 0 1 336 146" stroke="#0b1014" stroke-width="6" fill="none" stroke-linecap="round"/><path fill="#eef6f9" d="M356 108 L378 113 L376 121 L354 115 Z"/><path fill="#eb0a1e" d="M31 102 L40 100 L40 106 L32 108 Z"/><use href="#cs-wheel" x="98" y="146" transform="translate(98 146) scale(1.14) translate(-98 -146)"/><use href="#cs-wheel" x="300" y="146" transform="translate(300 146) scale(1.14) translate(-300 -146)"/></symbol><symbol id="car-hatch" viewBox="0 0 400 180"><ellipse cx="200" cy="168" rx="165" ry="7" fill="url(#cs-shadow)"/><path fill="url(#cs-body)" d="M56 142 L51 120 Q50 106 62 102 L78 90 C92 68 114 56 144 54 L208 54 C240 54 264 80 290 94 L334 102 Q356 107 359 126 L359 134 L350 142 L323 142 A32 32 0 0 0 259 142 L141 142 A32 32 0 0 0 77 142 Z"/><path fill="url(#cs-glass)" d="M90 92 C102 72 118 63 144 62 L206 62 C228 62 246 78 270 92 Z"/><path d="M180 62 L184 92" stroke="#2b363c" stroke-width="5"/><path d="M60 106 L334 108" stroke="#fff" stroke-opacity=".22" stroke-width="1.6" fill="none"/><path fill="#eef6f9" d="M336 109 L357 114 L355 121 L334 116 Z"/><path fill="#eb0a1e" d="M52 108 L62 104 L63 110 L53 114 Z"/><use href="#cs-wheel" x="109" y="142"/><use href="#cs-wheel" x="291" y="142"/></symbol></svg>
 <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
 <script id="scroll-restoration">
 (function(){
@@ -1448,7 +1452,7 @@ html,body{overflow-x:clip}
 </header>
 <main id="contenido-principal">
 <div aria-label="Accesos de esta propuesta ampliada" class="expansion-nav"><div class="wrap">
-<a href="#porque">Por qué elegirnos</a><a href="#gama">Categorías</a><a href="#como-comprar">Cómo comprar</a><a href="#novedades">Novedades</a><a href="#comprar">Servicios adicionales</a><a href="#contacto">Contacto directo</a><a href="#gama">Vehículos 0 km</a><a class="expansion-nav-instagram" href="https://www.instagram.com/toyotacdelu/?hl=es" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" class="nav-instagram-icon" viewbox="0 0 24 24"><rect height="18" rx="5.5" width="18" x="3" y="3"></rect><circle cx="12" cy="12" r="4.1"></circle><circle cx="17.35" cy="6.65" fill="currentColor" r="1.1" stroke="none"></circle></svg><span>Seguinos en Instagram @toyotacdelu</span></a>
+<a href="#porque">Por qué elegirnos</a><a href="#gama">Categorías</a><a href="#como-comprar">Cómo comprar</a><a href="#novedades">Novedades</a><a href="#servicios">Postventa</a><a href="#contacto">Contacto directo</a><a href="#gama">Vehículos 0 km</a><a class="expansion-nav-instagram" href="https://www.instagram.com/toyotacdelu/?hl=es" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" class="nav-instagram-icon" viewbox="0 0 24 24"><rect height="18" rx="5.5" width="18" x="3" y="3"></rect><circle cx="12" cy="12" r="4.1"></circle><circle cx="17.35" cy="6.65" fill="currentColor" r="1.1" stroke="none"></circle></svg><span>Seguinos en Instagram @toyotacdelu</span></a>
 </div></div>
 <section aria-labelledby="hero-title" class="hero hero-editorial">
 <div class="hero-editorial-frame">
@@ -1751,7 +1755,7 @@ html,body{overflow-x:clip}
 <article class="dealer-value-card" data-value-step="01"><div class="dealer-value-card-top"><span aria-hidden="true" class="dealer-value-marker"></span></div><h3>Datos claros</h3><p>Las cuotas son de referencia, el stock lo confirmamos con vos y las reseñas las ves directo en Google.</p><a class="dealer-value-link" href="#faq">Leer preguntas frecuentes <span aria-hidden="true">↗</span></a></article>
 <article class="dealer-value-card" data-value-step="02"><div class="dealer-value-card-top"><span aria-hidden="true" class="dealer-value-marker"></span></div><h3>Modelos para explorar</h3><p>Recorré la gama por categoría, abrí una ficha y compará dos alternativas antes de hablar con un asesor.</p><a class="dealer-value-link" href="#gama">Explorar la gama <span aria-hidden="true">↗</span></a></article>
 <article class="dealer-value-card" data-value-step="03"><div class="dealer-value-card-top"><span aria-hidden="true" class="dealer-value-marker"></span></div><h3>Canales directos</h3><p>Ventas, turnos, repuestos y neumáticos tienen sus propios canales para que no tengas que explicar tu necesidad dos veces.</p><a class="dealer-value-link" href="#contacto">Ver contacto directo <span aria-hidden="true">↗</span></a></article>
-<article class="dealer-value-card" data-value-step="04"><div class="dealer-value-card-top"><span aria-hidden="true" class="dealer-value-marker"></span></div><h3>Acompañamiento después</h3><p>La relación continúa con service oficial, mantenimiento, repuestos y orientación para cuidar tu Toyota.</p><a class="dealer-value-link" href="#mantenimiento">Conocer postventa <span aria-hidden="true">↗</span></a></article>
+<article class="dealer-value-card" data-value-step="04"><div class="dealer-value-card-top"><span aria-hidden="true" class="dealer-value-marker"></span></div><h3>Acompañamiento después</h3><p>La relación continúa con service oficial, mantenimiento, repuestos y orientación para cuidar tu Toyota.</p><a class="dealer-value-link" href="#servicios">Conocer postventa <span aria-hidden="true">↗</span></a></article>
 </div>
 <div class="dealer-value-footer"><div aria-label="Recorrido de atención" class="dealer-value-sequence"><span>Explorá</span><i aria-hidden="true">→</i><span>Compará</span><i aria-hidden="true">→</i><span>Consultá</span><i aria-hidden="true">→</i><span>Avanzá</span></div><a class="btn primary dealer-value-cta" href="#contacto">Hablar con el equipo <span aria-hidden="true">↗</span></a></div>
 </div>
@@ -2019,9 +2023,9 @@ html,body{overflow-x:clip}
 <div>
 <h4>Postventa</h4>
 <a href="#servicios">Service oficial</a>
-<a href="#servicios">Repuestos genuinos</a>
-<a href="#servicios">Accesorios</a>
-<a href="#servicios">Neumáticos Bridgestone</a>
+<a href="#repuestos">Repuestos genuinos</a>
+<a href="#accesorios">Accesorios</a>
+<a href="#neumaticos">Neumáticos Bridgestone</a>
 </div>
 <div>
 <h4>Contacto directo</h4>
@@ -2274,10 +2278,10 @@ document.addEventListener("DOMContentLoaded", function(){
   var MODELOS_TOYOTA = [
     { nombre: "Hilux", tipo: "pickup", desc: "La pickup que no para nunca. Cabina simple o doble, 4x2 o 4x4.", badge: "", foto: "toyota-sharp-assets/enhanced-bae67c9e04b0-800.webp", fotoW: 800, fotoH: 648 },
     { nombre: "SW4 Diamond", tipo: "suv", desc: "Siete asientos y el Toyota Safety Sense de serie.", badge: "", foto: "toyota-sharp-assets/enhanced-371d49eb8a93-800.webp", fotoW: 781, fotoH: 800 },
-    { nombre: "Corolla Cross", tipo: "suv", desc: "El SUV compacto de Toyota, entre el Corolla y la SW4.", badge: "", foto: null, fotoW: 0, fotoH: 0 },
-    { nombre: "RAV4", tipo: "suv", desc: "Nafta, híbrida o híbrida enchufable, según cómo la uses.", badge: "", foto: null, fotoW: 0, fotoH: 0 },
-    { nombre: "Corolla", tipo: "sedan", desc: "El sedán más vendido del mundo, también en versión híbrida.", badge: "", foto: null, fotoW: 0, fotoH: 0 },
-    { nombre: "Yaris", tipo: "sedan", desc: "Compacto, ágil y con el respaldo de la red oficial Toyota.", badge: "", foto: null, fotoW: 0, fotoH: 0 },
+    { nombre: "Corolla Cross", tipo: "suv", desc: "El SUV compacto de Toyota, entre el Corolla y la SW4.", badge: "", foto: null, fotoW: 0, fotoH: 0, silueta: "suv", etiqueta: "SUV" },
+    { nombre: "RAV4", tipo: "suv", desc: "Nafta, híbrida o híbrida enchufable, según cómo la uses.", badge: "", foto: null, fotoW: 0, fotoH: 0, silueta: "suv", etiqueta: "SUV" },
+    { nombre: "Corolla", tipo: "sedan", desc: "El sedán más vendido del mundo, también en versión híbrida.", badge: "", foto: null, fotoW: 0, fotoH: 0, silueta: "sedan", etiqueta: "Sedán" },
+    { nombre: "Yaris", tipo: "sedan", desc: "Compacto, ágil y con el respaldo de la red oficial Toyota.", badge: "", foto: null, fotoW: 0, fotoH: 0, silueta: "hatch", etiqueta: "Hatchback" },
     { nombre: "Land Cruiser 300", tipo: "suv", desc: "El buque insignia todoterreno de Toyota, máximo confort y capacidad off-road.", badge: "", foto: "toyota-sharp-assets/enhanced-40f34102e3e9-800.webp", fotoW: 800, fotoH: 660 },
     { nombre: "Fortuner", tipo: "suv", desc: "SUV robusto sobre plataforma de pick-up, pensado para el trabajo y la aventura.", badge: "", foto: "toyota-sharp-assets/enhanced-a70429bf61f7-800.webp", fotoW: 800, fotoH: 540 },
     { nombre: "Etios", tipo: "sedan", desc: "El acceso más simple a la gama Toyota, ideal para uso urbano diario.", badge: "", foto: "toyota-sharp-assets/enhanced-3cd7479efb85-800.webp", fotoW: 800, fotoH: 480 }
@@ -2290,11 +2294,6 @@ document.addEventListener("DOMContentLoaded", function(){
   };
   // Mapa de fotos: para incorporar una imagen real, reemplazar solo foto: con la ruta 800px.
   // El render deriva automáticamente las variantes -480.avif y -480.webp cuando existen.
-  var PLACEHOLDER_SILHOUETTES = {
-    sedan: '<svg class="model-placeholder-vehicle" viewBox="0 0 240 112" focusable="false" aria-hidden="true"><path d="M22 78h12l7-27 24-19h72l27 19 8 27h12M43 52h101M67 32l-7 20m69-20 8 20M47 78a10 10 0 1 0 20 0m103 0a10 10 0 1 0 20 0M81 78h71" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/><circle cx="57" cy="78" r="3" fill="currentColor"/><circle cx="173" cy="78" r="3" fill="currentColor"/></svg>',
-    suv: '<svg class="model-placeholder-vehicle" viewBox="0 0 240 112" focusable="false" aria-hidden="true"><path d="M20 79h13l9-34 22-18h78l30 18 9 34h19M44 47h127M67 27l-8 20m72-20 10 20M45 79a11 11 0 1 0 22 0m101 0a11 11 0 1 0 22 0M79 79h78" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/><circle cx="56" cy="79" r="3" fill="currentColor"/><circle cx="179" cy="79" r="3" fill="currentColor"/></svg>',
-    pickup: '<svg class="model-placeholder-vehicle" viewBox="0 0 240 112" focusable="false" aria-hidden="true"><path d="M18 78h12l8-30 22-17h59l20 17h36l20 12v18h15M42 48h74m-53-17-8 17m47-17 8 17M40 78a10 10 0 1 0 20 0m112 0a10 10 0 1 0 20 0M73 78h91" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/><circle cx="50" cy="78" r="3" fill="currentColor"/><circle cx="162" cy="78" r="3" fill="currentColor"/></svg>'
-  };
 
   var gamaGrid = document.getElementById("gama-grid");
   MODELOS_TOYOTA.forEach(function(m){
@@ -2304,7 +2303,8 @@ document.addEventListener("DOMContentLoaded", function(){
     el.setAttribute("data-model", m.nombre);
     el.innerHTML =
       (m.badge ? '<span class="badge">' + m.badge + '</span>' : '') +
-      (m.foto ? '<picture class="model-picture"><source type="image/avif" srcset="' + m.foto.replace(/-800\.webp$/, '-800.avif') + ' 800w, ' + m.foto.replace(/-800\.webp$/, '-480.avif') + ' 480w" sizes="(max-width: 600px) 92vw, 280px"><source type="image/webp" srcset="' + m.foto.replace(/-800\.webp$/, '-480.webp') + ' 480w, ' + m.foto + ' 800w" sizes="(max-width: 600px) 92vw, 280px"><img class="model-photo" src="' + m.foto + '" alt="Toyota ' + m.nombre + '" loading="lazy" decoding="async" width="' + m.fotoW + '" height="' + m.fotoH + '"></picture><span class="model-image-disclaimer">Imagen ilustrativa · confirmar unidad y versión</span>' : '<div class="model-picture model-placeholder" role="img" aria-label="Toyota ' + m.nombre + ', silueta ' + ICONOS[m.tipo] + '"><div class="model-placeholder-art">' + PLACEHOLDER_SILHOUETTES[m.tipo] + '</div><strong>' + m.nombre + '</strong><span>' + ICONOS[m.tipo] + '</span></div>') +
+      (m.foto ? '<picture class="model-picture"><source type="image/avif" srcset="' + m.foto.replace(/-800\.webp$/, '-800.avif') + ' 800w, ' + m.foto.replace(/-800\.webp$/, '-480.avif') + ' 480w" sizes="(max-width: 600px) 92vw, 280px"><source type="image/webp" srcset="' + m.foto.replace(/-800\.webp$/, '-480.webp') + ' 480w, ' + m.foto + ' 800w" sizes="(max-width: 600px) 92vw, 280px"><img class="model-photo" src="' + m.foto + '" alt="Toyota ' + m.nombre + '" loading="lazy" decoding="async" width="' + m.fotoW + '" height="' + m.fotoH + '"></picture><span class="model-image-disclaimer">Imagen ilustrativa · confirmar unidad y versión</span>' : '<div class="model-picture model-placeholder"><svg class="car-sil" viewBox="0 0 400 180" role="img" aria-label="Silueta ilustrativa de ' + m.nombre + '"><use href="#car-' + m.silueta + '"></use></svg><strong>' + m.nombre + '</strong><span>' + m.etiqueta + '</span></div>'
+) +
       '<h3>' + m.nombre + '</h3>' +
       '<p>' + m.desc + '</p>' +
       '<div style="display:flex;gap:12px;border-top:1px solid var(--border);padding-top:11px;"><a target="_blank" rel="noopener noreferrer" href="' + wa("ventas", "Hola! Quiero consultar por la " + m.nombre + ".") + '" style="border:0;padding:0;flex:1;">Consultar <span>&rsaquo;</span></a><button class="compare-btn" type="button" data-compare-model="' + m.nombre + '" style="border:0;background:none;color:var(--muted);font:inherit;cursor:pointer;">Comparar</button></div>';
@@ -2688,7 +2688,7 @@ document.addEventListener("DOMContentLoaded", function(){
         sel.appendChild(opt);
       });
     });
-    selB.selectedIndex = compareModels.length > 1 ? 2 : 0;
+    selB.value = "";
 
     function escapeCompare(value){return String(value).replace(/[&<>"']/g,function(ch){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[ch];});}
     function compareValue(value){return escapeCompare(value).replace(/(https?:\/\/[^\s<]+)/g,'<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');}
@@ -2936,7 +2936,9 @@ document.addEventListener("DOMContentLoaded", function(){
     window.__toyotaScrollToElement=function(target,options){
       if(!target)return;
       options=options||{};
-      lenis.scrollTo(target,{offset:options.offset||0,duration:options.duration||MOTION.scrollDuration,immediate:false});
+      var header=document.getElementById("site-header");
+      var headerOffset=(header?header.offsetHeight:0)+12;
+      lenis.scrollTo(target,{offset:-headerOffset,duration:options.duration||MOTION.scrollDuration,immediate:false});
     };
     window.__destroyToyotaLenis=function(){
       gsap.ticker.remove(lenisRaf);
@@ -2974,7 +2976,20 @@ document.addEventListener("DOMContentLoaded", function(){
   }
   window.__destroyToyotaSignatureMotion=function(){splitInstances.forEach(function(split){try{split.revert();}catch(e){}});};
   window.addEventListener("pagehide",window.__destroyToyotaSignatureMotion,{once:true});
-  document.addEventListener("click",function(e){var compare=e.target.closest("[data-compare-model]");if(compare){var name=compare.getAttribute("data-compare-model"),a=document.getElementById("compareA"),b=document.getElementById("compareB");if(a&&b){if(!a.value||a.value===name)a.value=name;else b.value=name;a.dispatchEvent(new Event("change"));window.__toyotaScrollToElement(document.getElementById("comparar"),{block:"start"});}}});
+  document.addEventListener("click",function(e){
+    var compare=e.target.closest("[data-compare-model]");
+    if(!compare)return;
+    var name=compare.getAttribute("data-compare-model"),a=document.getElementById("compareA"),b=document.getElementById("compareB"),disclosure=document.getElementById("compareDisclosureButton");
+    if(!a||!b)return;
+    if(disclosure&&disclosure.getAttribute("aria-expanded")!=="true")disclosure.click();
+    if(!a.value)a.value=name;
+    else if(a.value!==name&&!b.value)b.value=name;
+    else if(a.value!==name&&b.value)b.value=name;
+    else return;
+    a.dispatchEvent(new Event("change"));
+    b.dispatchEvent(new Event("change"));
+    requestAnimationFrame(function(){window.__toyotaScrollToElement(document.getElementById("comparar"),{block:"start"});});
+  });
   var mobileBar=document.querySelector(".mobilebar"),hero=document.querySelector(".hero");
   function scrollTopSmooth(){if(window.__toyotaLenis)window.__toyotaLenis.scrollTo(0,{duration:.8});else window.scrollTo({top:0,behavior:"smooth"});}
   if(mobileBar&&hero){if(window.ScrollTrigger&&!reduce){ScrollTrigger.create({trigger:hero,start:"bottom top",onEnter:function(){mobileBar.classList.add("is-visible")},onLeaveBack:function(){mobileBar.classList.remove("is-visible")}});}else if(reduce){window.addEventListener("scroll",function(){mobileBar.classList.toggle("is-visible",window.scrollY>hero.offsetHeight);},{passive:true});}}
@@ -3508,9 +3523,9 @@ document.addEventListener('DOMContentLoaded',function(){
   }
   function activateForHash(raw,scroll){
     var hash=(raw||'').replace(/^#/,'').split('?')[0];
-    if(hash==='comparar'){var b=document.getElementById('compareDisclosureButton');if(b&&b.getAttribute('aria-expanded')!=='true')b.click();var c=document.getElementById('comparar');if(c&&scroll)requestAnimationFrame(function(){requestAnimationFrame(function(){var lenis=window.__toyotaLenis;if(lenis&&lenis.resize)lenis.resize();window.__toyotaScrollToElement(c,{block:'start',offset:-80});});});return true;}
-    var tabKey=aliases[hash]||hash, block=sectionToBlock[tabKey]; if(block){activate(block,tabKey,false);var target=document.getElementById(hash);if(target&&scroll)window.__toyotaScrollToElement(target,{block:'start',offset:-80});return true;}
-    var target=document.getElementById(hash); if(target&&scroll)window.__toyotaScrollToElement(target,{block:'start',offset:-80}); return !!target;
+    if(hash==='comparar'){var b=document.getElementById('compareDisclosureButton');if(b&&b.getAttribute('aria-expanded')!=='true')b.click();var c=document.getElementById('comparar');if(c&&scroll)requestAnimationFrame(function(){requestAnimationFrame(function(){var lenis=window.__toyotaLenis;if(lenis&&lenis.resize)lenis.resize();window.__toyotaScrollToElement(c,{block:'start'});});});return true;}
+    var tabKey=aliases[hash]||hash, block=sectionToBlock[tabKey]; if(block){activate(block,tabKey,false);var target=document.getElementById(hash);if(target&&scroll)window.__toyotaScrollToElement(target,{block:'start'});return true;}
+    var target=document.getElementById(hash); if(target&&scroll)window.__toyotaScrollToElement(target,{block:'start'}); return !!target;
   }
   function init(){
     Object.keys(blocks).forEach(function(blockId){var block=document.getElementById(blockId);if(!block)return;block.querySelectorAll('[role="tab"]').forEach(function(tab,i){tab.addEventListener('click',function(){activate(blockId,blocks[blockId][i],true);});tab.addEventListener('keydown',function(e){var i=blocks[blockId].indexOf(tab.id.slice(4)),next;if(e.key==='ArrowRight'||e.key==='ArrowDown'){e.preventDefault();next=(i+1)%blocks[blockId].length;}else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();next=(i-1+blocks[blockId].length)%blocks[blockId].length;}else if(e.key==='Home'){e.preventDefault();next=0;}else if(e.key==='End'){e.preventDefault();next=blocks[blockId].length-1;}else return;activate(blockId,blocks[blockId][next],true);block.querySelectorAll('[role="tab"]')[next].focus();});});});
@@ -3529,7 +3544,7 @@ document.addEventListener('DOMContentLoaded',function(){
 	        requestAnimationFrame(function(){requestAnimationFrame(function(){
 	          var lenis=window.__toyotaLenis;
 	          if(lenis&&lenis.resize)lenis.resize();
-	          if(window.__toyotaScrollToElement)window.__toyotaScrollToElement(target,{block:'start',offset:-80});
+	          if(window.__toyotaScrollToElement)window.__toyotaScrollToElement(target,{block:'start'});
 	          else target.scrollIntoView({block:'start'});
 	        });});
 	      }
@@ -3595,11 +3610,15 @@ document.addEventListener('DOMContentLoaded',function(){
 #gama .model-picture .model-photo{height:100%;width:100%;object-fit:contain;object-position:50% 50%;}
 #gama .model-placeholder{height:244px;padding:16px;display:grid;grid-template-rows:minmax(0,1fr) auto auto;align-content:center;gap:6px;border-radius:12px;overflow:hidden;background:linear-gradient(145deg,#f7f9f9,#e9edef);color:var(--ink);text-align:center;}
 #gama .model-placeholder:after{content:none;}
-#gama .model-placeholder-art{display:grid;place-items:center;min-height:0;width:100%;color:#66737b;}
-#gama .model-placeholder-vehicle{display:block;width:min(82%,220px);height:auto;max-height:142px;}
 #gama .model-placeholder strong{font:700 clamp(22px,2.5vw,30px)/1.05 var(--display);letter-spacing:-.035em;color:var(--ink);}
 #gama .model-placeholder span{font:700 10px var(--display);letter-spacing:.18em;text-transform:uppercase;color:var(--toyota-red);}
-@media(max-width:700px){#gama .model-picture,#gama .model-placeholder{height:220px;padding:14px}#gama .model-placeholder-vehicle{max-height:122px;}}
+@media(max-width:700px){#gama .model-picture,#gama .model-placeholder{height:220px;padding:14px}}
+</style>
+<style id="spec-compliance-final">
+[hidden]{display:none!important}
+#gama .model[hidden]{display:none!important}
+section[id],main [id]{scroll-margin-top:112px}
+#gama .model-placeholder .car-sil{width:min(86%,300px);height:auto;margin:0 auto;display:block}
 </style>
 </body>
 </html>
