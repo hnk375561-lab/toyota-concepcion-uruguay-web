@@ -1,7 +1,0 @@
-# Hosting privado
-
-GitHub Pages publica el sitio en Internet aun cuando el repositorio sea privado, si el plan lo permite; para una demo con datos reales conviene restringir el acceso en la capa de publicación, no confiar en `noindex`. Las opciones siguientes son alternativas, no cambios aplicados en este repositorio. Los datos borrados del sitio siguen presentes en commits anteriores del historial de Git.
-
-1. **No compartir la URL salvo con el dueño.** No agrega control técnico: cualquiera que obtenga el enlace podría abrirlo. Fuente: [GitHub Pages](https://docs.github.com/articles/creating-project-pages-manually).
-2. **Repositorio privado más GitHub Pages.** El repositorio puede ser privado según el plan, pero el sitio publicado continúa siendo público según la documentación oficial; no sirve como contraseña. Fuente: [GitHub Pages: creating a site](https://docs.github.com/articles/creating-project-pages-manually).
-3. **Netlify o Cloudflare con control de acceso.** Netlify ofrece visibilidad con contraseña; la documentación indica que la protección básica de todo el sitio está disponible en planes Pro y que los planes basados en créditos usan Project visibility. Cloudflare Access agrega autenticación y políticas Allow/Deny delante de un hostname self-hosted. Fuentes: [Netlify Password Protection](https://docs.netlify.com/manage/security/secure-access-to-sites/password-protection/) y [Cloudflare Access](https://developers.cloudflare.com/cloudflare-one/access-controls/applications/http-apps/self-hosted-public-app/).
