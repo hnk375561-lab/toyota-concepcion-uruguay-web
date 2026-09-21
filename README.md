@@ -31,7 +31,7 @@ Solo se publica `dist/`, que genera `scripts/build.sh`: `index.html`, `404.html`
 
 El workflow `.github/workflows/deploy.yml`:
 
-- En cada *pull request*: genera `dist/` y corre `tests/click-audit.py` sobre `dist/`. No publica.
+- En cada *pull request*: genera `dist/` y corre la suite (`npm test`, ver abajo) sobre `dist/`. No publica.
 - En cada push a `main` (o ejecución manual sobre `main`): lo mismo y, solo si los tests pasan, publica `dist/` con `actions/upload-pages-artifact` y `actions/deploy-pages`.
 - Siempre adjunta el artefacto `build-report` (reporte de assets y resultado de los tests).
 
@@ -56,3 +56,31 @@ python3 tests/click-audit.py
 ### Estado de publicación
 
 La versión de demo mantiene `noindex, nofollow` en `index.html`. El procedimiento de puesta en producción está preparado en `golive/`, pero no se ejecuta automáticamente.
+
+## Tests (`tests/`, `npm test`)
+
+Playwright + axe-core + validador Nu + Lighthouse, todo sobre `dist/` (lo que se publica). Requiere Node ≥ 22.19 y Java (para el validador).
+
+```bash
+npm ci
+npx playwright install chromium
+npm test                        # build + e2e + axe + HTML + Lighthouse
+npm test -- --skip-lighthouse   # sin presupuestos de Lighthouse
+npm test -- --only-lighthouse
+npm test -- --grep horarios     # el resto de los argumentos va a `playwright test`
+```
+
+| Archivo | Cubre |
+|---|---|
+| `tests/e2e/navegacion.spec.js` | Clic real en los 12 links de escritorio (mega menús) y los 19 del drawer móvil. |
+| `tests/e2e/deep-links.spec.js` | Abrir directamente en `#seccion`, tabs, `#comparar?a=&b=`, `#gama?filter=`. |
+| `tests/e2e/hero.spec.js` | Hero quieto: delta 0 en reposo, con scroll y con mouse (motion normal y reduced). |
+| `tests/e2e/horarios.spec.js` | Badge abierto/cerrado con `page.clock` (dom 11:00, sáb 09:00, sáb 13:00, lun 10:00, lun 12:30, lun 15:30, vie 19:30, lun 00:30, más bordes de franja). |
+| `tests/e2e/formularios.spec.js` | Contacto (vacíos, motivo → número y mensaje de WhatsApp) y tasación. |
+| `tests/e2e/comparador.spec.js` | Selects, tarjetas, mismo modelo, reinicio, hash y WhatsApp. |
+| `tests/e2e/salud.spec.js` | 0 `console.error/warning`, 0 requests externos, 0 4xx/5xx, sin overflow, filtros y 404. |
+| `tests/e2e/accesibilidad.spec.js` | axe WCAG A/AA = 0 en la página, cada tab y estados interactivos. |
+| `tests/e2e/html-validator.spec.js` | Validador Nu: 0 errores (excepciones documentadas en `tests/support/vnu-allowlist.json`). |
+| `tests/lighthouse/` | Presupuestos en `budgets.json` (mobile ≥ 95, desktop ≥ 98, a11y 100, best practices 100), mediana de 3 corridas. Reporte en `build-report/lighthouse/`. |
+
+`tests/click-audit.py` es la auditoría anterior en Python; ya no la ejecuta el CI (su cobertura está en esta suite).

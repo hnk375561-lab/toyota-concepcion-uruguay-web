@@ -1,0 +1,20 @@
+{
+  "name": "toyota-concepcion-uruguay-web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Sitio estático de Piñeyro y Moscatelli (Toyota Concepción del Uruguay) y su suite de tests.",
+  "engines": {
+    "node": ">=22.19"
+  },
+  "scripts": {
+    "test": "node tests/support/run-all.mjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@playwright/test": "1.56.0",
+    "chrome-launcher": "1.2.1",
+    "lighthouse": "13.5.0",
+    "vnu-jar": "26.9.16"
+  }
+}

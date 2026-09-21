@@ -1,0 +1,13 @@
+{
+  "_comentario": "Falsos positivos CONOCIDOS del parser CSS del validador Nu (su gramática CSS está atrasada). Son CSS válido y soportado por los navegadores. Cualquier otro error del validador HTML hace fallar el test. No agregar entradas sin justificarlas.",
+  "errores_permitidos": [
+    {
+      "patron": "^CSS: “transition-behavior”: Property “transition-behavior” doesn't exist\\.$",
+      "motivo": "transition-behavior es una propiedad CSS estándar (Baseline 2024); vnu no la conoce."
+    },
+    {
+      "patron": "^CSS: “background-image”: “image-set\\(",
+      "motivo": "image-set() con type(\"image/avif\") es CSS Images 4 válido; el CSS checker de vnu no soporta type()."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "_comentario": "Puntajes mínimos (0-100). Se comparan contra la MEDIANA de LH_RUNS corridas. Para subir/bajar un presupuesto editá solo este archivo.",
+  "mobile": {
+    "performance": 95,
+    "accessibility": 100,
+    "best-practices": 100
+  },
+  "desktop": {
+    "performance": 98,
+    "accessibility": 100,
+    "best-practices": 100
+  }
+}
