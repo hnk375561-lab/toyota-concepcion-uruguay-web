@@ -21,7 +21,7 @@ concurrency:
 jobs:
   test-and-build:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v5
 
@@ -38,11 +38,40 @@ jobs:
       - name: Generar dist/ y reporte de assets
         run: bash scripts/build.sh
 
-      - name: Tests (sobre dist/, lo mismo que se publica)
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      # El validador Nu (vnu.jar) necesita Java.
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Instalar dependencias de tests
         run: |
-          python3 -m http.server 8000 --bind 127.0.0.1 --directory dist &
-          for _ in $(seq 1 40); do curl -fs http://127.0.0.1:8000/ >/dev/null && break; sleep 0.5; done
-          python3 tests/click-audit.py | tee build-report/click-audit.md
+          npm ci
+          # Mismo Chromium que ya instaló el paso de Python (Playwright 1.56.0): es un no-op si está en caché.
+          npx playwright install chromium
+
+      # Bloquea el deploy: clic en los 12/19 links, deep links, hero quieto, horarios (page.clock),
+      # formularios, comparador, 0 console.error/warning, 0 requests externos o 4xx/5xx,
+      # axe A/AA = 0 y validador HTML = 0 errores. Todo sobre dist/, lo mismo que se publica.
+      - name: Tests (e2e + axe + validador HTML) sobre dist/
+        env:
+          SKIP_BUILD: "1"
+        run: node tests/support/run-all.mjs --skip-lighthouse
+
+      # Presupuestos de tests/lighthouse/budgets.json (mediana de 3 corridas).
+      # continue-on-error: el resultado queda visible (paso en rojo + reporte en build-report/lighthouse/)
+      # pero NO bloquea el deploy, porque el rendimiento móvil hoy no cumple el presupuesto.
+      # Para hacerlo bloqueante, borrá la línea `continue-on-error`.
+      - name: Presupuestos de Lighthouse
+        continue-on-error: true
+        env:
+          SKIP_BUILD: "1"
+        run: node tests/support/run-all.mjs --only-lighthouse
 
       - name: Subir reporte (assets sin referencia y resultado de tests)
         if: always()
