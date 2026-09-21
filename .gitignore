@@ -1,0 +1,5 @@
+# Salidas generadas por scripts/build.sh (no se versionan)
+dist/
+build-report/
+.venv/
+__pycache__/
