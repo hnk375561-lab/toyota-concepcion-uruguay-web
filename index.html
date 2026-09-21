@@ -52,6 +52,9 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
 <link href="toyota-sharp-assets/apple-touch-icon.png" rel="apple-touch-icon"/>
 <link as="font" crossorigin="" href="toyota-sharp-assets/fonts/manrope-700-latin.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="toyota-sharp-assets/fonts/ibm-plex-sans-400-latin.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="toyota-sharp-assets/fonts/manrope-600-latin.woff2" rel="preload" type="font/woff2"/>
+<link as="image" fetchpriority="high" href="toyota-sharp-assets/hero-sw4-mobile-4to5-640.avif" imagesizes="100vw" imagesrcset="toyota-sharp-assets/hero-sw4-mobile-4to5-640.avif 640w" media="(max-width: 760px)" rel="preload" type="image/avif"/>
+<link as="image" fetchpriority="high" href="toyota-sharp-assets/hero-sw4-desktop-1800.avif" imagesizes="68vw" imagesrcset="toyota-sharp-assets/hero-sw4-desktop-1800.avif 1800w" media="(min-width: 761px)" rel="preload" type="image/avif"/>
 <style id="critical-fonts">
 @font-face{font-family:"Manrope";font-style:normal;font-weight:700;font-display:swap;src:url("toyota-sharp-assets/fonts/manrope-700-latin.woff2") format("woff2");}
 @font-face{font-family:"IBM Plex Sans";font-style:normal;font-weight:400;font-display:swap;src:url("toyota-sharp-assets/fonts/ibm-plex-sans-400-latin.woff2") format("woff2");}
@@ -3069,7 +3072,6 @@ document.addEventListener("DOMContentLoaded", function(){
       heroTl
         .fromTo(heroWash,{opacity:0},{opacity:1,duration:.7,ease:"power1.out",clearProps:"opacity"},0)
         .from(heroRails,{opacity:0,y:14,duration:.5,stagger:.08},.04)
-        .fromTo(heroPrimaryFig,{clipPath:"inset(0% 0% 100% 0%)",scale:1.055,opacity:.85},{clipPath:"inset(0% 0% 0% 0%)",scale:1,opacity:1,duration:1.05,ease:premiumEase,clearProps:"clipPath,opacity"},.1)
         .fromTo(heroSecondaryFig,{clipPath:"inset(0% 0% 100% 0%)",opacity:0,y:16},{clipPath:"inset(0% 0% 0% 0%)",opacity:1,y:0,duration:.85,ease:premiumEase,clearProps:"clipPath,opacity,y"},.32)
         .from(heroWordmark,{opacity:0,x:-14,duration:.6},.42)
         .from(".hero .tag",{opacity:0,x:-18,duration:.45},.46)
