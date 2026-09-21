@@ -101,3 +101,41 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v5
+
+  # Firefox + WebKit: navegación, menú móvil, hero quieto y formularios, a 390 y 1440.
+  # continue-on-error: no bloquea nada. Este job se escribió SIN poder ejecutar Firefox/WebKit
+  # (entorno sin acceso a la descarga de Playwright): el primer resultado real es el de GitHub.
+  # Cuando esté verde de forma estable, quitá `continue-on-error` para volverlo un control obligatorio
+  # y agregalo a `needs` del job `deploy` si querés que bloquee la publicación.
+  cross-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependencias y navegadores (Firefox + WebKit)
+        run: |
+          npm ci
+          npx playwright install --with-deps firefox webkit
+
+      - name: Generar dist/
+        run: SKIP_CRAWL=1 bash scripts/build.sh
+
+      - name: Tests cross-browser
+        env:
+          SKIP_BUILD: "1"
+        run: node tests/support/run-all.mjs --cross-browser
+
+      - name: Subir reporte cross-browser
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: build-report-cross-browser
+          path: build-report/
+          if-no-files-found: ignore
