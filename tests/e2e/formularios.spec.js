@@ -25,8 +25,8 @@ async function enviarYCapturar(page, submit) {
 }
 
 test.describe('Formulario de contacto', () => {
-  test('vacío: no abre WhatsApp, marca los campos y enfoca el nombre', async ({ page, context, isMobile }) => {
-    await openSite(page, '', { mobile: isMobile });
+  test('vacío: no abre WhatsApp, marca los campos y enfoca el nombre', async ({ page, context, mobile }) => {
+    await openSite(page, '', { mobile });
     await page.locator('#contactForm button[type="submit"]').click();
     await expect(page.locator('#contactFormNote')).toHaveText('Completá tu nombre y el mensaje para continuar.');
     await expect(page.locator('#contactFormNote')).toHaveClass(/form-error/);
@@ -37,8 +37,8 @@ test.describe('Formulario de contacto', () => {
     expect(context.pages()).toHaveLength(1);
   });
 
-  test('solo nombre: pide el mensaje y lo enfoca', async ({ page, context, isMobile }) => {
-    await openSite(page, '', { mobile: isMobile });
+  test('solo nombre: pide el mensaje y lo enfoca', async ({ page, context, mobile }) => {
+    await openSite(page, '', { mobile });
     await page.locator('#cName').fill('Lucía');
     await page.locator('#contactForm button[type="submit"]').click();
     await expect(page.locator('#contactFormNote')).toHaveText('Contanos brevemente qué necesitás para continuar.');
@@ -48,8 +48,8 @@ test.describe('Formulario de contacto', () => {
     expect(context.pages()).toHaveLength(1);
   });
 
-  test('solo mensaje: pide el nombre y lo enfoca', async ({ page, context, isMobile }) => {
-    await openSite(page, '', { mobile: isMobile });
+  test('solo mensaje: pide el nombre y lo enfoca', async ({ page, context, mobile }) => {
+    await openSite(page, '', { mobile });
     await page.locator('#cMsg').fill('Quiero una Hilux');
     await page.locator('#contactForm button[type="submit"]').click();
     await expect(page.locator('#contactFormNote')).toHaveText('Completá tu nombre para continuar.');
@@ -57,8 +57,8 @@ test.describe('Formulario de contacto', () => {
     expect(context.pages()).toHaveLength(1);
   });
 
-  test('solo espacios cuenta como vacío', async ({ page, context, isMobile }) => {
-    await openSite(page, '', { mobile: isMobile });
+  test('solo espacios cuenta como vacío', async ({ page, context, mobile }) => {
+    await openSite(page, '', { mobile });
     await page.locator('#cName').fill('   ');
     await page.locator('#cMsg').fill('   ');
     await page.locator('#contactForm button[type="submit"]').click();
@@ -66,8 +66,8 @@ test.describe('Formulario de contacto', () => {
     expect(context.pages()).toHaveLength(1);
   });
 
-  test('válido en móvil y escritorio: mensaje y número correctos', async ({ page, isMobile }) => {
-    await openSite(page, '', { mobile: isMobile });
+  test('válido en móvil y escritorio: mensaje y número correctos', async ({ page, mobile }) => {
+    await openSite(page, '', { mobile });
     await page.locator('#cName').fill('  Ana Pérez  ');
     await page.locator('#cMotivo').selectOption('financiacion');
     await page.locator('#cMsg').fill('Busco una Hilux 4x4 & plan a 48 cuotas');
@@ -82,7 +82,7 @@ test.describe('Formulario de contacto', () => {
   });
 
   test.describe('motivo → canal', () => {
-    test.skip(({ isMobile }) => isMobile, 'tabla completa solo en escritorio');
+    test.skip(({ mobile }) => mobile, 'tabla completa solo en escritorio');
     for (const [valor, canal, frase] of MOTIVOS) {
       test(`${valor} → ${canal}`, async ({ page }) => {
         await openSite(page);
@@ -96,8 +96,8 @@ test.describe('Formulario de contacto', () => {
     }
   });
 
-  test('la vista previa se actualiza con motivo, nombre y mensaje', async ({ page, isMobile }) => {
-    await openSite(page, '', { mobile: isMobile });
+  test('la vista previa se actualiza con motivo, nombre y mensaje', async ({ page, mobile }) => {
+    await openSite(page, '', { mobile });
     const preview = page.locator('#messagePreview');
     await expect(preview).toHaveText('Hola, quiero hacer una consulta general.');
     await page.locator('#cMotivo').selectOption('financiacion');
@@ -113,14 +113,14 @@ test.describe('Formulario de contacto', () => {
 });
 
 test.describe('Formulario de tasación (plan canje)', () => {
-  async function abrir(page, isMobile) {
-    await openSite(page, '#canje', { mobile: isMobile });
+  async function abrir(page, mobile) {
+    await openSite(page, '#canje', { mobile });
     await expectLanded(page, 'canje');
     await expect(page.locator('#tradeForm')).toBeVisible();
   }
 
-  test('vacío: la validación nativa bloquea el envío', async ({ page, context, isMobile }) => {
-    await abrir(page, isMobile);
+  test('vacío: la validación nativa bloquea el envío', async ({ page, context, mobile }) => {
+    await abrir(page, mobile);
     await page.locator('#tradeForm button[type="submit"]').click();
     await expect(page.locator('#tradeCar')).toBeFocused();
     expect(await page.locator('#tradeForm').evaluate((f) => f.checkValidity())).toBe(false);
@@ -128,8 +128,8 @@ test.describe('Formulario de tasación (plan canje)', () => {
     expect(context.pages()).toHaveLength(1);
   });
 
-  test('año inválido: mensaje claro y foco en el año', async ({ page, context, isMobile }) => {
-    await abrir(page, isMobile);
+  test('año inválido: mensaje claro y foco en el año', async ({ page, context, mobile }) => {
+    await abrir(page, mobile);
     await page.locator('#tradeCar').fill('Toyota Corolla');
     await page.locator('#tradeYear').fill('20');
     await page.locator('#tradeKm').fill('80000');
@@ -140,8 +140,8 @@ test.describe('Formulario de tasación (plan canje)', () => {
     expect(context.pages()).toHaveLength(1);
   });
 
-  test('kilometraje inválido: mensaje claro y foco en el km', async ({ page, context, isMobile }) => {
-    await abrir(page, isMobile);
+  test('kilometraje inválido: mensaje claro y foco en el km', async ({ page, context, mobile }) => {
+    await abrir(page, mobile);
     await page.locator('#tradeCar').fill('Toyota Corolla');
     await page.locator('#tradeYear').fill('2020');
     await page.locator('#tradeKm').fill('ochenta mil');
@@ -151,8 +151,8 @@ test.describe('Formulario de tasación (plan canje)', () => {
     expect(context.pages()).toHaveLength(1);
   });
 
-  test('válido: mensaje de tasación y número de ventas', async ({ page, isMobile }) => {
-    await abrir(page, isMobile);
+  test('válido: mensaje de tasación y número de ventas', async ({ page, mobile }) => {
+    await abrir(page, mobile);
     await page.locator('#tradeCar').fill('Toyota Corolla');
     await page.locator('#tradeYear').fill('2020');
     await page.locator('#tradeKm').fill('80000');

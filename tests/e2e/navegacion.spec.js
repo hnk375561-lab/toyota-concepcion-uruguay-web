@@ -49,7 +49,7 @@ async function checkComparar(page, id) {
 }
 
 test.describe('Menú de escritorio (12 links)', () => {
-  test.skip(({ isMobile }) => isMobile, 'solo escritorio');
+  test.skip(({ mobile }) => mobile, 'solo escritorio');
 
   test('el menú tiene exactamente 12 links', async ({ page }) => {
     await openSite(page);
@@ -74,7 +74,7 @@ test.describe('Menú de escritorio (12 links)', () => {
 });
 
 test.describe('Menú móvil (19 links)', () => {
-  test.skip(({ isMobile }) => !isMobile, 'solo móvil');
+  test.skip(({ mobile }) => !mobile, 'solo móvil');
 
   test('el drawer tiene exactamente 19 links internos', async ({ page }) => {
     await openSite(page, '', { mobile: true });

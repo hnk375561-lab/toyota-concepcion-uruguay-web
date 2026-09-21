@@ -30,16 +30,16 @@ for (const reduced of [false, true]) {
   test.describe(reduced ? 'con prefers-reduced-motion' : 'con motion normal', () => {
     test.use({ reducedMotion: reduced ? 'reduce' : 'no-preference' });
 
-    test('delta 0 tras la intro, con la página en reposo', async ({ page, isMobile }) => {
-      await openSite(page, '', { mobile: isMobile });
+    test('delta 0 tras la intro, con la página en reposo', async ({ page, mobile }) => {
+      await openSite(page, '', { mobile });
       await page.waitForTimeout(4000); // termina la coreografía de entrada
       const a = await snapshot(page);
       await page.waitForTimeout(1500);
       expectSame(a, await snapshot(page), 'reposo');
     });
 
-    test('delta 0 al hacer scroll (sin parallax ni scrub)', async ({ page, isMobile }) => {
-      await openSite(page, '', { mobile: isMobile });
+    test('delta 0 al hacer scroll (sin parallax ni scrub)', async ({ page, mobile }) => {
+      await openSite(page, '', { mobile });
       await page.waitForTimeout(4000);
       const base = await snapshot(page);
       for (const y of [120, 300, 480, 200, 0]) {
@@ -49,8 +49,8 @@ for (const reduced of [false, true]) {
       }
     });
 
-    test('la imagen del hero no tiene transformaciones', async ({ page, isMobile }) => {
-      await openSite(page, '', { mobile: isMobile });
+    test('la imagen del hero no tiene transformaciones', async ({ page, mobile }) => {
+      await openSite(page, '', { mobile });
       await page.waitForTimeout(3000);
       for (const y of [0, 250]) {
         await page.evaluate((v) => window.scrollTo(0, v), y);
@@ -62,8 +62,8 @@ for (const reduced of [false, true]) {
   });
 }
 
-test('el mouse sobre el hero no lo mueve (escritorio)', async ({ page, isMobile }) => {
-  test.skip(isMobile, 'solo escritorio');
+test('el mouse sobre el hero no lo mueve (escritorio)', async ({ page, mobile }) => {
+  test.skip(mobile, 'solo escritorio');
   await openSite(page);
   await page.waitForTimeout(4000);
   const base = await snapshot(page);

@@ -84,3 +84,14 @@ npm test -- --grep horarios     # el resto de los argumentos va a `playwright te
 | `tests/lighthouse/` | Presupuestos en `budgets.json` (mobile ≥ 95, desktop ≥ 98, a11y 100, best practices 100), mediana de 3 corridas. Reporte en `build-report/lighthouse/`. |
 
 `tests/click-audit.py` es la auditoría anterior en Python; ya no la ejecuta el CI (su cobertura está en esta suite).
+
+### Cross-browser (Firefox y WebKit)
+
+Navegación (12 links de escritorio y 19 del menú móvil), hero quieto y formularios, a **1440** y a **390** px, en Firefox y WebKit. Los mismos specs que Chromium (`navegacion`, `hero`, `formularios`); el resto de la suite corre solo en Chromium.
+
+```bash
+npx playwright install --with-deps firefox webkit
+npm run test:cross          # proyectos firefox-1440, firefox-390, webkit-1440, webkit-390
+```
+
+En CI es el job `cross-browser` de `deploy.yml` (no bloquea el deploy; reporte en el artefacto `build-report-cross-browser`). Firefox no soporta la opción `isMobile` de Playwright: en `firefox-390` se emula el viewport y el touch, no el meta viewport.

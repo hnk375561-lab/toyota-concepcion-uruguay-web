@@ -8,7 +8,8 @@
     "node": ">=22.19"
   },
   "scripts": {
-    "test": "node tests/support/run-all.mjs"
+    "test": "node tests/support/run-all.mjs",
+    "test:cross": "node tests/support/run-all.mjs --cross-browser"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.13.0",

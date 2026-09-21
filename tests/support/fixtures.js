@@ -24,6 +24,14 @@ export const test = base.extend({
   /** Activa/desactiva la vigilancia (por defecto activa). */
   monitor: [true, { option: true }],
 
+  /**
+   * true si el viewport es el de móvil (≤ 760 px, el breakpoint del sitio). Se usa en lugar de
+   * `isMobile` porque Firefox no soporta esa opción de Playwright: el layout depende del ancho.
+   */
+  mobile: async ({ viewport }, use) => {
+    await use(!!viewport && viewport.width <= 760);
+  },
+
   /** Registro de lo que ocurrió en la página. Disponible para asserts propios. */
   telemetry: [
     async ({ page, context, baseURL }, use) => {

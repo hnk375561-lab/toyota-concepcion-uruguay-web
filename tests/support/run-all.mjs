@@ -5,6 +5,7 @@
  *   npm test                          → build de dist/ + Playwright (e2e, axe, HTML) + Lighthouse
  *   npm test -- --skip-lighthouse     → sin presupuestos de Lighthouse
  *   npm test -- --only-lighthouse     → solo Lighthouse
+ *   npm run test:cross                → solo cross-browser (Firefox + WebKit, 390 y 1440); ver README
  *   npm test -- --grep horarios       → el resto de los argumentos van a `playwright test`
  *
  * Variables: SKIP_BUILD=1 (usa el dist/ existente), PORT (8000), BASE_URL (probar otra URL, sin servidor local),
@@ -20,7 +21,8 @@ const ROOT = resolve(fileURLToPath(new URL('../..', import.meta.url)));
 const args = process.argv.slice(2);
 const skipLh = args.includes('--skip-lighthouse');
 const onlyLh = args.includes('--only-lighthouse');
-const pwArgs = args.filter((a) => a !== '--skip-lighthouse' && a !== '--only-lighthouse');
+const cross = args.includes('--cross-browser');
+const pwArgs = args.filter((a) => !['--skip-lighthouse', '--only-lighthouse', '--cross-browser'].includes(a));
 const PORT = String(process.env.PORT || 8000);
 const external = !!process.env.BASE_URL;
 const BASE_URL = process.env.BASE_URL || `http://127.0.0.1:${PORT}`;
@@ -60,11 +62,17 @@ if (!external) {
   }
   if (!up) { console.error('El servidor de tests no arrancó.'); process.exit(1); }
 }
-const env = { BASE_URL, PORT };
+const env = { BASE_URL, PORT, ...(cross ? { CROSS_BROWSER: '1' } : {}) };
+const PW_CLI = 'node_modules/@playwright/test/cli.js';
 
 // 3) etapas
-if (!onlyLh) run('Playwright: e2e + axe + validador HTML', process.execPath, ['node_modules/@playwright/test/cli.js', 'test', ...pwArgs], env);
-if (!skipLh) run('Lighthouse: presupuestos', process.execPath, ['tests/lighthouse/run.mjs'], env);
+if (cross) {
+  const projects = ['firefox-1440', 'firefox-390', 'webkit-1440', 'webkit-390'].map((p) => `--project=${p}`);
+  run('Playwright: cross-browser (Firefox + WebKit, 390 y 1440)', process.execPath, [PW_CLI, 'test', ...projects, ...pwArgs], env);
+} else {
+  if (!onlyLh) run('Playwright: e2e + axe + validador HTML', process.execPath, [PW_CLI, 'test', ...pwArgs], env);
+  if (!skipLh) run('Lighthouse: presupuestos', process.execPath, ['tests/lighthouse/run.mjs'], env);
+}
 
 stopServer();
 console.log('\n━━━ Resumen ━━━');

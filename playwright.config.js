@@ -9,11 +9,20 @@ const CI = !!process.env.CI;
 const useLocalServer = !process.env.BASE_URL;
 
 // El Chromium lo resuelve Playwright (versión fijada en package.json).
-// CHROMIUM_PATH permite forzar un binario propio.
-const launchOptions = {
+// CHROMIUM_PATH permite forzar un binario propio. Solo aplica a los proyectos de Chromium:
+// `--no-sandbox` y `executablePath` romperían Firefox/WebKit.
+const chromiumLaunch = {
   args: ['--no-sandbox'],
   ...(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {}),
 };
+
+// Cross-browser (Firefox + WebKit): solo con CROSS_BROWSER=1 (`npm run test:cross`), porque exige
+// `npx playwright install --with-deps firefox webkit`. Cubre navegación, menú móvil, hero quieto y
+// formularios, a 1440 y a 390.
+const CROSS = process.env.CROSS_BROWSER === '1';
+const CROSS_SPECS = /(navegacion|hero|formularios)\.spec\.js$/;
+const D1440 = { width: 1440, height: 900 };
+const M390 = { width: 390, height: 844 };
 
 export default defineConfig({
   testDir: 'tests/e2e',
@@ -36,24 +45,37 @@ export default defineConfig({
     timezoneId: 'America/Argentina/Buenos_Aires',
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
-    launchOptions,
   },
 
   projects: [
     {
       name: 'desktop',
-      use: { browserName: 'chromium', viewport: { width: 1440, height: 900 } },
+      use: { browserName: 'chromium', viewport: D1440, launchOptions: chromiumLaunch },
     },
     {
       name: 'mobile',
       use: {
         browserName: 'chromium',
-        viewport: { width: 390, height: 844 },
+        viewport: M390,
         deviceScaleFactor: 2,
         isMobile: true,
         hasTouch: true,
+        launchOptions: chromiumLaunch,
       },
     },
+    ...(CROSS
+      ? [
+          { name: 'firefox-1440', testMatch: CROSS_SPECS, use: { browserName: 'firefox', viewport: D1440 } },
+          // Firefox no soporta `isMobile`: se emula solo el viewport y el touch.
+          { name: 'firefox-390', testMatch: CROSS_SPECS, use: { browserName: 'firefox', viewport: M390, hasTouch: true } },
+          { name: 'webkit-1440', testMatch: CROSS_SPECS, use: { browserName: 'webkit', viewport: D1440 } },
+          {
+            name: 'webkit-390',
+            testMatch: CROSS_SPECS,
+            use: { browserName: 'webkit', viewport: M390, deviceScaleFactor: 2, isMobile: true, hasTouch: true },
+          },
+        ]
+      : []),
   ],
 
   webServer: useLocalServer
