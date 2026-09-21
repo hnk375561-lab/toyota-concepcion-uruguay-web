@@ -3,3 +3,7 @@ dist/
 build-report/
 .venv/
 __pycache__/
+# Suite de tests (npm test)
+node_modules/
+test-results/
+playwright-report/
