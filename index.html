@@ -111,7 +111,7 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
     var lenis = window.__toyotaLenis;
     var header = document.getElementById("site-header");
     var demoBanner = document.querySelector(".demo-banner");
-    var headerOffset = (header ? header.offsetHeight : 0) + (demoBanner ? demoBanner.offsetHeight : 0) + 46;
+    var headerOffset = (header ? header.offsetHeight : 0) + (demoBanner ? demoBanner.offsetHeight : 0) + 50;
     var y = target.getBoundingClientRect().top + window.scrollY - headerOffset;
     if(lenis){
       lenis.scrollTo(Math.max(0, y), {duration: options.duration || 0.85, immediate: false});
@@ -3228,7 +3228,7 @@ document.addEventListener("DOMContentLoaded", function(){window.__toyotaSchedule
       options=options||{};
       var header=document.getElementById("site-header");
       var demoBanner=document.querySelector(".demo-banner");
-      var headerOffset=(header?header.offsetHeight:0)+(demoBanner?demoBanner.offsetHeight:0)+42;
+      var headerOffset=(header?header.offsetHeight:0)+(demoBanner?demoBanner.offsetHeight:0)+50;
       var y=target.getBoundingClientRect().top+window.scrollY-headerOffset;
       lenis.scrollTo(Math.max(0,y),{duration:options.duration||MOTION.scrollDuration,immediate:false});
     };
