@@ -188,10 +188,20 @@ def overflow_audit(page: Page, audit: Audit, case_name: str) -> None:
     audit.check(f"{case_name}/horizontal-overflow", metrics["body"] <= metrics["viewport"] and metrics["html"] <= metrics["viewport"], str(metrics))
 
 
+def launch_options() -> dict:
+    """/usr/bin/chromium si existe (entorno original); CHROMIUM_PATH lo reemplaza;
+    si no hay ninguno, usa el Chromium que instala `playwright install chromium`."""
+    options: dict = {"headless": True, "args": ["--no-sandbox"]}
+    path = os.environ.get("CHROMIUM_PATH") or ("/usr/bin/chromium" if os.path.exists("/usr/bin/chromium") else "")
+    if path:
+        options["executable_path"] = path
+    return options
+
+
 def run() -> int:
     audit = Audit()
     with sync_playwright() as pw:
-        browser = pw.chromium.launch(headless=True, executable_path="/usr/bin/chromium", args=["--no-sandbox"])
+        browser = pw.chromium.launch(**launch_options())
         for case_name, width, height, reduced in CASES:
             page, console_errors, failed = new_page(browser, width, height, reduced)
             anchor_audit(page, audit, case_name)
