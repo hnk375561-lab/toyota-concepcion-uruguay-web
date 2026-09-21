@@ -5,6 +5,7 @@ El repositorio de demo conserva `noindex, nofollow` en `index.html` y en `404.ht
 ## Antes de ejecutar
 
 1. Confirmá por escrito el dominio final, teléfono, WhatsApp, horarios, dirección y redes.
+2. Quitá todo lo marcado DEMO (ver README) y confirmá el teléfono Central.
 2. Revisá la demo en 390, 768, 1440 y 1920 px; no publiques si hay errores de consola o enlaces rotos.
 3. Instalá las dependencias del script: `pip install beautifulsoup4 lxml`.
 4. Validá el HTML (ver "Validación de HTML" más abajo).
