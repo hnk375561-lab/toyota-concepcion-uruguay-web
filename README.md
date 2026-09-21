@@ -10,7 +10,7 @@ El sitio es un documento estático autocontenido en `index.html`. Para mantener 
 
 | Necesidad | Ubicación exacta |
 |---|---|
-| Teléfono principal | Constantes y enlaces `tel:+543442473453`; buscá también `03442 47-3453`. |
+| Teléfono principal (Central a confirmar) | Constantes y enlaces `tel:+543442473453`; buscá también `03442 47-3453`. |
 | WhatsApp | Función `wa(...)` y enlaces `https://wa.me/5493442473453`. |
 | Horarios y badge | Bloque `location-status-once`, función `getOpeningStatus` y el elemento `#locationStatus`. |
 | Dirección | Datos visibles `9 de Julio 1624` y JSON-LD `PostalAddress`. |
@@ -55,7 +55,7 @@ python3 tests/click-audit.py
 
 ### Estado de publicación
 
-La versión de demo mantiene `noindex, nofollow` en `index.html`. El procedimiento de puesta en producción está preparado en `golive/`, pero no se ejecuta automáticamente.
+La versión de demo mantiene `noindex, nofollow` en `index.html`. El procedimiento de puesta en producción se coordina con el desarrollador y no se ejecuta automáticamente.
 
 ## Tests (`tests/`, `npm test`)
 
@@ -95,3 +95,12 @@ npm run test:cross          # proyectos firefox-1440, firefox-390, webkit-1440, 
 ```
 
 En CI es el job `cross-browser` de `deploy.yml` (no bloquea el deploy; reporte en el artefacto `build-report-cross-browser`). Firefox no soporta la opción `isMobile` de Playwright: en `firefox-390` se emula el viewport y el touch, no el meta viewport.
+
+
+## Modo demo: qué quitar en el go-live
+
+Antes de publicar, quitá todo lo marcado `DEMO`: el banner fijo y sus estilos, el prefijo `DEMO · ` en `title`, `og:title` y `twitter:title`, el `meta author` de propuesta independiente, las etiquetas `.demo-tag`, el bloque `#aviso-demo`, el texto de siluetas y de `Stock de usados`, y la política de privacidad marcada como **borrador**. También confirmá los teléfonos, el CUIT y el resto de los datos indicados como pendientes. Para localizar rápidamente los marcadores del documento usá:
+
+```bash
+grep -n "DEMO" index.html
+```
