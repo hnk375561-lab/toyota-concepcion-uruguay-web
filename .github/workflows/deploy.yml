@@ -1,0 +1,74 @@
+# Publica en GitHub Pages SOLO el contenido de dist/ (ver scripts/build.sh).
+# Requiere: Settings > Pages > Build and deployment > Source = "GitHub Actions".
+#
+#  - pull_request: build + tests, sin publicar.
+#  - push a main / ejecución manual sobre main: build + tests y, si pasan, publica.
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Instalar Playwright y Chromium
+        run: |
+          python3 -m venv .venv
+          .venv/bin/pip install --quiet playwright==1.56.0
+          .venv/bin/playwright install --with-deps chromium
+          echo "$PWD/.venv/bin" >> "$GITHUB_PATH"
+          # Chromium de Playwright, fijo: evita depender de un /usr/bin/chromium del runner.
+          echo "CHROMIUM_PATH=$(.venv/bin/python -c 'from playwright.sync_api import sync_playwright as s
+          with s() as p: print(p.chromium.executable_path)')" >> "$GITHUB_ENV"
+
+      - name: Generar dist/ y reporte de assets
+        run: bash scripts/build.sh
+
+      - name: Tests (sobre dist/, lo mismo que se publica)
+        run: |
+          python3 -m http.server 8000 --bind 127.0.0.1 --directory dist &
+          for _ in $(seq 1 40); do curl -fs http://127.0.0.1:8000/ >/dev/null && break; sleep 0.5; done
+          python3 tests/click-audit.py | tee build-report/click-audit.md
+
+      - name: Subir reporte (assets sin referencia y resultado de tests)
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: build-report
+          path: build-report/
+          if-no-files-found: ignore
+
+      - name: Empaquetar dist/ para Pages
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+          include-hidden-files: true
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: test-and-build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5
