@@ -3666,6 +3666,9 @@ document.addEventListener('DOMContentLoaded',function(){
 });
 </script>
 <script id="fase5-tabs-js">
+// FIX para el bug de timing en fase5-tabs-js
+// Reemplaza requestAnimationFrame anidados por Promises para mayor predictibilidad
+
 (function(){
   var blocks={comprar:['financiacion','canje','usados','novedades','como-comprar'],postventa:['servicios','repuestos','neumaticos','accesorios','taller'],nosotros:['porque','instalaciones','galeria-google-maps','testimonios']};
   var sectionToBlock={}; Object.keys(blocks).forEach(function(block){blocks[block].forEach(function(id){sectionToBlock[id]=block;});});
@@ -3676,23 +3679,23 @@ document.addEventListener('DOMContentLoaded',function(){
   function activate(blockId,key,updateHash){
     var block=document.getElementById(blockId), keys=blocks[blockId]; if(!block||keys.indexOf(key)<0)return false;
     var tab=block.querySelector('#tab-'+CSS.escape(key)), panel=block.querySelector('#panel-'+CSS.escape(key)); if(!tab||!panel)return false;
-    block.querySelectorAll('[role="tab"]').forEach(function(t){var selected=t===tab;t.setAttribute('aria-selected',selected?'true':'false');t.tabIndex=selected?0:-1;});
-    block.querySelectorAll('[role="tabpanel"]').forEach(function(p){var selected=p===panel;p.hidden=!selected;if(selected)reveal(p);});
+    block.querySelectorAll('[role=\"tab\"]').forEach(function(t){var selected=t===tab;t.setAttribute('aria-selected',selected?'true':'false');t.tabIndex=selected?0:-1;});
+    block.querySelectorAll('[role=\"tabpanel\"]').forEach(function(p){var selected=p===panel;p.hidden=!selected;if(selected)reveal(p);});
     tab.scrollIntoView({block:'nearest',inline:'center'}); refreshOnce();
     if(updateHash && history.replaceState && location.hash!=='#'+key)history.replaceState(null,'','#'+key);
     return true;
   }
   function activateForHash(raw,scroll){
     var hash=(raw||'').replace(/^#/,'').split('?')[0];
-    if(hash==='comparar'){var b=document.getElementById('compareDisclosureButton');if(b&&b.getAttribute('aria-expanded')!=='true')b.click();var c=document.getElementById('comparar');if(c&&scroll)requestAnimationFrame(function(){requestAnimationFrame(function(){var lenis=window.__toyotaLenis;if(lenis&&lenis.resize)lenis.resize();window.__toyotaScrollToElement(c,{block:'start'});});});return true;}
-    var tabKey=aliases[hash]||hash, block=sectionToBlock[tabKey]; if(block){activate(block,tabKey,false);var target=document.getElementById(hash);if(target&&scroll)window.__toyotaScrollToElement(target,{block:'start'});return true;}
-    var target=document.getElementById(hash); if(target&&scroll)window.__toyotaScrollToElement(target,{block:'start'}); return !!target;
+    if(hash==='comparar'){var b=document.getElementById('compareDisclosureButton');if(b&&b.getAttribute('aria-expanded')!=='true')b.click();var c=document.getElementById('comparar');if(c&&scroll)Promise.resolve().then(function(){var lenis=window.__toyotaLenis;if(lenis&&lenis.resize)lenis.resize();window.__toyotaScrollToElement(c,{block:'start'});});return true;}
+    var tabKey=aliases[hash]||hash, block=sectionToBlock[tabKey]; if(block){activate(block,tabKey,false);var target=document.getElementById(hash);if(target&&scroll)Promise.resolve().then(function(){var lenis=window.__toyotaLenis;if(lenis&&lenis.resize)lenis.resize();window.__toyotaScrollToElement(target,{block:'start'});});return true;}
+    var target=document.getElementById(hash); if(target&&scroll)Promise.resolve().then(function(){var lenis=window.__toyotaLenis;if(lenis&&lenis.resize)lenis.resize();window.__toyotaScrollToElement(target,{block:'start'});}); return !!target;
   }
   function init(){
-    Object.keys(blocks).forEach(function(blockId){var block=document.getElementById(blockId);if(!block)return;block.querySelectorAll('[role="tab"]').forEach(function(tab,i){tab.addEventListener('click',function(){activate(blockId,blocks[blockId][i],true);});tab.addEventListener('keydown',function(e){var i=blocks[blockId].indexOf(tab.id.slice(4)),next;if(e.key==='ArrowRight'||e.key==='ArrowDown'){e.preventDefault();next=(i+1)%blocks[blockId].length;}else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();next=(i-1+blocks[blockId].length)%blocks[blockId].length;}else if(e.key==='Home'){e.preventDefault();next=0;}else if(e.key==='End'){e.preventDefault();next=blocks[blockId].length-1;}else return;activate(blockId,blocks[blockId][next],true);block.querySelectorAll('[role="tab"]')[next].focus();});});});
+    Object.keys(blocks).forEach(function(blockId){var block=document.getElementById(blockId);if(!block)return;block.querySelectorAll('[role=\"tab\"]').forEach(function(tab,i){tab.addEventListener('click',function(){activate(blockId,blocks[blockId][i],true);});tab.addEventListener('keydown',function(e){var i=blocks[blockId].indexOf(tab.id.slice(4)),next;if(e.key==='ArrowRight'||e.key==='ArrowDown'){e.preventDefault();next=(i+1)%blocks[blockId].length;}else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();next=(i-1+blocks[blockId].length)%blocks[blockId].length;}else if(e.key==='Home'){e.preventDefault();next=0;}else if(e.key==='End'){e.preventDefault();next=blocks[blockId].length-1;}else return;activate(blockId,blocks[blockId][next],true);block.querySelectorAll('[role=\"tab\"]')[next].focus();});});});
     var disclosure=document.getElementById('compareDisclosureButton'), panel=document.getElementById('comparar-panel'); if(disclosure&&panel){disclosure.addEventListener('click',function(){var open=disclosure.getAttribute('aria-expanded')==='true';disclosure.setAttribute('aria-expanded',open?'false':'true');panel.hidden=open; if(!open)panel.querySelectorAll('.premium-reveal').forEach(function(el){el.classList.add('is-visible');});refreshOnce();});}
 	    document.addEventListener('click',function(e){
-	      var a=e.target.closest&&e.target.closest('a[href^="#"]'); if(!a)return;
+	      var a=e.target.closest&&e.target.closest('a[href^=\"#\"]'); if(!a)return;
 	      var href=a.getAttribute('href'), raw=href.slice(1), key=raw.split('?')[0];
 	      if(!key||key==='top')return;
 	      var target=document.getElementById(key); if(!target)return;
@@ -3701,22 +3704,22 @@ document.addEventListener('DOMContentLoaded',function(){
 	      else {
         var tabKey=aliases[key]||key, block=sectionToBlock[tabKey];
 	        if(block)activate(block,tabKey,false);
-
-	        requestAnimationFrame(function(){requestAnimationFrame(function(){
+	        Promise.resolve().then(function(){
 	          var lenis=window.__toyotaLenis;
 	          if(lenis&&lenis.resize)lenis.resize();
 	          if(window.__toyotaScrollToElement)window.__toyotaScrollToElement(target,{block:'start'});
 	          else target.scrollIntoView({block:'start'});
-	        });});
+	        });
 	      }
 	      if(history.replaceState)history.replaceState(null,'',href);
 	    });
-    if(location.hash)requestAnimationFrame(function(){activateForHash(location.hash,true);});
+    if(location.hash)Promise.resolve().then(function(){activateForHash(location.hash,true);});
     window.addEventListener('hashchange',function(){activateForHash(location.hash,true);});
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
   window.__toyotaTabs={activate:activate,activateForHash:activateForHash};
 })();
+
 </script>
 <noscript><div class="noscript-contact">JavaScript está desactivado. Llamanos al <a href="tel:+543442473453">03442 47-3453</a>, escribinos por <a href="https://wa.me/5493442473453">WhatsApp</a> o visitanos en 9 de Julio 1624, Concepción del Uruguay.</div></noscript>
 
