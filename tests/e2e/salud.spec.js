@@ -55,7 +55,7 @@ test.describe('Carga y recorrido completo', () => {
 });
 
 test.describe('Catálogo', () => {
-  const ESPERADOS = { todos: 9, pickup: 1, suv: 5, sedan: 3 };
+  const ESPERADOS = { todos: 8, pickup: 1, suv: 5, sedan: 2 };
   for (const [filtro, n] of Object.entries(ESPERADOS)) {
     test(`filtro "${filtro}" muestra ${n} modelos`, async ({ page, isMobile }) => {
       await openSite(page, '', { mobile: isMobile });

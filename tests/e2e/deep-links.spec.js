@@ -34,8 +34,8 @@ test.describe('Deep links con estado', () => {
     await expect(page.locator('.compare-detail-table thead th')).toHaveText(['Eje técnico', 'Hilux', 'RAV4']);
   });
 
-  test('/#comparar?a=Hilux&b=Fortuner ignora el modelo excluido', async ({ page, isMobile }) => {
-    await openSite(page, '#comparar?a=Hilux&b=Fortuner', { mobile: isMobile });
+  test('/#comparar?a=Hilux&b=Land-Cruiser-300 ignora el modelo excluido', async ({ page, isMobile }) => {
+    await openSite(page, '#comparar?a=Hilux&b=Land-Cruiser-300', { mobile: isMobile });
     await expect(page.locator('#compareA')).toHaveValue('Hilux');
     await expect(page.locator('#compareB')).toHaveValue('');
   });

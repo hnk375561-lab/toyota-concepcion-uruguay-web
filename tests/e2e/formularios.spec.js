@@ -161,7 +161,7 @@ test.describe('Formulario de tasación (plan canje)', () => {
     const submit = page.locator('#tradeForm button[type="submit"]');
     const wa = await enviarYCapturar(page, submit);
     expect(wa.phone).toBe(CANALES.ventas);
-    expect(wa.text).toBe('Hola! Quiero tasar mi vehículo para un plan canje. Vehículo: Toyota Corolla. Año: 2020. Kilometraje: 80000 km. Estado: Bueno. Me interesa a cambio: un usado certificado.');
+    expect(wa.text).toBe('Hola! Quiero tasar mi vehículo para un plan canje. Vehículo: Toyota Corolla. Año: 2020. Kilometraje: 80000 km. Estado: Bueno. Me interesa a cambio: un usado.');
     await expect(page.locator('#tradeNote')).toHaveText('¡Listo! Se abrió WhatsApp con tu consulta ya redactada.');
     await expect(submit).toBeEnabled({ timeout: 6000 });
   });

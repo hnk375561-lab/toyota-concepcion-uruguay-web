@@ -22,7 +22,7 @@ CASES = [
     ("tablet-touch", 820, 1180, True),
     ("mobile-touch", 390, 844, True),
 ]
-EXPECTED_FILTER_COUNTS = {"todos": 9, "pickup": 1, "suv": 5, "sedan": 3}
+EXPECTED_FILTER_COUNTS = {"todos": 8, "pickup": 1, "suv": 5, "sedan": 2}
 
 
 @dataclass
