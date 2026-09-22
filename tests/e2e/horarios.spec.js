@@ -1,7 +1,7 @@
 // @ts-check
 /**
  * Badge "Abierto/Cerrado ahora" con el reloj fijado por page.clock.
- * Horario publicado: lun-vie 8-12 y 15-19, sáb 8-12, dom cerrado (America/Argentina/Buenos_Aires, UTC-3).
+ * Horario publicado: lun-vie 8-12 y 14-18, sáb 8-12, dom cerrado (America/Argentina/Buenos_Aires, UTC-3).
  * Fechas: dom 20/09/2026, lun 21, vie 25, sáb 26.
  */
 import { test, expect } from '../support/fixtures.js';
@@ -15,9 +15,9 @@ const PEDIDOS = [
   ['sáb 09:00', at(SAB, '09:00'), true, 'Cierra a las 12:00', 1],
   ['sáb 13:00', at(SAB, '13:00'), false, 'Abre el lunes a las 08:00', 1],
   ['lun 10:00', at(LUN, '10:00'), true, 'Cierra a las 12:00', 0],
-  ['lun 12:30', at(LUN, '12:30'), false, 'Abre hoy a las 15:00', 0],
-  ['lun 15:30', at(LUN, '15:30'), true, 'Cierra a las 19:00', 0],
-  ['vie 19:30', at(VIE, '19:30'), false, 'Abre mañana a las 08:00', 0],
+  ['lun 12:30', at(LUN, '12:30'), false, 'Abre hoy a las 14:00', 0],
+  ['lun 15:30', at(LUN, '15:30'), true, 'Cierra a las 18:00', 0],
+  ['vie 18:30', at(VIE, '18:30'), false, 'Abre mañana a las 08:00', 0],
   ['lun 00:30', at(LUN, '00:30'), false, 'Abre hoy a las 08:00', 0],
 ];
 
@@ -26,11 +26,11 @@ const BORDES = [
   ['lun 07:59', at(LUN, '07:59'), false, 'Abre hoy a las 08:00', 0],
   ['lun 08:00', at(LUN, '08:00'), true, 'Cierra a las 12:00', 0],
   ['lun 11:59', at(LUN, '11:59'), true, 'Cierra a las 12:00', 0],
-  ['lun 12:00', at(LUN, '12:00'), false, 'Abre hoy a las 15:00', 0],
-  ['lun 14:59', at(LUN, '14:59'), false, 'Abre hoy a las 15:00', 0],
-  ['lun 15:00', at(LUN, '15:00'), true, 'Cierra a las 19:00', 0],
-  ['lun 18:59', at(LUN, '18:59'), true, 'Cierra a las 19:00', 0],
-  ['lun 19:00', at(LUN, '19:00'), false, 'Abre mañana a las 08:00', 0],
+  ['lun 12:00', at(LUN, '12:00'), false, 'Abre hoy a las 14:00', 0],
+  ['lun 13:59', at(LUN, '13:59'), false, 'Abre hoy a las 14:00', 0],
+  ['lun 14:00', at(LUN, '14:00'), true, 'Cierra a las 18:00', 0],
+  ['lun 17:59', at(LUN, '17:59'), true, 'Cierra a las 18:00', 0],
+  ['lun 18:00', at(LUN, '18:00'), false, 'Abre mañana a las 08:00', 0],
   ['sáb 07:59', at(SAB, '07:59'), false, 'Abre hoy a las 08:00', 1],
   ['sáb 08:00', at(SAB, '08:00'), true, 'Cierra a las 12:00', 1],
   ['sáb 12:00', at(SAB, '12:00'), false, 'Abre el lunes a las 08:00', 1],
@@ -94,12 +94,12 @@ test('el horario de la tabla visible coincide con el JSON-LD', async ({ page }) 
   const franjas = specs.map((s) => `${[].concat(s.dayOfWeek).join(',')} ${s.opens}-${s.closes}`);
   expect(franjas).toEqual([
     'Monday,Tuesday,Wednesday,Thursday,Friday 08:00-12:00',
-    'Monday,Tuesday,Wednesday,Thursday,Friday 15:00-19:00',
+    'Monday,Tuesday,Wednesday,Thursday,Friday 14:00-18:00',
     'Saturday 08:00-12:00',
   ]);
   const filas = await page.locator('#ubicacion .hours-table tr').evaluateAll((trs) => trs.map((tr) => [...tr.cells].map((c) => c.textContent.trim()).join(' ')));
   expect(filas).toEqual([
-    'Lunes a viernes 8 a 12 y 15 a 19',
+    'Lunes a viernes 8 a 12 y 14 a 18',
     'Sábados 8 a 12',
     'Domingos Cerrado',
   ]);
