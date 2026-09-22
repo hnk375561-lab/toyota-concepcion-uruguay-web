@@ -401,8 +401,8 @@ footer a:hover{color:#fff}
   section{padding:56px 0}
   .gama-grid{grid-template-columns:1fr}
   .section-head{flex-direction:column;align-items:flex-start}
-  .filterbar{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}
-  .filterbtn{flex-shrink:0}
+  .filterbar{overflow:visible;flex-wrap:wrap;padding-bottom:4px}
+  .filterbtn{flex:0 0 calc(50% - 4px);width:calc(50% - 4px);min-width:0!important;white-space:normal;line-height:1.25}
 }
 @media(max-width:760px){.site,.mobilepanel,.mobilebar{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}.site{background:rgba(255,255,255,.98)}.mobilepanel,.mobilebar{background:rgba(255,255,255,.98)}}
 
