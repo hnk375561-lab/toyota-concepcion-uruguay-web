@@ -10,8 +10,13 @@ El sitio es un documento estático autocontenido en `index.html`. Para mantener 
 
 | Necesidad | Ubicación exacta |
 |---|---|
-| Teléfono principal (Central a confirmar) | Constantes y enlaces `tel:+543442473453`; buscá también `03442 47-3453`. |
-| WhatsApp | Función `wa(...)` y enlaces `https://wa.me/5493442473453`. |
+| Teléfono - Ventas (Central) | Constantes y enlaces `tel:+543442473453` (03442 47-3453). |
+| Teléfono - Central (línea alternativa) | Enlaces `tel:+543442425212` (03442 42-5212). |
+| Teléfono - Neumáticos | Enlaces `tel:+543442502390` (03442 50-2390). |
+| Teléfono - Repuestos | Enlaces `tel:+543442677433` (03442 67-7433). |
+| WhatsApp - Ventas | Función `wa("ventas",...)` y `WHATSAPP_NUMEROS["ventas"]`: `5493442473453`. |
+| WhatsApp - Repuestos | Función `wa("repuestos",...)` y `WHATSAPP_NUMEROS["repuestos"]`: `5493442677433`. |
+| WhatsApp - Neumáticos | Función `wa("neumaticos",...)` y `WHATSAPP_NUMEROS["neumaticos"]`: `5493442502390`. |
 | Horarios y badge | Bloque `location-status-once`, función `getOpeningStatus` y el elemento `#locationStatus`. |
 | Dirección | Datos visibles `9 de Julio 1624` y JSON-LD `PostalAddress`. |
 | Modelos del catálogo | Array `MODELOS_TOYOTA`; sus filtros usan `tipo: pickup`, `suv` o `sedan`. |
