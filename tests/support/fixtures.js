@@ -69,7 +69,12 @@ export const test = base.extend({
       page.on('console', (msg) => {
         if (msg.type() === 'error' || msg.type() === 'warning') {
           const loc = msg.location();
-          t.console.push(`${msg.type()}: ${msg.text()}${loc && loc.url ? ` (${loc.url}:${loc.lineNumber})` : ''}`);
+          const fromMapsEmbed = !!loc?.url && MAPS_EMBED.test(loc.url);
+          const knownFirefoxMapsWarning = msg.type() === 'warning' && fromMapsEmbed &&
+            /Layout was forced before the page was fully loaded/i.test(msg.text());
+          if (!knownFirefoxMapsWarning) {
+            t.console.push(`${msg.type()}: ${msg.text()}${loc && loc.url ? ` (${loc.url}:${loc.lineNumber})` : ''}`);
+          }
         }
       });
       page.on('pageerror', (err) => t.pageErrors.push(String(err && err.stack ? err.stack.split('\n')[0] : err)));
