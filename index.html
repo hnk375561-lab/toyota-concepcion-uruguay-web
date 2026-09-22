@@ -2359,6 +2359,7 @@ section[id],main [id],#aviso-demo{scroll-margin-top:calc(112px + var(--demo-bann
 </nav>
 <script>
 document.addEventListener("DOMContentLoaded", function(){
+  var runInitialPageRuntime = function(){
   "use strict";
 
   // ---- EDITAR ACÁ: números de WhatsApp reales (formato wa.me, sin +) ----
@@ -2758,6 +2759,7 @@ document.addEventListener("DOMContentLoaded", function(){
       if(window.gsap&&!window.matchMedia("(prefers-reduced-motion: reduce)").matches){gsap.fromTo(panel,{maxHeight:isOpen?panel.scrollHeight:0,opacity:isOpen?1:0},{maxHeight:isOpen?0:panel.scrollHeight,opacity:isOpen?0:1,duration:.26,ease:"power2.out",overwrite:true,onComplete:function(){if(!isOpen){panel.style.maxHeight="none";}}});}else{panel.style.maxHeight = isOpen ? null : panel.scrollHeight + "px";}
     });
   });
+  if(window.__toyotaRunExpansionPreview) window.__toyotaRunExpansionPreview();
 
 
   // ---- detalle de modelos: fuentes oficiales, sin precios ni stock inventados ----
@@ -3160,21 +3162,25 @@ document.addEventListener("DOMContentLoaded", function(){
       // principal, que es la fuente medible de frame drops descartada en otro runtime.
 }
   } else { document.querySelectorAll(".premium-reveal").forEach(function(el){el.classList.add("is-visible");}); }
-
+  };
+  var afterFirstPaint = function(){ setTimeout(runInitialPageRuntime, 0); };
+  if(window.requestAnimationFrame){
+    window.requestAnimationFrame(function(){ window.requestAnimationFrame(afterFirstPaint); });
+  } else {
+    setTimeout(runInitialPageRuntime, 0);
+  }
 });
 </script>
 <script id="expansion-preview-js">
-document.addEventListener("DOMContentLoaded", function(){
-  // Corrección: este bloque corría antes de DOMContentLoaded (IIFE inmediata),
-  // es decir antes de que el script principal insertara las preguntas del FAQ.
-  // Por eso "original" quedaba como un array vacío para siempre y las pestañas
-  // de categoría (0km/Usados/Financiación/Postventa) nunca filtraban nada.
-  document.querySelectorAll('.expansion-card .expand-btn').forEach(function(btn){btn.addEventListener('click',function(){var card=this.closest('.expansion-card');var open=card.classList.toggle('open');this.textContent=open?'Ocultar detalle −':'Ver detalle +';});});
-  document.querySelectorAll('[data-category-jump]').forEach(function(a){a.addEventListener('click',function(e){var type=this.dataset.categoryJump;if(type==='general')return;var filter=document.querySelector('.filterbtn[data-filter="'+type+'"]');if(filter){e.preventDefault();filter.click();window.__toyotaScrollToElement(document.getElementById('gama'));}});});
-  document.querySelectorAll('.journey-step button').forEach(function(btn){btn.addEventListener('click',function(){this.closest('.journey-step').classList.toggle('open');});});
-  var faq=document.getElementById('faqList');
-  if(faq){var original=Array.from(faq.querySelectorAll('.faq-item'));var tabs=document.createElement('div');tabs.className='faq-tabs';tabs.setAttribute('role','tablist');tabs.innerHTML='<button class="faq-tab active" aria-selected="true" role="tab" data-faq-filter="todos" type="button">Todas</button><button class="faq-tab" aria-selected="false" role="tab" data-faq-filter="0km" type="button">0 km</button><button class="faq-tab" aria-selected="false" role="tab" data-faq-filter="usados" type="button">Usados</button><button class="faq-tab" aria-selected="false" role="tab" data-faq-filter="financiacion" type="button">Financiación</button><button class="faq-tab" aria-selected="false" role="tab" data-faq-filter="postventa" type="button">Postventa</button>';faq.parentNode.insertBefore(tabs,faq);var note=document.createElement('p');note.className='faq-category-note';note.textContent='Filtrá las respuestas según el momento de tu compra.';faq.parentNode.insertBefore(note,faq);var keys=['0km','postventa','postventa','usados','financiacion','financiacion','usados','postventa','0km','postventa','postventa','0km'];if(original.length!==keys.length)console.warn('FAQ category count mismatch',original.length,keys.length);original.forEach(function(item,i){item.dataset.faqCategory=item.dataset.faqCategory||keys[i]||'postventa';});tabs.querySelectorAll('.faq-tab').forEach(function(tab){tab.addEventListener('click',function(){tabs.querySelectorAll('.faq-tab').forEach(function(x){x.classList.remove('active');x.setAttribute('aria-selected','false');});this.classList.add('active');this.setAttribute('aria-selected','true');var wanted=this.dataset.faqFilter;original.forEach(function(item){var show=wanted==='todos'||item.dataset.faqCategory===wanted;item.hidden=!show;if(show&&window.gsap&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){gsap.fromTo(item,{opacity:.25,y:8},{opacity:1,y:0,duration:.28,overwrite:'auto'});}});});});}
-});
+(function(){
+  window.__toyotaRunExpansionPreview=function(){
+    document.querySelectorAll('.expansion-card .expand-btn').forEach(function(btn){btn.addEventListener('click',function(){var card=this.closest('.expansion-card');var open=card.classList.toggle('open');this.textContent=open?'Ocultar detalle −':'Ver detalle +';});});
+    document.querySelectorAll('[data-category-jump]').forEach(function(a){a.addEventListener('click',function(e){var type=this.dataset.categoryJump;if(type==='general')return;var filter=document.querySelector('.filterbtn[data-filter="'+type+'"]');if(filter){e.preventDefault();filter.click();window.__toyotaScrollToElement(document.getElementById('gama'));}});});
+    document.querySelectorAll('.journey-step button').forEach(function(btn){btn.addEventListener('click',function(){this.closest('.journey-step').classList.toggle('open');});});
+    var faq=document.getElementById('faqList');
+    if(faq){var original=Array.from(faq.querySelectorAll('.faq-item'));var tabs=document.createElement('div');tabs.className='faq-tabs';tabs.setAttribute('role','tablist');tabs.innerHTML='<button class="faq-tab active" aria-selected="true" role="tab" data-faq-filter="todos" type="button">Todas</button><button class="faq-tab" aria-selected="false" role="tab" data-faq-filter="0km" type="button">0 km</button><button class="faq-tab" aria-selected="false" role="tab" data-faq-filter="usados" type="button">Usados</button><button class="faq-tab" aria-selected="false" role="tab" data-faq-filter="financiacion" type="button">Financiación</button><button class="faq-tab" aria-selected="false" role="tab" data-faq-filter="postventa" type="button">Postventa</button>';faq.parentNode.insertBefore(tabs,faq);var note=document.createElement('p');note.className='faq-category-note';note.textContent='Filtrá las respuestas según el momento de tu compra.';faq.parentNode.insertBefore(note,faq);var keys=['0km','postventa','postventa','usados','financiacion','financiacion','usados','postventa','0km','postventa','postventa','0km'];if(original.length!==keys.length)console.warn('FAQ category count mismatch',original.length,keys.length);original.forEach(function(item,i){item.dataset.faqCategory=item.dataset.faqCategory||keys[i]||'postventa';});tabs.querySelectorAll('.faq-tab').forEach(function(tab){tab.addEventListener('click',function(){tabs.querySelectorAll('.faq-tab').forEach(function(x){x.classList.remove('active');x.setAttribute('aria-selected','false');});this.classList.add('active');this.setAttribute('aria-selected','true');var wanted=this.dataset.faqFilter;original.forEach(function(item){var show=wanted==='todos'||item.dataset.faqCategory===wanted;item.hidden=!show;if(show&&window.gsap&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){gsap.fromTo(item,{opacity:.25,y:8},{opacity:1,y:0,duration:.28,overwrite:'auto'});}});});});}
+  };
+})();
 </script>
 <script id="deferred-motion-bootstrap">
 (function(){
