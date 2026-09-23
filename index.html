@@ -2581,9 +2581,9 @@ document.addEventListener("DOMContentLoaded", function(){
     el.setAttribute("data-model", m.nombre);
     el.innerHTML =
       (m.badge ? '<span class="badge">' + m.badge + '</span>' : '') +
-      (m.foto ? '<picture class="model-picture"><source type="image/avif" srcset="' + m.foto.replace(/-800\.webp$/, '-800.avif') + ' 800w, ' + m.foto.replace(/-800\.webp$/, '-480.avif') + ' 480w" sizes="(max-width: 600px) 92vw, 280px"><source type="image/webp" srcset="' + m.foto.replace(/-800\.webp$/, '-480.webp') + ' 480w, ' + m.foto + ' 800w" sizes="(max-width: 600px) 92vw, 280px"><img class="model-photo" src="' + m.foto + '" alt="Toyota ' + m.nombre + '" loading="lazy" decoding="async" width="' + m.fotoW + '" height="' + m.fotoH + '"></picture><span class="model-image-disclaimer">Imagen ilustrativa · confirmar unidad y versión</span>' : '<div class="model-picture model-placeholder"><svg class="car-sil" viewBox="0 0 400 180" role="img" aria-label="Silueta ilustrativa de ' + m.nombre + '"><use href="#car-' + m.silueta + '"></use></svg><strong>' + m.nombre + '</strong><span>' + m.etiqueta + '</span><span class="model-image-disclaimer">Foto a definir con el concesionario</span></div>'
+      (m.foto ? '<picture class="model-picture" data-model-detail="' + m.nombre + '" role="button" tabindex="0" aria-label="Ver ficha de Toyota ' + m.nombre + '" style="cursor:pointer;"><source type="image/avif" srcset="' + m.foto.replace(/-800\.webp$/, '-800.avif') + ' 800w, ' + m.foto.replace(/-800\.webp$/, '-480.avif') + ' 480w" sizes="(max-width: 600px) 92vw, 280px"><source type="image/webp" srcset="' + m.foto.replace(/-800\.webp$/, '-480.webp') + ' 480w, ' + m.foto + ' 800w" sizes="(max-width: 600px) 92vw, 280px"><img class="model-photo" src="' + m.foto + '" alt="Toyota ' + m.nombre + '" loading="lazy" decoding="async" width="' + m.fotoW + '" height="' + m.fotoH + '"></picture><span class="model-image-disclaimer">Imagen ilustrativa · confirmar unidad y versión</span>' : '<div class="model-picture model-placeholder" data-model-detail="' + m.nombre + '" role="button" tabindex="0" aria-label="Ver ficha de Toyota ' + m.nombre + '" style="cursor:pointer;"><svg class="car-sil" viewBox="0 0 400 180" role="img" aria-label="Silueta ilustrativa de ' + m.nombre + '"><use href="#car-' + m.silueta + '"></use></svg><strong>' + m.nombre + '</strong><span>' + m.etiqueta + '</span><span class="model-image-disclaimer">Foto a definir con el concesionario</span></div>'
 ) +
-      '<h3>' + m.nombre + '</h3>' +
+      '<h3 data-model-detail="' + m.nombre + '" role="button" tabindex="0" style="cursor:pointer;">' + m.nombre + ' <span aria-hidden style="color:var(--toyota-red);font-size:12px;font-weight:700;white-space:nowrap;">Ver ficha ›</span></h3>' +
       '<p>' + m.desc + '</p>' +
       '<div style="display:flex;gap:12px;border-top:1px solid var(--border);padding-top:11px;"><a target="_blank" rel="noopener noreferrer" href="' + wa("ventas", "Hola! Quiero consultar por la " + m.nombre + ".") + '" style="border:0;padding:0;flex:1;">Consultar <span>&rsaquo;</span></a><button class="compare-btn" type="button" data-compare-model="' + m.nombre + '" style="border:0;background:none;color:var(--muted);font:inherit;cursor:pointer;">Comparar</button></div>';
     gamaGrid.appendChild(el);
@@ -2591,6 +2591,13 @@ document.addEventListener("DOMContentLoaded", function(){
   gamaGrid.addEventListener("click", function(e){
     var b = e.target.closest("[data-model-detail]");
     if(b) openDetail(b.getAttribute("data-model-detail"));
+  });
+  gamaGrid.addEventListener("keydown", function(e){
+    if(e.key !== "Enter" && e.key !== " ") return;
+    var b = e.target.closest("[data-model-detail]");
+    if(!b) return;
+    e.preventDefault();
+    openDetail(b.getAttribute("data-model-detail"));
   });
 
   var filterBar=document.getElementById("filterbar"), filterStorageKey="toyota-gama-filter";
@@ -3049,7 +3056,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
   // ---- expansión de contenido: destacados, categorías, vistos recientes y filtros ----
   var highlightTrack=document.getElementById("highlightTrack");
-  function renderHighlights(){if(!highlightTrack)return;highlightTrack.innerHTML="";MODELOS_TOYOTA.filter(function(m){return !!m.foto;}).slice(0,4).forEach(function(m){var card=document.createElement("article");card.className="highlight-card";card.innerHTML='<div><div class="highlight-visual"><picture><source type="image/avif" srcset="'+m.foto.replace(/-800\.webp$/,"-800.avif")+' 800w, '+m.foto.replace(/-800\.webp$/,"-480.avif")+' 480w" sizes="(max-width: 600px) 92vw, 360px"><source type="image/webp" srcset="'+m.foto.replace(/-800\.webp$/,"-480.webp")+' 480w, '+m.foto+' 800w" sizes="(max-width: 600px) 92vw, 360px"><img src="'+m.foto+'" alt="Toyota '+m.nombre+'" loading="lazy" decoding="async" width="'+m.fotoW+'" height="'+m.fotoH+'"></picture></div><h3>'+m.nombre+'</h3><p>'+m.desc+'</p></div><div class="highlight-actions"><a class="btn primary" target="_blank" rel="noopener noreferrer" href="'+wa("ventas","Hola! Quiero consultar por la "+m.nombre+".")+'">Consultar ↗</a></div>';highlightTrack.appendChild(card);});}
+  function renderHighlights(){if(!highlightTrack)return;highlightTrack.innerHTML="";MODELOS_TOYOTA.filter(function(m){return !!m.foto;}).slice(0,4).forEach(function(m){var card=document.createElement("article");card.className="highlight-card";card.innerHTML='<button type="button" class="highlight-detail" data-model="'+m.nombre+'" aria-label="Ver ficha de Toyota '+m.nombre+'" style="all:unset;display:block;cursor:pointer;width:100%;"><div class="highlight-visual"><picture><source type="image/avif" srcset="'+m.foto.replace(/-800\.webp$/,"-800.avif")+' 800w, '+m.foto.replace(/-800\.webp$/,"-480.avif")+' 480w" sizes="(max-width: 600px) 92vw, 360px"><source type="image/webp" srcset="'+m.foto.replace(/-800\.webp$/,"-480.webp")+' 480w, '+m.foto+' 800w" sizes="(max-width: 600px) 92vw, 360px"><img src="'+m.foto+'" alt="Toyota '+m.nombre+'" loading="lazy" decoding="async" width="'+m.fotoW+'" height="'+m.fotoH+'"></picture></div><h3>'+m.nombre+' <span aria-hidden style="color:var(--toyota-red);font-size:12px;font-weight:700;">Ver ficha ›</span></h3><p>'+m.desc+'</p></button><div class="highlight-actions"><a class="btn primary" target="_blank" rel="noopener noreferrer" href="'+wa("ventas","Hola! Quiero consultar por la "+m.nombre+".")+'">Consultar ↗</a></div>';highlightTrack.appendChild(card);});}
   renderHighlights();
   if(highlightTrack){highlightTrack.addEventListener("click",function(e){var b=e.target.closest(".highlight-detail");if(b)openDetail(b.dataset.model);});}
   var hp=document.getElementById("highlightPrev"),hn=document.getElementById("highlightNext");
