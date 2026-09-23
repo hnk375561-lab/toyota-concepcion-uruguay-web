@@ -9,7 +9,7 @@ const template = fs.readFileSync(templatePath, 'utf8');
 const models = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
 if (!Array.isArray(models) || models.length === 0) throw new Error('data/models.json debe contener al menos un modelo');
 
-const required = ['slug', 'slugJs', 'name', 'fullName', 'title', 'description', 'canonical', 'image800', 'image480', 'image800Avif', 'image480Avif', 'configuration', 'transmission', 'drive', 'fuel', 'manufacturerUrl'];
+const required = ['slug', 'slugJs', 'name', 'fullName', 'title', 'description', 'canonical', 'reviewedAt', 'image800', 'image480', 'image800Avif', 'image480Avif', 'configuration', 'transmission', 'drive', 'fuel', 'manufacturerUrl'];
 const htmlEscape = (value) => String(value)
   .replaceAll('&', '&amp;')
   .replaceAll('<', '&lt;')
@@ -26,6 +26,7 @@ const placeholderFor = {
   MODEL_TITLE: 'title',
   MODEL_DESCRIPTION: 'description',
   MODEL_CANONICAL: 'canonical',
+  MODEL_REVIEWED_AT: 'reviewedAt',
   MODEL_IMAGE_800_WEBP: 'image800',
   MODEL_IMAGE_480_WEBP: 'image480',
   MODEL_IMAGE_800_AVIF: 'image800Avif',

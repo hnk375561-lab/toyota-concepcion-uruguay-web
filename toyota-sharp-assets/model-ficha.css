@@ -1602,3 +1602,33 @@ table.ficha-trim-table tbody tr.trim-group-row th,table.ficha-trim-table tbody t
 .ficha-faq .faq-a p{margin:0 0 19px;color:var(--muted);font-size:14px;max-width:74ch;line-height:1.6}
 
 @media(max-width:760px){.ficha-usecases,.ficha-perf,.ficha-dims,.ficha-colors,.ficha-access,.ficha-faq{padding-top:40px}}
+
+/* Ficha premium pass: orientación, confianza editorial y conversión sin interrumpir la lectura. */
+.ficha-editorial-meta{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-top:16px;padding-top:13px;border-top:1px solid color-mix(in srgb,var(--border) 72%,transparent);font-size:11px;line-height:1.45;color:var(--muted);letter-spacing:.015em}
+.ficha-editorial-meta span{display:inline-flex;align-items:center;gap:7px}
+.ficha-editorial-meta i{display:inline-block;width:7px;height:7px;border-radius:50%;background:#168447;box-shadow:0 0 0 3px rgba(22,132,71,.12)}
+.ficha-jumpnav .wrap{align-items:center}
+.ficha-jumpnav .ficha-jump-cta{margin-left:auto;color:#fff;background:var(--toyota-red);border-radius:999px;border-bottom:0;padding:9px 15px;line-height:1;box-shadow:0 7px 16px -10px rgba(235,10,30,.9)}
+.ficha-jumpnav .ficha-jump-cta:hover,.ficha-jumpnav .ficha-jump-cta.is-active{color:#fff;border-bottom:0;background:#b90718}
+.ficha-mobile-cta{display:none}
+@media(max-width:760px){
+  body{padding-bottom:calc(70px + env(safe-area-inset-bottom))}
+  .ficha-editorial-meta{align-items:flex-start;flex-direction:column;gap:7px;font-size:10.5px}
+  .ficha-jumpnav .wrap{padding-right:12px}
+  .ficha-jumpnav .ficha-jump-cta{margin-left:2px;padding:10px 13px}
+  .ficha-mobile-cta{position:fixed;z-index:70;right:0;bottom:0;left:0;display:grid;grid-template-columns:1fr auto;gap:8px;padding:9px 12px calc(9px + env(safe-area-inset-bottom));background:rgba(27,31,34,.96);box-shadow:0 -10px 28px -18px rgba(0,0,0,.75);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+  .ficha-mobile-cta a{display:flex;align-items:center;justify-content:center;min-height:46px;border-radius:7px;text-decoration:none;font:700 12px var(--display);letter-spacing:.01em}
+  .ficha-mobile-cta-main{padding:0 12px;background:var(--toyota-red);color:#fff}
+  .ficha-mobile-cta-main span{margin-left:6px;font-size:16px}
+  .ficha-mobile-cta-call{padding:0 15px;border:1px solid rgba(255,255,255,.32);color:#fff}
+  .ficha-mobile-cta-call:hover{border-color:#fff}
+}
+@media print{
+  .demo-banner,.site,.ficha-jumpnav,.ficha-mobile-cta,.ficha-actions,.ficha-hero-photo .corner{display:none!important}
+  body{padding:0;background:#fff;color:#111}
+  .ficha-hero{padding-top:0}
+  .ficha-hero-grid{grid-template-columns:1fr}
+  .ficha-hero-photo{max-width:480px}
+  .ficha-spec-group h3,.section-head h2{break-after:avoid}
+  a{color:inherit;text-decoration:none}
+}
