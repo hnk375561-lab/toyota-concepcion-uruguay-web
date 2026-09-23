@@ -31,17 +31,41 @@ rm -rf "$DIST" "$REPORT"
 mkdir -p "$DIST"
 
 cp "$ROOT/index.html" "$ROOT/404.html" "$DIST/"
+# Páginas dedicadas de modelo (fichas completas tipo hilux.html): cualquier
+# archivo *.html en la raíz aparte de index.html/404.html se publica igual.
+# Sin esto, una página nueva queda perfecta en local y da 404 en producción,
+# porque dist/ es lo único que sube GitHub Pages (ver deploy.yml).
+shopt -s nullglob
+for extra_html in "$ROOT"/*.html; do
+  name="$(basename "$extra_html")"
+  [[ "$name" == "index.html" || "$name" == "404.html" ]] && continue
+  cp "$extra_html" "$DIST/$name"
+done
+shopt -u nullglob
 cp -R "$ROOT/toyota-sharp-assets" "$DIST/toyota-sharp-assets"
 : > "$DIST/.nojekyll"
 for optional in robots.txt sitemap.xml; do
   [[ -f "$ROOT/$optional" ]] && cp "$ROOT/$optional" "$DIST/$optional"
 done
 
-# Verificación: dist/ solo puede tener estas entradas en su raíz.
+# Verificación: dist/ solo puede tener estas entradas en su raíz (incluye
+# cualquier página *.html adicional que se haya copiado arriba).
 unexpected="$(cd "$DIST" && find . -mindepth 1 -maxdepth 1 \
-  ! -name index.html ! -name 404.html ! -name toyota-sharp-assets ! -name .nojekyll \
+  ! -name "*.html" ! -name toyota-sharp-assets ! -name .nojekyll \
   ! -name robots.txt ! -name sitemap.xml -print)"
 [[ -z "$unexpected" ]] || fail "entradas inesperadas en dist/: $unexpected"
+
+# Verificación explícita: cada página *.html de la raíz del repo debe existir,
+# byte a byte igual, en dist/. Esto es lo que hubiera detectado antes al bug
+# real de hilux.html faltante en dist/ (ver historial): un *.html nuevo que
+# se agregue a la raíz y no llegue a dist/ ahora rompe el build en vez de
+# publicarse silenciosamente incompleto.
+for root_html in "$ROOT"/*.html; do
+  name="$(basename "$root_html")"
+  dist_html="$DIST/$name"
+  [[ -f "$dist_html" ]] || fail "$name existe en la raíz pero no se copió a dist/"
+  cmp -s "$root_html" "$dist_html" || fail "$name difiere entre la raíz y dist/ (revisar copia)"
+done
 
 echo "dist/ generado:"
 ( cd "$DIST" && ls -A | sed 's/^/  /' )
