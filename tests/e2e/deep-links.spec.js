@@ -47,6 +47,18 @@ test.describe('Deep links con estado', () => {
     await expectLanded(page, 'gama');
   });
 
+  test('/#modelo/hilux abre la ficha del modelo al entrar directo', async ({ page, isMobile }) => {
+    await openSite(page, '#modelo/hilux', { mobile: isMobile });
+    await expect(page.locator('#modelDetail')).toHaveClass(/open/);
+    await expect(page.locator('#detailTitle')).toHaveText('Hilux');
+  });
+
+  test('/#modelo/no-existe no abre nada y cae en #gama sin romper la página', async ({ page, isMobile }) => {
+    await openSite(page, '#modelo/no-existe', { mobile: isMobile });
+    await expect(page.locator('#modelDetail')).not.toHaveClass(/open/);
+    await expectLanded(page, 'gama');
+  });
+
   test('un hash inexistente no rompe la página', async ({ page, isMobile }) => {
     await openSite(page, '#no-existe-esta-seccion', { mobile: isMobile });
     await expect(page.locator('h1#hero-title')).toBeVisible();
