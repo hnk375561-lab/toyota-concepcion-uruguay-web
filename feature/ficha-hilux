@@ -1,10 +1,32 @@
 <!DOCTYPE html>
-<html lang="es">
+
+
+<html lang="es-AR">
 <head>
 <meta charset="utf-8">
+<script id="analytics-events">
+window.dataLayer=window.dataLayer||[];
+  /* Leave empty for demo/preview: no third-party script and no external request. */
+  var GA4_ID="";
+  window.toyotaTrack=function(name,details){
+    var event=Object.assign({event:name},details||{});
+    window.dataLayer.push(event);
+    if(typeof window.gtag==="function")window.gtag("event",name,details||{});
+  };
+  if(GA4_ID){
+    window.dataLayer.push({"gtm.start":new Date().getTime(),event:"gtm.js"});
+    var ga=document.createElement("script");
+    ga.async=true;ga.src="https://www.googletagmanager.com/gtag/js?id="+encodeURIComponent(GA4_ID);
+    document.head.appendChild(ga);
+    window.gtag=function(){window.dataLayer.push(arguments);};
+    window.gtag("js",new Date());window.gtag("config",GA4_ID,{send_page_view:true});
+  }
+document.addEventListener('click',function(event){var link=event.target.closest&&event.target.closest('a[href*="wa.me"]');if(link)window.toyotaTrack('whatsapp_click',{link_url:link.href,link_text:(link.textContent||'').trim().slice(0,80)});});
+document.addEventListener('DOMContentLoaded',function(){var mark=function(){document.querySelectorAll('svg').forEach(function(svg){if(!svg.hasAttribute('aria-label'))svg.setAttribute('aria-hidden','true');});document.querySelectorAll('.contact-plus-icon').forEach(function(icon){icon.setAttribute('aria-hidden','true');});};(window.requestIdleCallback||function(cb){setTimeout(cb,1)})(mark);});
+</script>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Toyota Hilux — Ficha técnica | DEMO Toyota Concepción del Uruguay</title>
-<meta content="Ficha técnica de la Toyota Hilux: versiones, motor, potencia, torque, transmisión, tracción, seguridad y garantía. Propuesta de diseño independiente para Piñeyro y Moscatelli, concesionario oficial Toyota en Concepción del Uruguay." name="description"/>
+<title>Toyota Hilux — Ficha técnica | DEMO Toyota Concepción del Uruguay — Piñeyro y Moscatelli</title>
+<meta content="Ficha técnica de la Toyota Hilux: versiones, motor, potencia, torque, transmisión, tracción, seguridad y garantía según fuentes oficiales de Toyota Argentina. Consultá disponibilidad con Piñeyro y Moscatelli, concesionario oficial en Concepción del Uruguay." name="description"/>
 <meta content="Propuesta de diseño independiente (demo)" name="author"/>
 
 <meta content="noindex, nofollow, noarchive, nosnippet" name="robots"/>
@@ -15,21 +37,21 @@
 <meta content="website" property="og:type"/>
 <meta content="es_AR" property="og:locale"/>
 <meta content="Toyota Concepción del Uruguay — Piñeyro y Moscatelli" property="og:site_name"/>
-<meta content="DEMO · Toyota Concepción del Uruguay — Piñeyro y Moscatelli" property="og:title"/>
-<meta content="0 km, usados, plan canje, financiación, service oficial y repuestos genuinos. 9 de Julio 1624, Concepción del Uruguay." property="og:description"/>
-<meta content="https://hnk375561-lab.github.io/toyota-concepcion-uruguay-web/" property="og:url"/>
-<meta content="https://hnk375561-lab.github.io/toyota-concepcion-uruguay-web/toyota-sharp-assets/asset-371d49eb8a93-1200.jpg" property="og:image"/>
-<meta content="1200" property="og:image:width"/>
-<meta content="630" property="og:image:height"/>
+<meta content="Toyota Hilux — Ficha técnica | DEMO Toyota Concepción del Uruguay" property="og:title"/>
+<meta content="Motor, potencia, torque, transmisión, tracción, seguridad y garantía de la Toyota Hilux, según fuentes oficiales. Consultá disponibilidad en Concepción del Uruguay." property="og:description"/>
+<meta content="https://hnk375561-lab.github.io/toyota-concepcion-uruguay-web/hilux.html" property="og:url"/>
+<meta content="https://hnk375561-lab.github.io/toyota-concepcion-uruguay-web/toyota-sharp-assets/enhanced-bae67c9e04b0-800.webp" property="og:image"/>
+<meta content="800" property="og:image:width"/>
+<meta content="648" property="og:image:height"/>
 <meta content="summary_large_image" name="twitter:card"/>
-<meta content="DEMO · Toyota Concepción del Uruguay — Piñeyro y Moscatelli" name="twitter:title"/>
-<meta content="0 km, usados, plan canje, financiación, service oficial y repuestos genuinos en Concepción del Uruguay." name="twitter:description"/>
-<meta content="https://hnk375561-lab.github.io/toyota-concepcion-uruguay-web/toyota-sharp-assets/asset-371d49eb8a93-1200.jpg" name="twitter:image"/>
+<meta content="Toyota Hilux — Ficha técnica | DEMO Toyota Concepción del Uruguay" name="twitter:title"/>
+<meta content="Motor, potencia, torque, transmisión, tracción, seguridad y garantía de la Toyota Hilux, según fuentes oficiales." name="twitter:description"/>
+<meta content="https://hnk375561-lab.github.io/toyota-concepcion-uruguay-web/toyota-sharp-assets/enhanced-bae67c9e04b0-800.webp" name="twitter:image"/>
 <link href="toyota-sharp-assets/asset-bec83be10e47-256.webp" rel="icon" type="image/webp"/>
 <link href="toyota-sharp-assets/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/>
 <link href="toyota-sharp-assets/apple-touch-icon.png" rel="apple-touch-icon"/>
-<link as="image" fetchpriority="high" href="toyota-sharp-assets/hero-sw4-mobile-4to5-640.avif" imagesizes="100vw" imagesrcset="toyota-sharp-assets/hero-sw4-mobile-4to5-640.avif 640w" media="(max-width: 760px)" rel="preload" type="image/avif"/>
-<link as="image" fetchpriority="high" href="toyota-sharp-assets/hero-sw4-desktop-1800.avif" imagesizes="68vw" imagesrcset="toyota-sharp-assets/hero-sw4-desktop-1800.avif 1800w" media="(min-width: 761px)" rel="preload" type="image/avif"/>
+<link as="image" fetchpriority="high" href="toyota-sharp-assets/enhanced-bae67c9e04b0-480.avif" imagesizes="100vw" imagesrcset="toyota-sharp-assets/enhanced-bae67c9e04b0-480.avif 480w, toyota-sharp-assets/enhanced-bae67c9e04b0-800.avif 800w" media="(max-width: 760px)" rel="preload" type="image/avif"/>
+<link as="image" fetchpriority="high" href="toyota-sharp-assets/enhanced-bae67c9e04b0-800.avif" imagesizes="55vw" imagesrcset="toyota-sharp-assets/enhanced-bae67c9e04b0-800.avif 800w" media="(min-width: 761px)" rel="preload" type="image/avif"/>
 <link as="font" crossorigin="" href="toyota-sharp-assets/fonts/manrope-700-latin.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="toyota-sharp-assets/fonts/ibm-plex-sans-400-latin.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="toyota-sharp-assets/fonts/manrope-600-latin.woff2" rel="preload" type="font/woff2"/>
@@ -39,9 +61,67 @@
 </style>
 <link as="style" href="toyota-sharp-assets/fonts.css" onload="this.onload=null;this.rel='stylesheet'" rel="preload"/>
 <noscript><link href="toyota-sharp-assets/fonts.css" rel="stylesheet"/></noscript>
+<script defer="" src="toyota-sharp-assets/vendor/gsap-3.15.0.min.js"></script>
+<script defer="" src="toyota-sharp-assets/vendor/ScrollTrigger-3.15.0.min.js"></script>
 <style id="lenis-essential-css">
 html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopped{overflow:clip}.lenis [data-lenis-prevent],.lenis [data-lenis-prevent-wheel],.lenis [data-lenis-prevent-touch],.lenis [data-lenis-prevent-vertical],.lenis [data-lenis-prevent-horizontal]{overscroll-behavior:contain}.lenis.lenis-smooth iframe{pointer-events:none}.lenis.lenis-autoToggle{transition-property:overflow;transition-duration:1ms;transition-behavior:allow-discrete}
 </style>
+<script id="conditional-lenis-loader">
+(function(){
+  var touch=window.matchMedia&&window.matchMedia("(pointer: coarse)").matches;
+  var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(touch||reduce)return;
+  var load=function(){
+    if(window.Lenis||window.__toyotaLenisLoading)return;
+    window.__toyotaLenisLoading=true;
+    var tag=document.createElement("script");
+    tag.src="toyota-sharp-assets/vendor/lenis-1.3.26.min.js";
+    tag.async=true;
+    tag.onload=function(){window.__toyotaLenisLoading=false;if(window.__initToyotaLenis)window.__initToyotaLenis();};
+    tag.onerror=function(){window.__toyotaLenisLoading=false;};
+    document.head.appendChild(tag);
+  };
+  var idle=window.requestIdleCallback||function(cb){setTimeout(cb,1)};
+  if(document.readyState==="complete")idle(load);else window.addEventListener("load",function(){idle(load)},{once:true});
+})();
+</script>
+<script id="lazy-flip-loader">
+(function(){
+  var promise;
+  window.__loadToyotaFlip=function(){
+    if(window.Flip)return Promise.resolve(window.Flip);
+    if(promise)return promise;
+    promise=new Promise(function(resolve,reject){
+      var tag=document.createElement("script");
+      tag.src="toyota-sharp-assets/vendor/Flip-3.15.0.min.js";
+      tag.async=true;
+      tag.onload=function(){resolve(window.Flip);};
+      tag.onerror=reject;
+      document.head.appendChild(tag);
+    });
+    return promise;
+  };
+})();
+</script>
+<script id="toyota-scroll-helper">
+(function(){
+  window.__toyotaScrollToElement = function(target, options){
+    if(!target) return;
+    options = options || {};
+    var lenis = window.__toyotaLenis;
+    var header = document.getElementById("site-header");
+    var demoBanner = document.querySelector(".demo-banner");
+    var cssOffset = parseFloat(getComputedStyle(target).scrollMarginTop);
+    var headerOffset = Number.isFinite(cssOffset) ? cssOffset : (header ? header.offsetHeight : 0) + 12;
+    var y = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+    if(lenis){
+      lenis.scrollTo(Math.max(0, y), {duration: options.duration || 0.85, immediate: false});
+    } else {
+      window.scrollTo({top: Math.max(0, y), behavior: options.behavior || "auto"});
+    }
+  };
+})();
+</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -69,21 +149,22 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type":"Question","name":"¿Qué condiciones tiene el mantenimiento programado?","acceptedAnswer":{"@type":"Answer","text":"Consultá con el equipo de service las condiciones vigentes de mantenimiento y garantía del vehículo."}},
-    {"@type":"Question","name":"¿Cómo consulto la disponibilidad de un turno?","acceptedAnswer":{"@type":"Answer","text":"La idea de pedirlo por WhatsApp es justamente esa: el equipo te informa los canales y la disponibilidad vigentes."}},
-    {"@type":"Question","name":"¿Los repuestos son siempre originales?","acceptedAnswer":{"@type":"Answer","text":"Trabajamos con repuestos genuinos Toyota. Si consultás por una pieza puntual, te confirmamos disponibilidad antes de que vengas hasta el local."}},
-    {"@type":"Question","name":"¿Puedo entregar mi auto actual como parte de pago aunque no sea Toyota?","acceptedAnswer":{"@type":"Answer","text":"Sí, el plan canje acepta vehículos de otras marcas. Lo tasamos y ese valor se descuenta del 0 km o del usado que elijas."}},
-    {"@type":"Question","name":"¿La cuota del simulador es la que voy a pagar?","acceptedAnswer":{"@type":"Answer","text":"No, es una referencia con una tasa de ejemplo para que tengas una idea de orden de magnitud. La cuota real depende de tu perfil crediticio y de la línea de financiación vigente al momento de la operación."}},
-    {"@type":"Question","name":"¿Qué documentación necesito para consultar financiación?","acceptedAnswer":{"@type":"Answer","text":"Para iniciar una consulta, el asesor puede pedirte datos de contacto, información del vehículo y documentación de ingresos. La lista final depende de la línea vigente y de tu perfil."}},
-    {"@type":"Question","name":"¿Cómo funciona la tasación de mi usado?","acceptedAnswer":{"@type":"Answer","text":"Se solicitan marca, modelo, año, kilometraje y estado general. El valor no se calcula automáticamente en esta página: un asesor revisa la información y confirma el siguiente paso."}},
-    {"@type":"Question","name":"¿Puedo consultar accesorios y neumáticos antes de ir?","acceptedAnswer":{"@type":"Answer","text":"Sí. La página ofrece líneas directas para repuestos, accesorios y neumáticos; la disponibilidad y las medidas se confirman antes de acercarte."}},
-    {"@type":"Question","name":"¿Cómo coordino la entrega de un vehículo?","acceptedAnswer":{"@type":"Answer","text":"Después de definir la operación, el concesionario confirma por sus canales directos la documentación, las condiciones y el día de entrega."}},
-    {"@type":"Question","name":"¿Cada cuánto debo hacer el service de mi Toyota?","acceptedAnswer":{"@type":"Answer","text":"El intervalo depende del modelo, el año y el kilometraje. Consultá el manual de tu vehículo o escribinos con esos datos para confirmar qué mantenimiento corresponde."}},
-    {"@type":"Question","name":"¿Qué tengo que llevar al service?","acceptedAnswer":{"@type":"Answer","text":"Para pedir orientación, tené a mano el modelo, el año, el kilometraje y una descripción breve de lo que necesitás. El equipo confirma si hace falta documentación adicional."}},
-    {"@type":"Question","name":"¿Puedo consultar una visita o test drive?","acceptedAnswer":{"@type":"Answer","text":"Podés consultar por el modelo que te interesa y pedir información sobre disponibilidad y agenda. La posibilidad de realizar una visita o test drive se confirma directamente con el concesionario."}}
-  ]
+  "@type": "Vehicle",
+  "name": "Toyota Hilux",
+  "brand": {"@type": "Brand", "name": "Toyota"},
+  "vehicleConfiguration": "DX, SR, SRV, SRV+, SRX y Limited — Cabina Simple, Cabina Chasis y Cabina Doble",
+  "vehicleTransmission": "Manual de 6 velocidades o automática de 6 velocidades, según versión",
+  "driveWheelConfiguration": "4x2 o 4x4 desconectable con reductora en versiones 4x4",
+  "fuelType": "Diésel",
+  "url": "https://hnk375561-lab.github.io/toyota-concepcion-uruguay-web/hilux.html",
+  "image": "https://hnk375561-lab.github.io/toyota-concepcion-uruguay-web/toyota-sharp-assets/enhanced-bae67c9e04b0-800.webp",
+  "manufacturer": {"@type": "Organization", "name": "Toyota Argentina", "url": "https://www.toyota.com.ar/modelos/hilux-cabina-simple"},
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+    "priceSpecification": {"@type": "PriceSpecification", "description": "Consultar con el equipo comercial (WhatsApp o teléfono)."},
+    "seller": {"@type": "AutoDealer", "name": "Piñeyro y Moscatelli S.R.L.", "url": "https://hnk375561-lab.github.io/toyota-concepcion-uruguay-web/"}
+  }
 }
 </script>
 <style id="consolidated-site-css">
@@ -1576,16 +1657,56 @@ section[id],main [id],#aviso-demo{scroll-margin-top:calc(112px + var(--demo-bann
 @media(max-width:760px){:root{--demo-banner-h:54px}.demo-banner{padding:7px 12px;font-size:12px}.demo-banner-desktop{display:none}.demo-banner-mobile{display:inline}.demo-banner .wrap{align-items:flex-start}.demo-banner .demo-pill{margin-top:1px}.privacy-dialog .privacy-head,.privacy-body{padding-left:20px;padding-right:20px}}
 /* DEMO:END banner-y-avisos */
 </style>
+<style id="hilux-ficha-css">
+.ficha-main{padding-top:0}
+.ficha-breadcrumbs{padding:22px 0 0}
+.ficha-hero{padding:26px 0 58px;border-bottom:1px solid var(--border)}
+.ficha-hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.ficha-hero-copy h1{font-family:var(--display);font-size:clamp(34px,4.6vw,58px);font-weight:800;line-height:1.05;letter-spacing:-.02em;margin:16px 0 14px;color:var(--ink)}
+.ficha-hero-copy p.lead{color:var(--muted);font-size:16.5px;max-width:46ch;margin:0 0 26px}
+.ficha-hero-photo{position:relative;overflow:hidden;background:var(--mist);border:1px solid var(--border)}
+.ficha-hero-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.ficha-hero-photo .corner{position:absolute;top:0;right:0;background:var(--toyota-red);padding:9px 15px;color:#fff;font:700 11px var(--display);letter-spacing:.08em}
+.ficha-actions{display:flex;flex-wrap:wrap;gap:12px}
+.ficha-quickfacts{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--border);margin-top:30px}
+.ficha-quickfacts div{padding:16px 18px 16px 0;border-right:1px solid var(--border)}
+.ficha-quickfacts div:last-child{border-right:0}
+.ficha-quickfacts strong{display:block;font-family:var(--display);font-size:19px;margin-bottom:2px}
+.ficha-quickfacts span{font-size:12.5px;color:var(--muted)}
+.ficha-specs{padding:58px 0}
+.ficha-specs .detail-specs{border-top:1px solid var(--border)}
+.ficha-note{background:var(--surface-alt);border:1px solid var(--border);padding:18px 20px;font-size:13.5px;color:var(--muted);margin:0 0 30px}
+.ficha-sources{padding:0 0 58px}
+.ficha-sources ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.ficha-sources li{font-size:13.5px;color:var(--muted);border-bottom:1px dashed var(--border);padding-bottom:8px}
+.ficha-sources a{color:var(--toyota-red);font-weight:700;text-decoration:none}
+.ficha-cta-band{background:var(--panel);color:var(--panel-ink);padding:52px 0;text-align:center}
+.ficha-cta-band h2{font-family:var(--display);font-size:clamp(24px,3vw,34px);margin:0 0 10px}
+.ficha-cta-band p{color:var(--panel-muted);margin:0 0 22px}
+@media(max-width:860px){.ficha-hero-grid{grid-template-columns:1fr;gap:28px}.ficha-hero-photo{order:-1;height:56vw;max-height:420px}.ficha-quickfacts{grid-template-columns:1fr 1fr}.ficha-quickfacts div:nth-child(2){border-right:0}}
+</style>
+
 </head>
 <body id="top">
-<a class="skip-link" href="#contenido-ficha">Saltar al contenido principal</a>
-<div class="demo-banner" role="region" aria-label="Aviso de versión demo"><div class="wrap"><span class="demo-pill">DEMO</span><span class="demo-banner-desktop">VISTA PREVIA · Datos a confirmar con el concesionario. Propuesta de diseño independiente, no oficial. Imágenes ilustrativas. <a href="index.html#aviso-demo">Ver detalles</a></span><span class="demo-banner-mobile">VISTA PREVIA · Datos a confirmar con el concesionario · <a href="index.html#aviso-demo">Ver detalles</a></span></div></div>
+<a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
+<script id="scroll-restoration">
+(function(){
+  if(location.hash)return;
+  if("scrollRestoration" in history)history.scrollRestoration="manual";
+  function reset(){window.scrollTo(0,0);if(window.__toyotaLenis)window.__toyotaLenis.scrollTo(0,{immediate:true});}
+  window.addEventListener("pageshow",reset,{once:true});
+  window.addEventListener("load",function(){setTimeout(reset,80);},{once:true,passive:true});
+})();
+</script>
+<!-- DEMO:START banner -->
+<div class="demo-banner" role="region" aria-label="Aviso de versión demo"><div class="wrap"><span class="demo-pill">DEMO</span><span class="demo-banner-desktop">VISTA PREVIA · Datos a confirmar con el concesionario. Propuesta de diseño independiente, no oficial. Imágenes ilustrativas. <a href="#aviso-demo">Ver detalles</a></span><span class="demo-banner-mobile">VISTA PREVIA · Datos a confirmar con el concesionario · <a href="#aviso-demo">Ver detalles</a></span></div></div>
+<!-- DEMO:END banner -->
 <header class="site" id="site-header">
 <div class="wrap nav">
-<div style="display:flex;align-items:center;gap:10px;"><picture><source srcset="toyota-sharp-assets/asset-bec83be10e47-256.webp" type="image/webp"/><img alt="Logo Piñeyro y Moscatelli, concesionario oficial Toyota" class="brand-logo" data-source="redes-toyota" decoding="async" height="256" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" width="256"/></picture><div class="brand">
+<a href="index.html" aria-label="Volver al inicio — Toyota Concepción del Uruguay" style="text-decoration:none;color:inherit;"><div style="display:flex;align-items:center;gap:10px;"><picture><source srcset="toyota-sharp-assets/asset-bec83be10e47-256.webp" type="image/webp"/><img alt="Logo Piñeyro y Moscatelli, concesionario oficial Toyota" class="brand-logo" data-source="redes-toyota" decoding="async" height="256" src="toyota-sharp-assets/asset-bec83be10e47-256.webp" width="256"/></picture><div class="brand">
 <span class="b1">Toyota Concepción del Uruguay</span>
 <span class="b2">Piñeyro y Moscatelli S.R.L. — Concesionario Oficial</span>
-</div></div>
+</div></div></a>
 <nav aria-label="Navegación principal" class="navlinks">
 <details class="navmega"><summary>Vehículos</summary><div class="mega-panel"><a href="index.html#gama"><strong>0 km</strong><small>Modelos Toyota</small></a><a href="index.html#usados"><strong>Usados</strong><small>Disponibilidad a confirmar</small></a><a href="index.html#comparar"><strong>Comparar modelos</strong><small>Elegí dos y compará</small></a></div></details>
 <details class="navmega"><summary>Compra</summary><div class="mega-panel"><a href="index.html#financiacion"><strong>Financiación</strong><small>Simulador y pasos</small></a><a href="index.html#canje"><strong>Plan canje</strong><small>Tasá tu vehículo</small></a><a href="index.html#contacto"><strong>Consultar</strong><small>Hablar con el equipo</small></a></div></details>
@@ -1624,55 +1745,89 @@ section[id],main [id],#aviso-demo{scroll-margin-top:calc(112px + var(--demo-bann
 </div>
 </div>
 </header>
+<main id="contenido-principal" class="ficha-main">
 
-<main id="contenido-ficha">
-<nav aria-label="Ruta" style="max-width:1100px;margin:24px auto 0;padding:0 20px;font-size:13px;color:var(--muted,#46505C);">
-  <a href="index.html">Inicio</a> &nbsp;/&nbsp; <a href="index.html#gama">Gama Toyota</a> &nbsp;/&nbsp; <strong>Hilux</strong>
-</nav>
+<div class="wrap ficha-breadcrumbs">
+<nav class="breadcrumbs" aria-label="Miga de pan"><a href="index.html">Inicio</a> / <a href="index.html#gama">Vehículos</a> / <span aria-current="page">Hilux</span></nav>
+</div>
 
-<section style="max-width:1100px;margin:16px auto 0;padding:0 20px;">
-  <picture>
-    <source srcset="toyota-sharp-assets/enhanced-bae67c9e04b0.webp" type="image/webp"/>
-    <img src="toyota-sharp-assets/enhanced-bae67c9e04b0-800.webp" alt="Toyota Hilux, imagen ilustrativa" width="1600" height="1296" style="width:100%;height:auto;border-radius:16px;display:block;object-fit:cover;max-height:520px;" loading="eager" fetchpriority="high"/>
-  </picture>
+<section class="ficha-hero" aria-labelledby="ficha-title">
+<div class="wrap ficha-hero-grid">
+<div class="ficha-hero-copy">
+<span class="tag">Pick-up Toyota</span>
+<h1 id="ficha-title">Toyota Hilux</h1>
+<p class="lead">La pick-up que no para nunca. Cabina simple, chasis o doble, en combinaciones 4x2 y 4x4, manual o automática. Ficha técnica elaborada a partir de fuentes oficiales de Toyota Argentina.</p>
+<div class="ficha-actions">
+<a class="btn primary" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20consultar%20por%20la%20Toyota%20Hilux." id="hiluxWhatsApp" rel="noopener noreferrer" target="_blank">Consultar por WhatsApp ↗</a>
+<a class="btn ghost" href="index.html#gama">Ver toda la gama</a>
+</div>
+<div class="ficha-quickfacts">
+<div><strong>204 CV</strong><span>Motor 2.8 turbodiésel, tope de gama</span></div>
+<div><strong>4x2 / 4x4</strong><span>Con reductora en versiones 4x4</span></div>
+<div><strong>5 años</strong><span>Garantía o 150.000 km</span></div>
+</div>
+</div>
+<figure class="ficha-hero-photo">
+<span class="corner">Fuente pública</span>
+<picture>
+<source type="image/avif" srcset="toyota-sharp-assets/enhanced-bae67c9e04b0-480.avif 480w, toyota-sharp-assets/enhanced-bae67c9e04b0-800.avif 800w" sizes="(max-width:860px) 100vw, 50vw"/>
+<source type="image/webp" srcset="toyota-sharp-assets/enhanced-bae67c9e04b0-480.webp 480w, toyota-sharp-assets/enhanced-bae67c9e04b0-800.webp 800w, toyota-sharp-assets/enhanced-bae67c9e04b0.webp 1600w" sizes="(max-width:860px) 100vw, 50vw"/>
+<img src="toyota-sharp-assets/enhanced-bae67c9e04b0-800.webp" srcset="toyota-sharp-assets/enhanced-bae67c9e04b0-800.webp 800w, toyota-sharp-assets/enhanced-bae67c9e04b0.webp 1600w" sizes="(max-width:860px) 100vw, 50vw" alt="Toyota Hilux roja, imagen de referencia" width="1600" height="1296" decoding="async" fetchpriority="high"/>
+</picture>
+</figure>
+</div>
 </section>
 
-<section style="max-width:1100px;margin:28px auto 0;padding:0 20px;">
-  <h1 style="font-size:clamp(28px,4vw,44px);margin:0 0 8px;">Toyota Hilux</h1>
-  <p style="font-size:17px;color:var(--muted,#46505C);max-width:60ch;margin:0 0 24px;">
-    La pick-up que no para nunca. Cabina simple o doble, 4x2 o 4x4 — con datos de
-    versiones, motor y equipamiento tomados de la ficha pública de Toyota Argentina.
-  </p>
-  <a class="nav-cta" style="display:inline-block;margin-bottom:32px;" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20consultar%20por%20la%20Toyota%20Hilux."
-     rel="noopener noreferrer" target="_blank" aria-label="Consultar por la Hilux por WhatsApp">
-    Consultar esta Hilux por WhatsApp
-  </a>
-
-  <div class="detail-specs" style="display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));margin-bottom:28px;">
-<div class="detail-spec"><strong>Categoría</strong><span>Pick-up</span></div>
-<div class="detail-spec"><strong>Versiones disponibles</strong><span>DX, SR, SRV, SRV+, SRX y Limited. Cabina Simple, Cabina Chasis y Cabina Doble. Combinaciones 4x2/4x4, manual/automática.</span></div>
-<div class="detail-spec"><strong>Motor</strong><span>2.4 turbodiésel 2GD, 4 cilindros, para DX/gama de acceso. 2.8 turbodiésel 1GD, 4 cilindros, para SR, SRV, SRV+, SRX y Limited.</span></div>
-<div class="detail-spec"><strong>Potencia</strong><span>2.4: 150 CV a 3.400 rpm. 2.8: 204 CV entre 3.000 y 3.400 rpm. Versiones anteriores del mismo motor entregaban 177 CV.</span></div>
-<div class="detail-spec"><strong>Torque</strong><span>2.4: 400 Nm entre 1.600 y 2.000 rpm. 2.8 manual: 420 Nm entre 1.400 y 3.400 rpm. 2.8 automática: 500 Nm entre 1.600 y 2.800 rpm.</span></div>
-<div class="detail-spec"><strong>Transmisión</strong><span>Manual de 6 velocidades o automática de 6 velocidades, según versión.</span></div>
-<div class="detail-spec"><strong>Tracción</strong><span>4x2 o 4x4 desconectable, con reductora en las versiones 4x4.</span></div>
-<div class="detail-spec"><strong>Consumo</strong><span>Consultar disponibilidad y configuración vigente. Toyota Argentina no publica cifra oficial de consumo combinado en la ficha pública.</span></div>
-<div class="detail-spec"><strong>Dimensiones</strong><span>Largo aproximado: 5.330 mm. Despeje al suelo superior a 28 cm. Distancia entre ejes: consultar disponibilidad y configuración vigente; varía según cabina.</span></div>
-<div class="detail-spec"><strong>Baúl o capacidad de carga</strong><span>Superior a 1.000 kg según versión. La cifra exacta varía entre Cabina Simple, Chasis y Doble y debe confirmarse.</span></div>
-<div class="detail-spec"><strong>Tanque de combustible</strong><span>Consultar disponibilidad y configuración vigente.</span></div>
-<div class="detail-spec"><strong>Seguridad</strong><span>7 airbags: 2 frontales, 2 laterales delanteros, 2 de cortina y 1 de rodilla para conductor. Control de estabilidad, control de tracción, asistente de arranque en pendiente y control de velocidad crucero. Pantalla táctil de 9 pulgadas con Android Auto y Apple CarPlay inalámbricos desde versiones intermedias.</span></div>
-<div class="detail-spec"><strong>Garantía</strong><span>5 años o 150.000 km.</span></div>
-<div class="detail-spec"><strong>Precio</strong><span>Consultar con el equipo comercial (WhatsApp o teléfono).</span></div>
-  </div>
-
-  <p style="font-size:13px;color:var(--muted,#46505C);border-top:1px solid var(--border,#C8CED3);padding-top:16px;">
-    Fuentes: Toyota Argentina — ficha oficial de Hilux Cabina Simple, más La Nación, Mercado Libre y Monkey Motor como referencias cruzadas. Ver ficha oficial: <a href="https://www.toyota.com.ar/modelos/hilux-cabina-simple" target="_blank" rel="noopener noreferrer">https://www.toyota.com.ar/modelos/hilux-cabina-simple</a>.
-    Precios, stock y versiones exactas deben confirmarse con el concesionario.
-  </p>
-
-  <p style="margin-top:28px;"><a href="index.html#comparar">← Volver a comparar modelos</a> &nbsp;·&nbsp; <a href="index.html#gama">Ver toda la gama</a></p>
+<section class="ficha-specs" aria-labelledby="ficha-specs-title">
+<div class="wrap">
+<div class="section-head tight">
+<h2 id="ficha-specs-title">Ficha técnica</h2>
+<p>Motor, transmisión, seguridad y garantía según la ficha oficial consultada.</p>
+</div>
+<p class="ficha-note">Los datos de esta ficha provienen de la página oficial de Toyota Argentina y de fuentes periodísticas y de mercado citadas al pie. Donde la fuente pública no publica una cifra exacta, se indica &ldquo;Consultar disponibilidad y configuración vigente&rdquo; en lugar de estimarla. Precio, stock y versiones disponibles se confirman con el equipo comercial.</p>
+<div class="detail-specs">
+<div class="detail-spec"><strong>Categoría</strong>Pick-up</div>
+<div class="detail-spec"><strong>Versiones disponibles</strong>DX, SR, SRV, SRV+, SRX y Limited. Cabina Simple, Cabina Chasis y Cabina Doble. Combinaciones 4x2/4x4, manual/automática.</div>
+<div class="detail-spec"><strong>Motor</strong>2.4 turbodiésel 2GD, 4 cilindros, para DX/gama de acceso. 2.8 turbodiésel 1GD, 4 cilindros, para SR, SRV, SRV+, SRX y Limited.</div>
+<div class="detail-spec"><strong>Potencia</strong>2.4: 150 CV a 3.400 rpm. 2.8: 204 CV entre 3.000 y 3.400 rpm. Versiones anteriores del mismo motor entregaban 177 CV.</div>
+<div class="detail-spec"><strong>Torque</strong>2.4: 400 Nm entre 1.600 y 2.000 rpm. 2.8 manual: 420 Nm entre 1.400 y 3.400 rpm. 2.8 automática: 500 Nm entre 1.600 y 2.800 rpm.</div>
+<div class="detail-spec"><strong>Transmisión</strong>Manual de 6 velocidades o automática de 6 velocidades, según versión.</div>
+<div class="detail-spec"><strong>Tracción</strong>4x2 o 4x4 desconectable, con reductora en las versiones 4x4.</div>
+<div class="detail-spec"><strong>Consumo</strong>Consultar disponibilidad y configuración vigente. Toyota Argentina no publica cifra oficial de consumo combinado en la ficha pública.</div>
+<div class="detail-spec"><strong>Dimensiones</strong>Largo aproximado: 5.330 mm. Despeje al suelo superior a 28 cm. Distancia entre ejes: consultar disponibilidad y configuración vigente; varía según cabina.</div>
+<div class="detail-spec"><strong>Baúl o capacidad de carga</strong>Superior a 1.000 kg según versión. La cifra exacta varía entre Cabina Simple, Chasis y Doble y debe confirmarse.</div>
+<div class="detail-spec"><strong>Tanque de combustible</strong>Consultar disponibilidad y configuración vigente.</div>
+<div class="detail-spec"><strong>Seguridad</strong>7 airbags: 2 frontales, 2 laterales delanteros, 2 de cortina y 1 de rodilla para conductor. Control de estabilidad, control de tracción, asistente de arranque en pendiente y control de velocidad crucero. Pantalla táctil de 9 pulgadas con Android Auto y Apple CarPlay inalámbricos desde versiones intermedias.</div>
+<div class="detail-spec"><strong>Garantía</strong>5 años o 150.000 km.</div>
+<div class="detail-spec"><strong>Precio</strong>Consultar con el equipo comercial (WhatsApp o teléfono).</div>
+</div>
+</div>
 </section>
+
+<section class="ficha-sources" aria-labelledby="ficha-sources-title">
+<div class="wrap">
+<div class="section-head tight">
+<h2 id="ficha-sources-title">Fuentes consultadas</h2>
+<p>Así podés verificar cada dato por tu cuenta.</p>
+</div>
+<ul>
+<li><a href="https://www.toyota.com.ar/modelos/hilux-cabina-simple" target="_blank" rel="noopener noreferrer">Toyota Argentina — Hilux Cabina Simple ↗</a> — ficha oficial del modelo, fuente principal de motor, potencia, torque, transmisión, tracción y garantía.</li>
+<li>La Nación — cobertura periodística de lanzamiento y prueba de manejo, usada como referencia complementaria.</li>
+<li>Mercado Libre — publicaciones de referencia de mercado para contrastar versiones y equipamiento.</li>
+<li>Monkey Motor — ficha comparativa independiente usada como referencia complementaria.</li>
+</ul>
+</div>
+</section>
+
 </main>
+
+<section class="ficha-cta-band" aria-labelledby="ficha-cta-title">
+<div class="wrap">
+<h2 id="ficha-cta-title">¿Te interesa esta Hilux?</h2>
+<p>Contanos qué versión buscás y te confirmamos disponibilidad.</p>
+<a class="btn primary" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20consultar%20por%20la%20Toyota%20Hilux." rel="noopener noreferrer" target="_blank">Hablar con un asesor por WhatsApp ↗</a>
+</div>
+</section>
 
 <footer>
 <div class="wrap">
@@ -1710,7 +1865,7 @@ section[id],main [id],#aviso-demo{scroll-margin-top:calc(112px + var(--demo-bann
 <section id="aviso-demo" class="demo-notice" aria-labelledby="demo-notice-title"><h2 id="demo-notice-title">Sobre esta versión demo</h2><ul><li>Es una propuesta de diseño independiente, elaborada solo con información pública. No es el sitio oficial de Piñeyro y Moscatelli S.R.L. ni un canal de Toyota Argentina, y no está afiliada a ninguna de las dos.</li><li>Contacto: los teléfonos surgen del Instagram @toyotacdelu y del listado de concesionarios de Toyota Argentina. Los teléfonos, el WhatsApp, los horarios y la dirección deben confirmarse directamente con el concesionario.</li><li>Imágenes y especificaciones: fotos y datos de modelos de páginas oficiales de Toyota Argentina; galería de Google Maps; accesorios del Instagram del concesionario. Se usan solo para ilustrar esta propuesta y se reemplazarán por material autorizado.</li><li>Precios, stock y tasas: no se publican. El simulador de financiación usa una tasa ilustrativa y no constituye una oferta.</li></ul></section>
 <!-- DEMO:END aviso-demo -->
 <!-- DEMO:START legal-demo -->
-<p class="demo-legal-line">Piñeyro y Moscatelli S.R.L. · 9 de Julio 1624, Concepción del Uruguay, Entre Ríos · CUIT: a confirmar con el concesionario · <a class="privacy-link" href="index.html#aviso-demo">Política de privacidad (borrador)</a></p>
+<p class="demo-legal-line">Piñeyro y Moscatelli S.R.L. · 9 de Julio 1624, Concepción del Uruguay, Entre Ríos · CUIT: a confirmar con el concesionario · <button class="privacy-link" id="privacyOpen" type="button" aria-haspopup="dialog">Política de privacidad (borrador)</button></p>
 <!-- DEMO:END legal-demo -->
 <p class="disclaimer">
         Piñeyro y Moscatelli S.R.L. es concesionario oficial Toyota en Concepción del Uruguay.
@@ -1726,30 +1881,49 @@ section[id],main [id],#aviso-demo{scroll-margin-top:calc(112px + var(--demo-bann
       </div>
 </div>
 </footer>
-
-<style>
-.detail-spec{background:var(--surface,#fff);border:1px solid var(--border,#C8CED3);border-radius:10px;padding:14px 16px;}
-.detail-spec strong{display:block;font-size:13px;color:var(--toyota-red,#8C111D);margin-bottom:4px;}
-.detail-spec span{font-size:14px;line-height:1.45;}
-</style>
-
+<dialog class="privacy-dialog" id="privacyDialog" aria-labelledby="privacyTitle"><div class="privacy-head"><h2 id="privacyTitle">Política de privacidad (borrador)</h2><button aria-label="Cerrar política de privacidad" class="detail-close" id="privacyClose" type="button">×</button></div><div class="privacy-body"><p><strong>BORRADOR — sujeto a revisión del asesor legal del concesionario. Última actualización: 21 de septiembre de 2026</strong></p><h3>1) Responsable</h3><p>Piñeyro y Moscatelli S.R.L., 9 de Julio 1624, Concepción del Uruguay, Entre Ríos; contacto toyotacdelu@gmail.com; CUIT a confirmar.</p><h3>2) Datos</h3><p>El sitio no guarda datos personales. Los formularios de contacto, tasación, usados y financiación no envían nada a un servidor: arman un mensaje de WhatsApp o de email que cada persona revisa y envía por su cuenta.</p><h3>3) Terceros</h3><p>WhatsApp (Meta) y enlaces salientes a Google Maps e Instagram. El mapa no está embebido: sus enlaces abren Google Maps y pueden transmitir a Google datos técnicos como la IP al visitarlo. Instagram se abre mediante enlaces salientes.</p><h3>4) Analítica y cookies</h3><p>El sitio no usa cookies de seguimiento ni guarda información de tu navegación en tu dispositivo. Tampoco tiene activada ninguna herramienta de analítica (como Google Analytics). Si en el futuro se activa, se avisará antes y se pedirá tu consentimiento.</p><h3>5) Derechos</h3><p>Podés ejercer los derechos de acceso, rectificación y supresión por el contacto indicado. Se aplica la Ley 25.326 de Protección de Datos Personales.</p></div></dialog>
 <script>
-(function(){
+document.addEventListener("DOMContentLoaded", function(){
+  "use strict";
+  // ---- EDITAR ACÁ: números de WhatsApp reales (formato wa.me, sin +) ----
+  var WHATSAPP_NUMEROS = {
+    ventas:     "5493442473453",
+    repuestos:  "5493442677433",
+    neumaticos: "5493442502390"
+  };
+
+  function wa(numeroKey, mensaje){
+    return "https://wa.me/" + WHATSAPP_NUMEROS[numeroKey] + "?text=" + encodeURIComponent(mensaje);
+  }
+
+  function openWa(url){var w=window.open(url,"_blank");if(w){try{w.opener=null;}catch(e){}}else{window.location.href=url;}}
+  // overlays abiertos a la vez no se desbloqueen mutuamente al cerrar solo uno. ----
+  // La implementación anterior estaba duplicada y cada cierre programaba otro start()
+  // de Lenis. Con clicks rápidos se acumulaban reinicios diferidos y reentrantes en el
+  // ticker principal; una única transición, sin temporizadores pendientes, evita ese ciclo.
   window.__toyotaScrollLockCount = window.__toyotaScrollLockCount || 0;
+  window.__toyotaUnlockScrollTimer = null;
   window.__toyotaLockScroll = function(){
+    if(window.__toyotaUnlockScrollTimer){
+      clearTimeout(window.__toyotaUnlockScrollTimer);
+      window.__toyotaUnlockScrollTimer = null;
+    }
+    var wasLocked=window.__toyotaScrollLockCount>0;
     window.__toyotaScrollLockCount++;
     document.documentElement.classList.add("toyota-scroll-locked");
     document.body.classList.add("toyota-scroll-locked");
+    if(!wasLocked && window.__toyotaLenis && window.__toyotaLenis.stop) window.__toyotaLenis.stop();
   };
   window.__toyotaUnlockScroll = function(){
     window.__toyotaScrollLockCount = Math.max(0, window.__toyotaScrollLockCount - 1);
-    if(window.__toyotaScrollLockCount !== 0) return;
+    if(window.__toyotaScrollLockCount !== 0)return;
     document.documentElement.classList.remove("toyota-scroll-locked");
     document.body.classList.remove("toyota-scroll-locked");
+    if(window.__toyotaLenis && window.__toyotaLenis.start) window.__toyotaLenis.start();
   };
+  // ---- menú mobile ----
   var burger = document.getElementById("burger");
   var mobilepanel = document.getElementById("mobilepanel");
-  if(!burger || !mobilepanel) return;
   function closeMobilePanel(restoreFocus){
     if(!mobilepanel.classList.contains("open")) return;
     mobilepanel.classList.remove("open");
@@ -1768,7 +1942,23 @@ section[id],main [id],#aviso-demo{scroll-margin-top:calc(112px + var(--demo-bann
   document.addEventListener("keydown", function(e){
     if(e.key === "Escape" && mobilepanel.classList.contains("open")) closeMobilePanel(true);
   });
-})();
+  // ---- menús desplegables del header: al abrir uno se cierran los demás ----
+  var navmegas = document.querySelectorAll(".navmega");
+  navmegas.forEach(function(d){
+    d.addEventListener("toggle", function(){
+      if(d.open){
+        navmegas.forEach(function(other){ if(other !== d) other.open = false; });
+      }
+    });
+  });
+  document.addEventListener("click", function(e){
+    if(!e.target.closest(".navmega")){
+      navmegas.forEach(function(d){ d.open = false; });
+    }
+  });
+  window.toyotaTrack && window.toyotaTrack("view_ficha_modelo", {model_name:"Hilux"});
+});
 </script>
+<script id="demo-privacy-behavior">(function(){var dialog=document.getElementById('privacyDialog'),open=document.getElementById('privacyOpen'),close=document.getElementById('privacyClose'),lastFocus=null;if(!dialog||!open||!close)return;function lock(){document.documentElement.classList.add('toyota-scroll-locked');document.body.classList.add('toyota-scroll-locked');if(window.__toyotaLenis&&window.__toyotaLenis.stop)window.__toyotaLenis.stop();}function unlock(){document.documentElement.classList.remove('toyota-scroll-locked');document.body.classList.remove('toyota-scroll-locked');if(window.__toyotaLenis&&window.__toyotaLenis.start)window.__toyotaLenis.start();}function hide(){if(dialog.open)dialog.close();unlock();if(lastFocus)lastFocus.focus();}open.addEventListener('click',function(){lastFocus=document.activeElement;lock();dialog.showModal();close.focus();});close.addEventListener('click',hide);dialog.addEventListener('cancel',function(e){e.preventDefault();hide();});dialog.addEventListener('click',function(e){if(e.target===dialog)hide();});dialog.addEventListener('close',unlock);})();</script>
 </body>
 </html>
