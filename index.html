@@ -2776,6 +2776,16 @@ document.addEventListener("DOMContentLoaded", function(){
   };
   var detail=document.getElementById("modelDetail"), closeDetail=document.getElementById("detailClose"), detailLastFocus=null, detailClosingTimer=null;
   function slugifyModel(name){return name.toLowerCase().replace(/\s+/g,"-").replace(/[^a-z0-9-]/g,"");}
+  // Resuelve el slug de la URL (#modelo/hilux) al nombre exacto usado como clave en MODEL_DETAILS.
+  // Solo devuelve nombres con ficha cargada: evita abrir un detalle vacío para un modelo de
+  // MODELOS_TOYOTA que todavía no tiene entrada en MODEL_DETAILS.
+  function modelNameFromSlug(slug){
+    var found=null;
+    Object.keys(MODEL_DETAILS).forEach(function(name){
+      if(slugifyModel(name)===slug) found=name;
+    });
+    return found;
+  }
   function closeModelDetail(updateHash){
     if(!detail.classList.contains("open")) return;
     window.__toyotaUnlockScroll();
@@ -3022,7 +3032,16 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
   // ---- rutas compartibles por hash ----
-  function restoreHashRoute(){var h=location.hash.replace(/^#/,"");if(h.indexOf("modelo/")===0){return;}if(h.indexOf("comparar")===0){var q=h.split("?")[1]||"",p=new URLSearchParams(q),a=p.get("a"),b=p.get("b");if(a&&document.getElementById("compareA")){var ca=document.getElementById("compareA"),cb=document.getElementById("compareB"),validA=Array.prototype.some.call(ca.options,function(o){return o.value===a&&!o.disabled;}),validB=Array.prototype.some.call(cb.options,function(o){return o.value===b&&!o.disabled;});if(validA){ca.value=a;cb.value=validB?b:"";ca.dispatchEvent(new Event("change"));}}var c=document.getElementById("comparar");if(c)window.__toyotaScrollToElement(c);return;}if(h.indexOf("gama?")===0){var gama=document.getElementById("gama");if(gama)setTimeout(function(){window.__toyotaScrollToElement(gama);},0);return;}if(h){var target=document.getElementById(h);if(target)setTimeout(function(){window.__toyotaScrollToElement(target);},0);}}
+  function restoreHashRoute(){var h=location.hash.replace(/^#/,"");if(h.indexOf("modelo/")===0){
+      var modelName=modelNameFromSlug(h.slice(7));
+      if(modelName){ openDetail(modelName,true); }
+      else {
+        history.replaceState(null,"",location.pathname+location.search+"#gama");
+        var gamaFallback=document.getElementById("gama");
+        if(gamaFallback)setTimeout(function(){window.__toyotaScrollToElement(gamaFallback);},0);
+      }
+      return;
+    }if(h.indexOf("comparar")===0){var q=h.split("?")[1]||"",p=new URLSearchParams(q),a=p.get("a"),b=p.get("b");if(a&&document.getElementById("compareA")){var ca=document.getElementById("compareA"),cb=document.getElementById("compareB"),validA=Array.prototype.some.call(ca.options,function(o){return o.value===a&&!o.disabled;}),validB=Array.prototype.some.call(cb.options,function(o){return o.value===b&&!o.disabled;});if(validA){ca.value=a;cb.value=validB?b:"";ca.dispatchEvent(new Event("change"));}}var c=document.getElementById("comparar");if(c)window.__toyotaScrollToElement(c);return;}if(h.indexOf("gama?")===0){var gama=document.getElementById("gama");if(gama)setTimeout(function(){window.__toyotaScrollToElement(gama);},0);return;}if(h){var target=document.getElementById(h);if(target)setTimeout(function(){window.__toyotaScrollToElement(target);},0);}}
   window.addEventListener("hashchange",function(){if(!location.hash.match(/^#modelo\//))closeModelDetail(false);restoreHashRoute();});
   restoreHashRoute();
 
