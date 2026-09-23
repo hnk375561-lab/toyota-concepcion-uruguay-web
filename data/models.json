@@ -1,0 +1,20 @@
+[
+  {
+    "slug": "hilux",
+    "slugJs": "hilux",
+    "name": "Hilux",
+    "fullName": "Toyota Hilux",
+    "title": "Toyota Hilux — Ficha técnica | DEMO Toyota Concepción del Uruguay — Piñeyro y Moscatelli",
+    "description": "Ficha técnica de la Toyota Hilux: versiones, motor, potencia, torque, transmisión, tracción, seguridad y garantía según fuentes oficiales de Toyota Argentina. Consultá disponibilidad con Piñeyro y Moscatelli, concesionario oficial en Concepción del Uruguay.",
+    "canonical": "https://hnk375561-lab.github.io/toyota-concepcion-uruguay-web/hilux.html",
+    "image800": "enhanced-bae67c9e04b0-800.webp",
+    "image480": "enhanced-bae67c9e04b0-480.webp",
+    "image800Avif": "enhanced-bae67c9e04b0-800.avif",
+    "image480Avif": "enhanced-bae67c9e04b0-480.avif",
+    "configuration": "DX, SR, SRV, SRV+, SRX y GR-Sport — Cabina Simple, Cabina Chasis y Cabina Doble",
+    "transmission": "Manual de 6 velocidades en DX, SR y SRV; automática de 6 velocidades disponible desde DX Doble Cabina (4x2 y 4x4), y única opción en SRV+, SRX y GR-Sport",
+    "drive": "4x2 o 4x4 desconectable con reductora en versiones 4x4",
+    "fuel": "Diésel",
+    "manufacturerUrl": "https://www.toyota.com.ar/modelos/hilux-cabina-simple"
+  }
+]

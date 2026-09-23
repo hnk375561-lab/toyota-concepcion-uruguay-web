@@ -324,10 +324,15 @@ out = src
 for start, end, repl in reversed(edits):
     out = out[:start] + repl + out[end:]
 
+# El sitemap se mantiene alineado con las fichas publicables: index en la raíz
+# y cualquier página HTML de modelo, excluyendo únicamente la página 404.
+page_paths = [""] + sorted(
+    p.name for p in ROOT.glob("*.html") if p.name not in {"index.html", "404.html"}
+)
 sitemap = ('<?xml version="1.0" encoding="UTF-8"?>\n'
            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-           f"  <url>\n    <loc>{BASE}</loc>\n  </url>\n"
-           "</urlset>\n")
+           + ''.join(f"  <url>\n    <loc>{BASE}{path}</loc>\n  </url>\n" for path in page_paths)
+           + "</urlset>\n")
 robots = f"User-agent: *\nAllow: /\n\nSitemap: {BASE}sitemap.xml\n"
 
 

@@ -8,6 +8,7 @@
     "node": ">=22.19"
   },
   "scripts": {
+    "generate:models": "node scripts/generate-model-pages.mjs",
     "test": "node tests/support/run-all.mjs",
     "test:cross": "node tests/support/run-all.mjs --cross-browser"
   },

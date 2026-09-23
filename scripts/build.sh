@@ -24,6 +24,11 @@ for required in index.html 404.html toyota-sharp-assets; do
   [[ -e "$ROOT/$required" ]] || fail "falta $required en la raíz del repo"
 done
 command -v python3 >/dev/null 2>&1 || fail "falta python3"
+command -v node >/dev/null 2>&1 || fail "falta node"
+
+# Las fichas son artefactos reproducibles: se generan desde la plantilla y los
+# datos antes de copiar el contenido publicable a dist/.
+node "$ROOT/scripts/generate-model-pages.mjs" || fail "no se pudieron generar las fichas de modelos"
 
 # dist/ es siempre <repo>/dist; se recrea de cero (nunca fuera del repo).
 [[ "$DIST" == "$ROOT/dist" && -n "$ROOT" ]] || fail "ruta de dist inesperada: $DIST"
