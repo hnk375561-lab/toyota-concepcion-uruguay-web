@@ -217,6 +217,15 @@ button{font-family:inherit}
 .navlinks a{text-decoration:none;white-space:nowrap}
 .navlinks a:hover{color:var(--toyota-red)}
 .navright{display:flex;align-items:center;gap:16px}
+.nav-cta{display:inline-flex;align-items:center;min-height:40px;padding:0 18px;border-radius:999px;background:#B30717;color:#fff;font:800 13px var(--display);text-decoration:none;white-space:nowrap;box-shadow:0 8px 20px -12px rgba(179,7,23,.9);transition:background-color .2s ease,transform .2s ease}
+.nav-cta:hover{background:#8C111D;transform:translateY(-1px)}
+.nav-cta:focus-visible{outline:3px solid #1B1F22;outline-offset:2px}
+@media(prefers-reduced-motion:reduce){.nav-cta{transition:none}.nav-cta:hover{transform:none}}
+@media(max-width:760px){.nav-cta{display:none}}
+.navright{flex-shrink:0}
+.navcall{white-space:nowrap;flex-shrink:0}
+@media(max-width:1240px){.navcall{display:none!important}}
+@media(min-width:901px) and (max-width:1100px){.navlinks{gap:18px}}
 .navcall{display:flex;align-items:center;text-decoration:none;font-family:var(--display);font-weight:700;font-size:15px;border-left:1px solid var(--border);padding-left:16px}
 .navcall:before{content:"";width:7px;height:7px;background:var(--toyota-red);border-radius:50%;margin-right:8px;flex-shrink:0}
 .burger{display:none;width:38px;height:38px;border:1px solid var(--border);background:var(--surface);align-items:center;justify-content:center;cursor:pointer}
@@ -1604,6 +1613,12 @@ footer a[href="tel:+543442502390"]{color:#F4F6F7!important}
 #gama .model-placeholder strong{font:700 clamp(22px,2.5vw,30px)/1.05 var(--display);letter-spacing:-.035em;color:var(--ink);}
 #gama .model-placeholder span{font:700 10px var(--display);letter-spacing:.18em;text-transform:uppercase;color:var(--toyota-red);}
 @media(max-width:700px){#gama .model-picture,#gama .model-placeholder{height:220px;padding:14px}}
+/* Tarjetas de la gama: todas las fotos llenan el mismo marco (mismo tamaño y recorte) y comparten un tratamiento de color suave.
+   Solo CSS: las imágenes originales no se tocan. Si una foto nueva queda mal recortada, ajustá object-position en la regla del modelo. */
+#gama .model .model-picture:not(.model-placeholder){padding:0;overflow:hidden;border-radius:12px;background:#e9edef}
+#gama .model .model-picture:not(.model-placeholder) .model-photo{width:100%;height:100%;min-height:0;max-width:none;margin:0;padding:0;border:0;border-radius:0;background:none;box-sizing:border-box;object-fit:cover;object-position:50% 58%;filter:saturate(.9) contrast(.98)}
+#gama .model[data-model="Hilux"] .model-picture .model-photo{filter:saturate(.78) contrast(.97);object-position:50% 62%}
+#gama .model[data-model="SW4 Diamond"] .model-picture .model-photo{object-position:50% 68%}
 </style>
 <style id="spec-compliance-final">
 [hidden]{display:none!important}

@@ -1702,3 +1702,9 @@ table.ficha-trim-table tbody tr.trim-group-row td{color:var(--toyota-red-text)}
 #postventa .btn.primary{display:inline-flex;margin-top:22px}
 @media(max-width:560px){.quiz-opts{grid-template-columns:1fr}.quiz-card{padding:20px 16px}.quiz-card>.btn{width:100%}.configurator-form{padding:20px 16px}}
 @media(prefers-reduced-motion:reduce){.nav-cta,.doc-card,.quiz-opts label{transition:none}.doc-card:hover,.nav-cta:hover{transform:none}}
+
+/* Header: el teléfono nunca se parte en varias líneas y el bloque derecho no se comprime */
+.navright{flex-shrink:0}
+.navcall{white-space:nowrap;flex-shrink:0}
+@media(max-width:1240px){.navcall{display:none!important}}
+@media(min-width:901px) and (max-width:1100px){.navlinks{gap:18px}}

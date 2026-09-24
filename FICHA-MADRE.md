@@ -28,6 +28,26 @@ Con el flag, el script solo comprueba que el archivo exista y que no tenga place
    `scripts/check-ficha.mjs`.
 8. `npm run check:ficha` y `npm test`.
 
+## Qué de `templates/model.html` es específico de Hilux
+
+El hero de la plantilla (segmento, frase de presentación y los cuatro datos destacados) ya es
+neutro: son marcadores `[Completar …]` y `check:ficha` frena la publicación mientras queden. El
+resto de la plantilla sigue siendo una copia de la ficha de Hilux con `{{MODEL_NAME}}` puesto en
+el lugar del nombre. Eso significa que, si se genera una ficha nueva sin reescribirla, aparecen
+frases de Hilux atribuidas al modelo nuevo. Secciones que **siempre** hay que reescribir con
+datos oficiales del modelo:
+
+- Noticia de renovación de generación y "datos de la generación vigente".
+- Versiones y tabla comparativa (potencias, cajas, tracciones).
+- Motores, dimensiones, pesos, capacidades, remolque y calificación Latin NCAP.
+- Aptitud off-road y variante deportiva (GR-Sport).
+- Colores, accesorios, FAQ y "Fuentes consultadas".
+- Configurador y test rápido (`CONFIG_VERSIONES`, perfiles).
+
+Lo que sí es común a todos los Toyota y se puede conservar: el texto de "Toyota 10" (siempre con
+el enlace a los términos y condiciones vigentes). Por eso el camino recomendado sigue siendo
+clonar `hilux.html` y reemplazar dato por dato (pasos de arriba).
+
 ## Comandos
 
 | Comando | Qué hace |
