@@ -377,6 +377,14 @@ class Auditor {
     if (!el.vis) { if (!(await this.reveal(sel))) { this.hidden++; return; } revealed = true; }
     const loc = this.page.locator(sel);
     try { await loc.scrollIntoViewIfNeeded({ timeout: 2500 }); } catch { /* lo intenta igual */ }
+    // Hay elementos que a propósito no se pueden tocar hasta scrollear (p. ej. la barra inferior móvil: opacity 0 + pointer-events none hasta pasar el hero).
+    // Se scrollea como lo haría una persona; si sigue dormido, no se cuenta como falla.
+    const dormant = () => this.page.evaluate((s) => { const e = document.querySelector(s); if (!e) return false; if (getComputedStyle(e).pointerEvents === 'none') return true; for (let a = e; a; a = a.parentElement) { if (parseFloat(getComputedStyle(a).opacity) === 0) return true; } return false; }, sel).catch(() => false);
+    if (await dormant()) {
+      await this.page.evaluate(() => window.scrollTo(0, Math.round(innerHeight * 1.5)));
+      await sleep(700);
+      if (await dormant()) { this.hidden++; return; }
+    }
     const before = await this.page.evaluate(SNAP);
     await this.page.evaluate(() => { window.__qa.mut = 0; });
     this.popups.length = 0; this.docStatus = 0;
@@ -419,7 +427,12 @@ class Auditor {
       const thr = Math.ceil(this.noise * 1.2) + 2; const fx = [];
       if (after.url !== before.url) fx.push('cambia la URL'); if (Math.abs(after.y - before.y) > 40) fx.push('hace scroll');
       if (after.mut > thr) fx.push(`cambia la página (+${after.mut} nodos)`); if (after.aria !== before.aria) fx.push('cambia un estado (abierto/activo)');
-      if (fx.length) detail = fx.join(', '); else { status = 'fail'; detail = 'SIN EFECTO: se tocó y no pasó nada'; reload = false; }
+      // Un submit con campos obligatorios vacíos lo frena el navegador (validación nativa): no es una falla del sitio.
+      // El envío con datos completos se prueba aparte en la sección "Formulario".
+      const blocked = fx.length ? false : await this.page.evaluate((s) => { const b = document.querySelector(s); const f = b && b.form; return !!(f && b.type === 'submit' && !f.checkValidity()); }, sel).catch(() => false);
+      if (fx.length) detail = fx.join(', ');
+      else if (blocked) { detail = 'el navegador pide completar campos obligatorios antes de enviar (esperado)'; reload = false; }
+      else { status = 'fail'; detail = 'SIN EFECTO: se tocó y no pasó nada'; reload = false; }
     }
     const shot = status === 'fail' ? await this.shot(label, sel) : '';
     this.rep(type, label, status, detail, shot);

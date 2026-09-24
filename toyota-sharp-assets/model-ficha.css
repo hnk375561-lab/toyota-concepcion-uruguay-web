@@ -1622,6 +1622,8 @@ table.ficha-trim-table tbody tr.trim-group-row th,table.ficha-trim-table tbody t
   .ficha-mobile-cta-main span{margin-left:6px;font-size:16px}
   .ficha-mobile-cta-call{padding:0 15px;border:1px solid rgba(255,255,255,.32);color:#fff}
   .ficha-mobile-cta-call:hover{border-color:#fff}
+  /* El menú abierto llega hasta abajo de la pantalla: sin este espacio, los últimos links (Ubicación, Llamar) quedan tapados por la barra fija. */
+  .mobilepanel.open{padding-bottom:calc(76px + env(safe-area-inset-bottom))}
 }
 @media print{
   .demo-banner,.site,.ficha-jumpnav,.ficha-mobile-cta,.ficha-actions,.ficha-hero-photo .corner{display:none!important}

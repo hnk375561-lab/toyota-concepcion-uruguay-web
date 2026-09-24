@@ -996,7 +996,7 @@ document.addEventListener("DOMContentLoaded", function(){
   }
 
   // ---- Nav rápida: resalta la sección visible ----
-  var jumpLinks = Array.prototype.slice.call(document.querySelectorAll(".ficha-jumpnav a"));
+  var jumpLinks = Array.prototype.slice.call(document.querySelectorAll('.ficha-jumpnav a[href^="#"]'));
   if(jumpLinks.length){
     var jumpTargets = jumpLinks.map(function(a){ return document.querySelector(a.getAttribute("href")); }).filter(Boolean);
     var setActive = function(id){
