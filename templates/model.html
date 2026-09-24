@@ -264,13 +264,17 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
 <nav class="ficha-jumpnav" aria-label="Navegación de la ficha">
 <div class="wrap">
 <a href="#elegir-version">Qué versión elegir</a>
+<a href="#cual-es-mi-modelo">Test rápido</a>
 <a href="#versiones">Versiones</a>
 <a href="#rendimiento">Motor y rendimiento</a>
 <a href="#ficha-tecnica">Ficha técnica</a>
+<a href="#garantia">Garantía</a>
 <a href="#dimensiones">Dimensiones</a>
 <a href="#offroad">Aptitud off-road</a>
 <a href="#colores">Colores</a>
+<a href="#configurador">Configurador</a>
 <a href="#accesorios">Accesorios</a>
+<a href="#ofertas-financiacion">Ofertas y financiación</a>
 <a href="#preguntas-frecuentes">Preguntas frecuentes</a>
 <a href="#fuentes">Fuentes</a>
 <a class="ficha-jump-cta" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20consultar%20por%20la%20Toyota%20{{MODEL_NAME}}." rel="noopener noreferrer" target="_blank">Consultar ↗</a>
@@ -360,6 +364,56 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
 </div>
 <p class="ficha-trim-note">Es una guía orientativa a partir de la configuración habitual de cada versión, no una recomendación cerrada: el equipo comercial confirma cuál te conviene según tu uso real y el stock disponible.</p>
 <p class="ficha-trim-note"><!-- ADAPTAR POR MODELO: ajustar la lista de competidores directos según el segmento del vehículo. --> ¿Cómo se posiciona frente a otras opciones del segmento? No publicamos aquí una comparativa spec-a-spec contra otras marcas por rigurosidad: cada fabricante actualiza sus fichas con calendarios distintos y una tabla desactualizada confunde más de lo que ayuda. Si estás dudando entre modelos, contanos cuáles y te armamos la comparación con datos vigentes de cada uno.</p>
+</div>
+</section>
+
+<!-- ADAPTAR POR MODELO: el test reutiliza las mismas 4 categorías de "¿Qué conviene?" de arriba (id de sección, preguntas, textos de opciones y objeto QUIZ_RESULTADOS en el script de más abajo) reemplazadas por las versiones reales de este vehículo. Si el modelo tiene menos de 4 perfiles de uso, sumá/quitá preguntas y categorías en bloque (HTML + JS) para que sigan siendo simétricas. -->
+<section id="cual-es-mi-modelo" class="ficha-usecases" aria-labelledby="quiz-title" style="background:var(--surface-alt)">
+<div class="wrap">
+<div class="section-head tight">
+<h2 id="quiz-title">Test rápido: ¿cuál es tu {{MODEL_NAME}}?</h2>
+<p>Cuatro preguntas para llegar a una versión sugerida a partir de la misma lógica de la sección anterior. Es orientativo: no reemplaza la charla con el equipo comercial ni la disponibilidad real de stock.</p>
+</div>
+<form id="modeloQuizForm" class="quiz-card" aria-describedby="quizResult">
+<div class="quiz-q">
+<p class="quiz-q-title">1. ¿Dónde la vas a usar más?</p>
+<div class="quiz-opts">
+<label><input type="radio" name="q1" value="perfilA" required/> [Completar: opción del perfil de uso A]</label>
+<label><input type="radio" name="q1" value="perfilB"/> [Completar: opción del perfil de uso B]</label>
+<label><input type="radio" name="q1" value="perfilC"/> [Completar: opción del perfil de uso C]</label>
+<label><input type="radio" name="q1" value="perfilD"/> [Completar: opción del perfil de uso D]</label>
+</div>
+</div>
+<div class="quiz-q">
+<p class="quiz-q-title">2. ¿Qué priorizás al elegir?</p>
+<div class="quiz-opts">
+<label><input type="radio" name="q2" value="perfilA" required/> [Completar]</label>
+<label><input type="radio" name="q2" value="perfilB"/> [Completar]</label>
+<label><input type="radio" name="q2" value="perfilC"/> [Completar]</label>
+<label><input type="radio" name="q2" value="perfilD"/> [Completar]</label>
+</div>
+</div>
+<div class="quiz-q">
+<p class="quiz-q-title">3. ¿Cuántas personas viajan habitualmente?</p>
+<div class="quiz-opts">
+<label><input type="radio" name="q3" value="perfilA" required/> [Completar]</label>
+<label><input type="radio" name="q3" value="perfilB"/> [Completar]</label>
+<label><input type="radio" name="q3" value="perfilC"/> [Completar]</label>
+<label><input type="radio" name="q3" value="perfilD"/> [Completar]</label>
+</div>
+</div>
+<div class="quiz-q">
+<p class="quiz-q-title">4. [Completar: cuarta pregunta relevante para este modelo, p.ej. caja automática, tracción, capacidad de carga]</p>
+<div class="quiz-opts">
+<label><input type="radio" name="q4" value="perfilA" required/> [Completar]</label>
+<label><input type="radio" name="q4" value="perfilB"/> [Completar]</label>
+<label><input type="radio" name="q4" value="perfilC"/> [Completar]</label>
+<label><input type="radio" name="q4" value="perfilD"/> [Completar]</label>
+</div>
+</div>
+<button class="btn primary" type="submit">Ver mi versión sugerida</button>
+</form>
+<div id="quizResult" class="quiz-result" hidden></div>
 </div>
 </section>
 
@@ -593,6 +647,21 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 </div>
 </section>
 
+<section id="garantia" class="ficha-specs" aria-labelledby="garantia-title">
+<div class="wrap">
+<div class="section-head tight">
+<h2 id="garantia-title">Garantía</h2>
+<p>Cobertura oficial de fábrica y extensión &ldquo;Toyota 10&rdquo;, según los términos publicados por Toyota Argentina.</p>
+</div>
+<div class="warranty-grid">
+<article class="access-rich-card"><span class="tag-small">Garantía oficial</span><h3>Cobertura de fábrica</h3><p>Toyota Argentina informa una garantía oficial de 5 años sobre unidades 0&nbsp;km, con mantenimiento realizado en la red oficial. Los términos y condiciones completos están publicados por la marca.</p></article>
+<article class="access-rich-card"><span class="tag-small">Extensión sin costo</span><h3>Toyota 10</h3><p>Cumplidos los 5 años de garantía oficial, y con el service hecho en la red oficial, se puede extender la cobertura sin costo por períodos de 1 año o 10.000&nbsp;km, hasta un máximo de 10 años o 200.000&nbsp;km.</p></article>
+<article class="access-rich-card"><span class="tag-small">Alcance</span><h3>Vigencia y transferencia</h3><p>Aplica a unidades 0&nbsp;km y a {{MODEL_NAME}} patentadas desde 2020. Es transferible si la unidad se vende con el historial de service al día, lo que también suma valor de reventa.</p></article>
+</div>
+<p class="ficha-trim-note">Fuente: comunicado oficial &ldquo;Toyota 10&rdquo; y términos y condiciones de garantía de Toyota Argentina, citados en Fuentes consultadas. Confirmá el detalle exacto de tu unidad con el equipo comercial antes de la compra.</p>
+</div>
+</section>
+
 <section id="dimensiones" class="ficha-dims" aria-labelledby="ficha-dims-title">
 <div class="wrap">
 <div class="section-head tight">
@@ -717,6 +786,37 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 <p class="color-note">Tonalidades de referencia, no coinciden exactamente con la pintura real ni sustituyen el código de fábrica. El Blanco Perlado (070) históricamente estuvo restringido a las versiones SRX y SRV 4x4; disponibilidad de cada color por versión y año modelo se confirma con el concesionario. Fuentes: cobertura del lanzamiento de esta generación (Autoblog Argentina, Agrofy News, 2020) y del lanzamiento de la SRV+ (Autocosmos, 2025), citadas al pie.</p>
 <!-- ADAPTAR POR MODELO: reemplazar los tonos/versiones de tapizado por los reales de este vehículo. -->
 <p class="color-note" style="margin-top:10px">Toyota Argentina no publica una paleta de colores de interior independiente de la pintura exterior: el material y color del tapizado dependen de la versión, no de la elección de pintura. [Completar el detalle de tapizado por versión]. Ver el detalle completo en la sección Ficha técnica → Confort y tecnología.</p>
+</div>
+</section>
+
+<!-- ADAPTAR POR MODELO: completar las <option> de versión y color con los reales de este vehículo, y el objeto CONFIG_VERSIONES del script de más abajo con motor/transmisión/tracción por versión (deben coincidir exactamente con los value= usados acá). -->
+<section id="configurador" class="ficha-usecases" aria-labelledby="configurador-title">
+<div class="wrap">
+<div class="section-head tight">
+<h2 id="configurador-title">Configurador rápido</h2>
+<p>Elegí versión y color para armar tu consulta con los datos ya cargados; el motor, la transmisión y la tracción se completan solos según la versión.</p>
+</div>
+<div class="configurator-grid">
+<div class="configurator-form">
+<div>
+<label for="cfgVersion">Versión</label>
+<select id="cfgVersion">
+<option value="[Completar versión 1]">[Completar versión 1] — [perfil]</option>
+<option value="[Completar versión 2]">[Completar versión 2] — [perfil]</option>
+</select>
+</div>
+<div>
+<label for="cfgColor">Color</label>
+<select id="cfgColor">
+<option>[Completar color 1]</option>
+<option>[Completar color 2]</option>
+</select>
+</div>
+<div id="cfgSummary" class="configurator-summary" aria-live="polite"></div>
+<a id="cfgWhatsApp" class="btn primary block" href="#" rel="noopener noreferrer" target="_blank">Consultar esta configuración por WhatsApp ↗</a>
+<p class="ficha-trim-note">Referencia de motor/transmisión/tracción según la Comparativa completa de versiones de la sección Versiones de la gama. Precio, color exacto y disponibilidad se confirman con el equipo comercial.</p>
+</div>
+</div>
 </div>
 </section>
 
@@ -920,6 +1020,65 @@ document.addEventListener("DOMContentLoaded", function(){
   }
 
   function openWa(url){var w=window.open(url,"_blank");if(w){try{w.opener=null;}catch(e){}}else{window.location.href=url;}}
+
+  // ---- Test rápido "¿Cuál es tu {{MODEL_NAME}}?" ----
+  // ADAPTAR POR MODELO: reemplazar las 4 claves (perfilA..perfilD) por nombres reales (p.ej. trabajo/flota/familia/offroad)
+  // y completar trim/reason/msg con las versiones reales de este vehículo. Deben coincidir con los "value" usados en el HTML de arriba.
+  var quizForm = document.getElementById("modeloQuizForm");
+  var quizResult = document.getElementById("quizResult");
+  var QUIZ_RESULTADOS = {
+    perfilA: {trim:"[Completar versión]", reason:"[Completar motivo]", msg:"Hola! Hice el test de la web y me recomendó la {{MODEL_NAME}} [versión]. Quiero consultar disponibilidad y condiciones."},
+    perfilB: {trim:"[Completar versión]", reason:"[Completar motivo]", msg:"Hola! Hice el test de la web y me recomendó la {{MODEL_NAME}} [versión]. Quiero consultar disponibilidad y condiciones."},
+    perfilC: {trim:"[Completar versión]", reason:"[Completar motivo]", msg:"Hola! Hice el test de la web y me recomendó la {{MODEL_NAME}} [versión]. Quiero consultar disponibilidad y condiciones."},
+    perfilD: {trim:"[Completar versión]", reason:"[Completar motivo]", msg:"Hola! Hice el test de la web y me recomendó la {{MODEL_NAME}} [versión]. Quiero consultar disponibilidad y condiciones."}
+  };
+  if(quizForm && quizResult){
+    quizForm.addEventListener("submit", function(evt){
+      evt.preventDefault();
+      var votos = {perfilA:0, perfilB:0, perfilC:0, perfilD:0};
+      var datos = new FormData(quizForm);
+      ["q1","q2","q3","q4"].forEach(function(pregunta){
+        var valor = datos.get(pregunta);
+        if(valor && Object.prototype.hasOwnProperty.call(votos, valor)) votos[valor]++;
+      });
+      var ganador = "perfilA", max = -1;
+      Object.keys(votos).forEach(function(clave){ if(votos[clave] > max){ max = votos[clave]; ganador = clave; } });
+      var r = QUIZ_RESULTADOS[ganador];
+      quizResult.hidden = false;
+      quizResult.innerHTML = "<strong>Versión sugerida: " + r.trim + "</strong><p>" + r.reason + "</p>";
+      var link = document.createElement("a");
+      link.className = "btn primary";
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.href = wa("ventas", r.msg);
+      link.textContent = "Consultar por WhatsApp ↗";
+      quizResult.appendChild(link);
+      quizResult.scrollIntoView({behavior:"smooth", block:"center"});
+      if(window.toyotaTrack) window.toyotaTrack("quiz_modelo_result", {model:"{{MODEL_SLUG}}", trim:ganador});
+    });
+  }
+
+  // ---- Configurador rápido (versión + color -> consulta por WhatsApp) ----
+  // ADAPTAR POR MODELO: completar CONFIG_VERSIONES con las versiones reales (deben coincidir con los <option value=...> del HTML de abajo).
+  var CONFIG_VERSIONES = {
+    "[Completar versión 1]": "[Completar: motor, transmisión y tracción de esta versión]",
+    "[Completar versión 2]": "[Completar: motor, transmisión y tracción de esta versión]"
+  };
+  var cfgVersion = document.getElementById("cfgVersion");
+  var cfgColor = document.getElementById("cfgColor");
+  var cfgSummary = document.getElementById("cfgSummary");
+  var cfgWhatsApp = document.getElementById("cfgWhatsApp");
+  function actualizarConfigurador(){
+    if(!cfgVersion || !cfgColor) return;
+    var version = cfgVersion.value, color = cfgColor.value;
+    if(cfgSummary) cfgSummary.textContent = CONFIG_VERSIONES[version] || "";
+    if(cfgWhatsApp) cfgWhatsApp.href = wa("ventas", "Hola! Quiero consultar por una Toyota {{MODEL_NAME}} versión " + version + ", color " + color + ". ¿Tienen disponibilidad y qué financiación ofrecen?");
+  }
+  if(cfgVersion && cfgColor){
+    cfgVersion.addEventListener("change", actualizarConfigurador);
+    cfgColor.addEventListener("change", actualizarConfigurador);
+    actualizarConfigurador();
+  }
   // overlays abiertos a la vez no se desbloqueen mutuamente al cerrar solo uno. ----
   // La implementación anterior estaba duplicada y cada cierre programaba otro start()
   // de Lenis. Con clicks rápidos se acumulaban reinicios diferidos y reentrantes en el
