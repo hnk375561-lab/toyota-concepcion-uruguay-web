@@ -361,13 +361,17 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
 <nav class="ficha-jumpnav" aria-label="Navegación de la ficha">
 <div class="wrap">
 <a href="#elegir-version">Qué versión elegir</a>
+<a href="#cual-es-mi-hilux">Test rápido</a>
 <a href="#versiones">Versiones</a>
 <a href="#rendimiento">Motor y rendimiento</a>
 <a href="#ficha-tecnica">Ficha técnica</a>
+<a href="#garantia">Garantía</a>
 <a href="#dimensiones">Dimensiones</a>
 <a href="#offroad">Aptitud off-road</a>
 <a href="#colores">Colores</a>
+<a href="#configurador">Configurador</a>
 <a href="#accesorios">Accesorios</a>
+<a href="#ofertas-financiacion">Ofertas y financiación</a>
 <a href="#preguntas-frecuentes">Preguntas frecuentes</a>
 <a href="#fuentes">Fuentes</a>
 <a class="ficha-jump-cta" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20consultar%20por%20la%20Toyota%20Hilux." rel="noopener noreferrer" target="_blank">Consultar ↗</a>
@@ -457,6 +461,55 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
 </div>
 <p class="ficha-trim-note">Es una guía orientativa a partir de la configuración habitual de cada versión, no una recomendación cerrada: el equipo comercial confirma cuál te conviene según tu uso real y el stock disponible.</p>
 <p class="ficha-trim-note">¿Cómo se posiciona frente a otras pick-ups medianas del segmento (Ranger, S10, Amarok, Frontier)? La Hilux es la pick-up más vendida del mercado argentino desde hace dos décadas consecutivas, con una red de service y repuestos particularmente extendida en el interior del país. No publicamos aquí una comparativa spec-a-spec contra otras marcas por rigurosidad: cada fabricante actualiza sus fichas con calendarios distintos y una tabla desactualizada confunde más de lo que ayuda. Si estás dudando entre modelos, contanos cuáles y te armamos la comparación con datos vigentes de cada uno.</p>
+</div>
+</section>
+
+<section id="cual-es-mi-hilux" class="ficha-usecases" aria-labelledby="quiz-title" style="background:var(--surface-alt)">
+<div class="wrap">
+<div class="section-head tight">
+<h2 id="quiz-title">Test rápido: ¿cuál es tu Hilux?</h2>
+<p>Cuatro preguntas para llegar a una versión sugerida a partir de la misma lógica de la sección anterior. Es orientativo: no reemplaza la charla con el equipo comercial ni la disponibilidad real de stock.</p>
+</div>
+<form id="hiluxQuizForm" class="quiz-card" aria-describedby="quizResult">
+<div class="quiz-q">
+<p class="quiz-q-title">1. ¿Dónde la vas a usar más?</p>
+<div class="quiz-opts">
+<label><input type="radio" name="q1" value="trabajo" required/> Campo, obra o trabajo pesado a diario</label>
+<label><input type="radio" name="q1" value="flota"/> Ciudad y ruta, en uso comercial o de flota</label>
+<label><input type="radio" name="q1" value="familia"/> Uso familiar, con viajes frecuentes</label>
+<label><input type="radio" name="q1" value="offroad"/> Salidas 4x4 fuera del asfalto</label>
+</div>
+</div>
+<div class="quiz-q">
+<p class="quiz-q-title">2. ¿Qué priorizás al elegir?</p>
+<div class="quiz-opts">
+<label><input type="radio" name="q2" value="trabajo" required/> Bajo costo y mecánica simple</label>
+<label><input type="radio" name="q2" value="flota"/> Buena relación precio-equipamiento</label>
+<label><input type="radio" name="q2" value="familia"/> Confort y tecnología a bordo</label>
+<label><input type="radio" name="q2" value="offroad"/> Máxima capacidad todo terreno</label>
+</div>
+</div>
+<div class="quiz-q">
+<p class="quiz-q-title">3. ¿Cuántas personas viajan habitualmente?</p>
+<div class="quiz-opts">
+<label><input type="radio" name="q3" value="trabajo" required/> Voy solo o con un acompañante</label>
+<label><input type="radio" name="q3" value="flota"/> 2 o 3, en la semana laboral</label>
+<label><input type="radio" name="q3" value="familia"/> La familia completa</label>
+<label><input type="radio" name="q3" value="offroad"/> Un grupo, para expediciones</label>
+</div>
+</div>
+<div class="quiz-q">
+<p class="quiz-q-title">4. ¿La caja automática es importante?</p>
+<div class="quiz-opts">
+<label><input type="radio" name="q4" value="trabajo" required/> No, prefiero manual</label>
+<label><input type="radio" name="q4" value="flota"/> Me da igual</label>
+<label><input type="radio" name="q4" value="familia"/> Sí, la prefiero</label>
+<label><input type="radio" name="q4" value="offroad"/> Sí, con reductora 4x4</label>
+</div>
+</div>
+<button class="btn primary" type="submit">Ver mi versión sugerida</button>
+</form>
+<div id="quizResult" class="quiz-result" hidden></div>
 </div>
 </section>
 
@@ -689,6 +742,21 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 </div>
 </section>
 
+<section id="garantia" class="ficha-specs" aria-labelledby="garantia-title">
+<div class="wrap">
+<div class="section-head tight">
+<h2 id="garantia-title">Garantía</h2>
+<p>Cobertura oficial de fábrica y extensión &ldquo;Toyota 10&rdquo;, según los términos publicados por Toyota Argentina.</p>
+</div>
+<div class="warranty-grid">
+<article class="access-rich-card"><span class="tag-small">Garantía oficial</span><h3>Cobertura de fábrica</h3><p>Toyota Argentina informa una garantía oficial de 5 años sobre unidades 0&nbsp;km, con mantenimiento realizado en la red oficial. Los términos y condiciones completos están publicados por la marca.</p></article>
+<article class="access-rich-card"><span class="tag-small">Extensión sin costo</span><h3>Toyota 10</h3><p>Cumplidos los 5 años de garantía oficial, y con el service hecho en la red oficial, se puede extender la cobertura sin costo por períodos de 1 año o 10.000&nbsp;km, hasta un máximo de 10 años o 200.000&nbsp;km.</p></article>
+<article class="access-rich-card"><span class="tag-small">Alcance</span><h3>Vigencia y transferencia</h3><p>Aplica a unidades 0&nbsp;km y a Hilux patentadas desde 2020. Es transferible si la unidad se vende con el historial de service al día, lo que también suma valor de reventa.</p></article>
+</div>
+<p class="ficha-trim-note">Fuente: comunicado oficial &ldquo;Toyota 10&rdquo; y términos y condiciones de garantía de Toyota Argentina, citados en Fuentes consultadas. Confirmá el detalle exacto de tu unidad con el equipo comercial antes de la compra.</p>
+</div>
+</section>
+
 <section id="dimensiones" class="ficha-dims" aria-labelledby="ficha-dims-title">
 <div class="wrap">
 <div class="section-head tight">
@@ -815,6 +883,44 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 </div>
 </section>
 
+<section id="configurador" class="ficha-usecases" aria-labelledby="configurador-title">
+<div class="wrap">
+<div class="section-head tight">
+<h2 id="configurador-title">Configurador rápido</h2>
+<p>Elegí versión y color para armar tu consulta con los datos ya cargados; el motor, la transmisión y la tracción se completan solos según la versión.</p>
+</div>
+<div class="configurator-grid">
+<div class="configurator-form">
+<div>
+<label for="cfgVersion">Versión</label>
+<select id="cfgVersion">
+<option value="DX">DX — acceso</option>
+<option value="SR">SR — mixto / flota</option>
+<option value="SRV" selected="selected">SRV — familiar</option>
+<option value="SRV+">SRV+ — familiar plus</option>
+<option value="SRX">SRX — tope de gama</option>
+<option value="GR-Sport">GR-Sport — deportiva off-road</option>
+</select>
+</div>
+<div>
+<label for="cfgColor">Color</label>
+<select id="cfgColor">
+<option>Súper Blanco</option>
+<option>Blanco Perlado</option>
+<option>Plata Metalizado</option>
+<option>Gris Oscuro Metalizado</option>
+<option>Negro Mica</option>
+<option>Rojo Metalizado</option>
+</select>
+</div>
+<div id="cfgSummary" class="configurator-summary" aria-live="polite"></div>
+<a id="cfgWhatsApp" class="btn primary block" href="#" rel="noopener noreferrer" target="_blank">Consultar esta configuración por WhatsApp ↗</a>
+<p class="ficha-trim-note">Referencia de motor/transmisión/tracción según la Comparativa completa de versiones de la sección Versiones de la gama. Precio, color exacto y disponibilidad se confirman con el equipo comercial.</p>
+</div>
+</div>
+</div>
+</section>
+
 <section id="accesorios" class="ficha-access" aria-labelledby="ficha-access-title">
 <div class="wrap">
 <div class="section-head tight">
@@ -832,6 +938,21 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 <article class="access-rich-card"><span class="tag-small">Seguridad</span><h3>Candado para rueda de auxilio</h3><p>De serie en SRX y GR-Sport; disponible como accesorio para el resto de la gama.</p></article>
 </div>
 <p class="ficha-trim-note">Listado orientativo, combinando el catálogo de accesorios genuinos publicado en toyota.com.ar (donde figura, por ejemplo, el snorkel para Hilux DX/SR) y el material difundido por el concesionario en Instagram (@toyotacdelu). Confirmá stock, compatibilidad por versión y precio con el equipo comercial.</p>
+</div>
+</section>
+
+<section id="ofertas-financiacion" class="ficha-specs" aria-labelledby="ofertas-title">
+<div class="wrap">
+<div class="section-head tight">
+<h2 id="ofertas-title">Ofertas y financiación vigente</h2>
+<p>Promociones, tasas y planes de ahorro cambian con frecuencia: se confirman con el equipo comercial antes de cualquier decisión.</p>
+</div>
+<div class="ficha-note">
+<strong style="display:block;font-family:var(--display);font-size:13px;color:var(--toyota-red-text);margin-bottom:8px">Sin promociones cargadas todavía</strong>
+Esta sección está lista para mostrar ofertas y tasas vigentes apenas el concesionario las confirme (financiación propia, planes de ahorro, bonificación por entrega de usado, etc.). Mientras tanto, podés simular una cuota ilustrativa en la <a href="index.html#financiacion">calculadora de financiación</a> o consultar directamente las condiciones actuales para Hilux.
+</div>
+<a class="btn primary" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20consultar%20ofertas%20y%20financiaci%C3%B3n%20vigente%20para%20la%20Toyota%20Hilux." rel="noopener noreferrer" target="_blank">Consultar ofertas vigentes por WhatsApp ↗</a>
+<!-- ACTUALIZAR: cuando el concesionario confirme una promo vigente, reemplazar este bloque por tarjetas con título de la promo, tasa/condición, vigencia (validUntil) y fecha de confirmación. No completar con cifras estimadas. -->
 </div>
 </section>
 
@@ -1017,6 +1138,66 @@ document.addEventListener("DOMContentLoaded", function(){
   }
 
   function openWa(url){var w=window.open(url,"_blank");if(w){try{w.opener=null;}catch(e){}}else{window.location.href=url;}}
+
+  // ---- Test rápido "¿Cuál es tu Hilux?" ----
+  var quizForm = document.getElementById("hiluxQuizForm");
+  var quizResult = document.getElementById("quizResult");
+  var QUIZ_RESULTADOS = {
+    trabajo: {trim:"DX", reason:"Prioriza mecánica simple, bajo costo de mantenimiento y uso de trabajo intensivo a diario.", msg:"Hola! Hice el test de la web y me recomendó la Hilux DX. Quiero consultar disponibilidad y condiciones."},
+    flota:   {trim:"SR", reason:"Suma llantas de aleación y cámara de retroceso sin resignar robustez: pensada para uso mixto o de flota.", msg:"Hola! Hice el test de la web y me recomendó la Hilux SR. Quiero consultar disponibilidad y condiciones."},
+    familia: {trim:"SRV, SRV+ o SRX", reason:"El motor 2.8, el climatizador y la conectividad completa hacen la diferencia en uso familiar; SRV+ y SRX suman equipamiento extra.", msg:"Hola! Hice el test de la web y me recomendó la Hilux SRV/SRV+/SRX. Quiero consultar disponibilidad y condiciones."},
+    offroad: {trim:"GR-Sport", reason:"Ejes ensanchados, suspensión específica y el motor 2.8 potenciado a 224 CV para off-road exigente.", msg:"Hola! Hice el test de la web y me recomendó la Hilux GR-Sport. Quiero consultar disponibilidad y condiciones."}
+  };
+  if(quizForm && quizResult){
+    quizForm.addEventListener("submit", function(evt){
+      evt.preventDefault();
+      var votos = {trabajo:0, flota:0, familia:0, offroad:0};
+      var datos = new FormData(quizForm);
+      ["q1","q2","q3","q4"].forEach(function(pregunta){
+        var valor = datos.get(pregunta);
+        if(valor && Object.prototype.hasOwnProperty.call(votos, valor)) votos[valor]++;
+      });
+      var ganador = "trabajo", max = -1;
+      Object.keys(votos).forEach(function(clave){ if(votos[clave] > max){ max = votos[clave]; ganador = clave; } });
+      var r = QUIZ_RESULTADOS[ganador];
+      quizResult.hidden = false;
+      quizResult.innerHTML = "<strong>Versión sugerida: " + r.trim + "</strong><p>" + r.reason + "</p>";
+      var link = document.createElement("a");
+      link.className = "btn primary";
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.href = wa("ventas", r.msg);
+      link.textContent = "Consultar por WhatsApp ↗";
+      quizResult.appendChild(link);
+      quizResult.scrollIntoView({behavior:"smooth", block:"center"});
+      if(window.toyotaTrack) window.toyotaTrack("quiz_hilux_result", {trim:ganador});
+    });
+  }
+
+  // ---- Configurador rápido (versión + color -> consulta por WhatsApp) ----
+  var CONFIG_VERSIONES = {
+    "DX":       "Motor 2.4 TD (150 CV), manual o automática de 6 velocidades, 4x2/4x4.",
+    "SR":       "Motor 2.4 TD (4x2) o 2.8 TD (4x4), manual o automática de 6 velocidades.",
+    "SRV":      "Motor 2.8 TD (204 CV), manual o automática de 6 velocidades, 4x2/4x4.",
+    "SRV+":     "Motor 2.8 TD (204 CV), automática de 6 velocidades (única opción), 4x4.",
+    "SRX":      "Motor 2.8 TD (204 CV), automática de 6 velocidades (única opción), 4x2/4x4/reducida.",
+    "GR-Sport": "Motor 2.8 TD potenciado a 224 CV, automática de 6 velocidades, 4x4 con reductora."
+  };
+  var cfgVersion = document.getElementById("cfgVersion");
+  var cfgColor = document.getElementById("cfgColor");
+  var cfgSummary = document.getElementById("cfgSummary");
+  var cfgWhatsApp = document.getElementById("cfgWhatsApp");
+  function actualizarConfigurador(){
+    if(!cfgVersion || !cfgColor) return;
+    var version = cfgVersion.value, color = cfgColor.value;
+    if(cfgSummary) cfgSummary.textContent = CONFIG_VERSIONES[version] || "";
+    if(cfgWhatsApp) cfgWhatsApp.href = wa("ventas", "Hola! Quiero consultar por una Toyota Hilux versión " + version + ", color " + color + ". ¿Tienen disponibilidad y qué financiación ofrecen?");
+  }
+  if(cfgVersion && cfgColor){
+    cfgVersion.addEventListener("change", actualizarConfigurador);
+    cfgColor.addEventListener("change", actualizarConfigurador);
+    actualizarConfigurador();
+  }
   // overlays abiertos a la vez no se desbloqueen mutuamente al cerrar solo uno. ----
   // La implementación anterior estaba duplicada y cada cierre programaba otro start()
   // de Lenis. Con clicks rápidos se acumulaban reinicios diferidos y reentrantes en el
