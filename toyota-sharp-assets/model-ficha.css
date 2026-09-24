@@ -1708,3 +1708,16 @@ table.ficha-trim-table tbody tr.trim-group-row td{color:var(--toyota-red-text)}
 .navcall{white-space:nowrap;flex-shrink:0}
 @media(max-width:1240px){.navcall{display:none!important}}
 @media(min-width:901px) and (max-width:1100px){.navlinks{gap:18px}}
+
+/* Ficha: pista de deslizamiento, título de tabla fijo y fuentes complementarias plegadas */
+.scroll-hint{display:none}
+@media(max-width:700px){
+  .scroll-hint{display:block;margin:14px 0 6px;font:700 12px var(--display);color:var(--toyota-red-text,#8C111D);letter-spacing:.02em}
+  table.ficha-trim-table caption{position:sticky;left:0;width:calc(100vw - 34px);max-width:100%;box-sizing:border-box;white-space:normal}
+  .ficha-trim-table-wrap{background:linear-gradient(90deg,#fff 30%,rgba(255,255,255,0)) left center/40px 100% no-repeat local,linear-gradient(270deg,rgba(0,0,0,.14),rgba(0,0,0,0)) right center/16px 100% no-repeat scroll}
+}
+.ficha-legend{margin-top:10px}
+.ficha-sources-more{margin-top:26px;border:1px solid var(--border);border-radius:8px;padding:0 16px;background:var(--surface-alt)}
+.ficha-sources-more>summary{cursor:pointer;padding:14px 0;font:700 13px var(--display);color:var(--ink);min-height:44px;display:flex;align-items:center}
+.ficha-sources-more[open]>summary{border-bottom:1px solid var(--border);margin-bottom:6px}
+.ficha-sources-more:focus-within{outline:2px solid #1B1F22;outline-offset:2px}
