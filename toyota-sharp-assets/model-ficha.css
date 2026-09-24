@@ -1570,7 +1570,7 @@ table.ficha-trim-table tbody tr.trim-group-row th,table.ficha-trim-table tbody t
 .dims-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:32px;margin-top:26px;align-items:start}
 .dims-diagram{border:1px solid var(--border);background:var(--surface-alt);padding:18px}
 .dims-diagram svg{width:100%;height:auto;display:block}
-.dims-diagram figcaption{font-size:11.5px;color:var(--muted);margin-top:10px}
+.dims-diagram figcaption,.dims-diagram .dims-caption{font-size:11.5px;color:var(--muted);margin:10px 0 0}
 .dims-list{border-top:1px solid var(--border)}
 .dims-list .detail-spec{padding:12px 0}
 @media(max-width:860px){.dims-grid{grid-template-columns:1fr}}
@@ -1644,7 +1644,7 @@ table.ficha-trim-table tbody tr.trim-group-row td{color:var(--toyota-red-text)}
 @media(max-width:600px){
   .dims-diagram{overflow-x:auto;-webkit-overflow-scrolling:touch}
   .dims-diagram svg{width:560px;max-width:none}
-  .dims-diagram figcaption{position:sticky;left:0}
+  .dims-diagram figcaption,.dims-diagram .dims-caption{position:sticky;left:0}
 }
 @media print{
   .demo-banner,.site,.ficha-jumpnav,.ficha-mobile-cta,.ficha-actions,.ficha-hero-photo .corner{display:none!important}
@@ -1655,3 +1655,53 @@ table.ficha-trim-table tbody tr.trim-group-row td{color:var(--toyota-red-text)}
   .ficha-spec-group h3,.section-head h2{break-after:avoid}
   a{color:inherit;text-decoration:none}
 }
+
+/* ==== Ficha de modelo: estilos que faltaban (quiz, configurador, garantía, nav-cta, documentos) ==== */
+/* Test rápido */
+.quiz-card{display:grid;gap:22px;max-width:860px;border:1px solid var(--border);background:var(--surface);padding:26px}
+.quiz-q{border:0;margin:0;padding:0;min-width:0}
+.quiz-q-title{font:800 15px var(--display);color:var(--ink);margin:0 0 12px;padding:0}
+.quiz-opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.quiz-opts label{display:flex;align-items:center;gap:10px;min-height:48px;padding:11px 14px;border:1px solid #AEB7BE;border-radius:8px;background:var(--surface);font-size:14px;line-height:1.35;color:var(--ink);cursor:pointer;transition:border-color .2s ease,background-color .2s ease}
+.quiz-opts label:hover{border-color:var(--toyota-red)}
+.quiz-opts input{flex:none;width:18px;height:18px;margin:0;accent-color:#B30717}
+.quiz-opts label:has(input:checked){border-color:#B30717;background:#FDF1F2;font-weight:600}
+.quiz-opts label:has(input:focus-visible){outline:3px solid #1B1F22;outline-offset:2px}
+.quiz-card>.btn{justify-self:start;width:auto;min-width:260px}
+.quiz-result{max-width:860px;margin-top:18px;display:grid;justify-items:start;gap:10px;border:1px solid var(--border);border-left:4px solid #B30717;background:var(--surface);padding:22px 24px}
+.quiz-result[hidden]{display:none}
+.quiz-result strong{font:800 18px var(--display);color:var(--ink)}
+.quiz-result p{margin:0;font-size:14px;color:var(--muted);line-height:1.6}
+.quiz-result .btn{width:auto}
+/* Configurador */
+.configurator-grid{display:grid;grid-template-columns:minmax(0,600px);gap:24px}
+.configurator-form{display:grid;gap:16px;border:1px solid var(--border);background:var(--surface);padding:26px}
+.configurator-form label{display:block;margin:0 0 6px;font:800 12px var(--display);letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
+.configurator-form select{display:block;width:100%;min-height:48px;padding:11px 42px 11px 14px;border:1px solid #AEB7BE;border-radius:8px;font:15px var(--body);color:var(--ink);appearance:none;-webkit-appearance:none;background:#fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%231B1F22' stroke-width='2'/></svg>") no-repeat right 15px center}
+.configurator-form select:hover{border-color:var(--toyota-red)}
+.configurator-form select:focus-visible{outline:3px solid #1B1F22;outline-offset:2px}
+.configurator-summary{min-height:64px;padding:14px 16px;border-left:4px solid #B30717;background:var(--surface-alt);font-size:14px;line-height:1.55;color:var(--ink)}
+.configurator-form .ficha-trim-note{margin:0}
+/* Garantía */
+.warranty-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media(max-width:860px){.warranty-grid{grid-template-columns:1fr}}
+/* Botón WhatsApp del header */
+.nav-cta{display:inline-flex;align-items:center;min-height:40px;padding:0 18px;border-radius:999px;background:#B30717;color:#fff;font:800 13px var(--display);text-decoration:none;white-space:nowrap;box-shadow:0 8px 20px -12px rgba(179,7,23,.9);transition:background-color .2s ease,transform .2s ease}
+.nav-cta:hover{background:#8C111D;transform:translateY(-1px)}
+.nav-cta:focus-visible{outline:3px solid #1B1F22;outline-offset:2px}
+@media(max-width:760px){.nav-cta{display:none}}
+/* Paleta GR-Sport, documentos PDF, botones sueltos de las secciones nuevas */
+.color-subtitle{font:800 14px var(--display);color:var(--ink);margin:30px 0 0}
+.color-subtitle+.color-grid{margin-top:14px}
+.doc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.doc-card{display:flex;flex-direction:column;gap:6px;padding:20px;border:1px solid var(--border);background:var(--surface);color:var(--ink);text-decoration:none;transition:border-color .2s ease,transform .2s ease}
+.doc-card:hover{border-color:var(--toyota-red);transform:translateY(-2px)}
+.doc-card:focus-visible{outline:3px solid #1B1F22;outline-offset:2px}
+.doc-card .tag-small{font:700 11px var(--display);letter-spacing:.06em;text-transform:uppercase;color:#B30717}
+.doc-card strong{font:800 15px var(--display)}
+.doc-card small{font-size:12.5px;line-height:1.5;color:var(--muted)}
+@media(max-width:860px){.doc-grid{grid-template-columns:1fr}}
+#postventa .access-rich-card a{color:#B30717;font-weight:700}
+#postventa .btn.primary{display:inline-flex;margin-top:22px}
+@media(max-width:560px){.quiz-opts{grid-template-columns:1fr}.quiz-card{padding:20px 16px}.quiz-card>.btn{width:100%}.configurator-form{padding:20px 16px}}
+@media(prefers-reduced-motion:reduce){.nav-cta,.doc-card,.quiz-opts label{transition:none}.doc-card:hover,.nav-cta:hover{transform:none}}

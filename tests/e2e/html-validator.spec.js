@@ -1,5 +1,5 @@
 // @ts-check
-/** Validador Nu (W3C) sobre lo que se publica: index.html y 404.html. 0 errores. */
+/** Validador Nu (W3C) sobre lo que se publica: index.html, 404.html y las fichas de modelo (hilux.html). 0 errores. */
 import { test, expect } from '@playwright/test';
 import { execFile } from 'node:child_process';
 import { readFileSync, existsSync } from 'node:fs';
@@ -34,7 +34,7 @@ async function validar(archivo) {
 
 const fmt = (m) => `línea ${m.lastLine ?? '?'}: ${m.message}`;
 
-for (const nombre of ['index.html', '404.html']) {
+for (const nombre of ['index.html', '404.html', 'hilux.html']) {
   test(`${nombre}: 0 errores de HTML`, async () => {
     test.setTimeout(150_000);
     const { errores, reales, avisos } = await validar(resolve(SITE, nombre));

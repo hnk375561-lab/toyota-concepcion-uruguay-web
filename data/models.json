@@ -9,6 +9,8 @@
     "canonical": "https://hnk375561-lab.github.io/toyota-concepcion-uruguay-web/hilux.html",
     "reviewedAt": "24 de septiembre de 2026",
     "market": "Argentina",
+    "handAuthored": true,
+    "handAuthoredNote": "hilux.html se mantiene a mano: el build NO lo regenera desde templates/model.html. Editá el HTML y corré `npm run sync-schema` y `npm run check:ficha`.",
     "modelYearScope": "Generación Hilux vigente documentada por Toyota Argentina; no incluye especificaciones de otros mercados ni de una generación futura.",
     "image800": "enhanced-bae67c9e04b0-800.webp",
     "image480": "enhanced-bae67c9e04b0-480.webp",
@@ -75,15 +77,33 @@
         "sourceIds": ["toyota-srv-srx-2025"]
       },
       "officialGrSport": {
+        "widthMm": 2020,
+        "heightMm": 1830,
         "groundClearanceMm": 247,
+        "tyres": "265/65 R17 AT",
+        "trackDeltaMm": {"front": 140, "rear": 155},
+        "curbWeightKg": {"min": 2125, "max": 2135},
+        "gvwKg": 3140,
         "sourceIds": ["toyota-gr-sport-argentina"]
+      },
+      "gvwKgDoubleCab": {"4x2": 2810, "4x4": 3090, "sourceIds": ["toyota-srv-srx-2025"]},
+      "srxRenewedPlatformReported": {
+        "widthMm": 2020, "heightMm": 1830, "groundClearanceMm": 247,
+        "verification": "publicado por medios especializados (Monkey Motor, PickupArena); NO figura en la ficha oficial combinada de feb-2025 (1.855 / 1.815 / 227 mm). La ficha muestra ambas cifras con su fuente.",
+        "sourceIds": ["complementary-existing-research"]
+      },
+      "estimatedPayloadKg": {
+        "method": "Estimación: PBT menos peso en orden de marcha. No es una cifra oficial.",
+        "doubleCab4x4": {"min": 1005, "max": 1065, "note": "usa el rango de peso en orden de marcha de Doble Cabina 2.025–2.085 kg; referencia complementaria"},
+        "grSport": {"min": 1005, "max": 1015},
+        "doubleCab4x2": "no estimada: el peso en orden de marcha 4x2 no está consolidado en la fuente conservada"
       },
       "cargoBox": {
         "volumeLiters": 1083,
         "note": "La capacidad publicada para la configuración documentada; las dimensiones internas por versión no se muestran aquí si no están en la fuente oficial conservada.",
         "sourceIds": ["complementary-existing-research"]
       },
-      "notConsolidated": ["trochas por cada versión", "carga útil por cada versión", "peso en orden de marcha por cada versión", "peso bruto total por cada versión", "ángulos de ataque/salida/ventral de toda la gama"]
+      "notConsolidated": ["peso en orden de marcha de DX/SR/SRV/SRV+/SRX por versión", "pesos y despejes de DX y SR (solo ficha oficial 2021)", "ángulos de ataque/salida/ventral de toda la gama"]
     },
     "chassisAndBrakes": {
       "frontSuspension": "Independiente con doble brazo, resortes helicoidales, amortiguadores telescópicos y barra estabilizadora.",
@@ -97,36 +117,41 @@
       "standard": ["7 airbags: frontales x2, rodilla del conductor, laterales x2 y de cortina x2", "ABS con EBD", "asistente de frenado de emergencia BA", "VSC", "TRC", "HAC", "ISOFIX x2 y anclajes superiores x2"],
       "fourByFour": ["A-TRC", "DAC", "bloqueo de diferencial trasero"],
       "toyotaSafetySense": {
-        "documentedVersions": ["SRX"],
+        "documentedVersions": ["SRX 4x4", "GR-Sport"],
         "systems": ["control de velocidad crucero adaptativo ACC", "sistema pre-colisión frontal PCS", "alerta de cambio de carril LDA"],
-        "note": "La documentación oficial consultada describe estos sistemas para SRX y advierte que pueden variar por modelo y versión; no se asignan a DX, SR, SRV o SRV+ sin respaldo específico.",
+        "note": "La documentación oficial consultada lista tres sistemas (ACC, PCS y LDA; no incluye luces altas automáticas AHB). La ficha de feb-2025 los muestra en SRX 4x4 y GR-Sport, no en SRX 4x2. No se asignan a DX, SR, SRV o SRV+ sin respaldo específico.",
         "sourceIds": ["toyota-srv-srx-2025", "toyota-safety-sense-argentina"]
       },
-      "notPublishedByVersion": ["sensores de estacionamiento para cada versión", "cámara para cada versión", "monitor de punto ciego", "alerta de tráfico cruzado", "luces altas automáticas por cada versión"]
+      "notPublishedByVersion": ["sensores de estacionamiento en DX, SR y SRV+ (documentados en SRV y SRX)", "cámara para cada versión", "monitor de punto ciego", "alerta de tráfico cruzado", "luces altas automáticas por cada versión"]
     },
     "technologyAndComfort": {
-      "documented": ["audio con pantalla táctil de 9 pulgadas", "Android Auto y Apple CarPlay inalámbricos", "USB y Bluetooth", "Servicios Conectados en versiones indicadas por Toyota Argentina", "cargador inalámbrico para smartphones compatibles", "USB tipo C traseros x2", "climatizador automático digital bizona en SRX", "audio JBL de 8 parlantes y subwoofer en SRX", "monitor de visión 360° en SRX", "butacas delanteras ventiladas en SRX", "sensores delanteros x2 y traseros x4 en SRX"],
+      "documented": ["audio con pantalla táctil de 9 pulgadas", "Android Auto y Apple CarPlay inalámbricos", "USB y Bluetooth", "Servicios Conectados en versiones indicadas por Toyota Argentina", "cargador inalámbrico para smartphones compatibles", "USB tipo C traseros x2", "climatizador automático digital bizona en SRX", "audio JBL de 6 parlantes y subwoofer en SRV", "audio JBL de 8 parlantes y subwoofer en SRX", "monitor de visión 360° en SRX", "butacas delanteras ventiladas en SRX", "sensores delanteros x2 y traseros x4 en SRV y SRX", "faros Bi-LED en SRV y SRX"],
       "sourceIds": ["toyota-srv-srx-2025"]
     },
     "versionMatrix": [
       {"name":"DX", "body":"Cabina Simple, Cabina Chasis o Cabina Doble según configuración", "engine":"Por configuración; no consolidado en la fuente oficial conservada", "transmission":"Manual o automática según configuración publicada", "drive":"4x2 o 4x4 según configuración", "safety":"Equipamiento de seguridad de serie a confirmar por variante", "verification":"parcial", "sourceIds":["toyota-hilux-argentina-modelos"]},
       {"name":"SR", "body":"Cabina Doble y otras configuraciones de gama según catálogo vigente", "engine":"Por configuración; no consolidado en la fuente oficial conservada", "transmission":"Manual o automática según configuración", "drive":"4x2 o 4x4 según configuración", "safety":"Equipamiento de seguridad de serie a confirmar por variante", "verification":"parcial", "sourceIds":["toyota-hilux-argentina-modelos"]},
-      {"name":"SRV", "body":"Cabina Doble", "engine":"1GD 2.8 l, 204 CV, 500 Nm", "transmission":"Automática 6 A/T en ficha oficial consultada", "drive":"4x2 o 4x4", "safety":"7 airbags, ABS/EBD/BA, VSC, TRC, HAC; A-TRC/DAC/bloqueo trasero en 4x4", "wheels":"18 pulgadas SRV+ y 17 pulgadas SRV según matriz del documento; confirmar unidad", "verification":"oficial para la ficha SRV/SRV+ consultada", "sourceIds":["toyota-srv-srx-2025"]},
+      {"name":"SRV", "body":"Cabina Doble", "engine":"1GD 2.8 l, 204 CV, 500 Nm", "transmission":"Automática 6 A/T (única caja en las fichas vigentes)", "drive":"4x2 o 4x4", "safety":"7 airbags, ABS/EBD/BA, VSC, TRC, HAC; A-TRC/DAC/bloqueo trasero en 4x4. Sin Toyota Safety Sense.", "equipment":"Bi-LED, audio JBL de 6 parlantes + subwoofer, sensores delanteros y traseros", "wheels":"17 pulgadas en 4x2 y 18 pulgadas en 4x4", "verification":"oficial para la ficha SRV/SRX consultada", "sourceIds":["toyota-srv-srx-2025"]},
       {"name":"SRV+", "body":"Cabina Doble", "engine":"1GD 2.8 l, 204 CV, 500 Nm", "transmission":"Automática 6 A/T", "drive":"4x4 en la ficha oficial consultada", "equipment":"llantas 18 pulgadas, Smart Entry/Push Start, butaca del conductor eléctrica y tapizado de cuero según ficha", "safety":"No asignar Toyota Safety Sense sin documento específico", "verification":"oficial para equipamiento documentado; disponibilidad vigente a confirmar", "sourceIds":["toyota-srv-srx-2025"]},
-      {"name":"SRX", "body":"Cabina Doble", "engine":"1GD 2.8 l, 204 CV, 500 Nm", "transmission":"Automática 6 A/T", "drive":"4x2, 4x4 y 4x4 reducida", "equipment":"Bi-LED, climatizador bizona, JBL 8 parlantes + subwoofer, visión 360°, ventilación de butacas, cargador inalámbrico y pantalla de 9 pulgadas", "safety":"Toyota Safety Sense: ACC, PCS y LDA; 7 airbags", "verification":"oficial", "sourceIds":["toyota-srv-srx-2025"]},
-      {"name":"GR-Sport", "body":"Cabina Doble", "engine":"2.8 l de preparación GR; la ficha oficial específica debe prevalecer para potencia y torque", "transmission":"Automática 6 velocidades con levas", "drive":"2x4, 4x4 y 4x4 reducida con accionamiento electrónico", "chassis":"Suspensión y configuración GR-Sport específicas; despeje publicado de 247 mm", "verification":"oficial para transmisión, tracción y despeje; revisar ficha vigente para cualquier otro valor", "sourceIds":["toyota-gr-sport-argentina"]}
+      {"name":"SRX", "body":"Cabina Doble", "engine":"1GD 2.8 l, 204 CV, 500 Nm", "transmission":"Automática 6 A/T", "drive":"4x2, 4x4 y 4x4 reducida", "equipment":"Bi-LED, climatizador bizona, JBL 8 parlantes + subwoofer, visión 360°, ventilación de butacas, cargador inalámbrico y pantalla de 9 pulgadas", "safety":"Toyota Safety Sense (ACC, PCS y LDA) en SRX 4x4, no en 4x2; 7 airbags", "verification":"oficial", "sourceIds":["toyota-srv-srx-2025"]},
+      {"name":"GR-Sport", "body":"Cabina Doble", "engine":"1GD 2.8 l de preparación GR, 224 CV / 550 Nm (Autocosmos; complementaria)", "transmission":"Automática 6 velocidades con levas", "drive":"4x4 y 4x4 reducida con accionamiento electrónico", "chassis":"Ancho 2.020 mm, alto 1.830 mm, despeje 247 mm, trocha +140/+155 mm, neumático 265/65 R17 AT", "weights":"En orden de marcha 2.125–2.135 kg; PBT 3.140 kg", "safety":"Toyota Safety Sense (ACC, PCS y LDA)", "colors":"4 colores: Negro mica, Gris oscuro metalizado, Rojo bitono y Blanco perlado con techo negro (a confirmar)", "verification":"oficial para transmisión, tracción, dimensiones y pesos; potencia y torque de fuente complementaria", "sourceIds":["toyota-gr-sport-argentina"]}
     ],
     "colors": {
       "officialNames": ["Súper blanco", "Blanco perlado", "Negro mica", "Plata metalizado", "Gris oscuro metalizado", "Rojo metalizado"],
       "availability": "La disponibilidad por versión y códigos de pintura debe confirmarse en el catálogo/unidad vigente.",
+      "byVersion": {
+        "GR-Sport": ["Negro mica", "Gris oscuro metalizado", "Rojo bitono (techo negro)", "Blanco perlado con techo negro"],
+        "SRV 4x2": ["Súper blanco", "Negro mica", "Plata metalizado", "Gris oscuro metalizado", "Rojo metalizado"]
+      },
+      "byVersionVerification": "Surge de las imágenes del configurador de un concesionario oficial; confirmar con el concesionario antes de comprometer un color.",
       "sourceIds": ["toyota-srv-srx-2025"]
     },
     "sources": [
-      {"id":"toyota-hilux-argentina-modelos", "type":"official", "title":"Toyota Argentina — Modelos", "url":"https://www.toyota.com.ar/modelos", "consultedAt":"2026-09-23", "note":"Página oficial argentina que lista Hilux Cabina Doble y Cabina Simple."},
-      {"id":"toyota-srv-srx-2025", "type":"official", "title":"Toyota Argentina — ficha técnica Hilux SRV/SRX", "url":"https://media.toyota.com.ar/73c220a5-1236-4972-a38a-4eda757c0eb3.pdf", "publishedAt":"2025-09-18", "consultedAt":"2026-09-23", "note":"Documento argentino con motor, transmisión, chasis, dimensiones, seguridad, equipamiento y colores de las configuraciones indicadas."},
-      {"id":"toyota-gr-sport-argentina", "type":"official", "title":"Toyota Argentina — ficha técnica Hilux GR-Sport IV", "url":"https://media.toyota.com.ar/fc535824-e532-422c-9d68-072cf0d4a032.pdf", "consultedAt":"2026-09-23", "note":"Documento argentino específico de GR-Sport; se utiliza para no trasladar datos de otros mercados."},
-      {"id":"toyota-safety-sense-argentina", "type":"official", "title":"Toyota Argentina — Toyota Safety Sense", "url":"https://www.toyota.com.ar/descubri/toyota-safety-sense", "consultedAt":"2026-09-23", "note":"Descripción oficial de los sistemas y sus limitaciones."},
-      {"id":"complementary-existing-research", "type":"complementary", "title":"Fuentes argentinas complementarias ya citadas en la ficha", "url":"https://www.autocosmos.com.ar/catalogo/vigente/toyota/hilux-gr-sport", "consultedAt":"2026-09-23", "note":"Solo para datos que Toyota Argentina no consolida en un único documento; no sustituye la documentación oficial."}
+      {"id":"toyota-hilux-argentina-modelos", "type":"official", "title":"Toyota Argentina — Modelos", "url":"https://www.toyota.com.ar/modelos", "consultedAt":"2026-09-24", "note":"Página oficial argentina que lista Hilux Cabina Doble y Cabina Simple."},
+      {"id":"toyota-srv-srx-2025", "type":"official", "title":"Toyota Argentina — ficha técnica Hilux SRV/SRX", "url":"https://media.toyota.com.ar/73c220a5-1236-4972-a38a-4eda757c0eb3.pdf", "publishedAt":"2025-09-18", "consultedAt":"2026-09-24", "note":"Documento argentino con motor, transmisión, chasis, dimensiones, seguridad, equipamiento y colores de las configuraciones indicadas."},
+      {"id":"toyota-gr-sport-argentina", "type":"official", "title":"Toyota Argentina — ficha técnica Hilux GR-Sport IV", "url":"https://media.toyota.com.ar/fc535824-e532-422c-9d68-072cf0d4a032.pdf", "consultedAt":"2026-09-24", "note":"Documento argentino específico de GR-Sport; se utiliza para no trasladar datos de otros mercados."},
+      {"id":"toyota-safety-sense-argentina", "type":"official", "title":"Toyota Argentina — Toyota Safety Sense", "url":"https://www.toyota.com.ar/descubri/toyota-safety-sense", "consultedAt":"2026-09-24", "note":"Descripción oficial de los sistemas y sus limitaciones."},
+      {"id":"complementary-existing-research", "type":"complementary", "title":"Fuentes argentinas complementarias ya citadas en la ficha", "url":"https://www.autocosmos.com.ar/catalogo/vigente/toyota/hilux-gr-sport", "consultedAt":"2026-09-24", "note":"Solo para datos que Toyota Argentina no consolida en un único documento; no sustituye la documentación oficial."}
     ]
   }
 ]

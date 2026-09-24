@@ -281,7 +281,7 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
 </div>
 </nav>
 
-<div class="ficha-mobile-cta" aria-label="Acciones rápidas de la ficha">
+<div class="ficha-mobile-cta" role="group" aria-label="Acciones rápidas de la ficha">
 <a class="ficha-mobile-cta-main" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20consultar%20por%20la%20Toyota%20{{MODEL_NAME}}." rel="noopener noreferrer" target="_blank">Consultar {{MODEL_NAME}} por WhatsApp <span aria-hidden="true">↗</span></a>
 <a class="ficha-mobile-cta-call" href="tel:+543442473453" aria-label="Llamar al 03442 47-3453">Llamar</a>
 </div>
@@ -302,7 +302,7 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
 <div><strong>1.083 L</strong><span>Volumen de caja de carga</span></div>
 <div><strong>10 años</strong><span>Garantía extendida &ldquo;Toyota 10&rdquo; con service oficial</span></div>
 </div>
-<div class="ficha-editorial-meta" aria-label="Estado editorial de la ficha">
+<div class="ficha-editorial-meta" role="group" aria-label="Estado editorial de la ficha">
 <span><i aria-hidden="true"></i> Datos revisados {{MODEL_REVIEWED_AT}}</span>
 <span>Fuentes oficiales y especializadas citadas al final</span>
 </div>
@@ -375,42 +375,42 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
 <p>Cuatro preguntas para llegar a una versión sugerida a partir de la misma lógica de la sección anterior. Es orientativo: no reemplaza la charla con el equipo comercial ni la disponibilidad real de stock.</p>
 </div>
 <form id="modeloQuizForm" class="quiz-card" aria-describedby="quizResult">
-<div class="quiz-q">
-<p class="quiz-q-title">1. ¿Dónde la vas a usar más?</p>
+<fieldset class="quiz-q">
+<legend class="quiz-q-title">1. ¿Dónde la vas a usar más?</legend>
 <div class="quiz-opts">
 <label><input type="radio" name="q1" value="perfilA" required/> [Completar: opción del perfil de uso A]</label>
 <label><input type="radio" name="q1" value="perfilB"/> [Completar: opción del perfil de uso B]</label>
 <label><input type="radio" name="q1" value="perfilC"/> [Completar: opción del perfil de uso C]</label>
 <label><input type="radio" name="q1" value="perfilD"/> [Completar: opción del perfil de uso D]</label>
 </div>
-</div>
-<div class="quiz-q">
-<p class="quiz-q-title">2. ¿Qué priorizás al elegir?</p>
+</fieldset>
+<fieldset class="quiz-q">
+<legend class="quiz-q-title">2. ¿Qué priorizás al elegir?</legend>
 <div class="quiz-opts">
 <label><input type="radio" name="q2" value="perfilA" required/> [Completar]</label>
 <label><input type="radio" name="q2" value="perfilB"/> [Completar]</label>
 <label><input type="radio" name="q2" value="perfilC"/> [Completar]</label>
 <label><input type="radio" name="q2" value="perfilD"/> [Completar]</label>
 </div>
-</div>
-<div class="quiz-q">
-<p class="quiz-q-title">3. ¿Cuántas personas viajan habitualmente?</p>
+</fieldset>
+<fieldset class="quiz-q">
+<legend class="quiz-q-title">3. ¿Cuántas personas viajan habitualmente?</legend>
 <div class="quiz-opts">
 <label><input type="radio" name="q3" value="perfilA" required/> [Completar]</label>
 <label><input type="radio" name="q3" value="perfilB"/> [Completar]</label>
 <label><input type="radio" name="q3" value="perfilC"/> [Completar]</label>
 <label><input type="radio" name="q3" value="perfilD"/> [Completar]</label>
 </div>
-</div>
-<div class="quiz-q">
-<p class="quiz-q-title">4. [Completar: cuarta pregunta relevante para este modelo, p.ej. caja automática, tracción, capacidad de carga]</p>
+</fieldset>
+<fieldset class="quiz-q">
+<legend class="quiz-q-title">4. [Completar: cuarta pregunta relevante para este modelo, p.ej. caja automática, tracción, capacidad de carga]</legend>
 <div class="quiz-opts">
 <label><input type="radio" name="q4" value="perfilA" required/> [Completar]</label>
 <label><input type="radio" name="q4" value="perfilB"/> [Completar]</label>
 <label><input type="radio" name="q4" value="perfilC"/> [Completar]</label>
 <label><input type="radio" name="q4" value="perfilD"/> [Completar]</label>
 </div>
-</div>
+</fieldset>
 <button class="btn primary" type="submit">Ver mi versión sugerida</button>
 </form>
 <div id="quizResult" class="quiz-result" hidden></div>
@@ -669,7 +669,7 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 <p>Esquema orientativo de perfil y de la caja de carga, con las medidas publicadas para la configuración Doble Cabina.</p>
 </div>
 <div class="dims-grid">
-<figure class="dims-diagram" role="region" aria-label="Diagrama de dimensiones exteriores (se desliza en pantallas chicas)" tabindex="0">
+<div class="dims-diagram" role="region" aria-label="Diagrama de dimensiones exteriores (se desliza en pantallas chicas)" tabindex="0">
 <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="dimsTitle dimsDesc">
 <title id="dimsTitle">Esquema de perfil de la {{MODEL_NAME}} con medidas exteriores</title>
 <desc id="dimsDesc">Silueta simplificada de una pick-up doble cabina con líneas de cota para largo total, distancia entre ejes, alto total y despeje al suelo.</desc>
@@ -696,8 +696,8 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 <text x="310" y="14" text-anchor="middle" font-family="Arial" font-size="11" fill="#2d3a47" font-weight="700">Alto total: 1.815–1.835 mm</text>
 <text x="310" y="28" text-anchor="middle" font-family="Arial" font-size="11" fill="#2d3a47" font-weight="700">Entre ejes: 3.085 mm</text>
 </svg>
-<figcaption>Esquema simplificado de referencia, no a escala exacta. Alto total según versión 4x2 o 4x4; despeje al suelo de 227 mm en 4x4 estándar a 247 mm en GR-Sport.</figcaption>
-</figure>
+<p class="dims-caption">Esquema simplificado de referencia, no a escala exacta. Alto total según versión 4x2 o 4x4; despeje al suelo de 227 mm en 4x4 estándar a 247 mm en GR-Sport.</p>
+</div>
 <div>
 <h3 style="font-family:var(--display);font-size:14px;margin:0 0 4px">Exterior</h3>
 <div class="detail-specs dims-list">
@@ -728,7 +728,7 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 <p>Ángulos de trabajo y despeje publicados oficialmente para la {{MODEL_NAME}} GR-Sport, la única versión de la gama con esta información publicada por Toyota Argentina.</p>
 </div>
 <div class="dims-grid">
-<figure class="dims-diagram" role="region" aria-label="Diagrama de ángulos off-road (se desliza en pantallas chicas)" tabindex="0">
+<div class="dims-diagram" role="region" aria-label="Diagrama de ángulos off-road (se desliza en pantallas chicas)" tabindex="0">
 <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="offroadTitle offroadDesc">
 <title id="offroadTitle">Esquema de ángulos off-road de la {{MODEL_NAME}} GR-Sport</title>
 <desc id="offroadDesc">Silueta de perfil con el ángulo de ataque delantero, el ángulo ventral bajo el paragolpes y el ángulo de salida trasero.</desc>
@@ -751,8 +751,8 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 <text x="480" y="245" font-family="Arial" font-size="11" fill="#2d3a47" text-anchor="end">Ángulo de salida</text>
 <text x="255" y="255" text-anchor="middle" font-family="Arial" font-size="11" fill="#2d3a47">Ángulo ventral (bajo paragolpes)</text>
 </svg>
-<figcaption>Esquema simplificado de referencia, no a escala exacta.</figcaption>
-</figure>
+<p class="dims-caption">Esquema simplificado de referencia, no a escala exacta.</p>
+</div>
 <div>
 <h3 style="font-family:var(--display);font-size:14px;margin:0 0 4px">{{MODEL_NAME}} GR-Sport (IV generación)</h3>
 <div class="detail-specs dims-list">
@@ -886,7 +886,7 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 <section id="datos-verificados" class="ficha-specs" aria-labelledby="datos-verificados-title">
 <div class="wrap">
 <div class="section-head tight"><h2 id="datos-verificados-title">Datos estructurados y verificación</h2><p>La siguiente matriz separa los datos publicados oficialmente para Argentina de los campos que Toyota no consolida por versión en la documentación consultada.</p></div>
-<div class="ficha-note"><strong style="display:block;font-family:var(--display);font-size:13px;color:var(--toyota-red-text);margin-bottom:8px">Criterio de lectura</strong><strong>Mercado:</strong> Argentina. <strong>Consulta:</strong> 23 de septiembre de 2026. Se priorizó Toyota Argentina. “No publicado” no significa que el vehículo no lo tenga: significa que la fuente argentina consultada no permite atribuirlo con seguridad a todas las versiones. No se trasladaron especificaciones de otros países.</div>
+<div class="ficha-note"><strong style="display:block;font-family:var(--display);font-size:13px;color:var(--toyota-red-text);margin-bottom:8px">Criterio de lectura</strong><strong>Mercado:</strong> Argentina. <strong>Consulta:</strong> {{MODEL_REVIEWED_AT}}. Se priorizó Toyota Argentina. “No publicado” no significa que el vehículo no lo tenga: significa que la fuente argentina consultada no permite atribuirlo con seguridad a todas las versiones. No se trasladaron especificaciones de otros países.</div>
 <div class="ficha-spec-group"><h3>Motorizaciones documentadas</h3><div class="detail-specs"><div class="detail-spec"><strong>1GD 2.8 l</strong>Diésel Grado 3, Euro 5 con DPF; 4 cilindros en línea; 2.755 cm³; 92,0 × 103,6 mm; relación de compresión 15,6:1; TGV e intercooler; inyección directa Common-Rail; 16 válvulas DOHC con cadena. Potencia máxima: 204 CV (150 kW) a 3.000–3.400 rpm. Torque máximo: 500 Nm a 1.600–2.800 rpm. Fuente: ficha oficial argentina SRV/SRX del 18/09/2025.</div><div class="detail-spec"><strong>2GD-FTV 2.4 l</strong>La ficha existente de la página menciona 150 CV y 400 Nm, pero la fuente oficial argentina conservada en este trabajo no consolida su aplicación vigente por cada versión. Por precisión, no se asigna aquí a una versión actual concreta sin la ficha argentina específica correspondiente.</div></div></div>
 <div class="ficha-spec-group"><h3>Dimensiones, capacidades y chasis publicados</h3><div class="detail-specs"><div class="detail-spec"><strong>SRV/SRX documentadas</strong>Largo 5.325 mm; ancho 1.855 mm; alto 1.815 mm; distancia entre ejes 3.085 mm; despeje 227 mm; tanque 80 l; radio mínimo de giro 6,7 m; remolque con freno 3.500 kg y sin freno 750 kg.</div><div class="detail-spec"><strong>Suspensión y dirección</strong>Delantera independiente de doble brazo, resortes helicoidales, amortiguadores telescópicos y barra estabilizadora. Trasera con eje rígido, elásticos longitudinales y amortiguadores telescópicos. Dirección hidráulica de piñón y cremallera con asistencia variable. Frenos delanteros de discos ventilados; traseros a tambor en SRV/SRV+ y discos ventilados en SRX, según la ficha oficial consultada.</div><div class="detail-spec"><strong>Tracción y transmisión</strong>Automática de 6 velocidades en SRV/SRX. En 4x4: 4x4 reducida con accionamiento electrónico, ADD y A-TRC. El bloqueo de diferencial trasero está indicado para las versiones 4x4.</div><div class="detail-spec"><strong>GR-Sport</strong>La documentación argentina específica publica 247 mm de despeje y caja automática de 6 velocidades con levas; no se completan aquí otras cifras si no están inequívocamente expuestas en la ficha argentina vigente.</div></div></div>
 <div class="ficha-spec-group"><h3>Matriz por versión argentina</h3><div class="ficha-trim-table-wrap" role="region" aria-label="Matriz de verificación por versión (tabla desplazable)" tabindex="0"><table class="ficha-trim-table"><caption>Estado de verificación con documentación argentina consultada</caption><thead><tr><th scope="col">Versión</th><th scope="col">Datos confirmados</th><th scope="col">Campos que requieren confirmación por unidad</th><th scope="col">Fuente</th></tr></thead><tbody><tr><th scope="row">DX</th><td>Nombre de versión dentro de la gama Hilux argentina.</td><td>Motor, caja, tracción, ruedas, ADAS y equipamiento exacto por carrocería.</td><td>Catálogo/modelos Toyota Argentina</td></tr><tr><th scope="row">SR</th><td>Nombre de versión dentro de la gama Hilux argentina.</td><td>Motor, caja, tracción, ruedas, seguridad y equipamiento exacto por configuración.</td><td>Catálogo/modelos Toyota Argentina</td></tr><tr><th scope="row">SRV</th><td>Motor 1GD 2.8 l, 204 CV, 500 Nm; 4x2/4x4; caja 6 A/T en ficha; equipamiento y seguridad detallados en ficha oficial.</td><td>Disponibilidad exacta, combinación de carrocería y medidas de neumático por unidad.</td><td>Ficha oficial SRV/SRX</td></tr><tr><th scope="row">SRV+</th><td>Motor 1GD 2.8 l, 204 CV, 500 Nm; caja 6 A/T; equipamiento diferencial publicado para esta configuración.</td><td>Disponibilidad vigente, tracción según unidad y ausencia/presencia de ADAS no documentada aquí.</td><td>Ficha oficial SRV/SRX</td></tr><tr><th scope="row">SRX</th><td>Motor 1GD 2.8 l, 204 CV, 500 Nm; caja 6 A/T; 4x2/4x4/reducida; Toyota Safety Sense (ACC, PCS, LDA); 7 airbags; JBL; visión 360°; ventilación de butacas; Bi-LED.</td><td>Códigos de color y disponibilidad comercial por unidad.</td><td>Ficha oficial SRV/SRX</td></tr><tr><th scope="row">GR-Sport</th><td>Variante argentina documentada; caja automática 6 velocidades con levas; 2x4/4x4/reducida; despeje 247 mm.</td><td>Potencia, torque, dimensiones completas, ADAS y colores según ficha argentina específica vigente.</td><td>Ficha oficial GR-Sport</td></tr></tbody></table></div></div>

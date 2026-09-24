@@ -47,6 +47,17 @@ for (const model of models) {
     if (typeof model[field] !== 'string' || !model[field].trim()) throw new Error(`${model.slug ?? '(sin slug)'}: falta ${field}`);
   }
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(model.slug)) throw new Error(`Slug inválido: ${model.slug}`);
+  // Fichas escritas a mano (handAuthored: true): el build NO las regenera desde la plantilla.
+  // Sin este freno, `scripts/build.sh` pisaba la ficha real con los placeholders de templates/model.html.
+  if (model.handAuthored === true) {
+    const manual = path.join(root, `${model.slug}.html`);
+    if (!fs.existsSync(manual)) throw new Error(`${model.slug}: handAuthored=true pero falta ${model.slug}.html en la raíz`);
+    const html = fs.readFileSync(manual, 'utf8');
+    const pend = html.match(/\[Completar[^\]]*\]|\{\{[A-Z0-9_]+\}\}/g);
+    if (pend) throw new Error(`${model.slug}.html tiene placeholders sin completar: ${[...new Set(pend)].join(', ')}`);
+    console.log(`  · ${model.slug}: handAuthored — se conserva ${model.slug}.html tal cual (no se regenera).`);
+    continue;
+  }
   let html = template;
   for (const placeholder of uniquePlaceholders) {
     const field = placeholderFor[placeholder];

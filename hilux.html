@@ -150,16 +150,26 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
   "name": "Toyota Hilux",
   "brand": {"@type": "Brand", "name": "Toyota"},
   "vehicleConfiguration": "Hilux Cabina Simple, Cabina Chasis y Cabina Doble; versiones y combinaciones sujetas a disponibilidad oficial en Argentina.",
-  "vehicleTransmission": "Manual o automática de 6 velocidades según versión; automática 6 A/T documentada oficialmente para SRV y SRX.",
+  "vehicleTransmission": "Manual o automática de 6 velocidades según versión; SRV, SRV+, SRX y GR-Sport solo automática.",
   "driveWheelConfiguration": "4x2, 4x4 y 4x4 reducida con accionamiento electrónico en las configuraciones documentadas.",
   "fuelType": "Diésel",
+  "vehicleEngine": [
+    {"@type": "EngineSpecification", "name": "Toyota 1GD-FTV 2.8 l turbodiésel", "engineType": "Diésel, 4 cilindros en línea, 16 válvulas DOHC, Euro 5 con DPF", "engineDisplacement": {"@type": "QuantitativeValue", "value": 2755, "unitCode": "CMQ"}, "enginePower": {"@type": "QuantitativeValue", "value": 150, "unitCode": "KWT", "unitText": "kW (204 CV)"}, "torque": {"@type": "QuantitativeValue", "value": 500, "unitCode": "NU", "unitText": "Nm"}},
+    {"@type": "EngineSpecification", "name": "Toyota 2GD-FTV 2.4 l turbodiésel", "engineType": "Diésel, 4 cilindros en línea", "engineDisplacement": {"@type": "QuantitativeValue", "value": 2393, "unitCode": "CMQ"}, "enginePower": {"@type": "QuantitativeValue", "value": 110, "unitCode": "KWT", "unitText": "kW (150 CV)"}, "torque": {"@type": "QuantitativeValue", "value": 400, "unitCode": "NU", "unitText": "Nm"}}
+  ],
+  "wheelbase": {"@type": "QuantitativeValue", "value": 3085, "unitCode": "MMT"},
+  "width": {"@type": "QuantitativeValue", "value": 1855, "unitCode": "MMT"},
+  "height": {"@type": "QuantitativeValue", "value": 1815, "unitCode": "MMT"},
+  "fuelCapacity": {"@type": "QuantitativeValue", "value": 80, "unitCode": "LTR"},
+  "cargoVolume": {"@type": "QuantitativeValue", "value": 1083, "unitCode": "LTR"},
+  "weightTotal": {"@type": "QuantitativeValue", "value": 3090, "unitCode": "KGM"},
+  "vehicleSeatingCapacity": 5,
   "url": "https://hnk375561-lab.github.io/toyota-concepcion-uruguay-web/hilux.html",
   "image": "https://hnk375561-lab.github.io/toyota-concepcion-uruguay-web/toyota-sharp-assets/enhanced-bae67c9e04b0-800.webp",
   "manufacturer": {"@type": "Organization", "name": "Toyota Argentina", "url": "https://www.toyota.com.ar/modelos/hilux-cabina-simple"},
   "offers": {
     "@type": "Offer",
-    "availability": "https://schema.org/InStock",
-    "priceSpecification": {"@type": "PriceSpecification", "description": "Consultar con el equipo comercial (WhatsApp o teléfono)."},
+    "priceSpecification": {"@type": "PriceSpecification", "description": "Consultar con el equipo comercial (WhatsApp o teléfono). Stock y disponibilidad a confirmar."},
     "seller": {"@type": "AutoDealer", "name": "Piñeyro y Moscatelli S.R.L.", "url": "https://hnk375561-lab.github.io/toyota-concepcion-uruguay-web/"}
   }
 }
@@ -191,7 +201,7 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
       "name": "¿Qué diferencia a la SRV+ de la SRV y de la SRX?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "La SRV+, incorporada en 2025, se ubica entre ambas: sobre la SRV suma llantas de 18 pulgadas, acceso y arranque sin llave, asiento del conductor con ajuste eléctrico y tapizados de cuero. A diferencia de la SRX, no tiene las trochas ensanchadas ni el paquete Toyota Safety Sense, que quedan reservados a la SRX y a la GR-Sport."
+        "text": "La SRV+, incorporada en 2025, se ubica entre ambas: sobre la SRV suma acceso y arranque sin llave, asiento del conductor con ajuste eléctrico y tapizados de cuero, y lleva llantas de 18 pulgadas (la SRV 4x4 también las trae). A diferencia de la SRX, no tiene las trochas ensanchadas ni el paquete Toyota Safety Sense, que se ve en la SRX 4x4 y en la GR-Sport."
       }
     },
     {
@@ -207,7 +217,7 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
       "name": "¿Desde qué versión trae Toyota Safety Sense?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "El paquete de asistencias Toyota Safety Sense (crucero adaptativo, alerta de colisión con frenado autónomo y aviso de cambio de carril) está confirmado en la SRX y en la GR-Sport. Ni la SRV ni la SRV+ lo incluyen, según la cobertura de sus respectivos lanzamientos."
+        "text": "El paquete Toyota Safety Sense (crucero adaptativo ACC, alerta de colisión con frenado autónomo PCS y aviso de cambio de carril LDA) figura en la SRX 4x4 y en la GR-Sport. Ni la SRV ni la SRV+ lo incluyen, y la ficha de feb-2025 no lo muestra en la SRX 4x2."
       }
     },
     {
@@ -232,6 +242,54 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Depende del uso: la generación actual tiene más de cinco años en el mercado argentino, mecánica y repuestos ampliamente probados, y sigue siendo líder de ventas del segmento. El rediseño anunciado llega recién entre noviembre y diciembre de 2026, con despliegue escalonado de versiones hasta mediados de 2027, así que la unidad 0 km que se entrega hoy seguirá siendo la generación vigente por un buen tiempo más. Es una decisión que conviene charlar con el equipo comercial según tu plazo de cambio habitual."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuál es el radio de giro de la Hilux?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El radio mínimo de giro oficial es de 6,7 metros, según la ficha de Toyota Argentina. Eso equivale a un diámetro de giro de unos 13,4 metros."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuánta carga útil tiene la Hilux Doble Cabina?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Toyota publica el peso bruto total (2.810 kg en 4x2, 3.090 kg en 4x4 y 3.140 kg en la GR-Sport) pero no una carga útil por versión. Restando el peso en orden de marcha, la estimación ronda 1.005–1.065 kg en Doble Cabina 4x4 y 1.005–1.015 kg en la GR-Sport. Es un cálculo aproximado: la cifra homologada figura en la documentación de cada unidad."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué medida de neumáticos trae la Hilux?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Las versiones con llanta de 17 pulgadas usan 265/65 R17 (la GR-Sport, en versión AT) y las de 18 pulgadas usan 265/60 R18. La SRV lleva llantas de 17 pulgadas en 4x2 y de 18 en 4x4. Confirmá la medida exacta en la etiqueta del marco de la puerta del conductor."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿La Hilux SRV es manual o automática?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Las fichas oficiales vigentes de la SRV listan solamente la caja automática de 6 velocidades. La manual de 6 velocidades se ofrece en la DX y la SR. Confirmá con el concesionario si hay unidades manuales en stock."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿La SRX 4x2 trae Toyota Safety Sense?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La ficha oficial de febrero de 2025 muestra el paquete (ACC, PCS y LDA) en la SRX 4x4 y en la GR-Sport, no en la SRX 4x2. Si es un requisito para vos, pedile al concesionario que lo confirme por unidad."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué colores tiene la Hilux GR-Sport?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Según el configurador de un concesionario oficial, la GR-Sport se ofrece en cuatro colores: Negro Mica, Gris Oscuro Metalizado, Rojo bitono y Blanco Perlado con techo negro. Confirmalo con el concesionario antes de decidir."
       }
     }
   ]
@@ -318,7 +376,7 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
 <details class="navmega"><summary>Vehículos</summary><div class="mega-panel"><a href="index.html#gama"><strong>0 km</strong><small>Modelos Toyota</small></a><a href="index.html#usados"><strong>Usados</strong><small>Disponibilidad a confirmar</small></a><a href="index.html#comparar"><strong>Comparar modelos</strong><small>Elegí dos y compará</small></a></div></details>
 <details class="navmega"><summary>Compra</summary><div class="mega-panel"><a href="index.html#financiacion"><strong>Financiación</strong><small>Simulador y pasos</small></a><a href="index.html#canje"><strong>Plan canje</strong><small>Tasá tu vehículo</small></a><a href="index.html#contacto"><strong>Consultar</strong><small>Hablar con el equipo</small></a></div></details>
 <details class="navmega"><summary>Postventa</summary><div class="mega-panel"><a href="index.html#servicios"><strong>Service oficial</strong><small>Solicitar turno</small></a><a href="index.html#repuestos"><strong>Repuestos y accesorios</strong><small>Consultar disponibilidad</small></a><a href="index.html#neumaticos"><strong>Neumáticos</strong><small>Consultar Bridgestone</small></a><a href="index.html#taller"><strong>Nuestro taller</strong><small>Conocé el equipo</small></a></div></details>
-<a href="index.html#porque">Por qué elegirnos</a><a href="index.html#concesionario">Concesionario</a>
+<a href="index.html#porque">Por qué elegirnos</a><a href="index.html#concesionario">Concesionario</a><a href="#datos-verificados">Datos verificados</a>
 </nav>
 <div class="navright">
 <a aria-label="Consultar por WhatsApp" class="nav-cta" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20consultar%20por%20un%20Toyota." rel="noopener noreferrer" target="_blank">WhatsApp</a>
@@ -348,6 +406,7 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
 <a href="index.html#testimonios">Testimonios</a>
 <a href="index.html#faq">Preguntas frecuentes</a>
 <a href="index.html#ubicacion">Ubicación</a>
+<a href="#datos-verificados">Datos verificados de la Hilux</a>
 <a href="tel:+543442473453">Llamar: 03442 47-3453</a>
 </div>
 </div>
@@ -365,20 +424,24 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
 <a href="#versiones">Versiones</a>
 <a href="#rendimiento">Motor y rendimiento</a>
 <a href="#ficha-tecnica">Ficha técnica</a>
+<a href="#pesos-capacidades">Pesos y cargas</a>
 <a href="#garantia">Garantía</a>
 <a href="#dimensiones">Dimensiones</a>
 <a href="#offroad">Aptitud off-road</a>
 <a href="#colores">Colores</a>
 <a href="#configurador">Configurador</a>
 <a href="#accesorios">Accesorios</a>
+<a href="#postventa">Postventa y neumáticos</a>
 <a href="#ofertas-financiacion">Ofertas y financiación</a>
 <a href="#preguntas-frecuentes">Preguntas frecuentes</a>
+<a href="#datos-verificados">Datos verificados</a>
+<a href="#documentos">Documentos PDF</a>
 <a href="#fuentes">Fuentes</a>
 <a class="ficha-jump-cta" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20consultar%20por%20la%20Toyota%20Hilux." rel="noopener noreferrer" target="_blank">Consultar ↗</a>
 </div>
 </nav>
 
-<div class="ficha-mobile-cta" aria-label="Acciones rápidas de la ficha">
+<div class="ficha-mobile-cta" role="group" aria-label="Acciones rápidas de la ficha">
 <a class="ficha-mobile-cta-main" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20consultar%20por%20la%20Toyota%20Hilux." rel="noopener noreferrer" target="_blank">Consultar Hilux por WhatsApp <span aria-hidden="true">↗</span></a>
 <a class="ficha-mobile-cta-call" href="tel:+543442473453" aria-label="Llamar al 03442 47-3453">Llamar</a>
 </div>
@@ -399,7 +462,7 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
 <div><strong>1.083 L</strong><span>Volumen de caja de carga</span></div>
 <div><strong>10 años</strong><span>Garantía extendida &ldquo;Toyota 10&rdquo; con service oficial</span></div>
 </div>
-<div class="ficha-editorial-meta" aria-label="Estado editorial de la ficha">
+<div class="ficha-editorial-meta" role="group" aria-label="Estado editorial de la ficha">
 <span><i aria-hidden="true"></i> Datos revisados 24 de septiembre de 2026</span>
 <span>Fuentes oficiales y especializadas citadas al final</span>
 </div>
@@ -449,7 +512,7 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
 <article class="usecase-card">
 <svg class="uc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 20V10l8-6 8 6v10"/><path d="M9 20v-6h6v6"/></svg>
 <h3>Familia y ruta larga</h3>
-<p>Uso particular con viajes frecuentes. El salto al motor 2.8, el climatizador y la conectividad completa hacen a la diferencia diaria; la SRV+ suma llantas de 18&Prime;, acceso sin llave y tapizado de cuero sobre la SRV convencional.</p>
+<p>Uso particular con viajes frecuentes. El salto al motor 2.8, el climatizador y la conectividad completa hacen a la diferencia diaria; la SRV+ suma acceso sin llave y tapizado de cuero sobre la SRV convencional.</p>
 <span class="uc-trim">Sugerida: SRV / SRV+ / SRX</span>
 </article>
 <article class="usecase-card">
@@ -471,42 +534,42 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
 <p>Cuatro preguntas para llegar a una versión sugerida a partir de la misma lógica de la sección anterior. Es orientativo: no reemplaza la charla con el equipo comercial ni la disponibilidad real de stock.</p>
 </div>
 <form id="hiluxQuizForm" class="quiz-card" aria-describedby="quizResult">
-<div class="quiz-q">
-<p class="quiz-q-title">1. ¿Dónde la vas a usar más?</p>
+<fieldset class="quiz-q">
+<legend class="quiz-q-title">1. ¿Dónde la vas a usar más?</legend>
 <div class="quiz-opts">
 <label><input type="radio" name="q1" value="trabajo" required/> Campo, obra o trabajo pesado a diario</label>
 <label><input type="radio" name="q1" value="flota"/> Ciudad y ruta, en uso comercial o de flota</label>
 <label><input type="radio" name="q1" value="familia"/> Uso familiar, con viajes frecuentes</label>
 <label><input type="radio" name="q1" value="offroad"/> Salidas 4x4 fuera del asfalto</label>
 </div>
-</div>
-<div class="quiz-q">
-<p class="quiz-q-title">2. ¿Qué priorizás al elegir?</p>
+</fieldset>
+<fieldset class="quiz-q">
+<legend class="quiz-q-title">2. ¿Qué priorizás al elegir?</legend>
 <div class="quiz-opts">
 <label><input type="radio" name="q2" value="trabajo" required/> Bajo costo y mecánica simple</label>
 <label><input type="radio" name="q2" value="flota"/> Buena relación precio-equipamiento</label>
 <label><input type="radio" name="q2" value="familia"/> Confort y tecnología a bordo</label>
 <label><input type="radio" name="q2" value="offroad"/> Máxima capacidad todo terreno</label>
 </div>
-</div>
-<div class="quiz-q">
-<p class="quiz-q-title">3. ¿Cuántas personas viajan habitualmente?</p>
+</fieldset>
+<fieldset class="quiz-q">
+<legend class="quiz-q-title">3. ¿Cuántas personas viajan habitualmente?</legend>
 <div class="quiz-opts">
 <label><input type="radio" name="q3" value="trabajo" required/> Voy solo o con un acompañante</label>
 <label><input type="radio" name="q3" value="flota"/> 2 o 3, en la semana laboral</label>
 <label><input type="radio" name="q3" value="familia"/> La familia completa</label>
 <label><input type="radio" name="q3" value="offroad"/> Un grupo, para expediciones</label>
 </div>
-</div>
-<div class="quiz-q">
-<p class="quiz-q-title">4. ¿La caja automática es importante?</p>
+</fieldset>
+<fieldset class="quiz-q">
+<legend class="quiz-q-title">4. ¿La caja automática es importante?</legend>
 <div class="quiz-opts">
 <label><input type="radio" name="q4" value="trabajo" required/> No, prefiero manual</label>
 <label><input type="radio" name="q4" value="flota"/> Me da igual</label>
 <label><input type="radio" name="q4" value="familia"/> Sí, la prefiero</label>
 <label><input type="radio" name="q4" value="offroad"/> Sí, con reductora 4x4</label>
 </div>
-</div>
+</fieldset>
 <button class="btn primary" type="submit">Ver mi versión sugerida</button>
 </form>
 <div id="quizResult" class="quiz-result" hidden></div>
@@ -522,9 +585,9 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
 <div class="ficha-trim-grid">
 <article class="ficha-trim-card"><strong>DX</strong><span>Versión de acceso, pensada para uso de trabajo intensivo. Motor 2.4 turbodiésel de 150 CV, mecánica robusta. Desde fines de 2024 también se ofrece con caja automática en Doble Cabina.</span></article>
 <article class="ficha-trim-card"><strong>SR</strong><span>Uso mixto, habitual en flotas. Suma llantas de aleación de 17&Prime; y cámara de retroceso; en 4x2 usa el motor 2.4 y en 4x4 pasa al 2.8 de 204 CV.</span></article>
-<article class="ficha-trim-card"><strong>SRV</strong><span>Orientada a uso familiar. Motor 2.8 turbodiésel de 204 CV, con climatizador, conectividad completa y ópticas LED.</span></article>
-<article class="ficha-trim-card"><strong>SRV+</strong><span>Escalón intermedio incorporado en 2025 entre la SRV y la SRX. Suma llantas de 18&Prime;, acceso y arranque sin llave, butaca del conductor con ajuste eléctrico y tapizados de cuero.</span></article>
-<article class="ficha-trim-card"><strong>SRX</strong><span>Tope de gama en confort y seguridad activa, con caja automática obligatoria. Disponible en 4x2 y 4x4. Plataforma con ejes ensanchados desde 2023 e incorpora Toyota Safety Sense: crucero adaptativo, alerta de colisión con frenado autónomo y aviso de cambio de carril.</span></article>
+<article class="ficha-trim-card"><strong>SRV</strong><span>Orientada a uso familiar. Motor 2.8 turbodiésel de 204 CV con caja automática de 6 velocidades, climatizador, faros Bi-LED, audio JBL de 6 parlantes con subwoofer, sensores de estacionamiento delanteros y traseros, y llantas de 17&Prime; (4x2) o 18&Prime; (4x4).</span></article>
+<article class="ficha-trim-card"><strong>SRV+</strong><span>Escalón intermedio incorporado en 2025 entre la SRV y la SRX. Suma acceso y arranque sin llave, butaca del conductor con ajuste eléctrico y tapizados de cuero, con llantas de 18&Prime; (la SRV 4x4 también las trae).</span></article>
+<article class="ficha-trim-card"><strong>SRX</strong><span>Tope de gama en confort y seguridad activa, con caja automática obligatoria. Disponible en 4x2 y 4x4. Plataforma con ejes ensanchados desde 2023. En 4x4 incorpora Toyota Safety Sense (crucero adaptativo ACC, pre-colisión PCS y alerta de cambio de carril LDA); la ficha de feb-2025 no lo muestra en la SRX 4x2.</span></article>
 <article class="ficha-trim-card"><strong>GR-Sport</strong><span>Variante off-road desarrollada en gran parte en Argentina, hoy en su cuarta entrega. Motor 2.8 potenciado a 224 CV, suspensión específica y la mayor potencia de la gama publicada hasta ahora.</span></article>
 </div>
 <p class="ficha-trim-note">Nombres, combinaciones de motor/transmisión y disponibilidad de cada versión varían por año modelo y configuración vigente; se confirman con el concesionario antes de la compra. La gama completa incluye además configuraciones de Cabina Simple y Cabina Chasis, no cubiertas en esta comparativa centrada en Doble Cabina.</p>
@@ -547,28 +610,30 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
 <tr class="trim-group-row"><th scope="row" colspan="7">Motor y transmisión</th></tr>
 <tr><th scope="row">Motor</th><td>2.4 TD (2GD)</td><td>2.4 (4x2) o 2.8 TD (4x4)</td><td>2.8 TD (1GD)</td><td>2.8 TD (1GD)</td><td>2.8 TD (1GD)</td><td>2.8 TD (1GD)</td></tr>
 <tr><th scope="row">Potencia</th><td>150 CV</td><td>150 o 204 CV</td><td>204 CV</td><td>204 CV</td><td>204 CV</td><td>224 CV</td></tr>
-<tr><th scope="row">Torque</th><td>400 Nm</td><td>400 Nm (2.4) o 420/500 Nm (2.8)</td><td>420/500 Nm</td><td>500 Nm</td><td>500 Nm</td><td>550 Nm</td></tr>
-<tr><th scope="row">Transmisión</th><td>Manual 6ª; automática 6ª en D. Cabina</td><td>Manual o automática 6ª</td><td>Manual o automática 6ª</td><td>Automática 6ª (única opción)</td><td>Automática 6ª (única opción)</td><td>Automática 6ª (única opción)</td></tr>
+<tr><th scope="row">Torque</th><td>400 Nm</td><td>400 Nm (2.4) o 420/500 Nm (2.8)</td><td>500 Nm</td><td>500 Nm</td><td>500 Nm</td><td>550 Nm</td></tr>
+<tr><th scope="row">Transmisión</th><td>Manual 6ª; automática 6ª en D. Cabina</td><td>Manual o automática 6ª</td><td>Automática 6ª (fichas vigentes)</td><td>Automática 6ª (única opción)</td><td>Automática 6ª (única opción)</td><td>Automática 6ª (única opción)</td></tr>
 <tr><th scope="row">Tracción</th><td>4x2 / 4x4</td><td>4x2 / 4x4</td><td>4x2 / 4x4</td><td>4x4</td><td>4x2 / 4x4</td><td>4x4</td></tr>
-<tr><th scope="row">Ejes ensanchados</th><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">+140/+155 mm</td><td class="yes">+140/+150 mm</td></tr>
+<tr><th scope="row">Ejes ensanchados</th><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">+140/+155 mm</td><td class="yes">+140/+155 mm</td></tr>
 <tr class="trim-group-row"><th scope="row" colspan="7">Equipamiento y confort</th></tr>
-<tr><th scope="row">Llantas de aleación</th><td class="no">—</td><td>17&Prime;</td><td>17&Prime;</td><td>18&Prime;</td><td>18&Prime;</td><td>Específicas GR-Sport</td></tr>
+<tr><th scope="row">Llantas de aleación</th><td class="no">—</td><td>17&Prime;</td><td>17&Prime; (4x2) / 18&Prime; (4x4)</td><td>18&Prime;</td><td>18&Prime;</td><td>17&Prime; específicas GR-Sport</td></tr>
 <tr><th scope="row">Cámara de retroceso</th><td class="no">—</td><td class="yes">Sí</td><td class="yes">Sí</td><td class="yes">Sí</td><td class="yes">Sí</td><td class="yes">Sí</td></tr>
+<tr><th scope="row">Faros</th><td>Halógenos</td><td>Halógenos</td><td>Bi-LED</td><td>Bi-LED</td><td>Bi-LED</td><td>LED oscurecidos</td></tr>
+<tr><th scope="row">Sensores de estacionamiento (del. y tras.)</th><td>A confirmar</td><td>A confirmar</td><td class="yes">Sí</td><td class="yes">Sí</td><td class="yes">Sí</td><td>A confirmar</td></tr>
 <tr><th scope="row">Acceso y arranque sin llave</th><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">Sí</td><td class="yes">Sí</td><td class="yes">Sí</td></tr>
 <tr><th scope="row">Climatizador</th><td class="no">—</td><td class="no">—</td><td class="yes">Sí</td><td class="yes">Sí</td><td class="yes">Sí</td><td class="yes">Sí</td></tr>
 <tr><th scope="row">Tapizado de cuero</th><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">Sí</td><td class="yes">Sí, ventilado</td><td class="yes">Cuero y suede GR</td></tr>
-<tr><th scope="row">Audio premium JBL (8 parl. + sub)</th><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">Sí</td><td class="yes">Sí</td></tr>
+<tr><th scope="row">Audio JBL con subwoofer</th><td class="no">—</td><td class="no">—</td><td class="yes">6 parlantes</td><td class="yes">6 parlantes</td><td class="yes">8 parlantes</td><td class="yes">Sí</td></tr>
 <tr><th scope="row">Cámara de visión 360°</th><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">Sí</td><td class="yes">Sí</td></tr>
 <tr><th scope="row">Pantalla multimedia</th><td colspan="6" style="color:var(--muted)">9&Prime; táctil con Android Auto y Apple CarPlay inalámbricos, incorporada en toda la gama en la actualización de equipamiento más reciente.</td></tr>
 <tr class="trim-group-row"><th scope="row" colspan="7">Seguridad</th></tr>
 <tr><th scope="row">7 airbags de serie</th><td class="yes">Sí</td><td class="yes">Sí</td><td class="yes">Sí</td><td class="yes">Sí</td><td class="yes">Sí</td><td class="yes">Sí</td></tr>
-<tr><th scope="row">Toyota Safety Sense</th><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">Sí</td><td class="yes">Sí</td></tr>
+<tr><th scope="row">Toyota Safety Sense (ACC, PCS, LDA)</th><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">Sí (solo 4x4)</td><td class="yes">Sí</td></tr>
 <tr class="trim-group-row"><th scope="row" colspan="7">Uso</th></tr>
 <tr><th scope="row">Perfil de uso</th><td>Trabajo intensivo</td><td>Flota / mixto</td><td>Familiar</td><td>Familiar plus</td><td>Familiar premium</td><td>Off-road deportivo</td></tr>
 </tbody>
 </table>
 </div>
-<p class="ficha-trim-note">Datos de motor, transmisión y equipamiento según la ficha oficial de Toyota Argentina, la cobertura del lanzamiento de la SRV+ (Autocosmos y Mercado Libre) y la nota técnica de la GR-Sport (Autocosmos), citadas al pie. &ldquo;Según config.&rdquo; y combinaciones dobles dependen del año modelo y el paquete de equipamiento elegido: se confirman con el concesionario.</p>
+<p class="ficha-trim-note">Datos de motor, transmisión y equipamiento según la ficha oficial de Toyota Argentina, la cobertura del lanzamiento de la SRV+ (Autocosmos y Mercado Libre) y la nota técnica de la GR-Sport (Autocosmos), citadas al pie. &ldquo;Según config.&rdquo; y combinaciones dobles dependen del año modelo y el paquete de equipamiento elegido: se confirman con el concesionario. La SRV+ hereda de la SRV el audio JBL de 6 parlantes y los sensores de estacionamiento; &ldquo;A confirmar&rdquo; indica que la documentación consultada no permite afirmarlo ni negarlo.</p>
 </div>
 </section>
 
@@ -589,7 +654,7 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
 <div class="perf-block">
 <h3>Torque (Nm)</h3>
 <div class="perf-bar-row"><span class="pb-label">2.4 TD</span><span class="perf-bar-track"><span class="perf-bar-fill" style="width:73%"></span></span><span class="pb-value">400 Nm</span></div>
-<div class="perf-bar-row alt"><span class="pb-label">2.8 TD manual</span><span class="perf-bar-track"><span class="perf-bar-fill" style="width:76%"></span></span><span class="pb-value">420 Nm</span></div>
+<div class="perf-bar-row alt"><span class="pb-label">2.8 TD manual (SR 4x4)</span><span class="perf-bar-track"><span class="perf-bar-fill" style="width:76%"></span></span><span class="pb-value">420 Nm</span></div>
 <div class="perf-bar-row"><span class="pb-label">2.8 TD automática</span><span class="perf-bar-track"><span class="perf-bar-fill" style="width:91%"></span></span><span class="pb-value">500 Nm</span></div>
 <div class="perf-bar-row alt"><span class="pb-label">2.8 TD (GR-Sport)</span><span class="perf-bar-track"><span class="perf-bar-fill" style="width:100%"></span></span><span class="pb-value">550 Nm</span></div>
 <p class="perf-note">La caja automática libera más torque que la manual en el mismo motor 2.8, y la puesta a punto específica de la GR-Sport suma otro escalón sobre la automática estándar.</p>
@@ -597,7 +662,7 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
 </div>
 <div class="ficha-note" style="margin-top:28px">
 <strong style="display:block;font-family:var(--display);font-size:13px;color:var(--toyota-red-text);margin-bottom:8px">Chasis y suspensión: qué cambia en SRX y GR-Sport</strong>
-Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport montan trochas ensanchadas respecto del resto de la gama (+140 mm delante y +155 mm detrás en la SRX, entre 140 y 150 mm en la GR-Sport), con brazos de suspensión extendidos y nuevos amortiguadores bi-tubo de 35 mm por fuera del chasis; la SRX suma además, por primera vez en Hilux, una barra estabilizadora tubular en el eje trasero. La GR-Sport, que es su cuarta entrega y fue desarrollada en gran parte en Argentina, va un paso más allá: amortiguadores monotubo traseros también fuera del chasis, 20 mm extra de despeje sobre la SRX, overfenders y una barra antivuelco con función aerodinámica declarada por la marca.
+Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport montan trochas ensanchadas respecto del resto de la gama (+140 mm delante y +155 mm detrás, tanto en la SRX como en la GR-Sport), con brazos de suspensión extendidos y nuevos amortiguadores bi-tubo de 35 mm por fuera del chasis; la SRX suma además, por primera vez en Hilux, una barra estabilizadora tubular en el eje trasero. La GR-Sport, que es su cuarta entrega y fue desarrollada en gran parte en Argentina, va un paso más allá: amortiguadores monotubo traseros también fuera del chasis, 247 mm de despeje (cifra oficial de la GR-Sport), overfenders y una barra antivuelco con función aerodinámica declarada por la marca.
 </div>
 </div>
 </section>
@@ -632,7 +697,7 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 <div class="ficha-spec-group">
 <h3>Transmisión y tracción</h3>
 <div class="detail-specs">
-<div class="detail-spec"><strong>Transmisión</strong>Manual de 6 velocidades (caja HO-60) disponible en DX (Cabina Chasis, Cabina Simple y Doble Cabina), SR y SRV. Automática de 6 velocidades (caja HO-80/HO-86, con convertidor de torque) disponible desde la DX Doble Cabina (4x2 y 4x4, incorporada a fines de 2024), SR y SRV; en SRV+, SRX y GR-Sport la automática es la única opción, sin caja manual disponible. SRX y GR-Sport suman levas al volante.</div>
+<div class="detail-spec"><strong>Transmisión</strong>Manual de 6 velocidades (caja HO-60) disponible en DX (Cabina Chasis, Cabina Simple y Doble Cabina) y SR. Automática de 6 velocidades (caja HO-80/HO-86, con convertidor de torque) disponible desde la DX Doble Cabina (4x2 y 4x4, incorporada a fines de 2024) y SR; en SRV, SRV+, SRX y GR-Sport es la única caja publicada en las fichas vigentes, sin manual. SRX y GR-Sport suman levas al volante.</div>
 <div class="detail-spec"><strong>Tracción</strong>4x2 o 4x4 desconectable, con reductora y bloqueo de diferencial trasero en las versiones 4x4.</div>
 <div class="detail-spec"><strong>Chasis SRX y GR-Sport</strong>Desde 2023, plataforma con trochas ensanchadas: de 1.540/1.550 mm (delantera/trasera) en el resto de la gama a 1.680/1.705 mm en SRX y GR-Sport (+140/+155 mm), con amortiguadores fuera del chasis y, en la SRX, barra estabilizadora tubular trasera &mdash;una primicia para el modelo.</div>
 </div>
@@ -653,20 +718,20 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 <h3>Dimensiones exteriores</h3>
 <div class="detail-specs">
 <div class="detail-spec"><strong>Largo total</strong>5.325 mm</div>
-<div class="detail-spec"><strong>Ancho total</strong>1.855 mm sin espejos (2.040 mm con espejos); mayor en SRX y GR-Sport por el ensanche de ejes</div>
-<div class="detail-spec"><strong>Alto total</strong>1.815 mm en versiones 4x2; 1.835 mm en 4x4</div>
+<div class="detail-spec"><strong>Ancho total</strong>1.855 mm sin espejos según la ficha oficial SRV/SRX de feb-2025 (2.040 mm con espejos). GR-Sport: 2.020 mm (ficha oficial GR-Sport). Medios especializados (Monkey Motor, PickupArena) publican 2.020 mm también para la SRX de plataforma renovada: la cifra depende de la ficha y se confirma por unidad.</div>
+<div class="detail-spec"><strong>Alto total</strong>1.815 mm según la ficha oficial SRV/SRX de feb-2025. GR-Sport: 1.830 mm (ficha oficial GR-Sport); los mismos medios publican 1.830 mm para la SRX renovada.</div>
 <div class="detail-spec"><strong>Distancia entre ejes</strong>3.085 mm</div>
 <div class="detail-spec"><strong>Trocha (delantera/trasera)</strong>1.540/1.550 mm en DX, SR, SRV y SRV+; 1.680/1.705 mm en SRX y GR-Sport por el ensanche de ejes de 2023.</div>
-<div class="detail-spec"><strong>Despeje al suelo</strong>227 mm en versiones 4x4 estándar (SR a SRX); 247 mm en GR-Sport, que suma 20 mm sobre el resto de la gama 4x4 por su suspensión específica. Fuente: ficha técnica oficial de Hilux GR-Sport (Toyota Argentina) y cobertura del lanzamiento de esta generación de GR-Sport.</div>
-<div class="detail-spec"><strong>Radio de giro</strong>12,8 m entre cordones (curb-to-curb); 13,4 m entre paredes (wall-to-wall).</div>
+<div class="detail-spec"><strong>Despeje al suelo</strong>227 mm según la ficha oficial SRV/SRX de feb-2025; 247 mm en la GR-Sport (ficha oficial GR-Sport). Los medios citados publican 247 mm también para la SRX de plataforma renovada, por eso no se afirma una diferencia de 20 mm entre ambas. Fuente: fichas oficiales SRV/SRX y GR-Sport de Toyota Argentina.</div>
+<div class="detail-spec"><strong>Radio de giro</strong>Radio mínimo de 6,7 m según la ficha oficial SRV/SRX (equivale a un diámetro de giro de unos 13,4 m).</div>
 </div>
 </div>
 
 <div class="ficha-spec-group">
 <h3>Neumáticos y llantas</h3>
 <div class="detail-specs">
-<div class="detail-spec"><strong>Llantas</strong>De chapa (acero) con taza embellecedora en DX; de aleación de 17&Prime; desde SR y SRV; de aleación de 18&Prime; en SRV+ y SRX; diseño específico de 17&Prime; en GR-Sport.</div>
-<div class="detail-spec"><strong>Neumáticos</strong>Medida habitual de fábrica reportada por proveedores de neumáticos del mercado argentino: 265/65 R17 en las versiones con llanta de 17&Prime; y 265/60 R18 en SRX. No es una cifra publicada por Toyota Argentina en una ficha unificada; la medida exacta de cada unidad figura en la etiqueta del marco de la puerta del conductor y puede variar según año modelo &mdash;confirmarla ahí antes de comprar cubiertas de reemplazo.</div>
+<div class="detail-spec"><strong>Llantas</strong>De chapa (acero) con taza embellecedora en DX; de aleación de 17&Prime; en SR; en la SRV, de 17&Prime; en 4x2 y de 18&Prime; en 4x4; de aleación de 18&Prime; en SRV+ y SRX; diseño específico de 17&Prime; en GR-Sport.</div>
+<div class="detail-spec"><strong>Neumáticos</strong>Medida habitual de fábrica reportada por proveedores de neumáticos del mercado argentino: 265/65 R17 en las versiones con llanta de 17&Prime; (la GR-Sport, con cubierta AT según su ficha oficial) y 265/60 R18 en las de 18&Prime; (SRV 4x4, SRV+ y SRX). No es una cifra publicada por Toyota Argentina en una ficha unificada; la medida exacta de cada unidad figura en la etiqueta del marco de la puerta del conductor y puede variar según año modelo &mdash;confirmarla ahí antes de comprar cubiertas de reemplazo.</div>
 <div class="detail-spec"><strong>Rueda de auxilio</strong>De igual medida que las de ruta (auxilio de uso pleno, no reducido), montada debajo de la caja de carga. Candado antirrobo de serie en SRX y GR-Sport, disponible como accesorio en el resto de la gama.</div>
 </div>
 </div>
@@ -678,7 +743,7 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 <div class="detail-spec"><strong>Ancho</strong>1.645 mm de ancho máximo; 1.085 mm entre pasarruedas</div>
 <div class="detail-spec"><strong>Profundidad</strong>511 mm</div>
 <div class="detail-spec"><strong>Volumen</strong>1.083 litros</div>
-<div class="detail-spec"><strong>Carga útil</strong>Hasta 1.080 kg en versiones 4x2; hasta 1.005 kg en 4x4. Varía según versión y equipamiento.</div>
+<div class="detail-spec"><strong>Carga útil (estimación)</strong>Aproximadamente 1.005–1.065 kg en Doble Cabina 4x4 y 1.005–1.015 kg en la GR-Sport, calculada como PBT menos peso en orden de marcha. No es una cifra oficial y no se estima para la 4x2 porque su peso en orden de marcha no está consolidado. Detalle en la sección Pesos y capacidades.</div>
 </div>
 </div>
 
@@ -687,8 +752,8 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 <div class="detail-specs">
 <div class="detail-spec"><strong>Tanque de combustible</strong>80 litros</div>
 <div class="detail-spec"><strong>Capacidad de remolque</strong>Hasta 3.500 kg con freno; 750 kg sin freno en las versiones con ficha oficial consultada.</div>
-<div class="detail-spec"><strong>Peso en orden de marcha</strong>Aproximadamente 1.600&ndash;1.655 kg en Cabina Simple, 1.890&ndash;1.940 kg en Cabina Chasis y 2.025&ndash;2.085 kg en Doble Cabina, según motor, transmisión y tracción. Cifras de referencia de la ficha técnica pública para el mercado argentino: el peso exacto de cada unidad figura en la placa de identificación del vehículo.</div>
-<div class="detail-spec"><strong>Peso bruto vehicular (PBV)</strong>Aproximadamente 2.750 kg en Cabina Simple, 2.810 kg en Cabina Chasis y 2.910 kg en Doble Cabina, según la misma fuente. Varía levemente según versión y equipamiento.</div>
+<div class="detail-spec"><strong>Peso en orden de marcha</strong>Aproximadamente 1.600&ndash;1.655 kg en Cabina Simple, 1.890&ndash;1.940 kg en Cabina Chasis y 2.025&ndash;2.085 kg en Doble Cabina, según motor, transmisión y tracción. GR-Sport: 2.125&ndash;2.135 kg (ficha oficial GR-Sport). Son cifras de referencia: el peso exacto de cada unidad figura en la placa de identificación del vehículo.</div>
+<div class="detail-spec"><strong>Peso bruto total (PBT)</strong>Doble Cabina: 2.810 kg (4x2) y 3.090 kg (4x4), según la ficha oficial. GR-Sport: 3.140 kg. En Cabina Simple y Cabina Chasis el PBT no está consolidado en la fuente oficial conservada: se confirma con el concesionario.</div>
 </div>
 </div>
 
@@ -697,7 +762,7 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 <div class="detail-specs">
 <div class="detail-spec"><strong>Airbags</strong>7 de serie en toda la gama según el lanzamiento oficial de esta generación: 2 frontales, 2 laterales delanteros, 2 de cortina y 1 de rodilla para conductor.</div>
 <div class="detail-spec"><strong>Asistencias de base</strong>Control de estabilidad (VSC), control de tracción (TRC), control de tracción activo en 4x4 (A-TRC), asistente de arranque en pendiente (HAC), control de descenso asistido en 4x4 (DAC) y control de velocidad crucero.</div>
-<div class="detail-spec"><strong>Toyota Safety Sense</strong>Confirmado en SRX y GR-Sport, con cuatro sistemas: PCS (pre-colisión frontal por radar de ondas milimétricas, con aviso y frenado autónomo de emergencia hasta unos 180 km/h), ACC (crucero adaptativo que mantiene distancia automática desde 20 km/h), LDA (alerta sonora de cambio involuntario de carril desde 30 km/h, con pequeña corrección de trayectoria según equipamiento) y AHB (luces altas automáticas por cámara monocular). La SRV+ no incluye este paquete, según la cobertura de su lanzamiento.</div>
+<div class="detail-spec"><strong>Toyota Safety Sense</strong>La ficha oficial lista tres sistemas: PCS (pre-colisión frontal por radar de ondas milimétricas, con aviso y frenado autónomo de emergencia), ACC (crucero adaptativo que mantiene la distancia con el vehículo de adelante) y LDA (alerta de cambio involuntario de carril). La ficha de feb-2025 los muestra en la SRX 4x4 y en la GR-Sport, no en la SRX 4x2. La SRV y la SRV+ no lo incluyen. Los sistemas tienen límites de velocidad y de condiciones de uso que se detallan en la ficha oficial de Toyota Safety Sense.</div>
 <div class="detail-spec"><strong>Anclajes para sillas infantiles</strong>Anclajes ISOFIX en las dos plazas traseras laterales, en toda la gama.</div>
 <div class="detail-spec"><strong>Calificación Latin NCAP</strong>5 estrellas para protección de ocupante adulto y 5 estrellas para ocupante infantil, obtenidas por la Hilux Doble Cabina fabricada en Zárate bajo el protocolo de evaluación vigente en 2019 (7 airbags, ESC y anclajes ISOFIX de serie). Es la calificación más reciente publicada por Latin NCAP para el modelo local; corresponde a la estructura de esta generación y no a un año modelo específico posterior.</div>
 </div>
@@ -708,10 +773,24 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 <div class="detail-specs">
 <div class="detail-spec"><strong>Multimedia</strong>Pantalla táctil de 9 pulgadas con Android Auto y Apple CarPlay inalámbricos, incorporada en toda la gama &mdash;incluida la DX&mdash; en la actualización de equipamiento más reciente relevada.</div>
 <div class="detail-spec"><strong>Climatización y conectividad</strong>Climatizador desde la versión SRV. Cargador inalámbrico para celular y dos puertos USB-C en las plazas traseras desde SRV, según la actualización de Servicios Conectados de Toyota Argentina.</div>
-<div class="detail-spec"><strong>SRV+</strong>Suma sobre la SRV: llantas de 18&Prime;, manijas exteriores cromadas, acceso y arranque sin llave (Smart Entry), asiento del conductor con ajuste eléctrico, tapizados de cuero y espejo interior con antiencandilamiento automático.</div>
-<div class="detail-spec"><strong>SRX</strong>Suma sobre la SRV+: butacas delanteras con ventilación, audio premium JBL de 8 parlantes y subwoofer, y cámara de visión 360°.</div>
-<div class="detail-spec"><strong>Iluminación</strong>Ópticas halógenas en DX, SR y SRV. LED desde SRV+ y SRX (actualización 2023). En GR-Sport, ópticas LED oscurecidas de estilo deportivo.</div>
+<div class="detail-spec"><strong>SRV</strong>Faros Bi-LED, audio JBL de 6 parlantes con subwoofer, sensores de estacionamiento delanteros (2) y traseros (4), climatizador, cargador inalámbrico y USB-C traseros; llantas de 17&Prime; (4x2) o 18&Prime; (4x4).</div>
+<div class="detail-spec"><strong>SRV+</strong>Suma sobre la SRV: llantas de 18&Prime; en todas sus configuraciones, manijas exteriores cromadas, acceso y arranque sin llave (Smart Entry), asiento del conductor con ajuste eléctrico, tapizados de cuero y espejo interior con antiencandilamiento automático.</div>
+<div class="detail-spec"><strong>SRX</strong>Suma sobre la SRV+: butacas delanteras con ventilación, audio JBL de 8 parlantes y subwoofer (la SRV ya trae JBL de 6 parlantes con subwoofer) y cámara de visión 360°.</div>
+<div class="detail-spec"><strong>Iluminación</strong>Ópticas halógenas en DX y SR. Faros Bi-LED en SRV y SRX según la ficha oficial SRV/SRX (la SRV+ se ubica entre ambas). En GR-Sport, ópticas LED oscurecidas de estilo deportivo.</div>
 <div class="detail-spec"><strong>Servicios Conectados</strong>App móvil con estado del vehículo, rastreo en tiempo real, atención 24/7, historial de uso y chequeos remotos, disponible desde la versión SR a partir de noviembre de 2024.</div>
+</div>
+</div>
+
+<div class="ficha-spec-group">
+<h3>Equipamiento oficial documentado por versión</h3>
+<div class="detail-specs">
+<div class="detail-spec"><strong>Toda la gama</strong>7 airbags (frontales, rodilla del conductor, laterales y cortina); ABS con EBD y BA; control de estabilidad VSC, tracción TRC y asistente de arranque en pendiente HAC; ISOFIX en las dos plazas traseras laterales con anclajes superiores; control de velocidad crucero; pantalla táctil de 9&Prime; con Android Auto y Apple CarPlay inalámbricos, USB y Bluetooth.</div>
+<div class="detail-spec"><strong>Configuraciones 4x4</strong>Tracción 4x4 con reductora y accionamiento electrónico (ADD), control de tracción activo A-TRC, control de descenso DAC y bloqueo del diferencial trasero.</div>
+<div class="detail-spec"><strong>SRV</strong>Bi-LED, JBL de 6 parlantes con subwoofer, sensores delanteros y traseros, climatizador, cargador inalámbrico, USB-C traseros; frenos traseros a tambor.</div>
+<div class="detail-spec"><strong>SRV+</strong>Suma acceso y arranque sin llave (Smart Entry / Push Start), butaca del conductor eléctrica, tapizado de cuero, manijas cromadas, espejo interior antiencandilamiento y llantas de 18&Prime;.</div>
+<div class="detail-spec"><strong>SRX</strong>Suma climatizador bizona, butacas delanteras ventiladas, JBL de 8 parlantes con subwoofer, visión 360°, frenos traseros a disco y levas al volante; Toyota Safety Sense (ACC, PCS y LDA) en 4x4.</div>
+<div class="detail-spec"><strong>GR-Sport</strong>Suspensión y trocha específicas (+140/+155 mm), neumático 265/65 R17 AT, tapizado de cuero y suede con detalles GR, levas al volante y Toyota Safety Sense.</div>
+<div class="detail-spec"><strong>Listado completo</strong>Toyota Argentina publica el detalle línea por línea en las fichas en PDF (ver la sección Documentos oficiales). Ante cualquier diferencia entre esta página y el PDF vigente, prevalece el PDF.</div>
 </div>
 </div>
 
@@ -742,6 +821,37 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 </div>
 </section>
 
+<section id="pesos-capacidades" class="ficha-specs" aria-labelledby="pesos-title">
+<div class="wrap">
+<div class="section-head tight">
+<h2 id="pesos-title">Pesos y capacidades por versión</h2>
+<p>Peso en orden de marcha, peso bruto total (PBT) y carga útil aproximada, con la fuente y el grado de certeza de cada cifra.</p>
+</div>
+<div class="ficha-trim-table-wrap" role="region" aria-label="Pesos y capacidades por versión (tabla desplazable)" tabindex="0">
+<table class="ficha-trim-table">
+<caption>Pesos y capacidades de la Hilux (Doble Cabina y GR-Sport)</caption>
+<thead><tr><th scope="col">Configuración</th><th scope="col">Peso en orden de marcha</th><th scope="col">PBT</th><th scope="col">Carga útil aprox. (estimación)</th><th scope="col">Fuente</th></tr></thead>
+<tbody>
+<tr><th scope="row">Doble Cabina 4x2</th><td>No consolidado por versión</td><td>2.810 kg</td><td>No estimada</td><td>PBT: ficha oficial SRV/SRX</td></tr>
+<tr><th scope="row">Doble Cabina 4x4</th><td>2.025&ndash;2.085 kg (rango de referencia de Doble Cabina)</td><td>3.090 kg</td><td>&asymp; 1.005&ndash;1.065 kg</td><td>PBT: ficha oficial; peso: ficha pública de referencia</td></tr>
+<tr><th scope="row">GR-Sport 4x4</th><td>2.125&ndash;2.135 kg</td><td>3.140 kg</td><td>&asymp; 1.005&ndash;1.015 kg</td><td>Ficha oficial GR-Sport</td></tr>
+<tr><th scope="row">Cabina Simple / Cabina Chasis</th><td>1.600&ndash;1.655 kg / 1.890&ndash;1.940 kg</td><td>A confirmar</td><td>No estimada</td><td>Ficha pública de referencia</td></tr>
+</tbody>
+</table>
+</div>
+<p class="ficha-trim-note">Carga útil aproximada = PBT menos peso en orden de marcha. Es una estimación de esta ficha, no una cifra oficial de Toyota: la carga útil homologada de cada unidad figura en su documentación. Donde falta alguno de los dos datos no se calcula.</p>
+<div class="ficha-spec-group">
+<h3>Capacidades</h3>
+<div class="detail-specs">
+<div class="detail-spec"><strong>Tanque de combustible</strong>80 litros (ficha oficial SRV/SRX)</div>
+<div class="detail-spec"><strong>Remolque</strong>3.500 kg con freno y 750 kg sin freno (ficha oficial SRV/SRX); en otras versiones se confirma con el concesionario.</div>
+<div class="detail-spec"><strong>Volumen de la caja de carga</strong>1.083 litros (fuente complementaria, configuración Doble Cabina)</div>
+<div class="detail-spec"><strong>Ocupantes</strong>5 en Doble Cabina</div>
+</div>
+</div>
+</div>
+</section>
+
 <section id="garantia" class="ficha-specs" aria-labelledby="garantia-title">
 <div class="wrap">
 <div class="section-head tight">
@@ -764,7 +874,7 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 <p>Esquema orientativo de perfil y de la caja de carga, con las medidas publicadas para la configuración Doble Cabina.</p>
 </div>
 <div class="dims-grid">
-<figure class="dims-diagram" role="region" aria-label="Diagrama de dimensiones exteriores (se desliza en pantallas chicas)" tabindex="0">
+<div class="dims-diagram" role="region" aria-label="Diagrama de dimensiones exteriores (se desliza en pantallas chicas)" tabindex="0">
 <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="dimsTitle dimsDesc">
 <title id="dimsTitle">Esquema de perfil de la Hilux con medidas exteriores</title>
 <desc id="dimsDesc">Silueta simplificada de una pick-up doble cabina con líneas de cota para largo total, distancia entre ejes, alto total y despeje al suelo.</desc>
@@ -788,21 +898,21 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 <line x1="618" y1="70" x2="618" y2="209" stroke="#2d3a47"/>
 </g>
 <text x="315" y="255" text-anchor="middle" font-family="Arial" font-size="12" fill="#EB0A1E" font-weight="700">Largo total: 5.325 mm</text>
-<text x="310" y="14" text-anchor="middle" font-family="Arial" font-size="11" fill="#2d3a47" font-weight="700">Alto total: 1.815–1.835 mm</text>
+<text x="310" y="14" text-anchor="middle" font-family="Arial" font-size="11" fill="#2d3a47" font-weight="700">Alto total: 1.815 mm</text>
 <text x="310" y="28" text-anchor="middle" font-family="Arial" font-size="11" fill="#2d3a47" font-weight="700">Entre ejes: 3.085 mm</text>
 </svg>
-<figcaption>Esquema simplificado de referencia, no a escala exacta. Alto total según versión 4x2 o 4x4; despeje al suelo de 227 mm en 4x4 estándar a 247 mm en GR-Sport.</figcaption>
-</figure>
+<p class="dims-caption">Esquema simplificado de referencia, no a escala exacta. Medidas de la ficha oficial SRV/SRX; la GR-Sport publica 2.020 mm de ancho, 1.830 mm de alto y 247 mm de despeje.</p>
+</div>
 <div>
 <h3 style="font-family:var(--display);font-size:14px;margin:0 0 4px">Exterior</h3>
 <div class="detail-specs dims-list">
 <div class="detail-spec"><strong>Largo total</strong>5.325 mm</div>
-<div class="detail-spec"><strong>Ancho total</strong>1.855 mm sin espejos / 2.040 mm con espejos</div>
-<div class="detail-spec"><strong>Alto total</strong>1.815 mm (4x2) / 1.835 mm (4x4)</div>
+<div class="detail-spec"><strong>Ancho total</strong>1.855 mm sin espejos / 2.040 mm con espejos (SRV/SRX oficial); GR-Sport 2.020 mm</div>
+<div class="detail-spec"><strong>Alto total</strong>1.815 mm (SRV/SRX oficial); GR-Sport 1.830 mm</div>
 <div class="detail-spec"><strong>Distancia entre ejes</strong>3.085 mm</div>
 <div class="detail-spec"><strong>Trocha del./tras.</strong>1.540/1.550 mm (DX–SRV+) / 1.680/1.705 mm (SRX y GR-Sport)</div>
-<div class="detail-spec"><strong>Despeje al suelo</strong>215 mm (4x2) / 227 mm (4x4 estándar) / 247 mm (GR-Sport)</div>
-<div class="detail-spec"><strong>Radio de giro</strong>12,8 m (entre cordones) / 13,4 m (entre paredes)</div>
+<div class="detail-spec"><strong>Despeje al suelo</strong>227 mm (SRV/SRX oficial) / 247 mm (GR-Sport oficial); 215 mm en 4x2 según fuentes complementarias</div>
+<div class="detail-spec"><strong>Radio de giro</strong>6,7 m (radio mínimo, ficha oficial SRV/SRX)</div>
 </div>
 <h3 style="font-family:var(--display);font-size:14px;margin:22px 0 4px">Caja de carga</h3>
 <div class="detail-specs dims-list">
@@ -823,7 +933,7 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 <p>Ángulos de trabajo y despeje publicados oficialmente para la Hilux GR-Sport, la única versión de la gama con esta información publicada por Toyota Argentina.</p>
 </div>
 <div class="dims-grid">
-<figure class="dims-diagram" role="region" aria-label="Diagrama de ángulos off-road (se desliza en pantallas chicas)" tabindex="0">
+<div class="dims-diagram" role="region" aria-label="Diagrama de ángulos off-road (se desliza en pantallas chicas)" tabindex="0">
 <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="offroadTitle offroadDesc">
 <title id="offroadTitle">Esquema de ángulos off-road de la Hilux GR-Sport</title>
 <desc id="offroadDesc">Silueta de perfil con el ángulo de ataque delantero, el ángulo ventral bajo el paragolpes y el ángulo de salida trasero.</desc>
@@ -846,15 +956,15 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 <text x="480" y="245" font-family="Arial" font-size="11" fill="#2d3a47" text-anchor="end">Ángulo de salida</text>
 <text x="255" y="255" text-anchor="middle" font-family="Arial" font-size="11" fill="#2d3a47">Ángulo ventral (bajo paragolpes)</text>
 </svg>
-<figcaption>Esquema simplificado de referencia, no a escala exacta.</figcaption>
-</figure>
+<p class="dims-caption">Esquema simplificado de referencia, no a escala exacta.</p>
+</div>
 <div>
 <h3 style="font-family:var(--display);font-size:14px;margin:0 0 4px">Hilux GR-Sport (IV generación)</h3>
 <div class="detail-specs dims-list">
 <div class="detail-spec"><strong>Ángulo de ataque</strong>30°</div>
 <div class="detail-spec"><strong>Ángulo de salida</strong>24°</div>
 <div class="detail-spec"><strong>Ángulo ventral</strong>30°</div>
-<div class="detail-spec"><strong>Despeje al suelo</strong>247 mm (+20 mm sobre el resto de la gama 4x4)</div>
+<div class="detail-spec"><strong>Despeje al suelo</strong>247 mm (ficha oficial GR-Sport)</div>
 <div class="detail-spec"><strong>Tracción</strong>4x4 con reductora y bloqueo de diferencial trasero</div>
 <div class="detail-spec"><strong>Suspensión</strong>Amortiguadores monotubo Gazoo Racing, traseros montados fuera del chasis; trocha +140 mm (del.) / +155 mm (tras.)</div>
 </div>
@@ -878,7 +988,15 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 <div class="color-chip"><span class="swatch" style="background:#17181A"></span><span>Negro Mica <small style="color:var(--muted);font-weight:400">(218)</small></span></div>
 <div class="color-chip"><span class="swatch" style="background:#7A1620"></span><span>Rojo Metalizado <small style="color:var(--muted);font-weight:400">(3T6)</small></span></div>
 </div>
-<p class="color-note">Tonalidades de referencia, no coinciden exactamente con la pintura real ni sustituyen el código de fábrica. El Blanco Perlado (070) históricamente estuvo restringido a las versiones SRX y SRV 4x4; disponibilidad de cada color por versión y año modelo se confirma con el concesionario. Fuentes: cobertura del lanzamiento de esta generación (Autoblog Argentina, Agrofy News, 2020) y del lanzamiento de la SRV+ (Autocosmos, 2025), citadas al pie.</p>
+<h3 class="color-subtitle">Paleta de la GR-Sport</h3>
+<div class="color-grid">
+<div class="color-chip"><span class="swatch" style="background:#17181A"></span><span>Negro Mica</span></div>
+<div class="color-chip"><span class="swatch" style="background:#3B3E40"></span><span>Gris Oscuro Metalizado</span></div>
+<div class="color-chip"><span class="swatch" style="background:linear-gradient(180deg,#17181A 0 28%,#B3121F 28%)"></span><span>Rojo bitono <small style="color:var(--muted);font-weight:400">(techo negro)</small></span></div>
+<div class="color-chip"><span class="swatch" style="background:linear-gradient(180deg,#17181A 0 28%,#EFEFEA 28%)"></span><span>Blanco Perlado con techo negro</span></div>
+</div>
+<p class="color-note">La paleta de la GR-Sport surge de las imágenes del configurador de un concesionario oficial: confirmala con el concesionario antes de elegir color.</p>
+<p class="color-note" style="margin-top:14px">Tonalidades de referencia, no coinciden exactamente con la pintura real ni sustituyen el código de fábrica. El Blanco Perlado (070) no existe en la SRV 4x2. La GR-Sport tiene su propia paleta de 4 colores (ver abajo). La disponibilidad de cada color por versión y año modelo se confirma con el concesionario. Fuentes: cobertura del lanzamiento de esta generación (Autoblog Argentina, Agrofy News, 2020) y del lanzamiento de la SRV+ (Autocosmos, 2025), citadas al pie.</p>
 <p class="color-note" style="margin-top:10px">Toyota Argentina no publica una paleta de colores de interior independiente de la pintura exterior: el material y color del tapizado dependen de la versión, no de la elección de pintura. Tela en DX, SR y SRV; cuero desde SRV+ (mismo tono en toda la gama con este material); cuero ventilado en SRX; cuero y suede con detalles Gazoo Racing en GR-Sport. Ver el detalle completo en la sección Ficha técnica → Confort y tecnología.</p>
 </div>
 </section>
@@ -887,7 +1005,7 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 <div class="wrap">
 <div class="section-head tight">
 <h2 id="configurador-title">Configurador rápido</h2>
-<p>Elegí versión y color para armar tu consulta con los datos ya cargados; el motor, la transmisión y la tracción se completan solos según la versión.</p>
+<p>Elegí versión y color para armar tu consulta con los datos ya cargados; el motor, la transmisión y los colores disponibles se ajustan solos según la versión y la tracción.</p>
 </div>
 <div class="configurator-grid">
 <div class="configurator-form">
@@ -903,6 +1021,13 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 </select>
 </div>
 <div>
+<label for="cfgDrive">Tracción</label>
+<select id="cfgDrive">
+<option value="4x2">4x2</option>
+<option value="4x4" selected="selected">4x4</option>
+</select>
+</div>
+<div>
 <label for="cfgColor">Color</label>
 <select id="cfgColor">
 <option>Súper Blanco</option>
@@ -915,7 +1040,7 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 </div>
 <div id="cfgSummary" class="configurator-summary" aria-live="polite"></div>
 <a id="cfgWhatsApp" class="btn primary block" href="#" rel="noopener noreferrer" target="_blank">Consultar esta configuración por WhatsApp ↗</a>
-<p class="ficha-trim-note">Referencia de motor/transmisión/tracción según la Comparativa completa de versiones de la sección Versiones de la gama. Precio, color exacto y disponibilidad se confirman con el equipo comercial.</p>
+<p class="ficha-trim-note">Referencia según la Comparativa completa de versiones. Los colores por versión surgen de imágenes del configurador de un concesionario y se confirman con el equipo comercial, igual que precio y disponibilidad.</p>
 </div>
 </div>
 </div>
@@ -938,6 +1063,36 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 <article class="access-rich-card"><span class="tag-small">Seguridad</span><h3>Candado para rueda de auxilio</h3><p>De serie en SRX y GR-Sport; disponible como accesorio para el resto de la gama.</p></article>
 </div>
 <p class="ficha-trim-note">Listado orientativo, combinando el catálogo de accesorios genuinos publicado en toyota.com.ar (donde figura, por ejemplo, el snorkel para Hilux DX/SR) y el material difundido por el concesionario en Instagram (@toyotacdelu). Confirmá stock, compatibilidad por versión y precio con el equipo comercial.</p>
+</div>
+</section>
+
+<section id="postventa" class="ficha-access" aria-labelledby="postventa-title">
+<div class="wrap">
+<div class="section-head tight">
+<h2 id="postventa-title">Postventa y neumáticos para tu Hilux</h2>
+<p>Service oficial, repuestos genuinos y cubiertas con la medida de fábrica de cada versión, en el mismo concesionario.</p>
+</div>
+<div class="access-rich-grid">
+<article class="access-rich-card"><span class="tag-small">Service</span><h3>Service oficial y garantía</h3><p>Los mantenimientos hechos en la red oficial son la condición para extender la garantía &ldquo;Toyota 10&rdquo;. <a href="index.html#servicios">Solicitar turno ↗</a></p></article>
+<article class="access-rich-card"><span class="tag-small">Repuestos</span><h3>Repuestos y accesorios genuinos</h3><p>Filtros, frenos, amortiguadores y accesorios genuinos para Hilux. Disponibilidad a confirmar. <a href="index.html#repuestos">Ver repuestos ↗</a></p></article>
+<article class="access-rich-card"><span class="tag-small">Neumáticos</span><h3>Neumáticos Bridgestone</h3><p>Consultá stock y precio de la medida que corresponde a tu versión (tabla debajo) y pedí montaje y balanceo. <a href="index.html#neumaticos">Ver neumáticos ↗</a></p></article>
+</div>
+<div class="ficha-trim-table-wrap" role="region" aria-label="Medidas de neumático de fábrica por versión (tabla desplazable)" tabindex="0">
+<table class="ficha-trim-table">
+<caption>Medida de neumático de fábrica por versión (Doble Cabina)</caption>
+<thead><tr><th scope="col">Versión</th><th scope="col">Llanta</th><th scope="col">Medida habitual</th></tr></thead>
+<tbody>
+<tr><th scope="row">DX</th><td>Chapa</td><td>A confirmar en la etiqueta de la puerta</td></tr>
+<tr><th scope="row">SR</th><td>Aleación 17&Prime;</td><td>265/65 R17</td></tr>
+<tr><th scope="row">SRV 4x2</th><td>Aleación 17&Prime;</td><td>265/65 R17</td></tr>
+<tr><th scope="row">SRV 4x4</th><td>Aleación 18&Prime;</td><td>265/60 R18</td></tr>
+<tr><th scope="row">SRV+ y SRX</th><td>Aleación 18&Prime;</td><td>265/60 R18</td></tr>
+<tr><th scope="row">GR-Sport</th><td>Aleación 17&Prime; GR</td><td>265/65 R17 AT (ficha oficial GR-Sport)</td></tr>
+</tbody>
+</table>
+</div>
+<p class="ficha-trim-note">La medida exacta de cada unidad figura en la etiqueta del marco de la puerta del conductor: confirmala ahí antes de comprar cubiertas de reemplazo.</p>
+<a class="btn primary" href="https://wa.me/5493442502390?text=Hola!%20Quiero%20consultar%20neum%C3%A1ticos%20para%20mi%20Toyota%20Hilux." rel="noopener noreferrer" target="_blank">Consultar neumáticos por WhatsApp ↗</a>
 </div>
 </section>
 
@@ -973,7 +1128,7 @@ Esta sección está lista para mostrar ofertas y tasas vigentes apenas el conces
 </div>
 <div class="faq-item">
 <button class="faq-q" type="button" aria-expanded="false">¿Qué diferencia a la SRV+ de la SRV y de la SRX?<span class="faq-logo-tile" aria-hidden="true"><img src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" width="256" height="256" loading="lazy" decoding="async"/><b class="faq-toggle-badge">+</b></span></button>
-<div class="faq-a" hidden><p>La SRV+, incorporada en 2025, se ubica entre ambas: sobre la SRV suma llantas de 18 pulgadas, acceso y arranque sin llave, asiento del conductor con ajuste eléctrico y tapizados de cuero. A diferencia de la SRX, no tiene las trochas ensanchadas ni el paquete Toyota Safety Sense, que quedan reservados a la SRX y a la GR-Sport.</p></div>
+<div class="faq-a" hidden><p>La SRV+, incorporada en 2025, se ubica entre ambas: sobre la SRV suma acceso y arranque sin llave, asiento del conductor con ajuste eléctrico y tapizados de cuero, y lleva llantas de 18 pulgadas (la SRV 4x4 también las trae). A diferencia de la SRX, no tiene las trochas ensanchadas ni el paquete Toyota Safety Sense, que se ve en la SRX 4x4 y en la GR-Sport.</p></div>
 </div>
 <div class="faq-item">
 <button class="faq-q" type="button" aria-expanded="false">¿Cuánto puede remolcar la Hilux?<span class="faq-logo-tile" aria-hidden="true"><img src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" width="256" height="256" loading="lazy" decoding="async"/><b class="faq-toggle-badge">+</b></span></button>
@@ -981,7 +1136,7 @@ Esta sección está lista para mostrar ofertas y tasas vigentes apenas el conces
 </div>
 <div class="faq-item">
 <button class="faq-q" type="button" aria-expanded="false">¿Desde qué versión trae Toyota Safety Sense?<span class="faq-logo-tile" aria-hidden="true"><img src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" width="256" height="256" loading="lazy" decoding="async"/><b class="faq-toggle-badge">+</b></span></button>
-<div class="faq-a" hidden><p>El paquete de asistencias Toyota Safety Sense (crucero adaptativo, alerta de colisión con frenado autónomo y aviso de cambio de carril) está confirmado en la SRX y en la GR-Sport. Ni la SRV ni la SRV+ lo incluyen, según la cobertura de sus respectivos lanzamientos.</p></div>
+<div class="faq-a" hidden><p>El paquete Toyota Safety Sense (crucero adaptativo ACC, alerta de colisión con frenado autónomo PCS y aviso de cambio de carril LDA) figura en la SRX 4x4 y en la GR-Sport. Ni la SRV ni la SRV+ lo incluyen, y la ficha de feb-2025 no lo muestra en la SRX 4x2.</p></div>
 </div>
 <div class="faq-item">
 <button class="faq-q" type="button" aria-expanded="false">¿Cómo funciona la garantía extendida &ldquo;Toyota 10&rdquo;?<span class="faq-logo-tile" aria-hidden="true"><img src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" width="256" height="256" loading="lazy" decoding="async"/><b class="faq-toggle-badge">+</b></span></button>
@@ -995,6 +1150,30 @@ Esta sección está lista para mostrar ofertas y tasas vigentes apenas el conces
 <button class="faq-q" type="button" aria-expanded="false">¿Conviene comprar esta generación sabiendo que viene una renovación?<span class="faq-logo-tile" aria-hidden="true"><img src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" width="256" height="256" loading="lazy" decoding="async"/><b class="faq-toggle-badge">+</b></span></button>
 <div class="faq-a" hidden><p>Depende del uso: la generación actual tiene más de cinco años en el mercado argentino, mecánica y repuestos ampliamente probados, y sigue siendo líder de ventas del segmento. El rediseño anunciado llega recién entre noviembre y diciembre de 2026, con despliegue escalonado de versiones hasta mediados de 2027, así que la unidad 0 km que se entrega hoy seguirá siendo la generación vigente por un buen tiempo más. Es una decisión que conviene charlar con el equipo comercial según tu plazo de cambio habitual.</p></div>
 </div>
+<div class="faq-item">
+<button class="faq-q" type="button" aria-expanded="false">¿Cuál es el radio de giro de la Hilux?<span class="faq-logo-tile" aria-hidden="true"><img src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" width="256" height="256" loading="lazy" decoding="async"/><b class="faq-toggle-badge">+</b></span></button>
+<div class="faq-a" hidden><p>El radio mínimo de giro oficial es de 6,7 metros, según la ficha de Toyota Argentina. Eso equivale a un diámetro de giro de unos 13,4 metros.</p></div>
+</div>
+<div class="faq-item">
+<button class="faq-q" type="button" aria-expanded="false">¿Cuánta carga útil tiene la Hilux Doble Cabina?<span class="faq-logo-tile" aria-hidden="true"><img src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" width="256" height="256" loading="lazy" decoding="async"/><b class="faq-toggle-badge">+</b></span></button>
+<div class="faq-a" hidden><p>Toyota publica el peso bruto total (2.810 kg en 4x2, 3.090 kg en 4x4 y 3.140 kg en la GR-Sport) pero no una carga útil por versión. Restando el peso en orden de marcha, la estimación ronda 1.005–1.065 kg en Doble Cabina 4x4 y 1.005–1.015 kg en la GR-Sport. Es un cálculo aproximado: la cifra homologada figura en la documentación de cada unidad.</p></div>
+</div>
+<div class="faq-item">
+<button class="faq-q" type="button" aria-expanded="false">¿Qué medida de neumáticos trae la Hilux?<span class="faq-logo-tile" aria-hidden="true"><img src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" width="256" height="256" loading="lazy" decoding="async"/><b class="faq-toggle-badge">+</b></span></button>
+<div class="faq-a" hidden><p>Las versiones con llanta de 17 pulgadas usan 265/65 R17 (la GR-Sport, en versión AT) y las de 18 pulgadas usan 265/60 R18. La SRV lleva llantas de 17 pulgadas en 4x2 y de 18 en 4x4. Confirmá la medida exacta en la etiqueta del marco de la puerta del conductor.</p></div>
+</div>
+<div class="faq-item">
+<button class="faq-q" type="button" aria-expanded="false">¿La Hilux SRV es manual o automática?<span class="faq-logo-tile" aria-hidden="true"><img src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" width="256" height="256" loading="lazy" decoding="async"/><b class="faq-toggle-badge">+</b></span></button>
+<div class="faq-a" hidden><p>Las fichas oficiales vigentes de la SRV listan solamente la caja automática de 6 velocidades. La manual de 6 velocidades se ofrece en la DX y la SR. Confirmá con el concesionario si hay unidades manuales en stock.</p></div>
+</div>
+<div class="faq-item">
+<button class="faq-q" type="button" aria-expanded="false">¿La SRX 4x2 trae Toyota Safety Sense?<span class="faq-logo-tile" aria-hidden="true"><img src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" width="256" height="256" loading="lazy" decoding="async"/><b class="faq-toggle-badge">+</b></span></button>
+<div class="faq-a" hidden><p>La ficha oficial de febrero de 2025 muestra el paquete (ACC, PCS y LDA) en la SRX 4x4 y en la GR-Sport, no en la SRX 4x2. Si es un requisito para vos, pedile al concesionario que lo confirme por unidad.</p></div>
+</div>
+<div class="faq-item">
+<button class="faq-q" type="button" aria-expanded="false">¿Qué colores tiene la Hilux GR-Sport?<span class="faq-logo-tile" aria-hidden="true"><img src="toyota-sharp-assets/asset-bec83be10e47-256.webp" alt="" width="256" height="256" loading="lazy" decoding="async"/><b class="faq-toggle-badge">+</b></span></button>
+<div class="faq-a" hidden><p>Según el configurador de un concesionario oficial, la GR-Sport se ofrece en cuatro colores: Negro Mica, Gris Oscuro Metalizado, Rojo bitono y Blanco Perlado con techo negro. Confirmalo con el concesionario antes de decidir.</p></div>
+</div>
 </div>
 </div>
 </section>
@@ -1004,10 +1183,25 @@ Esta sección está lista para mostrar ofertas y tasas vigentes apenas el conces
 <div class="section-head tight"><h2 id="datos-verificados-title">Datos estructurados y verificación</h2><p>La siguiente matriz separa los datos publicados oficialmente para Argentina de los campos que Toyota no consolida por versión en la documentación consultada.</p></div>
 <div class="ficha-note"><strong style="display:block;font-family:var(--display);font-size:13px;color:var(--toyota-red-text);margin-bottom:8px">Criterio de lectura</strong><strong>Mercado:</strong> Argentina. <strong>Consulta:</strong> 24 de septiembre de 2026. Se priorizó Toyota Argentina. “No publicado” no significa que el vehículo no lo tenga: significa que la fuente argentina consultada no permite atribuirlo con seguridad a todas las versiones. No se trasladaron especificaciones de otros países.</div>
 <div class="ficha-spec-group"><h3>Motorizaciones documentadas</h3><div class="detail-specs"><div class="detail-spec"><strong>1GD 2.8 l</strong>Diésel Grado 3, Euro 5 con DPF; 4 cilindros en línea; 2.755 cm³; 92,0 × 103,6 mm; relación de compresión 15,6:1; TGV e intercooler; inyección directa Common-Rail; 16 válvulas DOHC con cadena. Potencia máxima: 204 CV (150 kW) a 3.000–3.400 rpm. Torque máximo: 500 Nm a 1.600–2.800 rpm. Fuente: ficha oficial argentina SRV/SRX del 18/09/2025.</div><div class="detail-spec"><strong>2GD-FTV 2.4 l</strong>La ficha existente de la página menciona 150 CV y 400 Nm, pero la fuente oficial argentina conservada en este trabajo no consolida su aplicación vigente por cada versión. Por precisión, no se asigna aquí a una versión actual concreta sin la ficha argentina específica correspondiente.</div></div></div>
-<div class="ficha-spec-group"><h3>Dimensiones, capacidades y chasis publicados</h3><div class="detail-specs"><div class="detail-spec"><strong>SRV/SRX documentadas</strong>Largo 5.325 mm; ancho 1.855 mm; alto 1.815 mm; distancia entre ejes 3.085 mm; despeje 227 mm; tanque 80 l; radio mínimo de giro 6,7 m; remolque con freno 3.500 kg y sin freno 750 kg.</div><div class="detail-spec"><strong>Suspensión y dirección</strong>Delantera independiente de doble brazo, resortes helicoidales, amortiguadores telescópicos y barra estabilizadora. Trasera con eje rígido, elásticos longitudinales y amortiguadores telescópicos. Dirección hidráulica de piñón y cremallera con asistencia variable. Frenos delanteros de discos ventilados; traseros a tambor en SRV/SRV+ y discos ventilados en SRX, según la ficha oficial consultada.</div><div class="detail-spec"><strong>Tracción y transmisión</strong>Automática de 6 velocidades en SRV/SRX. En 4x4: 4x4 reducida con accionamiento electrónico, ADD y A-TRC. El bloqueo de diferencial trasero está indicado para las versiones 4x4.</div><div class="detail-spec"><strong>GR-Sport</strong>La documentación argentina específica publica 247 mm de despeje y caja automática de 6 velocidades con levas; no se completan aquí otras cifras si no están inequívocamente expuestas en la ficha argentina vigente.</div></div></div>
-<div class="ficha-spec-group"><h3>Matriz por versión argentina</h3><div class="ficha-trim-table-wrap" role="region" aria-label="Matriz de verificación por versión (tabla desplazable)" tabindex="0"><table class="ficha-trim-table"><caption>Estado de verificación con documentación argentina consultada</caption><thead><tr><th scope="col">Versión</th><th scope="col">Datos confirmados</th><th scope="col">Campos que requieren confirmación por unidad</th><th scope="col">Fuente</th></tr></thead><tbody><tr><th scope="row">DX</th><td>Nombre de versión dentro de la gama Hilux argentina.</td><td>Motor, caja, tracción, ruedas, ADAS y equipamiento exacto por carrocería.</td><td>Catálogo/modelos Toyota Argentina</td></tr><tr><th scope="row">SR</th><td>Nombre de versión dentro de la gama Hilux argentina.</td><td>Motor, caja, tracción, ruedas, seguridad y equipamiento exacto por configuración.</td><td>Catálogo/modelos Toyota Argentina</td></tr><tr><th scope="row">SRV</th><td>Motor 1GD 2.8 l, 204 CV, 500 Nm; 4x2/4x4; caja 6 A/T en ficha; equipamiento y seguridad detallados en ficha oficial.</td><td>Disponibilidad exacta, combinación de carrocería y medidas de neumático por unidad.</td><td>Ficha oficial SRV/SRX</td></tr><tr><th scope="row">SRV+</th><td>Motor 1GD 2.8 l, 204 CV, 500 Nm; caja 6 A/T; equipamiento diferencial publicado para esta configuración.</td><td>Disponibilidad vigente, tracción según unidad y ausencia/presencia de ADAS no documentada aquí.</td><td>Ficha oficial SRV/SRX</td></tr><tr><th scope="row">SRX</th><td>Motor 1GD 2.8 l, 204 CV, 500 Nm; caja 6 A/T; 4x2/4x4/reducida; Toyota Safety Sense (ACC, PCS, LDA); 7 airbags; JBL; visión 360°; ventilación de butacas; Bi-LED.</td><td>Códigos de color y disponibilidad comercial por unidad.</td><td>Ficha oficial SRV/SRX</td></tr><tr><th scope="row">GR-Sport</th><td>Variante argentina documentada; caja automática 6 velocidades con levas; 2x4/4x4/reducida; despeje 247 mm.</td><td>Potencia, torque, dimensiones completas, ADAS y colores según ficha argentina específica vigente.</td><td>Ficha oficial GR-Sport</td></tr></tbody></table></div></div>
-<div class="ficha-spec-group"><h3>Seguridad, tecnología y colores</h3><div class="detail-specs"><div class="detail-spec"><strong>Seguridad documentada</strong>7 airbags (frontales x2, rodilla del conductor, laterales x2 y cortina x2), ABS/EBD/BA, VSC, TRC, HAC e ISOFIX x2 con anclajes superiores x2. En 4x4 se documentan A-TRC, DAC y bloqueo de diferencial trasero. Toyota Safety Sense queda atribuido a SRX en la ficha consultada: ACC, PCS y LDA.</div><div class="detail-spec"><strong>Tecnología documentada</strong>Pantalla táctil de 9 pulgadas, Android Auto y Apple CarPlay inalámbricos, USB, Bluetooth, Servicios Conectados, cargador inalámbrico, USB-C traseros, JBL de 8 parlantes + subwoofer, visión 360° y sensores de estacionamiento según versión.</div><div class="detail-spec"><strong>Colores publicados</strong>Súper blanco, Blanco perlado, Negro mica, Plata metalizado, Gris oscuro metalizado y Rojo metalizado. El código y la disponibilidad por versión deben confirmarse en el catálogo vigente.</div></div></div>
-<div class="ficha-note"><strong>Fuentes de datos:</strong> Toyota Argentina — <a href="https://media.toyota.com.ar/73c220a5-1236-4972-a38a-4eda757c0eb3.pdf" target="_blank" rel="noopener noreferrer">ficha Hilux SRV/SRX, 18/09/2025 ↗</a>; <a href="https://media.toyota.com.ar/fc535824-e532-422c-9d68-072cf0d4a032.pdf" target="_blank" rel="noopener noreferrer">ficha Hilux GR-Sport ↗</a>; <a href="https://www.toyota.com.ar/modelos" target="_blank" rel="noopener noreferrer">catálogo de modelos argentinos ↗</a>. El detalle completo de fuente, URL, fecha y nivel de verificación queda conservado en <code>data/models.json</code>.</div>
+<div class="ficha-spec-group"><h3>Dimensiones, capacidades y chasis publicados</h3><div class="detail-specs"><div class="detail-spec"><strong>SRV/SRX documentadas</strong>Largo 5.325 mm; ancho 1.855 mm; alto 1.815 mm; distancia entre ejes 3.085 mm; despeje 227 mm; tanque 80 l; radio mínimo de giro 6,7 m; remolque con freno 3.500 kg y sin freno 750 kg.</div><div class="detail-spec"><strong>Suspensión y dirección</strong>Delantera independiente de doble brazo, resortes helicoidales, amortiguadores telescópicos y barra estabilizadora. Trasera con eje rígido, elásticos longitudinales y amortiguadores telescópicos. Dirección hidráulica de piñón y cremallera con asistencia variable. Frenos delanteros de discos ventilados; traseros a tambor en SRV/SRV+ y discos ventilados en SRX, según la ficha oficial consultada.</div><div class="detail-spec"><strong>Tracción y transmisión</strong>Automática de 6 velocidades en SRV/SRX. En 4x4: 4x4 reducida con accionamiento electrónico, ADD y A-TRC. El bloqueo de diferencial trasero está indicado para las versiones 4x4.</div><div class="detail-spec"><strong>GR-Sport</strong>Ficha oficial: ancho 2.020 mm, alto 1.830 mm, despeje 247 mm, neumático 265/65 R17 AT, trocha +140/+155 mm, peso en orden de marcha 2.125&ndash;2.135 kg, PBT 3.140 kg y caja automática de 6 velocidades con levas.</div>
+<div class="detail-spec"><strong>SRX de plataforma renovada: dos fuentes</strong>La ficha oficial combinada de feb-2025 indica ancho 1.855 mm, alto 1.815 mm y despeje 227 mm. Monkey Motor y PickupArena publican 2.020 mm, 1.830 mm y 247 mm para la SRX renovada. Se muestran ambas con su fuente hasta que Toyota consolide una ficha única.</div></div></div>
+<div class="ficha-spec-group"><h3>Matriz por versión argentina</h3><div class="ficha-trim-table-wrap" role="region" aria-label="Matriz de verificación por versión (tabla desplazable)" tabindex="0"><table class="ficha-trim-table"><caption>Estado de verificación con documentación argentina consultada</caption><thead><tr><th scope="col">Versión</th><th scope="col">Datos confirmados</th><th scope="col">Campos que requieren confirmación por unidad</th><th scope="col">Fuente</th></tr></thead><tbody><tr><th scope="row">DX</th><td>Nombre de versión dentro de la gama Hilux argentina.</td><td>Motor, caja, tracción, ruedas, ADAS y equipamiento exacto por carrocería.</td><td>Catálogo/modelos Toyota Argentina</td></tr><tr><th scope="row">SR</th><td>Nombre de versión dentro de la gama Hilux argentina.</td><td>Motor, caja, tracción, ruedas, seguridad y equipamiento exacto por configuración.</td><td>Catálogo/modelos Toyota Argentina</td></tr><tr><th scope="row">SRV</th><td>Motor 1GD 2.8 l, 204 CV, 500 Nm; 4x2/4x4; caja 6 A/T (única en las fichas vigentes); Bi-LED; JBL de 6 parlantes + subwoofer; sensores delanteros y traseros; llantas de 17&Prime; (4x2) y 18&Prime; (4x4).</td><td>Disponibilidad exacta, combinación de carrocería y medidas de neumático por unidad.</td><td>Ficha oficial SRV/SRX</td></tr><tr><th scope="row">SRV+</th><td>Motor 1GD 2.8 l, 204 CV, 500 Nm; caja 6 A/T; equipamiento diferencial publicado para esta configuración.</td><td>Disponibilidad vigente, tracción según unidad y ausencia/presencia de ADAS no documentada aquí.</td><td>Ficha oficial SRV/SRX</td></tr><tr><th scope="row">SRX</th><td>Motor 1GD 2.8 l, 204 CV, 500 Nm; caja 6 A/T; 4x2/4x4/reducida; Toyota Safety Sense (ACC, PCS, LDA) en 4x4, no en 4x2; 7 airbags; JBL 8 parlantes + subwoofer; visión 360°; ventilación de butacas; Bi-LED.</td><td>Códigos de color y disponibilidad comercial por unidad.</td><td>Ficha oficial SRV/SRX</td></tr><tr><th scope="row">GR-Sport</th><td>Caja automática 6 velocidades con levas; 4x4/reducida; ancho 2.020 mm; alto 1.830 mm; despeje 247 mm; neumático 265/65 R17 AT; trocha +140/+155 mm; peso en orden de marcha 2.125&ndash;2.135 kg; PBT 3.140 kg; Toyota Safety Sense.</td><td>Potencia y torque (fuente complementaria: Autocosmos), sensores de estacionamiento y colores (configurador de concesionario).</td><td>Ficha oficial GR-Sport</td></tr></tbody></table></div></div>
+<div class="ficha-spec-group"><h3>Seguridad, tecnología y colores</h3><div class="detail-specs"><div class="detail-spec"><strong>Seguridad documentada</strong>7 airbags (frontales x2, rodilla del conductor, laterales x2 y cortina x2), ABS/EBD/BA, VSC, TRC, HAC e ISOFIX x2 con anclajes superiores x2. En 4x4 se documentan A-TRC, DAC y bloqueo de diferencial trasero. Toyota Safety Sense: ACC, PCS y LDA, mostrado en SRX 4x4 y GR-Sport (no en SRX 4x2).</div><div class="detail-spec"><strong>Tecnología documentada</strong>Pantalla táctil de 9 pulgadas, Android Auto y Apple CarPlay inalámbricos, USB, Bluetooth, Servicios Conectados, cargador inalámbrico, USB-C traseros, JBL de 6 parlantes + subwoofer en SRV y de 8 en SRX, visión 360° en SRX y sensores de estacionamiento delanteros y traseros en SRV y SRX.</div><div class="detail-spec"><strong>Colores publicados</strong>Súper blanco, Blanco perlado, Negro mica, Plata metalizado, Gris oscuro metalizado y Rojo metalizado. La GR-Sport tiene 4 (Negro mica, Gris oscuro metalizado, Rojo bitono y Blanco perlado con techo negro) y el Blanco perlado no existe en la SRV 4x2, según el configurador de un concesionario. El código y la disponibilidad por versión deben confirmarse en el catálogo vigente.</div></div></div>
+<div class="ficha-note"><strong>Fuentes de datos:</strong> Toyota Argentina — <a href="https://media.toyota.com.ar/73c220a5-1236-4972-a38a-4eda757c0eb3.pdf" target="_blank" rel="noopener noreferrer">ficha Hilux SRV/SRX, 18/09/2025 ↗</a>; <a href="https://media.toyota.com.ar/fc535824-e532-422c-9d68-072cf0d4a032.pdf" target="_blank" rel="noopener noreferrer">ficha Hilux GR-Sport ↗</a>; <a href="#documentos">documentos PDF</a>; <a href="https://www.toyota.com.ar/modelos" target="_blank" rel="noopener noreferrer">catálogo de modelos argentinos ↗</a>. El detalle completo de fuente, URL, fecha y nivel de verificación queda conservado en <code>data/models.json</code>.</div>
+</div>
+</section>
+
+<section id="documentos" class="ficha-specs" aria-labelledby="documentos-title">
+<div class="wrap">
+<div class="section-head tight">
+<h2 id="documentos-title">Documentos oficiales en PDF</h2>
+<p>Fichas de Toyota Argentina para contrastar cada dato. Si un PDF vigente difiere de esta página, prevalece el PDF.</p>
+</div>
+<div class="doc-grid">
+<a class="doc-card" href="https://media.toyota.com.ar/73c220a5-1236-4972-a38a-4eda757c0eb3.pdf" target="_blank" rel="noopener noreferrer"><span class="tag-small">PDF · 18/09/2025</span><strong>Ficha técnica Hilux SRV / SRX</strong><small>Motor, dimensiones, seguridad, equipamiento y colores.</small></a>
+<a class="doc-card" href="https://media.toyota.com.ar/fc535824-e532-422c-9d68-072cf0d4a032.pdf" target="_blank" rel="noopener noreferrer"><span class="tag-small">PDF</span><strong>Ficha técnica Hilux GR-Sport</strong><small>Medidas, pesos, neumáticos, transmisión y tracción.</small></a>
+<a class="doc-card" href="https://media.toyota.com.ar/4168cbbe-c55f-4b7f-b1ce-2b497ad1f339.pdf" target="_blank" rel="noopener noreferrer"><span class="tag-small">PDF · prensa</span><strong>Hilux GR-Sport: ángulos y despeje</strong><small>Ángulos de ataque, ventral y salida.</small></a>
+</div>
 </div>
 </section>
 
@@ -1174,28 +1368,46 @@ document.addEventListener("DOMContentLoaded", function(){
     });
   }
 
-  // ---- Configurador rápido (versión + color -> consulta por WhatsApp) ----
+  // ---- Configurador rápido (versión + tracción + color -> consulta por WhatsApp) ----
+  var COLORES = ["Súper Blanco","Blanco Perlado","Plata Metalizado","Gris Oscuro Metalizado","Negro Mica","Rojo Metalizado"];
+  var COLORES_GR = ["Negro Mica","Gris Oscuro Metalizado","Rojo bitono (techo negro)","Blanco Perlado con techo negro"];
   var CONFIG_VERSIONES = {
-    "DX":       "Motor 2.4 TD (150 CV), manual o automática de 6 velocidades, 4x2/4x4.",
-    "SR":       "Motor 2.4 TD (4x2) o 2.8 TD (4x4), manual o automática de 6 velocidades.",
-    "SRV":      "Motor 2.8 TD (204 CV), manual o automática de 6 velocidades, 4x2/4x4.",
-    "SRV+":     "Motor 2.8 TD (204 CV), automática de 6 velocidades (única opción), 4x4.",
-    "SRX":      "Motor 2.8 TD (204 CV), automática de 6 velocidades (única opción), 4x2/4x4/reducida.",
-    "GR-Sport": "Motor 2.8 TD potenciado a 224 CV, automática de 6 velocidades, 4x4 con reductora."
+    "DX":       {tr:["4x2","4x4"], txt:"Motor 2.4 TD (150 CV, 400 Nm). Manual de 6 velocidades; automática de 6 velocidades en Doble Cabina."},
+    "SR":       {tr:["4x2","4x4"], txt:"Motor 2.4 TD en 4x2 o 2.8 TD (204 CV) en 4x4. Manual o automática de 6 velocidades. Llantas de aleación de 17″."},
+    "SRV":      {tr:["4x2","4x4"], txt:"Motor 2.8 TD (204 CV, 500 Nm) con automática de 6 velocidades. Faros Bi-LED, JBL de 6 parlantes con subwoofer y sensores delanteros y traseros. Llantas de 17″ (4x2) o 18″ (4x4)."},
+    "SRV+":     {tr:["4x4"],       txt:"Motor 2.8 TD (204 CV, 500 Nm) con automática de 6 velocidades y 4x4. Llantas de 18″, acceso sin llave, butaca eléctrica y cuero."},
+    "SRX":      {tr:["4x2","4x4"], txt:"Motor 2.8 TD (204 CV, 500 Nm) con automática de 6 velocidades. JBL de 8 parlantes, visión 360° y butacas ventiladas.", tss4x4:true},
+    "GR-Sport": {tr:["4x4"],       txt:"Motor 2.8 TD potenciado (224 CV, 550 Nm), automática de 6 velocidades con levas, 4x4 con reductora, llantas de 17″ con neumático 265/65 R17 AT y Toyota Safety Sense.", colores:COLORES_GR}
   };
   var cfgVersion = document.getElementById("cfgVersion");
+  var cfgDrive = document.getElementById("cfgDrive");
   var cfgColor = document.getElementById("cfgColor");
   var cfgSummary = document.getElementById("cfgSummary");
   var cfgWhatsApp = document.getElementById("cfgWhatsApp");
-  function actualizarConfigurador(){
-    if(!cfgVersion || !cfgColor) return;
-    var version = cfgVersion.value, color = cfgColor.value;
-    if(cfgSummary) cfgSummary.textContent = CONFIG_VERSIONES[version] || "";
-    if(cfgWhatsApp) cfgWhatsApp.href = wa("ventas", "Hola! Quiero consultar por una Toyota Hilux versión " + version + ", color " + color + ". ¿Tienen disponibilidad y qué financiación ofrecen?");
+  function llenar(select, valores, preferido){
+    var actual = preferido || select.value;
+    select.textContent = "";
+    valores.forEach(function(v){ var o = document.createElement("option"); o.value = v; o.textContent = v; select.appendChild(o); });
+    select.value = valores.indexOf(actual) >= 0 ? actual : valores[valores.length - 1];
+    if(valores.indexOf(actual) < 0 && select === cfgColor) select.value = valores[0];
   }
-  if(cfgVersion && cfgColor){
+  function actualizarConfigurador(){
+    if(!cfgVersion || !cfgColor || !cfgDrive) return;
+    var version = cfgVersion.value, cfg = CONFIG_VERSIONES[version];
+    if(!cfg) return;
+    llenar(cfgDrive, cfg.tr);
+    var tr = cfgDrive.value;
+    var colores = cfg.colores || COLORES.filter(function(c){ return !(version === "SRV" && tr === "4x2" && c === "Blanco Perlado"); });
+    llenar(cfgColor, colores);
+    var color = cfgColor.value;
+    var txt = cfg.txt + (cfg.tss4x4 ? (tr === "4x4" ? " Con Toyota Safety Sense (ACC, PCS y LDA)." : " Sin Toyota Safety Sense en 4x2.") : "");
+    if(cfgSummary) cfgSummary.textContent = txt;
+    if(cfgWhatsApp) cfgWhatsApp.href = wa("ventas", "Hola! Quiero consultar por una Toyota Hilux versión " + version + " " + tr + ", color " + color + ". ¿Tienen disponibilidad y qué financiación ofrecen?");
+  }
+  if(cfgVersion && cfgColor && cfgDrive){
     cfgVersion.addEventListener("change", actualizarConfigurador);
-    cfgColor.addEventListener("change", actualizarConfigurador);
+    cfgDrive.addEventListener("change", actualizarConfigurador);
+    cfgColor.addEventListener("change", function(){ var c = CONFIG_VERSIONES[cfgVersion.value]; if(cfgWhatsApp && c) cfgWhatsApp.href = wa("ventas", "Hola! Quiero consultar por una Toyota Hilux versión " + cfgVersion.value + " " + cfgDrive.value + ", color " + cfgColor.value + ". ¿Tienen disponibilidad y qué financiación ofrecen?"); });
     actualizarConfigurador();
   }
   // overlays abiertos a la vez no se desbloqueen mutuamente al cerrar solo uno. ----
