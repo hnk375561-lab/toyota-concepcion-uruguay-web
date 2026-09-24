@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { syncSchemaInHtml } from './lib/schema.mjs';
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const templatePath = path.join(root, 'templates', 'model.html');
@@ -53,6 +54,10 @@ for (const model of models) {
   }
   const leftovers = html.match(/\{\{[A-Z0-9_]+\}\}/g);
   if (leftovers) throw new Error(`${model.slug}: placeholders sin resolver: ${leftovers.join(', ')}`);
+  const { html: htmlWithSchema, faqCount, hasBreadcrumb } = syncSchemaInHtml(html);
+  html = htmlWithSchema;
+  if (!hasBreadcrumb) console.warn(`  ⚠ ${model.slug}: no se pudo armar el BreadcrumbList.`);
+  console.log(`  · ${model.slug}: ${faqCount} preguntas FAQ heredadas de la plantilla (revisar/adaptar el contenido del FAQ y de las secciones marcadas "ADAPTAR POR MODELO").`);
   const output = path.join(root, `${model.slug}.html`);
   fs.writeFileSync(output, html.endsWith('\n') ? html : `${html}\n`);
   console.log(`${path.relative(root, output)} (${Buffer.byteLength(html)} bytes)`);
