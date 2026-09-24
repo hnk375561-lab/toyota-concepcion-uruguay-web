@@ -415,26 +415,14 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
 <nav class="breadcrumbs" aria-label="Miga de pan"><a href="index.html">Inicio</a> / <a href="index.html#gama">Vehículos</a> / <span aria-current="page">Hilux</span></nav>
 </div>
 
-<nav class="ficha-jumpnav" aria-label="Navegación de la ficha">
-<div class="wrap">
-<a href="#elegir-version">Qué versión elegir</a>
-<a href="#cual-es-mi-hilux">Test rápido</a>
-<a href="#versiones">Versiones</a>
-<a href="#rendimiento">Motor y rendimiento</a>
-<a href="#ficha-tecnica">Ficha técnica</a>
-<a href="#pesos-capacidades">Pesos y cargas</a>
-<a href="#garantia">Garantía</a>
-<a href="#dimensiones">Dimensiones</a>
-<a href="#offroad">Aptitud off-road</a>
-<a href="#colores">Colores</a>
-<a href="#configurador">Configurador</a>
-<a href="#accesorios">Accesorios</a>
-<a href="#postventa">Postventa y neumáticos</a>
-<a href="#ofertas-financiacion">Ofertas y financiación</a>
-<a href="#preguntas-frecuentes">Preguntas frecuentes</a>
-<a href="#datos-verificados">Datos verificados</a>
-<a href="#documentos">Documentos PDF</a>
-<a href="#fuentes">Fuentes</a>
+<nav class="ficha-jumpnav" aria-label="Secciones de la ficha">
+<div class="wrap" role="tablist" aria-label="Secciones de la ficha">
+<a href="#elegir-version" id="tab-elegir" class="jump-tab is-active" role="tab" aria-selected="true" aria-controls="panel-elegir" tabindex="0">Elegí tu versión</a>
+<a href="#versiones" id="tab-versiones" class="jump-tab" role="tab" aria-selected="false" aria-controls="panel-versiones" tabindex="-1">Versiones y motor</a>
+<a href="#ficha-tecnica" id="tab-specs" class="jump-tab" role="tab" aria-selected="false" aria-controls="panel-specs" tabindex="-1">Ficha técnica</a>
+<a href="#colores" id="tab-personalizar" class="jump-tab" role="tab" aria-selected="false" aria-controls="panel-personalizar" tabindex="-1">Colores y accesorios</a>
+<a href="#postventa" id="tab-postventa" class="jump-tab" role="tab" aria-selected="false" aria-controls="panel-postventa" tabindex="-1">Postventa y financiación</a>
+<a href="#preguntas-frecuentes" id="tab-info" class="jump-tab" role="tab" aria-selected="false" aria-controls="panel-info" tabindex="-1">Preguntas y fuentes</a>
 <a class="ficha-jump-cta" href="https://wa.me/5493442473453?text=Hola!%20Quiero%20consultar%20por%20la%20Toyota%20Hilux." rel="noopener noreferrer" target="_blank">Consultar ↗</a>
 </div>
 </nav>
@@ -488,6 +476,7 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
 </div>
 </section>
 
+<div class="tab-panel" id="panel-elegir" role="tabpanel" aria-labelledby="tab-elegir">
 <section id="elegir-version" class="ficha-usecases" aria-labelledby="ficha-usecases-title">
 <div class="wrap">
 <div class="section-head tight">
@@ -523,9 +512,7 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
 <p class="ficha-trim-note">Es una guía orientativa a partir de la configuración habitual de cada versión, no una recomendación cerrada: el equipo comercial confirma cuál te conviene según tu uso real y el stock disponible.</p>
 <p class="ficha-trim-note">¿Cómo se posiciona frente a otras pick-ups medianas del segmento (Ranger, S10, Amarok, Frontier)? Según Toyota Argentina, la Hilux fue la pick-up más vendida del mercado argentino durante 20 años consecutivos (2006–2025), con una red de service y repuestos particularmente extendida en el interior del país. No publicamos aquí una comparativa spec-a-spec contra otras marcas por rigurosidad: cada fabricante actualiza sus fichas con calendarios distintos y una tabla desactualizada confunde más de lo que ayuda. Si estás dudando entre modelos, contanos cuáles y te armamos la comparación con datos vigentes de cada uno.</p>
 </div>
-</section>
-
-<section id="cual-es-mi-hilux" class="ficha-usecases" aria-labelledby="quiz-title" style="background:var(--surface-alt)">
+</section><section id="cual-es-mi-hilux" class="ficha-usecases" aria-labelledby="quiz-title" style="background:var(--surface-alt)">
 <div class="wrap">
 <div class="section-head tight">
 <h2 id="quiz-title">Test rápido: ¿cuál es tu Hilux?</h2>
@@ -573,7 +560,8 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
 <div id="quizResult" class="quiz-result" hidden></div>
 </div>
 </section>
-
+</div>
+<div class="tab-panel" id="panel-versiones" role="tabpanel" aria-labelledby="tab-versiones" hidden>
 <section id="versiones" class="ficha-trims" aria-labelledby="ficha-trims-title">
 <div class="wrap">
 <div class="section-head tight">
@@ -635,9 +623,7 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
 <p class="ficha-trim-note ficha-legend"><strong>Cómo leer la tabla:</strong> «—» significa que esa versión no incluye el equipamiento según las fuentes citadas. «A confirmar» es un dato que el concesionario verifica por unidad.</p>
 <p class="ficha-trim-note">Datos de motor, transmisión y equipamiento según la ficha oficial de Toyota Argentina, la cobertura del lanzamiento de la SRV+ (Autocosmos y Mercado Libre) y la nota técnica de la GR-Sport (Autocosmos), citadas al pie. &ldquo;Según config.&rdquo; y combinaciones dobles dependen del año modelo y el paquete de equipamiento elegido: se confirman con el concesionario. La SRV+ hereda de la SRV el audio JBL de 6 parlantes y los sensores de estacionamiento; &ldquo;A confirmar&rdquo; indica que la documentación consultada no permite afirmarlo ni negarlo.</p>
 </div>
-</section>
-
-<section id="rendimiento" class="ficha-perf" aria-labelledby="ficha-perf-title">
+</section><section id="rendimiento" class="ficha-perf" aria-labelledby="ficha-perf-title">
 <div class="wrap">
 <div class="section-head tight">
 <h2 id="ficha-perf-title">Motor y rendimiento: 2.4 vs. 2.8</h2>
@@ -666,7 +652,8 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 </div>
 </div>
 </section>
-
+</div>
+<div class="tab-panel" id="panel-specs" role="tabpanel" aria-labelledby="tab-specs" hidden>
 <section id="ficha-tecnica" class="ficha-specs" aria-labelledby="ficha-specs-title">
 <div class="wrap">
 <div class="section-head tight">
@@ -819,9 +806,7 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 </div>
 
 </div>
-</section>
-
-<section id="pesos-capacidades" class="ficha-specs" aria-labelledby="pesos-title">
+</section><section id="pesos-capacidades" class="ficha-specs" aria-labelledby="pesos-title">
 <div class="wrap">
 <div class="section-head tight">
 <h2 id="pesos-title">Pesos y capacidades por versión</h2>
@@ -851,9 +836,7 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 </div>
 </div>
 </div>
-</section>
-
-<section id="garantia" class="ficha-specs" aria-labelledby="garantia-title">
+</section><section id="garantia" class="ficha-specs" aria-labelledby="garantia-title">
 <div class="wrap">
 <div class="section-head tight">
 <h2 id="garantia-title">Garantía</h2>
@@ -866,9 +849,7 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 </div>
 <p class="ficha-trim-note">Fuente: comunicado oficial &ldquo;Toyota 10&rdquo; y términos y condiciones de garantía de Toyota Argentina, citados en Fuentes consultadas. Confirmá el detalle exacto de tu unidad con el equipo comercial antes de la compra.</p>
 </div>
-</section>
-
-<section id="dimensiones" class="ficha-dims" aria-labelledby="ficha-dims-title">
+</section><section id="dimensiones" class="ficha-dims" aria-labelledby="ficha-dims-title">
 <div class="wrap">
 <div class="section-head tight">
 <h2 id="ficha-dims-title">Dimensiones en detalle</h2>
@@ -926,9 +907,7 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 </div>
 </div>
 </div>
-</section>
-
-<section id="offroad" class="ficha-dims" aria-labelledby="ficha-offroad-title">
+</section><section id="offroad" class="ficha-dims" aria-labelledby="ficha-offroad-title">
 <div class="wrap">
 <div class="section-head tight">
 <h2 id="ficha-offroad-title">Aptitud off-road</h2>
@@ -976,7 +955,8 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 </div>
 </div>
 </section>
-
+</div>
+<div class="tab-panel" id="panel-personalizar" role="tabpanel" aria-labelledby="tab-personalizar" hidden>
 <section id="colores" class="ficha-colors" aria-labelledby="ficha-colors-title">
 <div class="wrap">
 <div class="section-head tight">
@@ -1002,9 +982,7 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 <p class="color-note" style="margin-top:14px">Tonalidades de referencia, no coinciden exactamente con la pintura real ni sustituyen el código de fábrica. El Blanco Perlado (070) no existe en la SRV 4x2. La GR-Sport tiene su propia paleta de 4 colores (ver abajo). La disponibilidad de cada color por versión y año modelo se confirma con el concesionario. Fuentes: cobertura del lanzamiento de esta generación (Autoblog Argentina, Agrofy News, 2020) y del lanzamiento de la SRV+ (Autocosmos, 2025), citadas al pie.</p>
 <p class="color-note" style="margin-top:10px">Toyota Argentina no publica una paleta de colores de interior independiente de la pintura exterior: el material y color del tapizado dependen de la versión, no de la elección de pintura. Tela en DX, SR y SRV; cuero desde SRV+ (mismo tono en toda la gama con este material); cuero ventilado en SRX; cuero y suede con detalles Gazoo Racing en GR-Sport. Ver el detalle completo en la sección Ficha técnica → Confort y tecnología.</p>
 </div>
-</section>
-
-<section id="configurador" class="ficha-usecases" aria-labelledby="configurador-title">
+</section><section id="configurador" class="ficha-usecases" aria-labelledby="configurador-title">
 <div class="wrap">
 <div class="section-head tight">
 <h2 id="configurador-title">Configurador rápido</h2>
@@ -1047,9 +1025,7 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 </div>
 </div>
 </div>
-</section>
-
-<section id="accesorios" class="ficha-access" aria-labelledby="ficha-access-title">
+</section><section id="accesorios" class="ficha-access" aria-labelledby="ficha-access-title">
 <div class="wrap">
 <div class="section-head tight">
 <h2 id="ficha-access-title">Accesorios genuinos habituales</h2>
@@ -1068,7 +1044,8 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 <p class="ficha-trim-note">Listado orientativo, combinando el catálogo de accesorios genuinos publicado en toyota.com.ar (donde figura, por ejemplo, el snorkel para Hilux DX/SR) y el material difundido por el concesionario en Instagram (@toyotacdelu). Confirmá stock, compatibilidad por versión y precio con el equipo comercial.</p>
 </div>
 </section>
-
+</div>
+<div class="tab-panel" id="panel-postventa" role="tabpanel" aria-labelledby="tab-postventa" hidden>
 <section id="postventa" class="ficha-access" aria-labelledby="postventa-title">
 <div class="wrap">
 <div class="section-head tight">
@@ -1098,9 +1075,7 @@ Desde la renovación de plataforma de la SRX (2023), esa versión y la GR-Sport 
 <p class="ficha-trim-note">La medida exacta de cada unidad figura en la etiqueta del marco de la puerta del conductor: confirmala ahí antes de comprar cubiertas de reemplazo.</p>
 <a class="btn primary" href="https://wa.me/5493442502390?text=Hola!%20Quiero%20consultar%20neum%C3%A1ticos%20para%20mi%20Toyota%20Hilux." rel="noopener noreferrer" target="_blank">Consultar neumáticos por WhatsApp ↗</a>
 </div>
-</section>
-
-<section id="ofertas-financiacion" class="ficha-specs" aria-labelledby="ofertas-title">
+</section><section id="ofertas-financiacion" class="ficha-specs" aria-labelledby="ofertas-title">
 <div class="wrap">
 <div class="section-head tight">
 <h2 id="ofertas-title">Ofertas y financiación vigente</h2>
@@ -1114,7 +1089,8 @@ Esta sección está lista para mostrar ofertas y tasas vigentes apenas el conces
 <!-- ACTUALIZAR: cuando el concesionario confirme una promo vigente, reemplazar este bloque por tarjetas con título de la promo, tasa/condición, vigencia (validUntil) y fecha de confirmación. No completar con cifras estimadas. -->
 </div>
 </section>
-
+</div>
+<div class="tab-panel" id="panel-info" role="tabpanel" aria-labelledby="tab-info" hidden>
 <section id="preguntas-frecuentes" class="ficha-faq" aria-labelledby="ficha-faq-title">
 <div class="wrap">
 <div class="section-head tight">
@@ -1180,9 +1156,7 @@ Esta sección está lista para mostrar ofertas y tasas vigentes apenas el conces
 </div>
 </div>
 </div>
-</section>
-
-<section id="datos-verificados" class="ficha-specs" aria-labelledby="datos-verificados-title">
+</section><section id="datos-verificados" class="ficha-specs" aria-labelledby="datos-verificados-title">
 <div class="wrap">
 <div class="section-head tight"><h2 id="datos-verificados-title">Datos estructurados y verificación</h2><p>La siguiente matriz separa los datos publicados oficialmente para Argentina de los campos que Toyota no consolida por versión en la documentación consultada.</p></div>
 <div class="ficha-note"><strong style="display:block;font-family:var(--display);font-size:13px;color:var(--toyota-red-text);margin-bottom:8px">Criterio de lectura</strong><strong>Mercado:</strong> Argentina. <strong>Consulta:</strong> 24 de septiembre de 2026. Se priorizó Toyota Argentina. “No publicado” no significa que el vehículo no lo tenga: significa que la fuente argentina consultada no permite atribuirlo con seguridad a todas las versiones. No se trasladaron especificaciones de otros países.</div>
@@ -1194,9 +1168,7 @@ Esta sección está lista para mostrar ofertas y tasas vigentes apenas el conces
 <div class="ficha-spec-group"><h3>Seguridad, tecnología y colores</h3><div class="detail-specs"><div class="detail-spec"><strong>Seguridad documentada</strong>7 airbags (frontales x2, rodilla del conductor, laterales x2 y cortina x2), ABS/EBD/BA, VSC, TRC, HAC e ISOFIX x2 con anclajes superiores x2. En 4x4 se documentan A-TRC, DAC y bloqueo de diferencial trasero. Toyota Safety Sense: ACC, PCS y LDA, mostrado en SRX 4x4 y GR-Sport (no en SRX 4x2).</div><div class="detail-spec"><strong>Tecnología documentada</strong>Pantalla táctil de 9 pulgadas, Android Auto y Apple CarPlay inalámbricos, USB, Bluetooth, Servicios Conectados, cargador inalámbrico, USB-C traseros, JBL de 6 parlantes + subwoofer en SRV y de 8 en SRX, visión 360° en SRX y sensores de estacionamiento delanteros y traseros en SRV y SRX.</div><div class="detail-spec"><strong>Colores publicados</strong>Súper blanco, Blanco perlado, Negro mica, Plata metalizado, Gris oscuro metalizado y Rojo metalizado. La GR-Sport tiene 4 (Negro mica, Gris oscuro metalizado, Rojo bitono y Blanco perlado con techo negro) y el Blanco perlado no existe en la SRV 4x2, según el configurador de un concesionario. El código y la disponibilidad por versión deben confirmarse en el catálogo vigente.</div></div></div>
 <div class="ficha-note"><strong>Fuentes de datos:</strong> Toyota Argentina — <a href="https://media.toyota.com.ar/73c220a5-1236-4972-a38a-4eda757c0eb3.pdf" target="_blank" rel="noopener noreferrer">ficha Hilux SRV/SRX, 18/09/2025 ↗</a>; <a href="https://media.toyota.com.ar/fc535824-e532-422c-9d68-072cf0d4a032.pdf" target="_blank" rel="noopener noreferrer">ficha Hilux GR-Sport ↗</a>; <a href="#documentos">documentos PDF</a>; <a href="https://www.toyota.com.ar/modelos" target="_blank" rel="noopener noreferrer">catálogo de modelos argentinos ↗</a>. El detalle completo de fuente, URL, fecha y nivel de verificación queda conservado en <code>data/models.json</code>.</div>
 </div>
-</section>
-
-<section id="documentos" class="ficha-specs" aria-labelledby="documentos-title">
+</section><section id="documentos" class="ficha-specs" aria-labelledby="documentos-title">
 <div class="wrap">
 <div class="section-head tight">
 <h2 id="documentos-title">Documentos oficiales en PDF</h2>
@@ -1208,9 +1180,7 @@ Esta sección está lista para mostrar ofertas y tasas vigentes apenas el conces
 <a class="doc-card" href="https://media.toyota.com.ar/4168cbbe-c55f-4b7f-b1ce-2b497ad1f339.pdf" target="_blank" rel="noopener noreferrer"><span class="tag-small">PDF · prensa</span><strong>Hilux GR-Sport: ángulos y despeje</strong><small>Ángulos de ataque, ventral y salida.</small></a>
 </div>
 </div>
-</section>
-
-<section id="fuentes" class="ficha-sources" aria-labelledby="ficha-sources-title">
+</section><section id="fuentes" class="ficha-sources" aria-labelledby="ficha-sources-title">
 <div class="wrap">
 <div class="section-head tight">
 <h2 id="ficha-sources-title">Fuentes consultadas</h2>
@@ -1261,6 +1231,7 @@ Esta sección está lista para mostrar ofertas y tasas vigentes apenas el conces
 <p class="color-note" style="margin-top:18px">Esta ficha combina fuentes oficiales con cobertura periodística y de mercado porque Toyota Argentina no publica una única ficha técnica consolidada con todas las versiones, motorizaciones y equipamiento al mismo tiempo. Ante cualquier discrepancia entre fuentes, se priorizó la información más reciente y la de origen oficial. Se recomienda siempre confirmar specs, colores y disponibilidad exactos con el concesionario antes de una compra.</p>
 </div>
 </section>
+</div>
 
 </main>
 
@@ -1511,21 +1482,93 @@ document.addEventListener("DOMContentLoaded", function(){
     });
   }
 
-  // ---- Nav rápida: resalta la sección visible ----
-  var jumpLinks = Array.prototype.slice.call(document.querySelectorAll('.ficha-jumpnav a[href^="#"]'));
-  if(jumpLinks.length){
-    var jumpTargets = jumpLinks.map(function(a){ return document.querySelector(a.getAttribute("href")); }).filter(Boolean);
-    var setActive = function(id){
-      jumpLinks.forEach(function(a){ a.classList.toggle("is-active", a.getAttribute("href") === "#" + id); });
-    };
-    if("IntersectionObserver" in window){
-      var io = new IntersectionObserver(function(entries){
-        entries.forEach(function(entry){ if(entry.isIntersecting) setActive(entry.target.id); });
-      }, {rootMargin: "-45% 0px -50% 0px"});
-      jumpTargets.forEach(function(el){ io.observe(el); });
-    }
-  }
+  // ---- Nav rápida: la lógica de resaltado ahora vive en ficha-tabs-js (pestañas reales) ----
 });
+</script>
+<script id="ficha-tabs-js">
+(function(){
+  var groups = {
+    elegir: ["elegir-version","cual-es-mi-hilux"],
+    versiones: ["versiones","rendimiento"],
+    specs: ["ficha-tecnica","pesos-capacidades","garantia","dimensiones","offroad"],
+    personalizar: ["colores","configurador","accesorios"],
+    postventa: ["postventa","ofertas-financiacion"],
+    info: ["preguntas-frecuentes","datos-verificados","documentos","fuentes"]
+  };
+  var sectionToGroup = {};
+  Object.keys(groups).forEach(function(key){ groups[key].forEach(function(id){ sectionToGroup[id] = key; }); });
+  var groupKeys = Object.keys(groups);
+  var nav = document.querySelector(".ficha-jumpnav");
+  if(!nav) return;
+  var tabs = Array.prototype.slice.call(nav.querySelectorAll('.jump-tab[role="tab"]'));
+
+  function activate(key, targetId, updateHash){
+    if(groupKeys.indexOf(key) < 0) return false;
+    var panel = document.getElementById("panel-" + key);
+    var tab = document.getElementById("tab-" + key);
+    if(!panel || !tab) return false;
+    tabs.forEach(function(t){
+      var selected = t === tab;
+      t.classList.toggle("is-active", selected);
+      t.setAttribute("aria-selected", selected ? "true" : "false");
+      t.tabIndex = selected ? 0 : -1;
+    });
+    groupKeys.forEach(function(k){
+      var p = document.getElementById("panel-" + k);
+      if(p) p.hidden = (k !== key);
+    });
+    if(updateHash && history.replaceState && targetId) history.replaceState(null, "", "#" + targetId);
+    if(window.ScrollTrigger) requestAnimationFrame(function(){ window.ScrollTrigger.refresh(); });
+    return true;
+  }
+
+  function goTo(hashId, doScroll){
+    var id = (hashId || "").replace(/^#/, "");
+    var key = sectionToGroup[id];
+    if(!key) return false;
+    activate(key, id, false);
+    var el = document.getElementById(id);
+    if(el && doScroll){
+      requestAnimationFrame(function(){
+        var lenis = window.__toyotaLenis;
+        if(lenis && lenis.resize) lenis.resize();
+        if(window.__toyotaScrollToElement) window.__toyotaScrollToElement(el, {block: "start"});
+        else el.scrollIntoView({block: "start"});
+      });
+    }
+    return true;
+  }
+
+  tabs.forEach(function(tab, i){
+    tab.addEventListener("click", function(e){
+      e.preventDefault();
+      var key = groupKeys[i];
+      activate(key, groups[key][0], true);
+      nav.scrollIntoView({block: "start", behavior: "smooth"});
+    });
+    tab.addEventListener("keydown", function(e){
+      var i2 = groupKeys.indexOf(tab.id.slice(4)), next;
+      if(e.key === "ArrowRight" || e.key === "ArrowDown"){ e.preventDefault(); next = (i2 + 1) % groupKeys.length; }
+      else if(e.key === "ArrowLeft" || e.key === "ArrowUp"){ e.preventDefault(); next = (i2 - 1 + groupKeys.length) % groupKeys.length; }
+      else if(e.key === "Home"){ e.preventDefault(); next = 0; }
+      else if(e.key === "End"){ e.preventDefault(); next = groupKeys.length - 1; }
+      else return;
+      activate(groupKeys[next], groups[groupKeys[next]][0], true);
+      tabs[next].focus();
+    });
+  });
+
+  // Cualquier link del resto de la página (#ficha-tecnica, #datos-verificados, etc.) también abre la pestaña correcta
+  document.addEventListener("click", function(e){
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if(!a || nav.contains(a)) return;
+    var id = a.getAttribute("href").replace(/^#/, "");
+    if(sectionToGroup[id]){ e.preventDefault(); goTo(id, true); }
+  });
+
+  if(location.hash.length > 1) goTo(location.hash, true);
+  window.addEventListener("hashchange", function(){ if(location.hash.length > 1) goTo(location.hash, true); });
+})();
 </script>
 <script id="demo-privacy-behavior">(function(){var dialog=document.getElementById('privacyDialog'),open=document.getElementById('privacyOpen'),close=document.getElementById('privacyClose'),lastFocus=null;if(!dialog||!open||!close)return;function lock(){document.documentElement.classList.add('toyota-scroll-locked');document.body.classList.add('toyota-scroll-locked');if(window.__toyotaLenis&&window.__toyotaLenis.stop)window.__toyotaLenis.stop();}function unlock(){document.documentElement.classList.remove('toyota-scroll-locked');document.body.classList.remove('toyota-scroll-locked');if(window.__toyotaLenis&&window.__toyotaLenis.start)window.__toyotaLenis.start();}function hide(){if(dialog.open)dialog.close();unlock();if(lastFocus)lastFocus.focus();}open.addEventListener('click',function(){lastFocus=document.activeElement;lock();dialog.showModal();close.focus();});close.addEventListener('click',hide);dialog.addEventListener('cancel',function(e){e.preventDefault();hide();});dialog.addEventListener('click',function(e){if(e.target===dialog)hide();});dialog.addEventListener('close',unlock);})();</script>
 </body>
