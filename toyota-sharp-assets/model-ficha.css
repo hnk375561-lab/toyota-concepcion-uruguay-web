@@ -388,7 +388,7 @@ section{padding:96px 0;border-bottom:1px solid #C8CED3}
 .form-grid input,.form-grid select,.form-grid textarea,.trade-form input,.trade-form select{background:rgba(15,18,20,.94);color:#fff;border:1px solid #AEB7BE;border-radius:8px;min-height:48px;padding:12px 14px;line-height:1.5}.form-grid textarea{min-height:120px}.form-grid label,.trade-form label{color:#1B1F22}.form-grid input::placeholder,.form-grid textarea::placeholder,.trade-form input::placeholder{color:#D5DADF}.form-grid input:focus,.form-grid select:focus,.form-grid textarea:focus,.trade-form input:focus,.trade-form select:focus{border-color:var(--luxury-gold);box-shadow:0 0 0 3px rgba(212,175,55,.2),0 0 18px rgba(212,175,55,.16);outline:0}.form-note{color:#46505C;line-height:1.6}.form-error{color:#8C111D}.form-success{color:#23613C}
 .dealer-section,.footer,footer{background:var(--deep-charcoal);color:#fff}.dealer-section p,footer p,footer a,.disclaimer{color:#D1D6DB}footer a:hover{color:#fff;text-decoration:underline;text-decoration-color:var(--luxury-gold);text-underline-offset:5px}footer{padding-top:72px}footer h3{color:#fff}
 .social-link{border-radius:8px;border-color:#747B86}.social-link:hover{border-color:var(--luxury-gold);box-shadow:0 0 16px rgba(212,175,55,.16)}
-.model-detail{background:rgba(15,18,20,.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}.detail-panel{border-radius:12px;box-shadow:var(--shadow-lg);border-color:#C8CED3;overflow:auto}.detail-head{background:linear-gradient(135deg,#171D21,#0F1214);color:#fff;border-bottom-color:#454C54}.detail-head p,.breadcrumbs{color:#E4E8EA}.detail-close{border-radius:8px;background:#fff;color:#1B1F22;min-width:48px;min-height:48px;box-shadow:var(--shadow-sm)}.detail-close:hover{background:var(--luxury-gold);transform:scale(1.04)}.detail-spec{border-color:#C8CED3;color:#1B1F22}.gallery-link{border-radius:8px;border-color:#C8CED3;background:#F3F5F6;color:#1B1F22;min-height:140px}.gallery-link:hover{border-color:var(--luxury-gold);box-shadow:var(--shadow-sm);transform:translateY(-3px)}.detail-foot{color:#46505C}.detail-foot a{color:#8C111D}
+.model-detail{background:rgba(15,18,20,.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}.detail-panel{border-radius:12px;box-shadow:var(--shadow-lg);border-color:#C8CED3;overflow:auto}.detail-head{background:linear-gradient(135deg,#171D21,#0F1214);color:#fff;border-bottom-color:#454C54}.detail-head p,.detail-head .breadcrumbs{color:#E4E8EA}.detail-close{border-radius:8px;background:#fff;color:#1B1F22;min-width:48px;min-height:48px;box-shadow:var(--shadow-sm)}.detail-close:hover{background:var(--luxury-gold);transform:scale(1.04)}.detail-spec{border-color:#C8CED3;color:#1B1F22}.gallery-link{border-radius:8px;border-color:#C8CED3;background:#F3F5F6;color:#1B1F22;min-height:140px}.gallery-link:hover{border-color:var(--luxury-gold);box-shadow:var(--shadow-sm);transform:translateY(-3px)}.detail-foot{color:#46505C}.detail-foot a{color:#8C111D}
 .premium-reveal{opacity:0;transform:translateY(18px);transition:opacity 650ms var(--ease),transform 650ms var(--ease)}.premium-reveal.is-visible{opacity:1;transform:none}
 .float-wa{width:60px;height:60px;background:#B30717;box-shadow:0 10px 28px rgba(235,10,30,.35),0 0 18px rgba(212,175,55,.22);transition:background-color 400ms var(--ease),border-color 400ms var(--ease),color 400ms var(--ease),transform 400ms var(--ease),box-shadow 400ms var(--ease)}.float-wa:hover{transform:scale(1.08) translateY(-3px);box-shadow:0 16px 36px rgba(235,10,30,.4),0 0 22px rgba(212,175,55,.35)}
 .mobilebar{background:rgba(255,255,255,.98);box-shadow:0 -8px 24px rgba(0,0,0,.1)}.mobilebar a{min-height:58px;padding-top:10px;color:#46505C}.mobilebar a:hover{color:#8C111D}.mobilebar svg{width:21px;height:21px;color:#1B1F22}
@@ -1521,7 +1521,7 @@ section[id],main [id],#aviso-demo{scroll-margin-top:calc(112px + var(--demo-bann
 .ficha-alert{padding:28px 0 0}
 .ficha-alert .box{border:1px solid var(--border);border-left:4px solid var(--toyota-red);background:var(--surface-alt);padding:18px 22px;display:flex;gap:16px;align-items:flex-start}
 .ficha-alert .box svg{flex:none;width:22px;height:22px;color:var(--toyota-red);margin-top:2px}
-.ficha-alert .box h3{font-family:var(--display);font-size:14.5px;margin:0 0 4px;color:var(--ink)}
+.ficha-alert .box h2,.ficha-alert .box h3{font-family:var(--display);font-size:14.5px;margin:0 0 4px;color:var(--ink)}
 .ficha-alert .box p{font-size:13.5px;color:var(--muted);margin:0;line-height:1.55;max-width:80ch}
 .ficha-alert .box a{color:var(--toyota-red);font-weight:700;text-decoration:none}
 
@@ -1624,6 +1624,27 @@ table.ficha-trim-table tbody tr.trim-group-row th,table.ficha-trim-table tbody t
   .ficha-mobile-cta-call:hover{border-color:#fff}
   /* El menú abierto llega hasta abajo de la pantalla: sin este espacio, los últimos links (Ubicación, Llamar) quedan tapados por la barra fija. */
   .mobilepanel.open{padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+}
+/* ---- Accesibilidad (WCAG 2.2 AA) ---- */
+/* El rojo de marca #EB0A1E da ~4,1:1 sobre los grises claros; para TEXTO se usa una variante apenas más oscura (>=4,5:1). Botones, íconos y bordes conservan el rojo original. */
+:root{--toyota-red-text:#D40919}
+.ficha-note strong,
+.ficha-spec-group h3,
+.ficha-sources a,
+table.ficha-trim-table thead th.trim-col span,
+table.ficha-trim-table tbody tr.trim-group-row th,
+table.ficha-trim-table tbody tr.trim-group-row td{color:var(--toyota-red-text)}
+/* Texto mínimo de 11px */
+.demo-banner .demo-pill,.brand .b2,.ficha-hero .tag,.access-rich-card .tag-small,.color-chip small,table.ficha-trim-table thead th.trim-col span{font-size:11px}
+/* Zona táctil >= 24px en links chicos (migas, aviso demo, política de privacidad) sin mover el diseño */
+.breadcrumbs a,.demo-banner a,.privacy-link{display:inline-block;padding:5px 2px;margin:-5px 0}
+/* Tablas y diagramas con scroll horizontal: foco visible al navegar con teclado */
+.ficha-trim-table-wrap:focus-visible,.dims-diagram:focus-visible{outline:3px solid #1B1F22;outline-offset:2px}
+/* En celular el diagrama (640 unidades) se dibujaba a ~300px y sus etiquetas quedaban en ~5px: se mantiene un ancho mínimo y se desliza. */
+@media(max-width:600px){
+  .dims-diagram{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .dims-diagram svg{width:560px;max-width:none}
+  .dims-diagram figcaption{position:sticky;left:0}
 }
 @media print{
   .demo-banner,.site,.ficha-jumpnav,.ficha-mobile-cta,.ficha-actions,.ficha-hero-photo .corner{display:none!important}
