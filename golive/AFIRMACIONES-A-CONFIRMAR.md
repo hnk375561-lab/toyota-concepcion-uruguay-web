@@ -39,3 +39,29 @@ Yaris Cross se incorporó al catálogo con descripción breve y fuente oficial, 
 - Las filas 14 y 15 se verificaron contra el newsroom de Toyota Argentina. "2006–2025" describe una racha ya cerrada: al terminar 2026 hay que confirmar con el comunicado de cierre de año si la racha se extiende y actualizar el texto.
 - "Toyota 10" aplica a unidades 0 km y a las patentadas desde 2020, y exige realizar el mantenimiento en la red oficial. Las condiciones vigentes se confirman en los términos y condiciones de garantía de Toyota Argentina antes de publicar.
 - Revisión pendiente en el resto de `templates/model.html`: la plantilla todavía contiene datos específicos de Hilux (versiones, motores, dimensiones, off-road, colores, accesorios, FAQ y fuentes). Ninguno es una afirmación verificada sobre otro modelo (ver `FICHA-MADRE.md`).
+
+## Chequeo exhaustivo de `hilux.html` y `templates/model.html` (25 de septiembre de 2026)
+
+Verificación punto por punto de cada spec técnica y afirmación cuantitativa contra fuentes oficiales de Toyota Argentina y cobertura especializada independiente.
+
+### Confirmado correcto
+
+| Afirmación | Estado | Fuente de verificación |
+|---|---|---|
+| Motor 1GD 2.8 l: 204 CV / 150 kW, 500 Nm (SRV/SRV+/SRX) | ✅ Confirmado | Ficha oficial Toyota Argentina y múltiples concesionarios oficiales |
+| Motor 2GD 2.4 l: 150 CV, 400 Nm (DX/SR) | ✅ Confirmado | Fichas de concesionarios oficiales Toyota |
+| Dimensiones SRV/SRX: 1.855×1.815 mm, batalla 3.085 mm, despeje 227 mm, tanque 80 l, radio de giro 6,7 m, remolque 3.500/750 kg | ✅ Confirmado | Folletos oficiales Toyota Argentina (2021–2024) |
+| GR-Sport: ancho 2.020 mm, alto 1.830 mm, despeje 247 mm, peso 2.125–2.135 kg, PBT 3.140 kg, ángulos 30°/24°/30° | ✅ Confirmado (coincide dato por dato) | PDF oficial ya citado en el repo: media.toyota.com.ar/4168cbbe-e532-...pdf |
+| "20 años" de Hilux como pick-up más vendida (2006–2025) | ✅ Confirmado | Comunicado oficial Toyota Argentina, replicado en ~8 medios especializados |
+| "Toyota 10": hasta 10 años/200.000 km, aplica a 0 km y unidades desde 2020, requiere service oficial | ✅ Confirmado textualmente | Comunicado oficial y página de garantía de Toyota Argentina |
+| Caja de carga: 1.083 litros | ✅ Corroborado | Fuente de mercado especializada (no oficial Toyota, pero consistente) |
+| GR-Sport sin CV/Nm en "datos confirmados" (se deja como pendiente) | ✅ Manejo correcto | El repo ya evita afirmar 224 CV/550 Nm del GR-Sport sin ficha oficial que lo respalde directamente; se mantiene así |
+
+### Hallazgos a revisar
+
+1. **Posible mezcla de datos "SRX de plataforma renovada" (línea ~1173 de `hilux.html`).** El texto atribuye a Monkey Motor y PickupArena las medidas "2.020 mm / 1.830 mm / 247 mm" para una supuesta SRX renovada. Al verificar, esas cifras corresponden exactamente a las medidas del **GR-Sport** (ancho ensanchado y despeje característicos de esa versión), no de una SRX. Es probable que haya una confusión de atribución entre ambas fuentes secundarias. **Acción recomendada:** revisar Monkey Motor/PickupArena directamente o retirar la fila hasta confirmar si existe una SRX real con esas medidas.
+2. **Discrepancia menor de 10 mm en el largo total.** Un folleto oficial 2021 de SRV indica 5.315 mm; el repo usa 5.325 mm (coincide con la ficha GR-Sport y fuentes 2023–2025 más recientes). No se considera error, pero se documenta la variación entre años de ficha.
+
+### Alcance de esta revisión
+
+Cubrió `hilux.html` completo y la sección de datos de `templates/model.html` (que reutiliza las mismas cifras de Hilux, ya verificadas arriba). **No se revisó `index.html`** en esta pasada — queda pendiente si se solicita continuar.
