@@ -56,6 +56,8 @@ test('quiz: llega a una versión y arma el WhatsApp', async ({ page }) => {
 
 test('configurador: tracción y colores según la versión', async ({ page }) => {
   await abrir(page);
+  await page.locator('#tab-personalizar').click();
+  await expect(page.locator('#panel-personalizar')).toBeVisible();
   const color = page.locator('#cfgColor option');
   const drive = page.locator('#cfgDrive option');
   await page.locator('#cfgVersion').selectOption('GR-Sport');
