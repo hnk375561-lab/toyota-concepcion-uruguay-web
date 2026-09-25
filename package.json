@@ -12,7 +12,10 @@
     "sync-schema": "node scripts/sync-schema.mjs",
     "check:ficha": "node scripts/check-ficha.mjs",
     "test": "node tests/support/run-all.mjs",
-    "test:cross": "node tests/support/run-all.mjs --cross-browser"
+    "test:cross": "node tests/support/run-all.mjs --cross-browser",
+    "sync:dealership": "node scripts/sync-dealership.mjs",
+    "validate:dealership": "node scripts/validate-dealership.mjs",
+    "check:all": "npm run sync:dealership && npm run validate:dealership && npm run check:ficha && npm test"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.13.0",

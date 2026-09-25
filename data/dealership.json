@@ -1,0 +1,41 @@
+{
+  "demo": {
+    "status": "independent-demo",
+    "label": "Propuesta web independiente · Demo funcional",
+    "official": false,
+    "publicIndexing": false
+  },
+  "identity": {
+    "tradeName": "Piñeyro y Moscatelli",
+    "legalName": "Piñeyro y Moscatelli S.R.L.",
+    "legalNameStatus": "public-source-needs-client-confirmation",
+    "cuit": null
+  },
+  "location": {
+    "address": "9 de Julio 1624",
+    "city": "Concepción del Uruguay",
+    "province": "Entre Ríos",
+    "country": "Argentina",
+    "mapsQuery": "9 de Julio 1624, Concepción del Uruguay, Entre Ríos",
+    "coordinates": {"latitude": -32.4874489, "longitude": -58.2483202},
+    "status": "public-source-needs-client-confirmation"
+  },
+  "contact": {
+    "salesWhatsApp": "5493442473453",
+    "servicePhone": "+543442473453",
+    "partsPhone": "+543442677433",
+    "tiresPhone": "+543442502390",
+    "centralPhone": "+543442425212",
+    "email": "toyotacdelu@gmail.com",
+    "instagram": "https://www.instagram.com/toyotacdelu/?hl=es",
+    "source": "public Instagram profile and public dealership listings; confirm with the concessionaire before official publication"
+  },
+  "hours": {
+    "display": "Lun–vie 8–12 y 14–18 · Sáb 8–12",
+    "status": "public-source-needs-client-confirmation"
+  },
+  "sources": [
+    {"label": "Instagram público @toyotacdelu", "url": "https://www.instagram.com/toyotacdelu/?hl=es", "checkedAt": "2026-09-25"},
+    {"label": "Toyota Argentina · concesionarios", "url": "https://www.toyota.com.ar/concesionarios", "checkedAt": "2026-09-25"}
+  ]
+}

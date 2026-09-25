@@ -49,7 +49,7 @@ done
 shopt -u nullglob
 cp -R "$ROOT/toyota-sharp-assets" "$DIST/toyota-sharp-assets"
 : > "$DIST/.nojekyll"
-for optional in robots.txt sitemap.xml; do
+for optional in robots.txt sitemap.xml manifest.webmanifest; do
   [[ -f "$ROOT/$optional" ]] && cp "$ROOT/$optional" "$DIST/$optional"
 done
 
@@ -57,7 +57,7 @@ done
 # cualquier página *.html adicional que se haya copiado arriba).
 unexpected="$(cd "$DIST" && find . -mindepth 1 -maxdepth 1 \
   ! -name "*.html" ! -name toyota-sharp-assets ! -name .nojekyll \
-  ! -name robots.txt ! -name sitemap.xml -print)"
+  ! -name robots.txt ! -name sitemap.xml ! -name manifest.webmanifest -print)"
 [[ -z "$unexpected" ]] || fail "entradas inesperadas en dist/: $unexpected"
 
 # Verificación explícita: cada página *.html de la raíz del repo debe existir,

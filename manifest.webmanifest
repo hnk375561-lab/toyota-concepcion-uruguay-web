@@ -1,0 +1,15 @@
+{
+  "name": "Propuesta web · Piñeyro y Moscatelli",
+  "short_name": "Demo Toyota CdelU",
+  "description": "Propuesta web independiente y demo funcional para evaluación.",
+  "lang": "es-AR",
+  "start_url": "/toyota-concepcion-uruguay-web/",
+  "scope": "/toyota-concepcion-uruguay-web/",
+  "display": "standalone",
+  "background_color": "#171a1b",
+  "theme_color": "#EB0A1E",
+  "icons": [
+    {"src": "toyota-sharp-assets/favicon-32.png", "sizes": "32x32", "type": "image/png"},
+    {"src": "toyota-sharp-assets/apple-touch-icon.png", "sizes": "180x180", "type": "image/png"}
+  ]
+}

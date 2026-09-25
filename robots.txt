@@ -1,0 +1,4 @@
+# Esta URL es una demo/preview independiente, no el sitio oficial.
+# Se habilitará la indexación únicamente después de la aprobación y publicación oficial.
+User-agent: *
+Disallow: /

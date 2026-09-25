@@ -109,7 +109,7 @@ async function launchBrowser(pw) {
 // ─────────────────────────── servidor local ───────────────────────────
 const MIME = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.mjs': 'text/javascript', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.avif': 'image/avif', '.ico': 'image/x-icon', '.woff2': 'font/woff2', '.txt': 'text/plain', '.xml': 'application/xml' };
 // Solo lo que scripts/build.sh publica: *.html de la raíz, toyota-sharp-assets/, robots.txt y sitemap.xml.
-const publicPath = (rel) => /^[^/]+\.html$/.test(rel) || /^toyota-sharp-assets\//.test(rel) || /^(robots\.txt|sitemap\.xml|favicon\.ico|\.nojekyll)$/.test(rel);
+const publicPath = (rel) => /^[^/]+\.html$/.test(rel) || /^toyota-sharp-assets\//.test(rel) || /^(robots\.txt|sitemap\.xml|manifest\.webmanifest|favicon\.ico|\.nojekyll)$/.test(rel);
 // El sitio se publica en https://usuario.github.io/<repo>/: links como "/<repo>/" deben resolverse igual en local.
 function basePath() {
   try { const h = readFileSync(join(ROOT, 'index.html'), 'utf8'); const c = (h.match(/rel="canonical"[^>]*href="([^"]+)"/) || h.match(/href="([^"]+)"[^>]*rel="canonical"/) || [])[1]; const u = new URL(c); return u.hostname.endsWith('github.io') ? u.pathname.split('/')[1] || '' : ''; } catch { return ''; }
