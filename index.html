@@ -1684,6 +1684,30 @@ section[id],main [id],#aviso-demo{scroll-margin-top:calc(112px + var(--demo-bann
 @media(max-width:760px){:root{--demo-banner-h:54px}.demo-banner{padding:7px 12px;font-size:12px}.demo-banner-desktop{display:none}.demo-banner-mobile{display:inline}.demo-banner .wrap{align-items:flex-start}.demo-banner .demo-pill{margin-top:1px}.privacy-dialog .privacy-head,.privacy-body{padding-left:20px;padding-right:20px}}
 /* DEMO:END banner-y-avisos */
 </style>
+<style id="catalog-model-cards-hover-slideup">
+/* Tarjetas de modelos (catálogo #gama): hover + animación de entrada slideUp */
+@keyframes slideUp{
+  from{opacity:0;transform:translateY(40px)}
+  to{opacity:1;transform:translateY(0)}
+}
+#gama .model{opacity:0;transform:translateY(40px)}
+#gama .model.gama-card-visible{animation:slideUp .5s ease-out forwards}
+#gama .model:hover{
+  border-bottom-width:3px;
+  border-bottom-style:solid;
+  border-bottom-color:#EB0A1E;
+  border-image:none;
+}
+#gama .model:hover h3{color:#EB0A1E}
+#gama .model .model-photo{transition:filter .25s ease}
+#gama .model:hover .model-picture:not(.model-placeholder) .model-photo{
+  filter:brightness(1.1);
+}
+@media(prefers-reduced-motion:reduce){
+  #gama .model{opacity:1;transform:none}
+  #gama .model.gama-card-visible{animation:none}
+}
+</style>
 </head>
 <body id="top">
 <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden focusable="false"><defs><linearGradient id="cs-body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#55646c"/><stop offset=".5" stop-color="#2b363c"/><stop offset="1" stop-color="#161e23"/></linearGradient><linearGradient id="cs-glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c3d3da"/><stop offset=".55" stop-color="#829aa6"/><stop offset="1" stop-color="#586f7b"/></linearGradient><linearGradient id="cs-rim" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f1f4f6"/><stop offset="1" stop-color="#94a3ab"/></linearGradient><radialGradient id="cs-shadow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#0f1519" stop-opacity=".4"/><stop offset="1" stop-color="#0f1519" stop-opacity="0"/></radialGradient><g id="cs-wheel"><circle r="26" fill="#0b1014"/><circle r="18.5" fill="url(#cs-rim)"/><circle r="13.5" fill="#26313a"/><path d="M0-12V12M-12 0H12M-8.5-8.5L8.5 8.5M8.5-8.5L-8.5 8.5" stroke="#dfe6ea" stroke-width="3" stroke-linecap="round"/><circle r="4.5" fill="#c9d2d7"/></g></defs><symbol id="car-sedan" viewBox="0 0 400 180"><ellipse cx="200" cy="168" rx="182" ry="7" fill="url(#cs-shadow)"/><path fill="url(#cs-body)" d="M26 142 L22 122 Q21 106 34 102 L88 97 C106 95 122 66 168 58 C212 54 254 76 296 94 L352 102 Q378 107 381 126 L381 134 L372 142 L327 142 A32 32 0 0 0 263 142 L137 142 A32 32 0 0 0 73 142 Z"/><path fill="url(#cs-glass)" d="M112 94 C126 74 144 66 168 65 C204 63 238 76 272 93 Z"/><path d="M190 64 L194 94" stroke="#2b363c" stroke-width="5"/><path d="M62 106 L352 108" stroke="#fff" stroke-opacity=".22" stroke-width="1.6" fill="none"/><path d="M304 97 L346 105" stroke="#fff" stroke-opacity=".16" stroke-width="5" stroke-linecap="round" fill="none"/><path fill="#eef6f9" d="M354 109 L378 114 L375 121 L352 116 Z"/><path fill="#eb0a1e" d="M23 108 L36 106 L36 111 L24 113 Z"/><path fill="#0b1014" opacity=".7" d="M359 126 L380 128 L379 135 L359 134 Z"/><use href="#cs-wheel" x="105" y="142"/><use href="#cs-wheel" x="295" y="142"/></symbol><symbol id="car-suv" viewBox="0 0 400 180"><ellipse cx="200" cy="174" rx="182" ry="6" fill="url(#cs-shadow)"/><path fill="url(#cs-body)" d="M34 146 L30 116 Q29 100 40 96 L56 60 C60 48 70 42 84 42 L214 40 C246 40 264 62 288 86 L326 96 L354 101 Q378 106 380 128 L380 138 L372 146 L336 146 A36 36 0 0 0 264 146 L134 146 A36 36 0 0 0 62 146 Z"/><path fill="#0b1014" opacity=".34" d="M32 134 L378 134 L372 146 L32 146 Z"/><path fill="url(#cs-glass)" d="M62 92 L74 56 C77 52 82 51 90 51 L146 50 L148 92 Z"/><path fill="url(#cs-glass)" d="M154 50 L208 49 C228 49 244 64 264 92 L154 92 Z"/><path d="M150 50 L151 93" stroke="#2b363c" stroke-width="6"/><path d="M76 41 L216 39" stroke="#a6b6be" stroke-width="3.5" stroke-linecap="round" fill="none"/><path d="M44 104 L354 107" stroke="#fff" stroke-opacity=".22" stroke-width="1.6" fill="none"/><path d="M62 146 A36 36 0 0 1 134 146 M264 146 A36 36 0 0 1 336 146" stroke="#0b1014" stroke-width="6" fill="none" stroke-linecap="round"/><path fill="#eef6f9" d="M356 108 L378 113 L376 121 L354 115 Z"/><path fill="#eb0a1e" d="M31 102 L40 100 L40 106 L32 108 Z"/><use href="#cs-wheel" x="98" y="146" transform="translate(98 146) scale(1.14) translate(-98 -146)"/><use href="#cs-wheel" x="300" y="146" transform="translate(300 146) scale(1.14) translate(-300 -146)"/></symbol><symbol id="car-hatch" viewBox="0 0 400 180"><ellipse cx="200" cy="168" rx="165" ry="7" fill="url(#cs-shadow)"/><path fill="url(#cs-body)" d="M56 142 L51 120 Q50 106 62 102 L78 90 C92 68 114 56 144 54 L208 54 C240 54 264 80 290 94 L334 102 Q356 107 359 126 L359 134 L350 142 L323 142 A32 32 0 0 0 259 142 L141 142 A32 32 0 0 0 77 142 Z"/><path fill="url(#cs-glass)" d="M90 92 C102 72 118 63 144 62 L206 62 C228 62 246 78 270 92 Z"/><path d="M180 62 L184 92" stroke="#2b363c" stroke-width="5"/><path d="M60 106 L334 108" stroke="#fff" stroke-opacity=".22" stroke-width="1.6" fill="none"/><path fill="#eef6f9" d="M336 109 L357 114 L355 121 L334 116 Z"/><path fill="#eb0a1e" d="M52 108 L62 104 L63 110 L53 114 Z"/><use href="#cs-wheel" x="109" y="142"/><use href="#cs-wheel" x="291" y="142"/></symbol></svg>
@@ -2629,6 +2653,27 @@ document.addEventListener("DOMContentLoaded", function(){
     openDetail(b.getAttribute("data-model-detail"));
   });
 
+  // Entrada de las tarjetas de modelos (catálogo): animation slideUp al hacer scroll,
+  // en lugar del fade simple. Independiente de GSAP para no duplicar la animación.
+  (function(){
+    var gamaCards = Array.prototype.slice.call(gamaGrid.querySelectorAll(".model"));
+    var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if(reduceMotion || !("IntersectionObserver" in window)){
+      gamaCards.forEach(function(card){ card.classList.add("gama-card-visible"); });
+      return;
+    }
+    var gamaObserver = new IntersectionObserver(function(entries, observer){
+      entries.forEach(function(entry){
+        if(!entry.isIntersecting) return;
+        var card = entry.target;
+        var delay = (gamaCards.indexOf(card) % 6) * 70;
+        setTimeout(function(){ card.classList.add("gama-card-visible"); }, delay);
+        observer.unobserve(card);
+      });
+    }, {rootMargin:"0px 0px -10% 0px", threshold:0.15});
+    gamaCards.forEach(function(card){ gamaObserver.observe(card); });
+  })();
+
   var filterBar=document.getElementById("filterbar"), filterStorageKey="toyota-gama-filter";
   function applyGamaFilter(filtro,updateUrl){
     if(!filterBar)return;
@@ -3145,7 +3190,7 @@ document.addEventListener("DOMContentLoaded", function(){
         el.style.removeProperty("opacity");
         el.style.removeProperty("transform");
       });
-      [".gama-grid .model",".highlight-track .highlight-card",".access-grid figure",".expansion-grid > *",".category-browser > *",".maintenance-grid > *"].forEach(function(selector){
+      [".highlight-track .highlight-card",".access-grid figure",".expansion-grid > *",".category-browser > *",".maintenance-grid > *"].forEach(function(selector){
         ScrollTrigger.batch(selector,{start:"top 88%",once:true,onEnter:function(batch){
           gsap.from(batch,{opacity:0,y:22,duration:.55,ease:"power2.out",stagger:.07,clearProps:"opacity,transform"});
         }});
