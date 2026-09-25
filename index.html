@@ -50,13 +50,11 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
 <link href="toyota-sharp-assets/asset-bec83be10e47-256.webp" rel="icon" type="image/webp"/>
 <link href="toyota-sharp-assets/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/>
 <link href="toyota-sharp-assets/apple-touch-icon.png" rel="apple-touch-icon"/>
-<link as="image" fetchpriority="high" href="toyota-sharp-assets/hero-sw4-mobile-4to5-640.avif" media="(max-width: 760px)" rel="preload" type="image/avif"/>
-<link as="image" fetchpriority="high" href="toyota-sharp-assets/hero-sw4-desktop-1800.avif" media="(min-width: 761px)" rel="preload" type="image/avif"/>
 <link as="font" crossorigin="" href="toyota-sharp-assets/fonts/inter-latin-wght-normal.woff2" rel="preload" type="font/woff2"/>
 <style id="critical-fonts">
 @font-face{font-family:"Inter";font-style:normal;font-weight:100 900;font-display:swap;src:url("toyota-sharp-assets/fonts/inter-latin-wght-normal.woff2") format("woff2");}
 </style>
-<link as="style" href="toyota-sharp-assets/fonts.css" onload="this.onload=null;this.rel='stylesheet'" rel="preload"/>
+<link href="toyota-sharp-assets/fonts.css" rel="stylesheet"/>
 <noscript><link href="toyota-sharp-assets/fonts.css" rel="stylesheet"/></noscript>
 <script defer="" src="toyota-sharp-assets/vendor/gsap-3.15.0.min.js"></script>
 <script defer="" src="toyota-sharp-assets/vendor/ScrollTrigger-3.15.0.min.js"></script>
@@ -1504,7 +1502,7 @@ footer a[href="tel:+543442502390"]{color:#F4F6F7!important}
 .used-card-ghost .ghost-title{width:72%;height:17px;margin-bottom:12px}
 .used-card-ghost .ghost-text.short{width:50%;margin-bottom:0}
 .used-card-ghost .used-actions{margin-top:auto}
-.used-card-ghost .used-actions .btn{pointer-events:auto;background:#fff;color:#7d888d;border-color:#c9d1d5}
+.used-card-ghost .used-actions .btn{pointer-events:auto;background:#fff;color:#46505C;border-color:#c9d1d5}
 .used-card-ghost .used-actions .btn:hover{box-shadow:0 16px 34px rgba(23,32,38,.22);border-color:var(--toyota-red);color:var(--ink)}
 @keyframes usedGhostShimmer{0%{background-position:220% 0}100%{background-position:-220% 0}}
 @media(prefers-reduced-motion:reduce){.used-card-ghost{animation:none}}
@@ -1775,8 +1773,8 @@ footer a:hover,footer a:focus-visible{color:#fff!important;text-decoration:under
 /* 1. Hero: parallax suave en foto SW4 del home, pulse en CTA, contraste/bold del título en móvil */
 :root{--scroll:0}
 .hero-editorial-vehicle.hero-photo-real img{
-  transform:scale(1.06) translateY(clamp(-22px, calc(var(--scroll, 0) * 0.3px), 22px))!important;
-  will-change:transform;
+  transform:none!important;
+  will-change:auto;
 }
 @keyframes ctaPulseGlow{
   0%,100%{box-shadow:0 0 0 0 rgba(235,10,30,.30)}
@@ -1790,7 +1788,7 @@ footer a:hover,footer a:focus-visible{color:#fff!important;text-decoration:under
   }
 }
 @media(prefers-reduced-motion:reduce){
-  .hero-editorial-vehicle.hero-photo-real img{transform:scale(1.06)!important}
+  .hero-editorial-vehicle.hero-photo-real img{transform:none!important}
   .editorial-cta{animation:none!important}
 }
 </style>
