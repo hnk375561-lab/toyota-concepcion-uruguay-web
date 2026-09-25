@@ -50,8 +50,8 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
 <link href="toyota-sharp-assets/asset-bec83be10e47-256.webp" rel="icon" type="image/webp"/>
 <link href="toyota-sharp-assets/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/>
 <link href="toyota-sharp-assets/apple-touch-icon.png" rel="apple-touch-icon"/>
-<link as="image" fetchpriority="high" href="toyota-sharp-assets/hero-sw4-mobile-4to5-640.avif" imagesizes="100vw" imagesrcset="toyota-sharp-assets/hero-sw4-mobile-4to5-640.avif 640w" media="(max-width: 760px)" rel="preload" type="image/avif"/>
-<link as="image" fetchpriority="high" href="toyota-sharp-assets/hero-sw4-desktop-1800.avif" imagesizes="68vw" imagesrcset="toyota-sharp-assets/hero-sw4-desktop-1800.avif 1800w" media="(min-width: 761px)" rel="preload" type="image/avif"/>
+<link as="image" fetchpriority="high" href="toyota-sharp-assets/hero-sw4-mobile-4to5-640.avif" media="(max-width: 760px)" rel="preload" type="image/avif"/>
+<link as="image" fetchpriority="high" href="toyota-sharp-assets/hero-sw4-desktop-1800.avif" media="(min-width: 761px)" rel="preload" type="image/avif"/>
 <link as="font" crossorigin="" href="toyota-sharp-assets/fonts/inter-latin-wght-normal.woff2" rel="preload" type="font/woff2"/>
 <style id="critical-fonts">
 @font-face{font-family:"Inter";font-style:normal;font-weight:100 900;font-display:swap;src:url("toyota-sharp-assets/fonts/inter-latin-wght-normal.woff2") format("woff2");}
@@ -3483,12 +3483,9 @@ document.addEventListener("DOMContentLoaded", function(){window.__toyotaSchedule
   var mobileBar=document.querySelector(".mobilebar"),hero=document.querySelector(".hero");
   function scrollTopSmooth(){if(window.__toyotaLenis)window.__toyotaLenis.scrollTo(0,{duration:.8});else window.scrollTo({top:0,behavior:"smooth"});}
   if(mobileBar&&hero){if(window.ScrollTrigger&&!reduce){ScrollTrigger.create({trigger:hero,start:"bottom top",onEnter:function(){mobileBar.classList.add("is-visible")},onLeaveBack:function(){mobileBar.classList.remove("is-visible")}});}else if(reduce){window.addEventListener("scroll",function(){mobileBar.classList.toggle("is-visible",window.scrollY>hero.offsetHeight);},{passive:true});}}
-  // Parallax sutil de la foto SW4 en el hero: atado a ScrollTrigger (no a scrollY crudo) para que
-  // quede sincronizado con Lenis; se apaga solo si el usuario prefiere menos movimiento.
-  if(hero&&window.gsap&&window.ScrollTrigger&&!reduce){
-    var heroVehicle=hero.querySelector(".hero-photo-real");
-    if(heroVehicle){gsap.to(heroVehicle,{yPercent:8,ease:"none",scrollTrigger:{trigger:hero,start:"top top",end:"bottom top",scrub:true}});}
-  }
+  // NOTA: el parallax scrub de la foto SW4 se quitó a propósito (ver "consolidated-gsap-motion-runtime"
+  // más abajo: "The hero deliberately has no continuous scrub"). Dejarlo activo acá duplicaba el efecto
+  // y era la causa medible de que la figura del hero se desplazara ~8-10px al hacer scroll.
   // Lightweight cursor-follow is intentionally omitted: touch/mobile visitors are the primary audience,
   // and a custom cursor would add visual noise rather than improve the dealership decision path.
   })();
