@@ -1719,6 +1719,44 @@ section[id],main [id],#aviso-demo{scroll-margin-top:calc(112px + var(--demo-bann
   #gama .model.gama-card-visible{animation:none}
 }
 </style>
+<style id="servicios-icons-spacing-border-final">
+/* 4. Sección Service/Posventa: iconos SVG, spacing 24px, border-left 4px rojo */
+#servicios .serv-list{gap:24px!important}
+#servicios .serv-item{border-left:4px solid #EB0A1E!important}
+#servicios .serv-item:before{content:none!important;display:none!important}
+#servicios .serv-icon{width:44px;height:44px;flex:0 0 auto;margin-bottom:4px;display:block}
+#servicios .serv-icon svg{width:100%;height:100%;display:block}
+</style>
+<style id="formulario-focus-label-submit-final">
+/* 5. Formulario: focus rojo, labels siempre visibles, submit con hover scale */
+.form-grid input:focus,.form-grid select:focus,.form-grid textarea:focus,
+.trade-form input:focus,.trade-form select:focus,
+.used-interest-form select:focus,
+#contactForm input:focus,#contactForm select:focus,#contactForm textarea:focus,
+#tradeForm input:focus,#tradeForm select:focus,
+#usedInterestForm select:focus{
+  box-shadow:0 0 0 3px rgba(235,10,30,0.2)!important;
+  border-color:#EB0A1E!important;
+  outline:0!important;
+}
+.form-grid label,.trade-form label,.used-interest-form label{
+  display:block!important;
+  position:static!important;
+  clip:auto!important;
+  clip-path:none!important;
+  width:auto!important;
+  height:auto!important;
+  overflow:visible!important;
+  white-space:normal!important;
+  margin-bottom:6px;
+}
+#contactForm button[type="submit"],#tradeForm button[type="submit"],#usedInterestForm button[type="submit"]{
+  transition:transform 200ms ease,background .25s ease,border-color .25s ease,color .25s ease,box-shadow .25s ease!important;
+}
+#contactForm button[type="submit"]:hover,#tradeForm button[type="submit"]:hover,#usedInterestForm button[type="submit"]:hover{
+  transform:scale(1.05)!important;
+}
+</style>
 </head>
 <body id="top">
 <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden focusable="false"><defs><linearGradient id="cs-body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#55646c"/><stop offset=".5" stop-color="#2b363c"/><stop offset="1" stop-color="#161e23"/></linearGradient><linearGradient id="cs-glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c3d3da"/><stop offset=".55" stop-color="#829aa6"/><stop offset="1" stop-color="#586f7b"/></linearGradient><linearGradient id="cs-rim" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f1f4f6"/><stop offset="1" stop-color="#94a3ab"/></linearGradient><radialGradient id="cs-shadow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#0f1519" stop-opacity=".4"/><stop offset="1" stop-color="#0f1519" stop-opacity="0"/></radialGradient><g id="cs-wheel"><circle r="26" fill="#0b1014"/><circle r="18.5" fill="url(#cs-rim)"/><circle r="13.5" fill="#26313a"/><path d="M0-12V12M-12 0H12M-8.5-8.5L8.5 8.5M8.5-8.5L-8.5 8.5" stroke="#dfe6ea" stroke-width="3" stroke-linecap="round"/><circle r="4.5" fill="#c9d2d7"/></g></defs><symbol id="car-sedan" viewBox="0 0 400 180"><ellipse cx="200" cy="168" rx="182" ry="7" fill="url(#cs-shadow)"/><path fill="url(#cs-body)" d="M26 142 L22 122 Q21 106 34 102 L88 97 C106 95 122 66 168 58 C212 54 254 76 296 94 L352 102 Q378 107 381 126 L381 134 L372 142 L327 142 A32 32 0 0 0 263 142 L137 142 A32 32 0 0 0 73 142 Z"/><path fill="url(#cs-glass)" d="M112 94 C126 74 144 66 168 65 C204 63 238 76 272 93 Z"/><path d="M190 64 L194 94" stroke="#2b363c" stroke-width="5"/><path d="M62 106 L352 108" stroke="#fff" stroke-opacity=".22" stroke-width="1.6" fill="none"/><path d="M304 97 L346 105" stroke="#fff" stroke-opacity=".16" stroke-width="5" stroke-linecap="round" fill="none"/><path fill="#eef6f9" d="M354 109 L378 114 L375 121 L352 116 Z"/><path fill="#eb0a1e" d="M23 108 L36 106 L36 111 L24 113 Z"/><path fill="#0b1014" opacity=".7" d="M359 126 L380 128 L379 135 L359 134 Z"/><use href="#cs-wheel" x="105" y="142"/><use href="#cs-wheel" x="295" y="142"/></symbol><symbol id="car-suv" viewBox="0 0 400 180"><ellipse cx="200" cy="174" rx="182" ry="6" fill="url(#cs-shadow)"/><path fill="url(#cs-body)" d="M34 146 L30 116 Q29 100 40 96 L56 60 C60 48 70 42 84 42 L214 40 C246 40 264 62 288 86 L326 96 L354 101 Q378 106 380 128 L380 138 L372 146 L336 146 A36 36 0 0 0 264 146 L134 146 A36 36 0 0 0 62 146 Z"/><path fill="#0b1014" opacity=".34" d="M32 134 L378 134 L372 146 L32 146 Z"/><path fill="url(#cs-glass)" d="M62 92 L74 56 C77 52 82 51 90 51 L146 50 L148 92 Z"/><path fill="url(#cs-glass)" d="M154 50 L208 49 C228 49 244 64 264 92 L154 92 Z"/><path d="M150 50 L151 93" stroke="#2b363c" stroke-width="6"/><path d="M76 41 L216 39" stroke="#a6b6be" stroke-width="3.5" stroke-linecap="round" fill="none"/><path d="M44 104 L354 107" stroke="#fff" stroke-opacity=".22" stroke-width="1.6" fill="none"/><path d="M62 146 A36 36 0 0 1 134 146 M264 146 A36 36 0 0 1 336 146" stroke="#0b1014" stroke-width="6" fill="none" stroke-linecap="round"/><path fill="#eef6f9" d="M356 108 L378 113 L376 121 L354 115 Z"/><path fill="#eb0a1e" d="M31 102 L40 100 L40 106 L32 108 Z"/><use href="#cs-wheel" x="98" y="146" transform="translate(98 146) scale(1.14) translate(-98 -146)"/><use href="#cs-wheel" x="300" y="146" transform="translate(300 146) scale(1.14) translate(-300 -146)"/></symbol><symbol id="car-hatch" viewBox="0 0 400 180"><ellipse cx="200" cy="168" rx="165" ry="7" fill="url(#cs-shadow)"/><path fill="url(#cs-body)" d="M56 142 L51 120 Q50 106 62 102 L78 90 C92 68 114 56 144 54 L208 54 C240 54 264 80 290 94 L334 102 Q356 107 359 126 L359 134 L350 142 L323 142 A32 32 0 0 0 259 142 L141 142 A32 32 0 0 0 77 142 Z"/><path fill="url(#cs-glass)" d="M90 92 C102 72 118 63 144 62 L206 62 C228 62 246 78 270 92 Z"/><path d="M180 62 L184 92" stroke="#2b363c" stroke-width="5"/><path d="M60 106 L334 108" stroke="#fff" stroke-opacity=".22" stroke-width="1.6" fill="none"/><path fill="#eef6f9" d="M336 109 L357 114 L355 121 L334 116 Z"/><path fill="#eb0a1e" d="M52 108 L62 104 L63 110 L53 114 Z"/><use href="#cs-wheel" x="109" y="142"/><use href="#cs-wheel" x="291" y="142"/></symbol></svg>
@@ -2760,6 +2798,7 @@ document.addEventListener("DOMContentLoaded", function(){
     var el = document.createElement("div");
     el.className = "serv-item";
     el.innerHTML =
+      '<div class="serv-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#EB0A1E"></circle><path d="M8 12.5l2.5 2.5L16 9" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>' +
       '<h3>' + s.titulo + '</h3>' +
       '<p>' + s.desc + '</p>' +
       '<a class="btn primary" target="_blank" rel="noopener noreferrer" href="' + wa(s.numero, s.msg) + '">Escribir</a>';
