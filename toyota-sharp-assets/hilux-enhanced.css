@@ -315,6 +315,30 @@ body {
   padding: 12px 0;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  /* El contenedor genérico ".wrap" limita a 1200px, y el contenido de esta
+     barra (6 pestañas + 3 links + botón) necesita más ancho que eso.
+     Se lo ensanchamos solo a esta barra para que entre todo en una línea
+     en pantallas de escritorio/grabación, sin perder el fallback de
+     scroll (con fade) en ventanas angostas. */
+  width: min(1700px, calc(100% - 48px));
+}
+
+.ficha-jumpnav .jump-tab {
+  padding: 8px 12px;
+  font-size: 12.5px;
+}
+
+.ficha-jumpnav [role="tablist"] {
+  gap: 6px;
+}
+
+.ficha-jumpnav .wrap > a:not(.jump-tab):not(.ficha-jump-cta) {
+  padding: 8px 10px;
+  font-size: 12px;
+}
+
+.ficha-jumpnav .ficha-jump-cta {
+  padding: 8px 14px;
 }
 
 .ficha-jumpnav .wrap::-webkit-scrollbar {
