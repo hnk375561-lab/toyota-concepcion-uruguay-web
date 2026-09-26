@@ -62,8 +62,16 @@ const SEL = 'a[href],button,summary,[role=button],[role=tab],[role=menuitem],[ro
 const MAX_FAIL_SHOTS = 25;
 
 // ─────────────────────────── instalación automática ───────────────────────────
+// FIX QA: en Windows, shell:true hace que spawnSync junte cmd+args en un solo
+// string SIN entrecomillar (Node lo advierte con el warning DEP0190). Si el
+// comando o algún argumento tiene espacios -como process.execPath, que en
+// Windows suele ser "C:\Program Files\nodejs\node.exe"- cmd.exe corta en el
+// primer espacio y falla con "'C:\Program' no se reconoce...". Se entrecomilla
+// manualmente cmd/args que tengan espacios cuando se usa shell.
 function sh(cmd, args, cwd = ROOT) {
-  const r = spawnSync(cmd, args, { cwd, stdio: 'inherit', shell: process.platform === 'win32' });
+  const useShell = process.platform === 'win32';
+  const quote = (s) => (useShell && /\s/.test(s) ? `"${s}"` : s);
+  const r = spawnSync(useShell ? quote(cmd) : cmd, useShell ? args.map(quote) : args, { cwd, stdio: 'inherit', shell: useShell });
   return r.status === 0;
 }
 async function loadPlaywright() {
