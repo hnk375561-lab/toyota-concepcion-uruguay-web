@@ -1551,7 +1551,7 @@ document.addEventListener("DOMContentLoaded", function(){
     tab.addEventListener("click", function(e){
       e.preventDefault();
       var key = groupKeys[i];
-      goTo(groups[key][0], true);
+      activate(key, groups[key][0], true);
     });
     tab.addEventListener("keydown", function(e){
       var i2 = groupKeys.indexOf(tab.id.slice(4)), next;
