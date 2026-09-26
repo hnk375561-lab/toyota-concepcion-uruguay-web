@@ -117,6 +117,35 @@ document.addEventListener('DOMContentLoaded',function(){var mark=function(){docu
   };
 })();
 </script>
+<script id="toyota-header-offset-sync">
+(function(){
+  /* Mide la altura REAL del header pegajoso (demo banner + nav) y se la
+     pasa al CSS como variable. Reemplaza a los números fijos (64px, 80px,
+     112px...) que se desincronizaban del alto real del header y dejaban
+     un hueco o tapaban la barra de pestañas. Con esto la barra de
+     pestañas y el "aterrizaje" al hacer click en cada una siempre
+     coinciden con la altura real, sin importar si el banner de demo
+     cambia de tamaño o el header se reacomoda. */
+  function syncHeaderOffset(){
+    var demoBanner = document.querySelector(".demo-banner");
+    var header = document.getElementById("site-header");
+    var h = (demoBanner ? demoBanner.offsetHeight : 0) + (header ? header.offsetHeight : 0);
+    if(h > 0){
+      document.documentElement.style.setProperty("--toyota-header-h", h + "px");
+    }
+  }
+  if(document.readyState === "loading"){
+    document.addEventListener("DOMContentLoaded", syncHeaderOffset);
+  } else {
+    syncHeaderOffset();
+  }
+  window.addEventListener("load", syncHeaderOffset);
+  window.addEventListener("resize", syncHeaderOffset);
+  if(document.fonts && document.fonts.ready){
+    document.fonts.ready.then(syncHeaderOffset);
+  }
+})();
+</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
