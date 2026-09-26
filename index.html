@@ -2591,7 +2591,15 @@ document.addEventListener("DOMContentLoaded", function(){
     }
     function copyShareUrl(url){
       if(window.isSecureContext && navigator.clipboard && navigator.clipboard.writeText){
-        navigator.clipboard.writeText(url).then(function(){shareFeedback("Link copiado ✓");}, function(){shareFeedback("Copiá el link desde la barra del navegador");});
+        var settled = false;
+        var timeout = setTimeout(function(){ if(!settled){ settled = true; shareFeedback("Copiá el link desde la barra del navegador"); } }, 1500);
+        navigator.clipboard.writeText(url).then(function(){
+          if(settled) return; settled = true; clearTimeout(timeout);
+          shareFeedback("Link copiado ✓");
+        }, function(){
+          if(settled) return; settled = true; clearTimeout(timeout);
+          shareFeedback("Copiá el link desde la barra del navegador");
+        });
       }else{ shareFeedback("Copiá el link desde la barra del navegador"); }
     }
     shareBtn.addEventListener("click", function(){
@@ -2599,6 +2607,16 @@ document.addEventListener("DOMContentLoaded", function(){
       if(navigator.share){
         navigator.share(payload).catch(function(err){ if(!err || err.name !== "AbortError") shareFeedback("No se pudo compartir"); });
       }else{ copyShareUrl(window.location.href); }
+    });
+  }
+  // ---- botones "Ver disponibilidad" de las tarjetas placeholder de usados (sin stock real aún) ----
+  var usedGrid = document.getElementById("usedGrid");
+  if(usedGrid){
+    usedGrid.addEventListener("click", function(e){
+      var btn = e.target.closest && e.target.closest(".used-actions .btn");
+      if(!btn || !usedGrid.contains(btn)) return;
+      window.toyotaTrack("used_availability_click", {});
+      openWa(wa("ventas", "Hola! Quiero consultar disponibilidad de vehículos usados."));
     });
   }
   // ---- captura contextual de interés en usados sin backend ni datos inventados ----
