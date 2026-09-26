@@ -1580,7 +1580,7 @@ document.addEventListener("DOMContentLoaded", function(){
     tab.addEventListener("click", function(e){
       e.preventDefault();
       var key = groupKeys[i];
-      activate(key, groups[key][0], true);
+      goTo(groups[key][0], true);
     });
     tab.addEventListener("keydown", function(e){
       var i2 = groupKeys.indexOf(tab.id.slice(4)), next;
@@ -1589,7 +1589,7 @@ document.addEventListener("DOMContentLoaded", function(){
       else if(e.key === "Home"){ e.preventDefault(); next = 0; }
       else if(e.key === "End"){ e.preventDefault(); next = groupKeys.length - 1; }
       else return;
-      activate(groupKeys[next], groups[groupKeys[next]][0], true);
+      goTo(groups[groupKeys[next]][0], true);
       tabs[next].focus();
     });
   });
