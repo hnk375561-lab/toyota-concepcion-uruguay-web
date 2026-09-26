@@ -1509,11 +1509,13 @@ section[id],main [id],#aviso-demo{scroll-margin-top:calc(112px + var(--demo-bann
 /* ---- Nav rápida en la ficha ---- */
 .ficha-jumpnav{position:sticky;top:64px;z-index:20;background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .ficha-jumpnav::-webkit-scrollbar{display:none}
-.ficha-jumpnav .wrap{display:flex;gap:4px;padding:0}
-.ficha-jumpnav [role="tablist"]{display:flex;gap:4px;flex:none}
-.ficha-jumpnav a{flex:none;font:700 12.5px var(--display);color:var(--muted);text-decoration:none;padding:14px 16px;border-bottom:2px solid transparent;white-space:nowrap;transition:color .2s ease,border-color .2s ease}
-.ficha-jumpnav a:hover{color:var(--ink)}
-.ficha-jumpnav a.is-active{color:var(--toyota-red);border-bottom-color:var(--toyota-red)}
+.ficha-jumpnav .wrap{display:flex;gap:8px;padding:10px 0}
+.ficha-jumpnav [role="tablist"]{display:flex;gap:8px;flex:none}
+.ficha-jumpnav .jump-tab{flex:none;min-height:40px;display:inline-flex;align-items:center;font:700 13px var(--display);color:var(--ink);text-decoration:none;padding:9px 15px;border:1px solid var(--border);border-radius:999px;background:var(--surface);white-space:nowrap;transition:background .2s ease,color .2s ease,border-color .2s ease}
+.ficha-jumpnav .jump-tab:hover{border-color:var(--panel)}
+.ficha-jumpnav .jump-tab.is-active{background:var(--panel);color:var(--panel-ink);border-color:var(--panel)}
+.ficha-jumpnav .wrap>a:not(.jump-tab):not(.ficha-jump-cta){flex:none;font:700 12.5px var(--display);color:var(--muted);text-decoration:none;padding:14px 12px;white-space:nowrap;transition:color .2s ease}
+.ficha-jumpnav .wrap>a:not(.jump-tab):not(.ficha-jump-cta):hover{color:var(--ink)}
 
 /* ---- Aviso de renovación de generación ---- */
 .ficha-alert{padding:28px 0 0}
