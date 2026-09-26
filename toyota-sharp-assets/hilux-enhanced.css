@@ -290,7 +290,11 @@ body {
   background: var(--white);
   border-bottom: 2px solid var(--line);
   position: sticky;
-  top: 80px;
+  /* El "80px" viejo era una altura de header inventada/desactualizada.
+     El sitio ya calcula la altura real del header sticky en otro lado
+     (scroll-margin-top de las secciones) con esta misma fórmula: usarla
+     acá evita que el header tape la mitad de arriba de las pestañas. */
+  top: calc(112px + var(--demo-banner-h));
   z-index: 40;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
 }
