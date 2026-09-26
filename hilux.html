@@ -1197,7 +1197,7 @@ Esta sección está lista para mostrar ofertas y tasas vigentes apenas el conces
 <h3 style="font-family:var(--display);font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);margin:22px 0 10px">Fuentes oficiales — Toyota Argentina</h3>
 <ul>
 <li><a href="https://www.toyota.com.ar/modelos/hilux-cabina-simple" target="_blank" rel="noopener noreferrer">Toyota Argentina — Hilux Cabina Simple ↗</a> — ficha oficial del modelo, fuente principal de motor, potencia, torque, transmisión y tracción de DX/SR.</li>
-<li><a href="https://www.toyota.com.ar/modelos/hilux-srvsrx" target="_blank" rel="noopener noreferrer">Toyota Argentina — Hilux SRV/SRX ↗</a> — ficha oficial de equipamiento de las versiones intermedias y tope de gama.</li>
+<!-- FIX QA: el link original a /modelos/hilux-srvsrx daba 404. Se apuntó al listado general de modelos (confirmado HTTP 200) hasta poder confirmar la URL exacta de la ficha SRV/SRX vigente en toyota.com.ar. --><li><a href="https://www.toyota.com.ar/modelos" target="_blank" rel="noopener noreferrer">Toyota Argentina — Modelos Hilux ↗</a> — listado oficial de versiones, incluidas SRV y SRX.</li>
 <li><a href="https://www.toyota.com.ar/modelos/hilux-gr-sport" target="_blank" rel="noopener noreferrer">Toyota Argentina — Hilux GR-Sport ↗</a> — página oficial del modelo de la variante deportiva off-road.</li>
 <li><a href="https://media.toyota.com.ar/4168cbbe-c55f-4b7f-b1ce-2b497ad1f339.pdf" target="_blank" rel="noopener noreferrer">Toyota Argentina — ficha técnica en PDF de Hilux GR-Sport ↗</a> — fuente oficial de los ángulos de ataque (30°), salida (24°) y ventral (30°), y del despeje de 247 mm usados en la sección Aptitud off-road.</li>
 <li><a href="https://www.toyota.com.ar/descubri/newsroom/noticias-de-argentina/la-mejora-continua-toyota-argentina-presenta-la-nueva-hilux-srx-con-plataforma-renovada-y-mas-confort" target="_blank" rel="noopener noreferrer">Toyota Argentina — comunicado de la nueva plataforma SRX ↗</a> — fuente del ensanche de trochas, amortiguadores y barra estabilizadora trasera, y de la pantalla de 9&Prime; extendida a SRV/SR/DX.</li>
@@ -1205,7 +1205,7 @@ Esta sección está lista para mostrar ofertas y tasas vigentes apenas el conces
 <li><a href="https://www.toyota.com.ar/descubri/newsroom/noticias-de-argentina/2025-record-para-toyota-numero-uno-en-ventas-produccion-y-exportacion-por-quinto-ano-consecutivo-y-20-anos-de-hilux-como-la-pick-up-mas-elegida-por-los-argentinos" target="_blank" rel="noopener noreferrer">Toyota Argentina — comunicado de cierre 2025 ↗</a> — respaldo oficial de los 20 años de Hilux como la pick-up más vendida del país.</li>
 <li><a href="https://www.toyota.com.ar/descubri/newsroom/noticias-de-argentina/toyota-10-toyota-argentina-redefine-el-estandar-de-la-industria-y-extiende-hasta-10-anos-la-garantia-de-sus-vehiculos" target="_blank" rel="noopener noreferrer">Toyota Argentina — comunicado &ldquo;Toyota 10&rdquo; ↗</a> — fuente oficial de la garantía extendida hasta 10 años o 200.000&nbsp;km.</li>
 <li><a href="https://www.toyota.com.ar/mi-toyota/garantia/tyc" target="_blank" rel="noopener noreferrer">Toyota Argentina — Términos y condiciones de garantía ↗</a> — texto completo de la garantía oficial y de la garantía adicional Toyota 10.</li>
-<li><a href="https://www.toyota.com.ar/mi-toyota/accesorios/snorkel-ventilacion-motor-hilux-dxsr-pzq1289040" target="_blank" rel="noopener noreferrer">Toyota Argentina — catálogo de accesorios genuinos ↗</a> — ejemplo de accesorio oficial (snorkel) usado como referencia de la sección Accesorios.</li>
+<!-- FIX QA: el link original a /mi-toyota/accesorios/snorkel-... daba 404. Se apuntó a la home (confirmada HTTP 200) hasta poder confirmar la URL exacta del catálogo de accesorios vigente en toyota.com.ar. --><li><a href="https://www.toyota.com.ar/" target="_blank" rel="noopener noreferrer">Toyota Argentina — sitio oficial ↗</a> — catálogo de accesorios genuinos consultable desde el sitio oficial.</li>
 </ul>
 
 <details class="ficha-sources-more"><summary>Cobertura especializada y de mercado (22 fuentes complementarias)</summary>
@@ -1533,7 +1533,7 @@ document.addEventListener("DOMContentLoaded", function(){
     var id = (hashId || "").replace(/^#/, "");
     var key = sectionToGroup[id];
     if(!key) return false;
-    activate(key, id, false);
+    activate(key, id, true);
     var el = document.getElementById(id);
     if(el && doScroll){
       requestAnimationFrame(function(){
