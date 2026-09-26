@@ -2589,24 +2589,42 @@ document.addEventListener("DOMContentLoaded", function(){
       if(shareTimer) clearTimeout(shareTimer);
       shareTimer = setTimeout(function(){ if(shareLabel) shareLabel.textContent = "Compartir"; }, 2200);
     }
+    function manualShareFallback(url){
+      var fallback = document.getElementById("shareUrlFallback");
+      if(!fallback){
+        fallback = document.createElement("input");
+        fallback.id = "shareUrlFallback";
+        fallback.type = "text";
+        fallback.readOnly = true;
+        fallback.setAttribute("aria-label", "Link para copiar manualmente");
+        fallback.style.cssText = "position:fixed;left:12px;bottom:84px;z-index:120;width:min(420px,calc(100% - 24px));padding:12px;border:2px solid var(--toyota-red);background:#fff;color:#1B1F22;font:14px var(--body);box-shadow:0 8px 24px rgba(0,0,0,.2);";
+        document.body.appendChild(fallback);
+      }
+      fallback.value = url;
+      fallback.hidden = false;
+      fallback.focus();
+      fallback.select();
+      shareFeedback("Copiá el link seleccionado (Ctrl+C)");
+      setTimeout(function(){ if(fallback) fallback.hidden = true; }, 6000);
+    }
     function copyShareUrl(url){
       if(window.isSecureContext && navigator.clipboard && navigator.clipboard.writeText){
         var settled = false;
-        var timeout = setTimeout(function(){ if(!settled){ settled = true; shareFeedback("Copiá el link desde la barra del navegador"); } }, 1500);
+        var timeout = setTimeout(function(){ if(!settled){ settled = true; manualShareFallback(url); } }, 1500);
         navigator.clipboard.writeText(url).then(function(){
           if(settled) return; settled = true; clearTimeout(timeout);
           shareFeedback("Link copiado ✓");
         }, function(){
           if(settled) return; settled = true; clearTimeout(timeout);
-          shareFeedback("Copiá el link desde la barra del navegador");
+          manualShareFallback(url);
         });
-      }else{ shareFeedback("Copiá el link desde la barra del navegador"); }
+      }else{ manualShareFallback(url); }
     }
     shareBtn.addEventListener("click", function(){
       var payload={title:"Piñeyro y Moscatelli",text:"9 de Julio 1624, Concepción del Uruguay, Entre Ríos",url:window.location.href};
       if(navigator.share){
         shareFeedback("Abriendo…");
-        navigator.share(payload).catch(function(err){ if(!err || err.name !== "AbortError") shareFeedback("No se pudo compartir"); });
+        navigator.share(payload).catch(function(err){ if(!err || err.name !== "AbortError") copyShareUrl(window.location.href); });
       }else{
         shareFeedback("Copiando…");
         copyShareUrl(window.location.href);
