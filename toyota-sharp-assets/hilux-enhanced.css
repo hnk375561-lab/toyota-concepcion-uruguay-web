@@ -295,6 +295,17 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
 }
 
+.ficha-jumpnav::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 36px;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, var(--white) 90%);
+}
+
 .ficha-jumpnav .wrap {
   display: flex;
   gap: 4px;
@@ -302,6 +313,14 @@ body {
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   padding: 12px 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.ficha-jumpnav .wrap::-webkit-scrollbar {
+  display: none;
+  height: 0;
+  width: 0;
 }
 
 .jump-tab {
