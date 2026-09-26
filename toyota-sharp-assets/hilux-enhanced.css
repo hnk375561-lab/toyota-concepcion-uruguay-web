@@ -290,13 +290,22 @@ body {
   background: var(--white);
   border-bottom: 2px solid var(--line);
   position: sticky;
-  /* El "80px" viejo era una altura de header inventada/desactualizada.
-     El sitio ya calcula la altura real del header sticky en otro lado
-     (scroll-margin-top de las secciones) con esta misma fórmula: usarla
-     acá evita que el header tape la mitad de arriba de las pestañas. */
-  top: calc(112px + var(--demo-banner-h));
+  /* "--toyota-header-h" la mide en vivo un script de hilux.html (alto real
+     de banner demo + header). Los números fijos que probamos antes (80px,
+     luego 112px+36px) quedaban desincronizados de la altura real y dejaban
+     tapado o un hueco de más. El 108px es solo el valor de arranque antes
+     de que el script corra. */
+  top: var(--toyota-header-h, 108px);
   z-index: 40;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+/* Mismo criterio para el "aterrizaje" al clickear una pestaña: esta regla
+   pisa la de model-ficha.css (que usaba 112px+36px fijo, mal calibrado
+   para esta ficha) solo en esta página. */
+section[id],
+main [id] {
+  scroll-margin-top: calc(var(--toyota-header-h, 108px) + 12px);
 }
 
 .ficha-jumpnav::after {
