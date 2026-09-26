@@ -1351,6 +1351,7 @@ document.addEventListener("DOMContentLoaded", function(){
       quizResult.appendChild(link);
       quizResult.scrollIntoView({behavior:"smooth", block:"center"});
       if(window.toyotaTrack) window.toyotaTrack("quiz_hilux_result", {trim:ganador});
+      openWa(link.href);
     });
   }
 
@@ -1550,8 +1551,7 @@ document.addEventListener("DOMContentLoaded", function(){
     tab.addEventListener("click", function(e){
       e.preventDefault();
       var key = groupKeys[i];
-      activate(key, groups[key][0], true);
-      nav.scrollIntoView({block: "start", behavior: "smooth"});
+      goTo(groups[key][0], true);
     });
     tab.addEventListener("keydown", function(e){
       var i2 = groupKeys.indexOf(tab.id.slice(4)), next;

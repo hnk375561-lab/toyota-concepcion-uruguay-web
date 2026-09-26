@@ -800,6 +800,104 @@ section {
   /* Keep light theme as specified in original CSS */
 }
 
+/* ===== FIX QA: "Test rápido ¿cuál es tu Hilux?" no tenía NINGÚN estilo propio.
+   Los radios nativos sin estilo daban la sensación de "SIN EFECTO" al tocarlos
+   (sin feedback visual de selección). Se les da apariencia de tarjeta clickeable
+   con estado :checked/:hover/:focus-visible bien visible. ===== */
+.quiz-card {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 26px 24px;
+  margin-top: 26px;
+}
+.quiz-q { border: 0; margin: 0; padding: 0; }
+.quiz-q-title {
+  font-family: var(--display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  padding: 0 0 14px;
+  margin: 0;
+}
+.quiz-opts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+@media (max-width: 640px) {
+  .quiz-opts { grid-template-columns: 1fr; }
+}
+.quiz-opts label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 12px 14px;
+  font-size: 13.5px;
+  line-height: 1.4;
+  color: var(--muted);
+  cursor: pointer;
+  transition: border-color var(--motion-base) var(--motion-ui),
+              background-color var(--motion-base) var(--motion-ui),
+              color var(--motion-base) var(--motion-ui),
+              transform var(--motion-base) var(--motion-ui);
+}
+.quiz-opts label:hover {
+  border-color: var(--toyota-red);
+  transform: translateY(-1px);
+}
+.quiz-opts input[type="radio"] {
+  flex: 0 0 auto;
+  margin-top: 2px;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--toyota-red);
+  cursor: pointer;
+}
+.quiz-opts input[type="radio"]:focus-visible {
+  outline: 2px solid var(--toyota-red);
+  outline-offset: 2px;
+}
+.quiz-opts label:has(input[type="radio"]:checked) {
+  border-color: var(--toyota-red);
+  background: color-mix(in srgb, var(--toyota-red) 6%, var(--surface));
+  color: var(--ink);
+  font-weight: 600;
+}
+.quiz-card > .btn.primary {
+  align-self: flex-start;
+  background: var(--toyota-red);
+  border-color: var(--toyota-red);
+  color: #fff;
+}
+.quiz-card > .btn.primary:hover { background: #c00918; border-color: #c00918; }
+.quiz-result {
+  margin-top: 22px;
+  border: 1px solid var(--border);
+  background: var(--surface-alt);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+.quiz-result strong {
+  font-family: var(--display);
+  font-size: 19px;
+  color: var(--ink);
+}
+.quiz-result p { margin: 0; color: var(--muted); font-size: 13.5px; line-height: 1.55; }
+.quiz-result .btn.primary {
+  margin-top: 6px;
+  background: var(--toyota-red);
+  border-color: var(--toyota-red);
+  color: #fff;
+}
+
 /* ===== PRINT STYLES ===== */
 @media print {
   .ficha-jumpnav,
