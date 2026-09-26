@@ -62,16 +62,25 @@ const SEL = 'a[href],button,summary,[role=button],[role=tab],[role=menuitem],[ro
 const MAX_FAIL_SHOTS = 25;
 
 // ─────────────────────────── instalación automática ───────────────────────────
-// FIX QA: en Windows, shell:true hace que spawnSync junte cmd+args en un solo
-// string SIN entrecomillar (Node lo advierte con el warning DEP0190). Si el
-// comando o algún argumento tiene espacios -como process.execPath, que en
-// Windows suele ser "C:\Program Files\nodejs\node.exe"- cmd.exe corta en el
-// primer espacio y falla con "'C:\Program' no se reconoce...". Se entrecomilla
-// manualmente cmd/args que tengan espacios cuando se usa shell.
+// FIX QA: el intento anterior de arreglar esto entrecomillando cmd/args seguía
+// pasando TODO por cmd.exe (shell:true), y ahí es donde revienta: cuando el
+// propio Node arma el string final para cmd.exe, si "cmd" es un ejecutable
+// directo (p. ej. process.execPath = "C:\Program Files\nodejs\node.exe" en
+// Windows) el corte en el primer espacio pasa igual y falla con
+// "'C:\Program' no se reconoce...". La solución real es no usar cmd.exe para
+// nada que ya sea un .exe invocable directamente: spawnSync sin shell maneja
+// rutas con espacios sin problema porque Windows las pasa por argv, no por una
+// línea de comandos de texto. shell:true se deja solo para comandos que en
+// Windows son en realidad scripts (.cmd), como "npm".
 function sh(cmd, args, cwd = ROOT) {
-  const useShell = process.platform === 'win32';
-  const quote = (s) => (useShell && /\s/.test(s) ? `"${s}"` : s);
-  const r = spawnSync(useShell ? quote(cmd) : cmd, useShell ? args.map(quote) : args, { cwd, stdio: 'inherit', shell: useShell });
+  const isWin = process.platform === 'win32';
+  const isDirectExe = isWin && /\.exe$/i.test(cmd);
+  if (isWin && !isDirectExe) {
+    const quote = (s) => (/\s/.test(s) ? `"${s}"` : s);
+    const r = spawnSync(quote(cmd), args.map(quote), { cwd, stdio: 'inherit', shell: true });
+    return r.status === 0;
+  }
+  const r = spawnSync(cmd, args, { cwd, stdio: 'inherit' });
   return r.status === 0;
 }
 async function loadPlaywright() {
