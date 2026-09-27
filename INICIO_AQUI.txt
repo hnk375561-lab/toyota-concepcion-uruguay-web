@@ -24,7 +24,7 @@
 4. 📋 README_MEJORAS.md
    (Guía completa de uso e instalación)
 
-5. 🎨 DEMO_CAMBIOS.html
+5. 🎨 docs/DEMO_CAMBIOS.html
    (Demo interactivo de los cambios antes/después)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -38,7 +38,7 @@ OPCIÓN 2 - Leer las mejoras realizadas:
   → Lee: MEJORAS_REALIZADAS.md (resumen de 100+ cambios)
 
 OPCIÓN 3 - Ver demo interactivo:
-  → Abre: DEMO_CAMBIOS.html en tu navegador
+  → Abre: docs/DEMO_CAMBIOS.html en tu navegador
 
 OPCIÓN 4 - Leer guía completa:
   → Lee: README_MEJORAS.md (instrucciones y explicación)
@@ -163,7 +163,7 @@ Si deseas cambiar colores, abre hilux-enhanced.css y edita:
 1. Abre hilux.html en tu navegador
 2. Lee MEJORAS_REALIZADAS.md para detalles
 3. Consulta README_MEJORAS.md si necesitas ayuda
-4. Mira DEMO_CAMBIOS.html para ver antes/después
+4. Mira docs/DEMO_CAMBIOS.html para ver antes/después
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 

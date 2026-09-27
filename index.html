@@ -1635,7 +1635,7 @@ footer a[href="tel:+543442502390"]{color:#F4F6F7!important}
 #gama .model-reveal-tile:focus-visible{outline:2px solid var(--toyota-red);outline-offset:2px}
 #gama .model-reveal-tile .reveal-icon{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#f7f9f9,#e9edef);font:700 26px var(--display);color:var(--toyota-red);line-height:1}
 #gama .model-reveal-tile strong{font:700 20px/1.15 var(--display);letter-spacing:-.02em;color:var(--ink)}
-#gama .model-reveal-tile p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+#gama .model-reveal-tile .reveal-text{display:block;margin:0;color:var(--muted);font-size:13px;line-height:1.5}
 .visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
 /* Tarjetas de la gama: todas las fotos llenan el mismo marco (mismo tamaño y recorte) y comparten un tratamiento de color suave.
    Solo CSS: las imágenes originales no se tocan. Si una foto nueva queda mal recortada, ajustá object-position en la regla del modelo. */
@@ -2796,7 +2796,7 @@ document.addEventListener("DOMContentLoaded", function(){
   gamaRevealBtn.innerHTML =
     '<span class="reveal-icon" aria-hidden="true">+</span>' +
     '<strong>Modelos sin foto <span id="gamaRevealCount">(' + cardsSinFoto.length + ')</span></strong>' +
-    '<p>' + nombresSinFoto.join(", ").replace(/,([^,]*)$/, " y$1") + ' también están disponibles. Tocá para verlos.</p>';
+    '<span class="reveal-text">' + nombresSinFoto.join(", ").replace(/,([^,]*)$/, " y$1") + ' también están disponibles. Tocá para verlos.</span>';
   gamaGrid.appendChild(gamaRevealBtn);
 
   var gamaRevealStatus = document.createElement("p");

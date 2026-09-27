@@ -22,7 +22,9 @@ CASES = [
     ("tablet-touch", 820, 1180, True),
     ("mobile-touch", 390, 844, True),
 ]
-EXPECTED_FILTER_COUNTS = {"todos": 8, "pickup": 1, "suv": 5, "sedan": 2}
+# "todos" arranca en 5: 4 modelos con foto + la tarjeta "Modelos sin foto" (los otros 4
+# se revelan al tocarla). Las categorías siguen mostrando todo (con y sin foto).
+EXPECTED_FILTER_COUNTS = {"todos": 5, "pickup": 1, "suv": 5, "sedan": 2}
 
 
 @dataclass
@@ -123,6 +125,12 @@ def filter_audit(page: Page, audit: Audit, case_name: str) -> None:
         audit.check(f"{case_name}/gama-{key}", count == expected and not empty_visible, f"visible={count}, expected={expected}, empty={empty_visible}")
     page.goto(BASE_URL, wait_until="domcontentloaded")
     page.wait_for_timeout(1200)
+    page.locator("#gamaRevealBtn").click()
+    page.wait_for_timeout(200)
+    revealed = visible_count(page, "#gama-grid .model")
+    audit.check(f"{case_name}/gama-reveal-sin-foto", revealed == 8 and not visible(page.locator("#gamaRevealBtn")), f"visible={revealed}, expected=8, toggle_visible={visible(page.locator('#gamaRevealBtn'))}")
+    page.goto(BASE_URL, wait_until="domcontentloaded")
+    page.wait_for_timeout(1200)
     for button in page.locator("#faqList").locator("xpath=preceding-sibling::*[@role='tablist'][1]").locator("[role=tab]").all():
         button.click()
         page.wait_for_timeout(80)
@@ -149,6 +157,8 @@ def compare_audit(page: Page, audit: Audit, case_name: str) -> None:
     page.locator('[data-compare-model="SW4 Diamond"]').click()
     page.wait_for_timeout(250)
     audit.check(f"{case_name}/compare-second", a.input_value() == "Hilux" and b.input_value() == "SW4 Diamond" and visible(page.locator("#compareResult")), f"A={a.input_value()}, B={b.input_value()}, result={visible(page.locator('#compareResult'))}")
+    page.locator("#gamaRevealBtn").click()  # Corolla Cross es un modelo sin foto: hay que revelarlo primero
+    page.wait_for_timeout(250)
     page.locator('[data-compare-model="Corolla Cross"]').click()
     page.wait_for_timeout(250)
     audit.check(f"{case_name}/compare-replace-b", a.input_value() == "Hilux" and b.input_value() == "Corolla Cross" and a.input_value() != b.input_value(), f"A={a.input_value()}, B={b.input_value()}")
