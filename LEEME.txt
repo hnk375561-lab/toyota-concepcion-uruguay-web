@@ -1,0 +1,6 @@
+Estado FINAL de todos los archivos modificados respecto de GitHub main (commit f8be6e1):
+ - los 3 detalles menores (demo movida a docs/, <span> en la tarjeta toggle, click-audit.py)
+ - el cambio de Ubicación/Google Maps (index.html, data/dealership.json, scripts/*, tests/e2e/ubicacion.spec.js, CLAUDE.md)
+
+Copiar sobre la raíz del repo respetando las carpetas, y BORRAR DEMO_CAMBIOS.html de la raíz.
+Después: git add -A && git commit && git push

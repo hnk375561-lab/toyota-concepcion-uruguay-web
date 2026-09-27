@@ -118,8 +118,11 @@ Los horarios están en **cuatro** lugares y deben coincidir:
 ### 4.3 Cambiar la dirección
 
 Buscar `9 de Julio 1624` (aparece en unas 16 partes de `index.html`). También cambiar el JSON-LD
-`PostalAddress`, la URL del mapa embebido (`<iframe … google.com/maps?q=…`) y los enlaces a
-Google Maps y Apple Maps.
+`PostalAddress`, la URL del mapa embebido (`<iframe … google.com/maps?q=…`) y el enlace a Apple Maps.
+Los enlaces a Google Maps (botones, "Compartir" y el QR de la sección Ubicación) apuntan todos a la
+ficha del negocio: `location.mapsPlaceUrl` en `data/dealership.json`. Si cambia, reemplazarla en los
+enlaces de `index.html`, en el JS del botón Compartir y **regenerar el QR** (`npm run validate:dealership`
+falla si algún enlace de Maps no coincide).
 
 ### 4.4 Agregar o cambiar una promoción / novedad
 

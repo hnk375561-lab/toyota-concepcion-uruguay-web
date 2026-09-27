@@ -12,7 +12,8 @@ const required = [
   data.contact.centralPhone.replace('+', ''),
   data.contact.email,
   data.location.address,
-  data.location.city
+  data.location.city,
+  data.location.mapsPlaceUrl
 ];
 
 function replaceAll(text, pairs) {

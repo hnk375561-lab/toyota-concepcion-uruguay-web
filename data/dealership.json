@@ -17,6 +17,7 @@
     "province": "Entre Ríos",
     "country": "Argentina",
     "mapsQuery": "9 de Julio 1624, Concepción del Uruguay, Entre Ríos",
+    "mapsPlaceUrl": "https://www.google.com/maps/place/Moscatelli+Gustavo+-+Toyota/@-32.4874489,-58.2508951,17z/data=!3m1!4b1!4m6!3m5!1s0x95afdb005d0d92a1:0xe119231d3607c018!8m2!3d-32.4874489!4d-58.2483202!16s%2Fg%2F1tc_0pr2",
     "coordinates": {"latitude": -32.4874489, "longitude": -58.2483202},
     "status": "public-source-needs-client-confirmation"
   },
