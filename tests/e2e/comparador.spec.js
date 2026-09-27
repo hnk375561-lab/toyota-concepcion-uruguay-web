@@ -67,6 +67,9 @@ test.describe('Comparador', () => {
     await page.locator('[data-compare-model="SW4 Diamond"]').click();
     await expect(page.locator('#compareB')).toHaveValue('SW4 Diamond');
     await expect(page.locator('#compareResult')).toBeVisible();
+    // Corolla Cross es un modelo "sin foto": hay que revelarlo primero,
+    // igual que haría un usuario real, antes de poder tocar su botón Comparar.
+    await page.locator('#gamaRevealBtn').click();
     await page.locator('[data-compare-model="Corolla Cross"]').click();
     await expect(page.locator('#compareA')).toHaveValue('Hilux');
     await expect(page.locator('#compareB')).toHaveValue('Corolla Cross');

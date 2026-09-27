@@ -55,7 +55,7 @@ test.describe('Carga y recorrido completo', () => {
 });
 
 test.describe('Catálogo', () => {
-  const ESPERADOS = { todos: 8, pickup: 1, suv: 5, sedan: 2 };
+  const ESPERADOS = { todos: 5, pickup: 1, suv: 5, sedan: 2 };
   for (const [filtro, n] of Object.entries(ESPERADOS)) {
     test(`filtro "${filtro}" muestra ${n} modelos`, async ({ page, isMobile }) => {
       await openSite(page, '', { mobile: isMobile });
@@ -64,6 +64,28 @@ test.describe('Catálogo', () => {
       await expect(page.locator('#filterEmpty')).toBeHidden();
     });
   }
+
+  test('tocar "Modelos sin foto" revela las 4 cards restantes', async ({ page, isMobile }) => {
+    await openSite(page, '', { mobile: isMobile });
+    await expect(page.locator('#gama-grid .model:not([hidden])')).toHaveCount(5);
+    await page.locator('#gamaRevealBtn').click();
+    await expect(page.locator('#gama-grid .model:not([hidden])')).toHaveCount(8);
+    await expect(page.locator('#gamaRevealBtn')).toBeHidden();
+  });
+
+  test('el contador "Todos" siempre dice 8, esté o no revelado', async ({ page, isMobile }) => {
+    await openSite(page, '', { mobile: isMobile });
+    await expect(page.locator('#filterbar [data-count="todos"]')).toHaveText('(8)');
+    await page.locator('#gamaRevealBtn').click();
+    await expect(page.locator('#filterbar [data-count="todos"]')).toHaveText('(8)');
+  });
+
+  test('filtrar por categoría sigue mostrando todo, con y sin foto (Opción A)', async ({ page, isMobile }) => {
+    await openSite(page, '', { mobile: isMobile });
+    await page.locator('#filterbar .filterbtn[data-filter="suv"]').click();
+    await expect(page.locator('#gama-grid .model:not([hidden])')).toHaveCount(5);
+    await expect(page.locator('#gamaRevealBtn')).toBeHidden();
+  });
 });
 
 test.describe('Página 404', () => {

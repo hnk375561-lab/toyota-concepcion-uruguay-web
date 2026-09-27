@@ -122,6 +122,12 @@ test.describe('estados interactivos', () => {
     await page.locator('#filterbar .filterbtn[data-filter="suv"]').click();
     await scan(page, '#gama');
   });
+
+  test('catálogo con "sin foto" revelado', async ({ page, isMobile }) => {
+    await openSite(page, '', { mobile: isMobile });
+    await page.locator('#gamaRevealBtn').click();
+    await scan(page, '#gama');
+  });
 });
 
 test.describe('404.html', () => {

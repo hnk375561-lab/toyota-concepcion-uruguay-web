@@ -1627,6 +1627,16 @@ footer a[href="tel:+543442502390"]{color:#F4F6F7!important}
 #gama .model-placeholder strong{font:700 clamp(22px,2.5vw,30px)/1.05 var(--display);letter-spacing:-.035em;color:var(--ink);}
 #gama .model-placeholder span{font:700 10px var(--display);letter-spacing:.18em;text-transform:uppercase;color:var(--toyota-red);}
 @media(max-width:700px){#gama .model-picture,#gama .model-placeholder{height:220px;padding:14px}}
+/* Tarjeta-toggle "Modelos sin foto": misma geometría que .model pero se ve
+   claramente como una acción, no como un vehículo más (borde punteado,
+   sin imagen, fondo distinto al de los placeholders de auto). */
+#gama .model-reveal-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;background:#fff;border:1px dashed var(--border);border-radius:12px;cursor:pointer;color:var(--ink);font-family:inherit;padding:24px 21px}
+#gama .model-reveal-tile:hover,#gama .model-reveal-tile:focus-visible{border-color:var(--toyota-red);background:#FCF8F4}
+#gama .model-reveal-tile:focus-visible{outline:2px solid var(--toyota-red);outline-offset:2px}
+#gama .model-reveal-tile .reveal-icon{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#f7f9f9,#e9edef);font:700 26px var(--display);color:var(--toyota-red);line-height:1}
+#gama .model-reveal-tile strong{font:700 20px/1.15 var(--display);letter-spacing:-.02em;color:var(--ink)}
+#gama .model-reveal-tile p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+.visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
 /* Tarjetas de la gama: todas las fotos llenan el mismo marco (mismo tamaño y recorte) y comparten un tratamiento de color suave.
    Solo CSS: las imágenes originales no se tocan. Si una foto nueva queda mal recortada, ajustá object-position en la regla del modelo. */
 #gama .model .model-picture:not(.model-placeholder){padding:0;overflow:hidden;border-radius:12px;background:#e9edef}
@@ -2732,7 +2742,6 @@ document.addEventListener("DOMContentLoaded", function(){
   });
 
   // ---- gama de modelos ----
-  var MOSTRAR_FILTRO_FOTO_PENDIENTE = false;
   var MODELOS_TOYOTA = [
     { nombre: "Hilux", tipo: "pickup", desc: "La pick-up que no para nunca. Cabina simple o doble, 4x2 o 4x4.", badge: "", foto: "toyota-sharp-assets/enhanced-bae67c9e04b0-800.webp", fotoW: 800, fotoH: 648 },
     { nombre: "SW4 Diamond", tipo: "suv", desc: "Siete asientos y el Toyota Safety Sense de serie.", badge: "", foto: "toyota-sharp-assets/enhanced-371d49eb8a93-800.webp", fotoW: 781, fotoH: 800 },
@@ -2753,6 +2762,8 @@ document.addEventListener("DOMContentLoaded", function(){
   // El render deriva automáticamente las variantes -480.avif y -480.webp cuando existen.
 
   var gamaGrid = document.getElementById("gama-grid");
+  var cardsSinFoto = [];
+  var sinFotoRevelado = false;
   MODELOS_TOYOTA.forEach(function(m){
     var el = document.createElement("div");
     el.className = "model";
@@ -2765,8 +2776,46 @@ document.addEventListener("DOMContentLoaded", function(){
       '<h3 data-model-detail="' + m.nombre + '" role="button" tabindex="0" style="cursor:pointer;">' + m.nombre + ' <span aria-hidden style="color:var(--toyota-red);font-size:12px;font-weight:700;white-space:nowrap;">Ver ficha ›</span></h3>' +
       '<p>' + m.desc + '</p>' +
       '<div style="display:flex;gap:12px;border-top:1px solid var(--border);padding-top:11px;"><a target="_blank" rel="noopener noreferrer" href="' + wa("ventas", "Hola! Quiero consultar por la " + m.nombre + ".") + '" style="border:0;padding:0;flex:1;">Consultar <span>&rsaquo;</span></a><button class="compare-btn" type="button" data-compare-model="' + m.nombre + '" style="border:0;background:none;color:var(--muted);font:inherit;cursor:pointer;">Comparar</button></div>';
+    if(!m.foto){
+      el.hidden = true;
+      cardsSinFoto.push(el);
+    }
     gamaGrid.appendChild(el);
   });
+
+  // Tarjeta-toggle "Modelos sin foto": revela cardsSinFoto al hacer click.
+  // Solo aparece en el filtro "todos" y mientras queden cards sin revelar
+  // (ver applyGamaFilter). Nombra los modelos ausentes para que el cliente
+  // no tenga que adivinar qué se esconde detrás del click.
+  var nombresSinFoto = cardsSinFoto.map(function(el){ return el.getAttribute("data-model"); });
+  var gamaRevealBtn = document.createElement("button");
+  gamaRevealBtn.type = "button";
+  gamaRevealBtn.id = "gamaRevealBtn";
+  gamaRevealBtn.className = "model model-reveal-tile";
+  gamaRevealBtn.setAttribute("data-tipo", "todos-toggle");
+  gamaRevealBtn.innerHTML =
+    '<span class="reveal-icon" aria-hidden="true">+</span>' +
+    '<strong>Modelos sin foto <span id="gamaRevealCount">(' + cardsSinFoto.length + ')</span></strong>' +
+    '<p>' + nombresSinFoto.join(", ").replace(/,([^,]*)$/, " y$1") + ' también están disponibles. Tocá para verlos.</p>';
+  gamaGrid.appendChild(gamaRevealBtn);
+
+  var gamaRevealStatus = document.createElement("p");
+  gamaRevealStatus.id = "gamaRevealStatus";
+  gamaRevealStatus.className = "visually-hidden";
+  gamaRevealStatus.setAttribute("role", "status");
+  gamaRevealStatus.setAttribute("aria-live", "polite");
+  gamaGrid.parentNode.insertBefore(gamaRevealStatus, gamaGrid.nextSibling);
+
+  gamaRevealBtn.addEventListener("click", function(){
+    sinFotoRevelado = true;
+    cardsSinFoto.forEach(function(card, i){
+      card.hidden = false;
+      setTimeout(function(){ card.classList.add("gama-card-visible"); }, (i % 6) * 70);
+    });
+    gamaRevealBtn.hidden = true;
+    gamaRevealStatus.textContent = "Se muestran " + cardsSinFoto.length + " modelos más: " + nombresSinFoto.join(", ").replace(/,([^,]*)$/, " y$1") + ".";
+  });
+
   gamaGrid.addEventListener("click", function(e){
     var b = e.target.closest("[data-model-detail]");
     if(b) openDetail(b.getAttribute("data-model-detail"));
@@ -2808,7 +2857,17 @@ document.addEventListener("DOMContentLoaded", function(){
     filterBar.querySelectorAll(".filterbtn").forEach(function(b){b.classList.toggle("active",b===btn);b.setAttribute("aria-pressed",b===btn?"true":"false");});
     var visibleCount=0;
     gamaGrid.querySelectorAll(".model").forEach(function(card){
-      var visible=filtro==="todos"||card.getAttribute("data-tipo")===filtro||(filtro==="foto-pendiente"&&card.querySelector(".model-placeholder"));
+      var visible;
+      if(card===gamaRevealBtn){
+        // La tarjeta-toggle solo se ve en "todos" y mientras queden sin revelar.
+        visible=filtro==="todos"&&!sinFotoRevelado;
+      } else if(cardsSinFoto.indexOf(card)!==-1){
+        // Modelos sin foto: en "todos" respetan el estado de revelado; en
+        // cualquier filtro de categoría siempre se muestran (Opción A).
+        visible=filtro==="todos"?sinFotoRevelado:card.getAttribute("data-tipo")===filtro;
+      } else {
+        visible=filtro==="todos"||card.getAttribute("data-tipo")===filtro;
+      }
       card.hidden=!visible;
       if(visible)visibleCount++;
     });
@@ -2816,17 +2875,14 @@ document.addEventListener("DOMContentLoaded", function(){
     if(empty)empty.hidden=visibleCount>0;
     filterBar.querySelectorAll("[data-count]").forEach(function(counter){
       var type=counter.getAttribute("data-count");
-      var total=Array.prototype.filter.call(gamaGrid.querySelectorAll(".model"),function(card){return type==="todos"||card.getAttribute("data-tipo")===type||(type==="foto-pendiente"&&card.querySelector(".model-placeholder"));}).length;
+      var total=Array.prototype.filter.call(gamaGrid.querySelectorAll(".model"),function(card){
+        if(card===gamaRevealBtn)return false;
+        return type==="todos"||card.getAttribute("data-tipo")===type;
+      }).length;
       counter.textContent="("+total+")";
     });
     try{sessionStorage.setItem(filterStorageKey,filtro);}catch(e){}
     if(updateUrl){var next=filtro==="todos"?location.pathname+location.search+"#gama":location.pathname+location.search+"#gama?filter="+encodeURIComponent(filtro);history.replaceState(null,"",next);}
-  }
-  if(filterBar && MOSTRAR_FILTRO_FOTO_PENDIENTE){
-    var pendingFilter=document.createElement("button");
-    pendingFilter.type="button"; pendingFilter.className="filterbtn"; pendingFilter.setAttribute("aria-pressed","false"); pendingFilter.setAttribute("data-filter","foto-pendiente");
-    pendingFilter.innerHTML='Foto a definir <span class="filter-count" data-count="foto-pendiente"></span>';
-    filterBar.appendChild(pendingFilter);
   }
   filterBar.querySelectorAll(".filterbtn").forEach(function(btn){btn.setAttribute("aria-pressed",btn.classList.contains("active")?"true":"false");});
   filterBar.addEventListener("click",function(e){var btn=e.target.closest(".filterbtn");if(btn)applyGamaFilter(btn.getAttribute("data-filter"),true);});
