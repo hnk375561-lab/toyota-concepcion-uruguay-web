@@ -3298,7 +3298,15 @@ document.addEventListener("DOMContentLoaded", function(){
     function syncCompareHash(){var a=selA.value,b=selB.value;if(a&&b)history.replaceState(null,"",location.pathname+location.search+"#comparar?a="+encodeURIComponent(a)+"&b="+encodeURIComponent(b));}
     selA.addEventListener("change", function(){render();syncCompareHash();});
     selB.addEventListener("change", function(){render();syncCompareHash();});
-    if(resetBtn) resetBtn.addEventListener("click", function(){ selA.value=""; selB.value=""; render(); });
+    if(resetBtn) resetBtn.addEventListener("click", function(){
+      selA.value=""; selB.value=""; render();
+      history.replaceState(null,"",location.pathname+location.search+"#comparar");
+      var tool=document.getElementById("comparar");
+      setTimeout(function(){
+        if(tool && window.__toyotaScrollToElement) window.__toyotaScrollToElement(tool);
+        try{ selA.focus({preventScroll:true}); }catch(e){ selA.focus(); }
+      },0);
+    });
     render();
   })();
 
