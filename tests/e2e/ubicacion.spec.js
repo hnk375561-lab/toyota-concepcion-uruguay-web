@@ -1,14 +1,18 @@
 // @ts-check
 /**
  * Ubicación: todos los enlaces a Google Maps abren la ficha del negocio
- * (`location.mapsPlaceUrl` en data/dealership.json), no una búsqueda por dirección en texto.
+ * (`location.mapsPlaceUrl` en data/dealership.json) o, puntualmente, la vista
+ * de opiniones de esa misma ficha (`location.mapsReviewsUrl`) en el botón de
+ * reseñas. Ninguno debe ser una búsqueda por dirección en texto.
  * El iframe embebido (google.com/maps?q=…&output=embed) y Apple Maps quedan fuera de esta regla.
  */
 import { readFileSync } from 'node:fs';
 import { test, expect } from '../support/fixtures.js';
 import { openSite } from '../support/helpers.js';
 
-const PLACE_URL = JSON.parse(readFileSync(new URL('../../data/dealership.json', import.meta.url), 'utf8')).location.mapsPlaceUrl;
+const dealership = JSON.parse(readFileSync(new URL('../../data/dealership.json', import.meta.url), 'utf8'));
+const PLACE_URL = dealership.location.mapsPlaceUrl;
+const REVIEWS_URL = dealership.location.mapsReviewsUrl;
 
 test.describe('Ubicación en Google Maps', () => {
   test('todos los enlaces a Google Maps apuntan a la ficha del negocio', async ({ page, isMobile }) => {
@@ -16,7 +20,7 @@ test.describe('Ubicación en Google Maps', () => {
     const hrefs = await page.evaluate(() =>
       [...document.querySelectorAll('a[href*="google.com/maps"]')].map((a) => a.getAttribute('href')));
     expect(hrefs.length, 'hay enlaces a Google Maps en la página').toBeGreaterThanOrEqual(7);
-    expect(hrefs.filter((h) => h !== PLACE_URL)).toEqual([]);
+    expect(hrefs.filter((h) => h !== PLACE_URL && h !== REVIEWS_URL)).toEqual([]);
     expect(hrefs.filter((h) => /maps\/(search|dir)/.test(h ?? ''))).toEqual([]);
   });
 
