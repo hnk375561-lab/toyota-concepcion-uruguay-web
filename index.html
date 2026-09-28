@@ -2001,7 +2001,7 @@ footer a:hover,footer a:focus-visible{color:#fff!important;text-decoration:under
 <div aria-label="Mapa de ubicación del concesionario" class="map-frame map-frame-live" role="group">
 
 <div class="map-static-preview map-embed-preview" role="group" aria-label="Mapa de ubicación del concesionario">
-<iframe title="Mapa de Piñeyro y Moscatelli en Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=9%20de%20Julio%201624%2C%20Concepci%C3%B3n%20del%20Uruguay%2C%20Entre%20R%C3%ADos&output=embed"></iframe>
+<iframe title="Mapa de Piñeyro y Moscatelli en Google Maps" data-map-src="https://www.google.com/maps?q=9%20de%20Julio%201624%2C%20Concepci%C3%B3n%20del%20Uruguay%2C%20Entre%20R%C3%ADos&output=embed" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div>
 <a class="map-frame-cta" href="https://www.google.com/maps/place/Moscatelli+Gustavo+-+Toyota/@-32.4874489,-58.2508951,17z/data=!3m1!4b1!4m6!3m5!1s0x95afdb005d0d92a1:0xe119231d3607c018!8m2!3d-32.4874489!4d-58.2483202!16s%2Fg%2F1tc_0pr2" rel="noopener noreferrer" target="_blank"><strong>Ver dirección en Google Maps</strong><small>9 de Julio 1624 · Abrir dirección ↗</small></a>
 </div>
@@ -3972,6 +3972,21 @@ document.addEventListener('DOMContentLoaded',function(){
   var rowIndex=day>=1&&day<=5?0:(day===6?1:2);
   if(rows[rowIndex])rows[rowIndex].classList.add('is-today');
 });
+</script>
+<script id="map-lazy-load">
+(function(){
+  function init(){
+    var f=document.querySelector('iframe[data-map-src]');
+    if(!f)return;
+    function load(){var u=f.getAttribute('data-map-src');if(u){f.setAttribute('src',u);f.removeAttribute('data-map-src');}}
+    if(!('IntersectionObserver' in window)){load();return;}
+    var io=new IntersectionObserver(function(entries){
+      if(entries.some(function(e){return e.isIntersecting;})){io.disconnect();load();}
+    },{rootMargin:'200px 0px'});
+    io.observe(f);
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+})();
 </script>
 <script id="location-status-mirror">
 document.addEventListener('DOMContentLoaded',function(){
