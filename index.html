@@ -90,7 +90,7 @@ footer{background:var(--ink);color:#c9ced3;padding:36px 0;font-size:14px}footer 
 </div>
 <div class="facts">
 <div class="fact"><b>0 km y usados</b><span>Todas las marcas</span></div>
-<div class="fact"><b>Gestoría propia</b><span>Trámites con la agencia</span></div>
+<div class="fact"><b>Gestoría propia</b><span>Todo tipo de trámites y transferencias</span></div>
 <div class="fact"><b>Permutas</b><span>Consultá tu usado</span></div>
 <div class="fact"><b>Consignación</b><span>Precio acordado sin comisión</span></div>
 </div></div></div>
@@ -116,7 +116,7 @@ footer{background:var(--ink);color:#c9ced3;padding:36px 0;font-size:14px}footer 
 <p class="lead">Dejás tu vehículo en consignación y la agencia se ocupa de venderlo.</p>
 <ul class="checks"><li>Precio acordado, sin comisión</li><li>Operaciones claras</li><li>Local bajo techo</li><li>Pago inmediato</li><li>Transferencia antes de retirar</li></ul>
 <div class="cta"><a class="btn" href="#" data-contact="Hola! Quiero consultar por dejar mi auto en consignación.">Consultar por consignación</a></div></div>
-<div><h2 style="font-size:34px">Servicios de la agencia</h2><ul class="checks" style="margin-top:18px"><li>0 km de todas las marcas</li><li>Usados seleccionados</li><li>Gestoría propia</li><li>Compra, venta y permutas</li></ul><p class="note" style="color:#c5cdd1">Consultá qué trámites incluye la gestoría y qué marcas de 0 km hay disponibles.</p></div>
+<div><h2 style="font-size:34px">Servicios de la agencia</h2><ul class="checks" style="margin-top:18px"><li>0 km de todas las marcas</li><li>Usados seleccionados</li><li>Gestoría propia</li><li>Compra, venta y permutas</li></ul><p class="note" style="color:#c5cdd1">Realizan todo tipo de trámites y transferencias. Consultá qué marcas de 0 km hay disponibles.</p></div>
 </div></section>
 
 <section id="proceso" class="rv"><div class="wrap">
@@ -141,7 +141,7 @@ footer{background:var(--ink);color:#c9ced3;padding:36px 0;font-size:14px}footer 
 <details><summary>¿Reciben mi usado como parte de pago?</summary><p>Sí, en sus publicaciones aparece "Vendo – Permuto" y algunas unidades aceptan permuta por menor valor. Las condiciones las confirma la agencia.</p></details>
 <details><summary>¿Toman autos en consignación?</summary><p>Sí. Según sus publicaciones: precio acordado sin comisión, pago inmediato y transferencia antes de retirar.</p></details>
 <details><summary>¿Los precios están publicados?</summary><p>Solo se publican precios confirmados por el negocio. Si una unidad dice "Consultar", preguntá por ella.</p></details>
-<details><summary>¿Hacen la transferencia?</summary><p>La agencia cuenta con gestoría propia. Consultá qué trámites incluye cada operación.</p></details>
+<details><summary>¿Hacen la transferencia?</summary><p>Sí. La agencia informa que realiza todo tipo de trámites y transferencias, con gestoría propia. Consultá el detalle de cada operación.</p></details>
 <details><summary>¿Qué horarios tienen?</summary><p>Los horarios se están confirmando con el negocio. Mientras tanto, escribinos por WhatsApp o llamá al 03442 45-3550.</p></details>
 </div></div></section>
 
@@ -161,6 +161,7 @@ var NEGOCIO = {
   nombre: "Fernando Poerio Automotores",
   direccion: "Alberdi 1337",
   ciudad: "Concepción del Uruguay, Entre Ríos",
+  referencia: "casi Bv. Montoneras",
   telefono: "03442 45-3550",
   telefonoTel: "+543442453550",
   whatsapp: "5493442453550",  /* confirmado: el chat abre como +54 9 3442 45-3550 */
@@ -190,7 +191,7 @@ var STOCK = [
   document.querySelectorAll("[data-contact]").forEach(function(a){a.href=contactHref(a.getAttribute("data-contact")||"");if(N.whatsapp){a.target="_blank";a.rel="noopener noreferrer"}else a.textContent="Llamar"});
   document.querySelectorAll("[data-map]").forEach(function(a){a.href=map;a.target="_blank";a.rel="noopener noreferrer"});
   $("callMap").href=map;$("mapLink").href=map;
-  $("addr").innerHTML=N.direccion+"<br>"+N.ciudad;
+  $("addr").innerHTML=N.direccion+(N.referencia?" ("+N.referencia+")":"")+"<br>"+N.ciudad;
   var p=$("phoneLink");p.href="tel:"+N.telefonoTel;p.textContent="Llamar al "+N.telefono;
   $("hoursNote").textContent=N.horarios?"Horarios: "+N.horarios:"Horarios: a confirmar con el negocio.";
   var ig=$("igLink");ig.href="https://www.instagram.com/"+N.instagram+"/";ig.textContent="Instagram @"+N.instagram;$("fbLink").href=N.facebook;
